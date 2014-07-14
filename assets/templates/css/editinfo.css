@@ -1058,6 +1058,15 @@ div#logindialog div.fbbox div{
 	cursor: pointer;
 }
 
+#lstBox1{
+	width: 150px;
+	height: 200px;
+}
+#lstBox2{
+	width: 150px;
+	height: 200px;
+}
+
 /*-------------------*/
 #fbbox{
 	position: relative;

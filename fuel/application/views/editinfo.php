@@ -158,7 +158,7 @@
                                         </td>
                                     <td  >
                                         <input type='button' id='btnRight' value ='  >  '/>
-                                        <br/><input type='button' id='btnLeft' value ='  <  '/>
+                                        <br/> <br/><input type='button' id='btnLeft' value ='  <  '/>
                                     </td>
                                     <td >
                                         <select multiple="multiple" id='lstBox2' name="skill[]" >
