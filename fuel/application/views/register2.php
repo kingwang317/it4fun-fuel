@@ -201,6 +201,7 @@
                     $("#school_id_1").autocomplete(school_data, {matchContains: true});  
                 });
 
+                 DATA.dom.addschool=$("#addschool");
 
                  DATA.dom.addschool.click(function(){
                    num=DATA.dom.schoollist.children("li").size()+1;  
