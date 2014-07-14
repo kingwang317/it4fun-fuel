@@ -18,6 +18,7 @@ class Home extends CI_Controller {
 
 	function index()
 	{	
+		$this->load->helper('cookie');
 		$this->load->model('about_case_model');
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");

@@ -51,7 +51,7 @@
         </form>
     </div>
       <div id="logindialog">
-        <form action="<?php echo site_url()?>user/login" method="POST" >
+        <form action="<?php echo site_url()?>user/do_login" method="POST" >
             <div class="close"></div>
             <div class="subject">登入帳號</div>
             <div class="line"></div>            
@@ -147,7 +147,7 @@ $("#submitbtn_1").click(function(){
 $("#submitbtn_2").click(function(){
     //alert($("#repassword_icon").is(":visible"));
     //return false;
-   if($("#login_mail").val() != "" && $("#login_password").val() != ""){
+   if($("#login_mail").val() == "" || $("#login_password").val() == ""){
         alert("請輸入帳號密碼");
             return false;
    }

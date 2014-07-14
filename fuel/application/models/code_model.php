@@ -19,6 +19,67 @@ class Code_model extends CI_Model {
 
         return null;
     }
+
+    public function do_logged_in($account,$password){
+
+        $sql = @" SELECT * FROM mod_resume WHERE account = ? AND password = MD5(?) LIMIT 1";
+        $para = array(
+            $account,
+            $password
+        );
+
+        $res_1 = $this->db->query($sql, $para);
+
+        if($res_1->num_rows() > 0)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function is_account_logged_in($account){
+        //$this->load->helper('cookie');
+        $cookie = $this->input->cookie("ytalent_account",TRUE);
+
+        //print_r($cookie);
+      // print_r($this->input->cookie());
+       // die();
+        if(isset($cookie) && !empty($cookie) && $cookie == $account){
+            return true;
+        }else{
+            delete_cookie("ytalent_account");
+            return false;
+        }
+    }
+    function is_logged_in(){
+        //$this->load->helper('cookie');
+        $cookie = $this->input->cookie("ytalent_account",TRUE);
+
+        //print_r($cookie);
+      // print_r($this->input->cookie());
+       // die();
+        if(isset($cookie) && !empty($cookie)){
+            return true;
+        }else{
+            delete_cookie("ytalent_account");
+            return false;
+        }
+    }
+    function get_logged_in_account(){
+        //$this->load->helper('cookie');
+        $cookie = $this->input->cookie("ytalent_account",TRUE);
+
+        //print_r($cookie);
+      // print_r($this->input->cookie());
+       // die();
+        if(isset($cookie) && !empty($cookie)){
+            return $cookie;
+        }else{
+            delete_cookie("ytalent_account");
+            return null;
+        }
+    }
+
      public function get_user_not_skill($account)
     { 
         // $b = urldecode($q);

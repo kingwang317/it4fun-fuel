@@ -71,7 +71,11 @@ class User extends CI_Controller {
 		fuel_set_var('page_id', "1");
 		$all_cate = array();
 
-		$account = $this->input->get("account");
+		$account = $this->code_model->get_logged_in_account();
+
+		if($account == null){
+			$this->comm->plu_redirect(site_url(), 0, "尚未登入");
+		}
 
 		$account_data = $this->code_model->get_account_data($account);
 	
@@ -91,7 +95,11 @@ class User extends CI_Controller {
 		fuel_set_var('page_id', "1");
 		$all_cate = array();
 
-		$account = $this->input->get("account");
+		$account = $this->code_model->get_logged_in_account();
+
+		if($account == null){
+			$this->comm->plu_redirect(site_url(), 0, "尚未登入");
+		}
 
 		$account_data = $this->code_model->get_account_data($account);
 		$skill_list = $this->code_model->get_user_not_skill($account);
@@ -171,21 +179,46 @@ class User extends CI_Controller {
         redirect(site_url());
     }
 
-    function user_login()
+
+
+    function do_login()
     {
+    	//delete_cookie();
+    	$this->load->helper('cookie');
         $this->set_meta->set_meta_data();
-        $is_logined = $this->fuel_auth->is_logged_in();
-        fuel_set_var('page_id', "6");
+		$this->load->model('code_model');
+        $account = $this->input->post("login_mail");
+        $password = $this->input->post("login_password");
+
+        $is_logined = $this->code_model->is_account_logged_in($account);
+       
         if($is_logined)
         {
-            redirect(site_url());
+            redirect(site_url()."user/myinfo");
         }
         else
         {
-            $vars['views'] = 'login_view';
-            $vars['base_url'] = base_url();
+            $login_result = $this->code_model->do_logged_in($account,$password);   
             
-            $this->fuel->pages->render('login_view', $vars);              
+            if($login_result){
+	        	/*$config = array(
+					'name' =>  $account, 
+					//'value' => serialize(array()),
+					'expire' => 3600,
+					'path' => $this->fuel->config('fuel_cookie_path')
+					//'domain' => base_url()
+				);
+				$this->input->set_cookie($config);*/
+
+				$this->input->set_cookie("ytalent_account",$account, 3600);
+
+            	$this->comm->plu_redirect(site_url()."user/myinfo", 0, "登入成功");
+            }else{
+
+            	$this->comm->plu_redirect(site_url(), 0, "登入失敗");
+            }
+			
+			    
         }
     }
 	function step3()
