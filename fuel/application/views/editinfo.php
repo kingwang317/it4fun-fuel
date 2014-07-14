@@ -243,6 +243,7 @@
                 });
 
                 DATA.dom.addschool=$("#addschool");
+                DATA.dom.schoollist=$("ul.schoollist");
 
 
                 DATA.dom.addschool.click(function(){
