@@ -54,6 +54,11 @@ $route['user/fbreg'] 			= 'user/fb_reg';
 $route['user/login']			= 'user/user_login';
 $route['user/logout'] 			= 'user/logout';
 
+
+$route['home/campusevents'] 	= 'home/campusevents';
+$route['home/contact'] 			= 'home/contact';
+$route['user/logout'] 			= 'user/logout';
+
 $route['case'] 					= 'about_case/index';
 $route['case/(:num)'] 			= 'about_case/index/$1';
 $route['case/detail/(:num)'] 	= 'about_case/case_detail/$1';

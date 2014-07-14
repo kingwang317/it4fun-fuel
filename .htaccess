@@ -1,7 +1,7 @@
 Options +FollowSymLinks
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /ytalent/trunk
+RewriteBase /it4fun-fuel
 
 <Files .*>
 	Order Deny,Allow
