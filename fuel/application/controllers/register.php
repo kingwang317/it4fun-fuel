@@ -48,13 +48,16 @@ class Register extends CI_Controller {
 	}
 
 	function step1_save(){
-		
+		$this->load->helper('cookie');
+		$this->input->set_cookie("ytalent_account","", time()-3600);
 		$mail = $this->input->get_post("mail");
 		$password = $this->input->get_post("password");
 		$this->load->model('code_model');
 		$result = $this->code_model->do_register_resume($mail,$password);
 
 		if($result){
+			
+			$this->input->set_cookie("ytalent_account",$mail, time()+3600);
 			$this->comm->plu_redirect(site_url()."register/step2?account=$mail&token=".md5(md5($mail)), 0, null);
 		}else{
 			$this->comm->plu_redirect(site_url(), 0, "此帳號已被註冊");

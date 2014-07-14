@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+ <!DOCTYPE HTML>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -27,7 +27,7 @@
             
             <?php $this->load->view('_blocks/_header')?>
 
-            <div id="bodybox01">
+            <div id="bodybox01" style="display:none">
                 <div class="top">
                     <ul>
                         <li class="subject">合作夥伴</li>
@@ -45,7 +45,7 @@
                     </p>
                 </div>
             </div>
-            <div id="bodybox02">
+            <div id="bodybox02" style="display:none">
                 <img src="<?php echo site_url()?>assets/templates/images/pic/pic1.png">
             </div>
             <div id="bodybox03">

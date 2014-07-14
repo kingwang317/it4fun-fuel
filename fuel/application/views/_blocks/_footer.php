@@ -2,8 +2,10 @@
     <div id="footernavbox">
         <div class="nav">
             <ul>
+                <!--
                 <li><a href="<?php echo site_url()?>home/campusevent/">關於我們</a></li>
                 <li><a href="<?php echo site_url()?>home/campusevent/">校園活動</a></li>
+            -->
                 <li><a href="<?php echo site_url()?>home/terms/">使用者條款</a></li>
                 <li><a href="<?php echo site_url()?>home/contact/">聯絡我們</a></li>
             </ul>
@@ -12,7 +14,7 @@
     <div id="footerinfobox">
         <div class="info">
             <div class="l">Copyright © 2013 - 2014 . PeopleSearch. All rights reserved.</div>
-            <div class="r">“JobFinder”是PeopleSearch的促進就業推動以及人力資源改善計劃。</div>
+            <div class="r">"Young Talent”是PeopleSearch的促進就業推動以及⼈⼒資源改善計劃。</div>
         </div>
     </div>
 </div>
@@ -38,16 +40,18 @@
                 <div class="icon" id="repassword_icon"><div class="ok"></div></div>
             </div>
             <div class="agree">
-                 <p>我同意<a href="#">網站使用條款</a></p><input type="checkbox" name="agree" id="agree" >
+                 <p>我同意<a href="<?php echo site_url()?>home/terms/">網站使用條款</a></p><input type="checkbox" name="agree" id="agree" >
             </div>
             <div class="submit">
                 <input type="submit" class="submitbtn" name="submitbtn_1" id="submitbtn_1" value="送出">
             </div>
+            <!--
             <div class="fbbox">
                 <p>使用臉書登入，又快又方便 &nbsp;&nbsp;&nbsp;&nbsp;</p> 
                 <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
 
             </div>
+        -->
         </form>
     </div>
       <div id="logindialog">
@@ -68,10 +72,13 @@
             <div class="submit">
                 <input type="submit" class="submitbtn" name="submitbtn_2" id="submitbtn_2"  value="登入">
             </div>
+            <!--
             <div class="fbbox">
                 <p>使用臉書登入，又快又方便 &nbsp;&nbsp;&nbsp;&nbsp;</p> 
-                 <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
+                <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
+
             </div>
+        -->
         </form>
     </div>
 
