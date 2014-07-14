@@ -52,7 +52,7 @@
                             </div>
                             <div class="reight">
                                 <ul>
-                                    <li class="l1"><input type="text" name="birth" id="birth" value="<?php echo $data[0]->birth?>"></li>
+                                    <li class="l1"><input type="text" name="birth" id="birth" value="<?php echo $data[0]->birth?>" placeholder="yyyy-MM-dd" /></li>
                                 </ul>
                             </div>
                         </div>
@@ -118,8 +118,8 @@
                                     
                                 ?>    
                                     <li class="l<?php echo $count ?>">
-                                        <input type="text" name="job_company_name_<?php echo $count ?>" value="<?php echo $value->company_name ?>"><br>
-                                        <input type="text" name="job_title_<?php echo $count ?>" value="<?php echo $value->job_title ?>"><br>
+                                        <input type="text" name="job_company_name_<?php echo $count ?>" value="<?php echo $value->company_name ?>" placeholder="公司" /><br>
+                                        <input type="text" name="job_title_<?php echo $count ?>" value="<?php echo $value->job_title ?>" placeholder="職稱" /><br>
                                         <input type="text" class="datestart datepicker<?php echo $count ?>" name="job_start_date_<?php echo $count ?>" value="<?php echo $value->job_start_date ?>">
                                         &nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;
                                         <input type="text" class="dateend datepicker<?php echo $count ?>" name="job_end_date_<?php echo $count ?>" value="<?php echo $value->job_end_date ?>"><br>
@@ -201,7 +201,9 @@
                             </div>
                             <div class="reight">
                                 <ul>
-                                    <li class="l1"><input type="text" name="about_self" placeholder="介紹一下你自已吧" value="<?php echo $data[0]->about_self ?>" ></li>
+                                    <li class="l1"> 
+                                        <textarea name="about_self" placeholder="介紹一下你自已吧" rows="3" cols="40" maxlength="100"><?php echo $data[0]->about_self ?></textarea>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -261,7 +263,7 @@
 
                 DATA.dom.addjob.click(function(){
                    num=DATA.dom.joblist.children("li").size()+1; 
-                   jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value=''><br><input type='text' name='job_title_"+num+"' value=''><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' value=''>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' value=''><br></li>";
+                   jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value='' placeholder='公司' /><br><input type='text' name='job_title_"+num+"' value='' placeholder='職稱' /><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' value=''>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' value=''><br></li>";
                    DATA.dom.joblist.append(jobItem);
                    $( ".datepicker"+num ).datepicker({ dateFormat: 'yy-mm-dd' });
                 });
