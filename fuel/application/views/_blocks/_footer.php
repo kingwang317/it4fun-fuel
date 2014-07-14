@@ -4,7 +4,6 @@
             <ul>
                 <li><a href="<?php echo site_url()?>home/campusevent/">關於我們</a></li>
                 <li><a href="<?php echo site_url()?>home/campusevent/">校園活動</a></li>
-                <li><a href="<?php echo site_url()?>home/campusevent/">常見問題</a></li>
                 <li><a href="<?php echo site_url()?>home/terms/">使用者條款</a></li>
                 <li><a href="<?php echo site_url()?>home/contact/">聯絡我們</a></li>
             </ul>

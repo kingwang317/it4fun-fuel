@@ -1,9 +1,8 @@
 <div id="headerbox">
     <a class="logo" href="<?php echo site_url()?>"></a>
     <ul class="menu">
-        <li><a href="#">校園活動</a></li>
-        <li><a href="#">常見問題</a></li> 
-        <li><a href="#">關於我們</a></li>             
+        <li><a href="<?php echo site_url()?>home/campusevents/">校園活動</a></li>
+        <li><a href="<?php echo site_url()?>home/campusevents/">關於我們</a></li>             
     </ul>
     <div id="loginbox">登入</div>
     <?php if($views == "home"){ ?>

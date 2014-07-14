@@ -60,7 +60,7 @@
                 <p class="content">許多工作其實都不用工作經驗，也用不到履歷表。<br>填寫履歷就成了一個多餘又麻煩的事情，那何不把它省略呢?</p>
             </div>
             <div id="bodybox06">
-                <img src="<?php echo site_url()?>assets/templates/images/pic/pic5.png">
+                <?php $this->load->view('_blocks/_facebook')?>
             </div>
         </div>
         <?php $this->load->view('_blocks/_footer')?>

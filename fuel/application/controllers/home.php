@@ -59,16 +59,16 @@ class Home extends CI_Controller {
 		$this->fuel->pages->render('contact', $vars);
 
 	}
-	function campusevent()
+	function campusevents()
 	{	
 		//$this->load->model('about_case_model');
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");
 
-		$vars['views'] = 'campusevent';
+		$vars['views'] = 'campusevents';
 		$vars['base_url'] = base_url();
 		$page_init = array('location' => 'home');
-		$this->fuel->pages->render('campusevent', $vars);
+		$this->fuel->pages->render('campusevents', $vars);
 
 	}
 	function terms()
