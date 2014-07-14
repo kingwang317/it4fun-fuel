@@ -7,7 +7,7 @@ body {
 #maincontain{
 	width:100%;
 	height: auto;
-	background: url("../images/bg/bg01.jpg");
+	background: url("../images/bg/bg02.jpg");
 	background-repeat: repeat-x;
 }
 
@@ -18,151 +18,20 @@ body {
 	margin: 0 auto;
 }
 
-#footerbox{
-	width: 100%;
-	height: 109px;
-	background: #525252;
-}
-
 #headerbox{
 	position: relative;
 	width:1110px;
-	height: 515px;
-	background: url("../images/banner/banner01.jpg");
-}
-
-#bodybox01{
-	position: relative;
-	width:1110px;
-	min-height: 317px;
-}
-
-#bodybox01 div.top{
-	width: 990px;
-	height: 120px;
-	margin: 0 auto;
-}
-
-#bodybox01 div.bottom{
-	width: 990px;
-	min-height: 197px;
-	margin: 0 auto;
-}
-
-#bodybox01 div.top ul{}
-#bodybox01 div.top ul li{float: left;height: 120px;}
-#bodybox01 div.top ul li.subject{
-	width: 138px;
-	padding: 0 25px 0 0;
-	text-align: right;
-	color: #666;
-	font-size: 18px;
-	line-height: 120px;
-}
-
-#bodybox01 div.bottom h2{
-	font-size: 52px;
-	font-weight: normal;
-	color: #666;
-	line-height: 78px;
-	text-align: center;
-}
-
-
-#bodybox01 div.bottom p{
-	font-size: 18px;
-	font-weight: normal;
-	color: #666;
-	line-height: 30px;
-	text-align: justify;
-}
-
-#bodybox02{
-	position: relative;
-	width:1110px;
-	height: 442px;
-}
-
-#bodybox03{
-	position: relative;
-	width:1110px;
-	height: 279px;
-}
-
-#bodybox04{
-	position: relative;
-	width:1110px;
-	height: 339px;
-	background: url("../images/pic/pic3.png");
-}
-
-#bodybox04 p.subject{
-	position: absolute;
-	top: 80px;
-	left: 475px;
-	font-size: 30px;
-	font-weight: bold;
-	line-height: 30px;
-	color: #525252;
-	letter-spacing: 1px;
-}
-
-#bodybox04 p.content{
-	position: absolute;
-	top: 146px;
-	left: 475px;
-	width: 530px;
-	height: auto;
-	font-weight: bold;
-	font-size: 18px;
-	line-height: 28px;
-	color: #525252;
-}
-
-#bodybox05{
-	position: relative;
-	width:1110px;
-	height: 275px;
-	background: url("../images/pic/pic4.png");
-}
-
-#bodybox05 p.subject{
-	position: absolute;
-	top: 67px;
-	left: 56px;
-	font-size: 30px;
-	font-weight: bold;
-	line-height: 30px;
-	color: #525252;
-	letter-spacing: 1px;
-}
-
-#bodybox05 p.content{
-	position: absolute;
-	top: 115px;
-	left: 56px;
-	width: 455px;
-	height: auto;
-	font-weight: bold;
-	font-size: 18px;
-	line-height: 28px;
-	color: #525252;
-}
-
-#bodybox06{
-	position: relative;
-	width:1110px;
-	height: 317px;
+	height: 68px;
 }
 
 #headerbox a.logo{
 	position: absolute;
 	display: block;
-	top: 15px;
-	left: 57px;
-	width:193px;
-	height: 46px;
-	background: url("../images/logo/logo.png");
+	top: 16px;
+	left: 58px;
+	width:205px;
+	height: 44px;
+	background: url("../images/logo/logo2.png");
 }
 
 #headerbox ul.menu{position: absolute;top: 15px; left: 650px;}
@@ -172,7 +41,7 @@ body {
 	line-height: 46px;
 	font-size: 14px;
 	font-weight: bold;
-	color: #666;
+	color: #fff;
 	text-decoration: none;
 }
 
@@ -184,34 +53,19 @@ body {
 	width: auto;
 	height: 17px;
 	line-height: 17px;
-	background: url("../images/icon/login.png");	
+	background: url("../images/icon/login2.png");	
 	background-repeat: no-repeat;
-	color: #666;
+	color: #fff;
 	padding: 0 0 0 30px;
 	cursor: pointer;
 }
 
-#logdata{
-	position: absolute;
-	top: 360px; 
-	left: 73px;
-	width: 276px;
-	height: 65px;
-	background: url("../images/icon/logdata.png");	
-	background-repeat: no-repeat;
-	cursor: pointer;
+#footerbox{
+	width: 100%;
+	height: 109px;
+	background: #525252;
 }
 
-#headerbox div.fb {
-	position: absolute;
-	top: 450px; 
-	left: 73px;
-	min-width: 386px;
-	width: auto;
-	height: 30px;
-	background: url("../images/icon/fb01.png");
-	background-repeat: no-repeat;
-}
 
 #footernavbox{
 	width: 100%;
@@ -270,6 +124,39 @@ body {
 	text-align: right;
 	font-size: 12px;
 }
+
+/*-------------------*/
+#bodybox01{
+	width: 992px;
+	min-height: 335px;	
+	margin: 0 auto;
+	padding: 25px 0 0 0 ;	
+}
+
+#bodybox01 p.desc{
+	font-size: 18px;
+	line-height: 30px;
+	margin-bottom: 30px;
+}
+
+#bodybox01 p.title{
+	font-size: 32px;
+	line-height: 100px;
+	text-align: center;
+}
+
+#bodybox01 p.item{
+	font-size: 18px;
+	line-height: 30px;
+	font-weight: bold;
+}
+
+#bodybox02{
+	position: relative;
+	width:1110px;
+	height: 317px;
+}
+
 /*-------------------*/
 div#wall{
 	position: fixed;
@@ -281,7 +168,6 @@ div#wall{
 	background: rgba(0,0,0,0);
 }
 
-/*-------------------*/
 div#logindialog{
 	position: fixed;
 	top:0px;
@@ -442,12 +328,9 @@ div#logindialog div.fbbox div{
 }
 
 /*-------------------*/
-
-
 br.CLEAR{ clear:both; font-size:1px; height:1px; line-height:1px;}
 /*----------消虛線---------*/
 /* For IE, onFocus 的 F 要大寫*/
 a{noFocusline:expression(this.onFocus=this.blur());}     
 /* For Firefox */
 a:focus{<br />	-moz-outline-style:none;}  
-

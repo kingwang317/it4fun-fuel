@@ -47,4 +47,40 @@ class Home extends CI_Controller {
 		//$this->fuel_page->render(FALSE, FALSE); //第二個FALSE為在前台不顯示ADMIN BAR
 	}
 	
+	function contact()
+	{	
+		//$this->load->model('about_case_model');
+		$this->set_meta->set_meta_data();
+		fuel_set_var('page_id', "1");
+
+		$vars['views'] = 'contact';
+		$vars['base_url'] = base_url();
+		$page_init = array('location' => 'home');
+		$this->fuel->pages->render('contact', $vars);
+
+	}
+	function campusevent()
+	{	
+		//$this->load->model('about_case_model');
+		$this->set_meta->set_meta_data();
+		fuel_set_var('page_id', "1");
+
+		$vars['views'] = 'campusevent';
+		$vars['base_url'] = base_url();
+		$page_init = array('location' => 'home');
+		$this->fuel->pages->render('campusevent', $vars);
+
+	}
+	function terms()
+	{	
+		//$this->load->model('about_case_model');
+		$this->set_meta->set_meta_data();
+		fuel_set_var('page_id', "1");
+
+		$vars['views'] = 'terms';
+		$vars['base_url'] = base_url();
+		$page_init = array('location' => 'home');
+		$this->fuel->pages->render('terms', $vars);
+
+	}
 }

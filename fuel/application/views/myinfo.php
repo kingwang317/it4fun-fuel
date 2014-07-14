@@ -6,8 +6,10 @@
     <title></title>    
     <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/reset.css" type="text/css" media="all" >
     <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/myinfo.css" type="text/css" media="all" >
+    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/mysite.css" type="text/css" media="all" >
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/myinfo.js"></script>
+    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/index.js"></script>
 </head>
 
 <body>

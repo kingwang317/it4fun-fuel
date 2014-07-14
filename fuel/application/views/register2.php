@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/register2.css" type="text/css" media="all" >
     <link rel="stylesheet" href="<?php echo site_url()?>assets/css/jquery.autocomplete.css" type="text/css" media="all" >
     <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.css" type="text/css" media="all" >
+    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/mysite.css" type="text/css" media="all" >
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/register2.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/js/jquery.autocomplete.min.js"></script>
+    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/index.js"></script>
 </head>
 <body>
     <div id="maincontain">

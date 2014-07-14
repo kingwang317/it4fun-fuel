@@ -9,6 +9,9 @@ jQuery(document).ready(function ($) {
     DATA.dom.logindatabox=$("#logindatabox");
     DATA.dom.logindialog=$("#logindialog");
 
+
+
+
     DATA.dom.loginbox.click(function(){
        DATA.dom.logindialog.css({"left":(DATA.winW-DATA.dom.logindialog.width())/2+"px" , "top":(DATA.winH-DATA.dom.logindialog.height())/2+"px"});
        DATA.dom.logindialog.fadeIn();
@@ -18,6 +21,7 @@ jQuery(document).ready(function ($) {
         DATA.dom.logindialog.css({"left":(DATA.winW-DATA.dom.logindialog.width())/2+"px" , "top":(DATA.winH-DATA.dom.logindialog.height())/2+"px"});
         DATA.dom.logindialog.fadeOut();
     });
+
 
     DATA.dom.logdata.click(function(){
        DATA.dom.logindatabox.css({"left":(DATA.winW-DATA.dom.logindatabox.width())/2+"px" , "top":(DATA.winH-DATA.dom.logindatabox.height())/2+"px"});
