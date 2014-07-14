@@ -55,6 +55,7 @@ class User extends CI_Controller {
 		$result = $this->code_model->do_register_resume($mail,$password);
 
 		if($result){
+			$this->input->set_cookie("ytalent_account",$mail, 3600);
 			$this->comm->plu_redirect(site_url()."register/step2?account=$mail&token=".md5(md5($mail)), 0, null);
 		}else{
 			$this->comm->plu_redirect(site_url(), 0, "此帳號已被註冊");

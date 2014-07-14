@@ -75,7 +75,7 @@ class Code_model extends CI_Model {
         if(isset($cookie) && !empty($cookie)){
             return $cookie;
         }else{
-            delete_cookie("ytalent_account");
+            //delete_cookie("ytalent_account");
             return null;
         }
     }
