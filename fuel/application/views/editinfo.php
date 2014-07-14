@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.css" type="text/css" media="all" >
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
-    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/register2.js"></script>
+    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/editinfo.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/js/jquery.autocomplete.min.js"></script>
 </head>
 
@@ -74,11 +74,11 @@
                                 <ul class="schoollist">
 
 
-                                <?php  
+                                 <?php  
                                     $count = 1;
                                     if(isset($data["schools"]))
                                     foreach ($data["schools"] as $key => $value) {
-                                    
+                                    // print_r($value);
                                 ?>   
                                     <li class="l<?php echo $count ?>">
                                         <input type="text" class="school" name="school_id_<?php echo $count ?>" value="<?php echo $value->school_name ?>"><br>
@@ -94,7 +94,7 @@
                                  <?php
                                       $count++;  
                                     }
-                                ?>     
+                                ?>       
                                 </ul>
                                 <div id="addschool">新增一筆學校</div>
                             </div>
@@ -222,8 +222,11 @@
     <script type="text/javascript">
            
 
-            jQuery(document).ready(function($) {
+           jQuery(document).ready(function($) {
              
+                // var data1 = ['台北市中正區','台北市大同區','台北市中山區','台北市松山區','台北市大安區'];  
+  // $(".school").autocomplete(data1, {matchContains: true}); 
+
                 var school_data;
 
                 $.ajax({
@@ -232,16 +235,19 @@
                 }).done(function (data) { 
                     school_data = $.parseJSON(data); 
                     // alert(school_data);
-                    $("#school_id_1").autocomplete(school_data, {matchContains: true});  
+                    // $("#school_id_1").autocomplete(school_data, {matchContains: true});  
+                    // alert(school_data);
+                    $(".school").autocomplete(school_data, {matchContains: true}); 
                 });
 
 
                  DATA.dom.addschool.click(function(){
                    num=DATA.dom.schoollist.children("li").size()+1;  
-                   schoolItem = "<li class='l"+num+"'><input type='text' class='school' name='school_id_"+num+"' id='school_id_"+num+"' value=''><br><div class='box'><input type='radio' class='schoolstate' name='school_state_"+num+"' value='' checked><span>畢業</span><input type='radio' class='schoolstate'  name='schoolstate"+num+"' value=''><span>在學</span></div></li>";  
+                   schoolItem = "<li class='l"+num+"'><input type='text' class='school' name='school_id_"+num+"' id='school_id_"+num+"' value=''><br><div class='box'><input type='radio' class='schoolstate' name='school_state_"+num+"' value='' checked><span>畢業</span><input type='radio' class='schoolstate'  name='school_state_"+num+"' value=''><span>在學</span></div></li>";  
                    DATA.dom.schoollist.append(schoolItem); 
 
-                   $("#school_id_"+num).autocomplete(school_data, {matchContains: true});  
+                   // $("#school_id_"+num).autocomplete(school_data, {matchContains: true});
+                   $(".school").autocomplete(school_data, {matchContains: true});   
                 });
 
                 $('#btnRight').click(function(e) {

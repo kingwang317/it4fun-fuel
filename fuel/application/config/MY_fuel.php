@@ -24,13 +24,14 @@ $config['fuel_mode'] = 'AUTO';
 // specifies which modules are allowed to be used in the fuel admin
 $config['modules_allowed'] = array(
 	'user_guide',
-	'client',
-	'casehelp',
-	'case',
+	'resume',
+	// 'client',
+	// 'casehelp',
+	// 'case',
 	'codekind',
-	'edm',
-	'member',
-	'google_analytics'
+	// 'edm',
+	// 'member',
+	// 'google_analytics'
 );
 
 $config['dashboards'] = array('google_analytics');

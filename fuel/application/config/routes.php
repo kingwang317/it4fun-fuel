@@ -46,6 +46,7 @@ $route['register/step1_save'] 		= 'register/step1_save';
 $route['register/step2'] 			= 'register/step2';
 $route['register/step2_save'] 		= 'register/step2_save';
 $route['register/step3'] 			= 'register/step3';
+$route['register/school'] 			= 'register/getSchool';
 
 $route['user/myinfo'] 			= 'user/myinfo';
 $route['user/editinfo'] 		= 'user/editinfo';

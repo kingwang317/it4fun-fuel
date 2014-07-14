@@ -52,14 +52,19 @@ class Code_model extends CI_Model {
 
         return null;
     }
-     public function get_school()
+     public function get_school($name="")
     { 
         // $b = urldecode($q);
 
-        $sql = @"SELECT code_name FROM mod_code WHERE codekind_key ='school' ";
+        $sql = @"SELECT code_id,code_name FROM mod_code WHERE codekind_key ='school' ";
+        $para = array();
+        if (!empty($name)) {
+            $sql .= " AND code_name = ? ";
+            array_push($para, $name);
+        }
         // $para = array($q);
         // echo $sql;
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql,$para);
 
         if($query->num_rows() > 0)
         {
@@ -167,8 +172,31 @@ class Code_model extends CI_Model {
         //print_r($account_arr);
         //die();
 
+        $delete_school_sql = "DELETE FROM mod_school WHERE account = ?";
+        $para = array(
+                    $account_arr["account"], 
+                );
+        $this->db->query($delete_school_sql, $para);
+
+     
+ 
         for($i = 1; $i < 100 ;$i++){
             if(isset($school_arr["school_id_$i"]) && $school_arr["school_id_$i"] != ""){
+                $school_id = $this->get_school($school_arr["school_id_$i"]);
+                if (sizeof($school_id)>0) {
+                    $school_id = $school_id[0]->code_id; 
+                }else{
+                      $insert_school_code_sql = " INSERT INTO  mod_code (codekind_key,code_name,parent_id,modi_time,lang_code)VALUES(?,?,'-1',NOW(),'tw')";
+                      $para = array(
+                        "school",
+                        $school_arr["school_id_$i"]                         
+                    );
+
+                    $this->db->query($insert_school_code_sql, $para);
+                    $sql = "SELECT last_insert_id() as ID";
+                    $id_result= $this->db->query($sql);
+                    $school_id = $id_result->row()->ID; 
+                }
                 $insert_school_sql = " INSERT INTO  mod_school (account,school_id,is_grad,is_attend)VALUES(?,?,?,?)";
                 if($school_arr["school_state_$i"] == 'G'){
                     $is_grad = "1";
@@ -180,7 +208,7 @@ class Code_model extends CI_Model {
 
                 $para = array(
                     $account_arr["account"],
-                    $school_arr["school_id_$i"], 
+                    $school_id ,//$school_arr["school_id_$i"], 
                     $is_grad, 
                     $is_attend = "1"
                 );
@@ -192,6 +220,9 @@ class Code_model extends CI_Model {
                 }
             }
         }
+
+        $delete_exp_sql = "DELETE FROM mod_exp WHERE account = ?";
+        $this->db->query($delete_exp_sql, $para);
 
         for($i = 1; $i < 100 ;$i++){
             if(isset($exp_arr["job_company_name_$i"]) && $exp_arr["job_company_name_$i"] != ""){
@@ -213,6 +244,9 @@ class Code_model extends CI_Model {
                 }
             }
         }
+
+        $delete_skill_sql = "DELETE FROM mod_skill WHERE account = ?";        
+        $this->db->query($delete_skill_sql, $para);
 
         foreach ($skill_arr as $key) {
             $insert_skill_sql = " INSERT INTO  mod_skill (account,skill_id)VALUES(?,?)";

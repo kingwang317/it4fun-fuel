@@ -96,22 +96,19 @@ class User extends CI_Controller {
 		$account_data = $this->code_model->get_account_data($account);
 		$skill_list = $this->code_model->get_user_not_skill($account);
 
-		$school_list = $this->code_model->get_school_list();
+		// $school_list = $this->code_model->get_school_list(" WHERE account = '$account' ");
 		$user_skill_list = $this->code_model->get_skill_list(" WHERE account = '$account' ");
-
-
 	
 		$vars['skill_list']	= $skill_list;
+		// $vars['school_list']	= $school_list;
 		$vars['user_skill_list']	= $user_skill_list;
 		$vars['views'] = 'editinfo';
 		$vars['account'] = $account;
-		//$vars['token'] = $this->input->get("token");
+		$vars['account'] = $this->input->get("account");
+		$vars['token'] = $this->input->get("token");
 		$vars['data'] = $account_data;
 		$page_init = array('location' => 'home');
 		$this->fuel->pages->render('editinfo', $vars);
-
-		//print_r($account_data);
-		//die();
 	
 	}
 	function do_edit(){
