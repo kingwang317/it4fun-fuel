@@ -271,7 +271,7 @@ class Code_model extends CI_Model {
                     $account_arr["account"],
                     $school_id ,//$school_arr["school_id_$i"], 
                     $is_grad, 
-                    $is_attend = "1"
+                    $is_attend  
                 );
 
                 $res_2 = $this->db->query($insert_school_sql, $para);
