@@ -92,7 +92,7 @@
                  <p>我同意<a href="#">網站使用條款</a></p><input type="checkbox" name="agree" id="agree" >
             </div>
             <div class="submit">
-                <input type="submit" class="submitbtn" value="送出">
+                <input type="submit" class="submitbtn" name="submitbtn_1" id="submitbtn_1" value="送出">
             </div>
             <div class="fbbox">
                 <p>使用臉書登入，又快又方便 &nbsp;&nbsp;&nbsp;&nbsp;</p> 
@@ -101,6 +101,7 @@
             </div>
         </form>
     </div>
+
 <script type="text/javascript">
 $("#mail_icon").hide();
 $("#password_icon").hide();
@@ -152,7 +153,7 @@ $("#mail").blur(function(){
   }
 });
 
-$(".submitbtn").click(function(){
+$("#submitbtn_1").click(function(){
     //alert($("#repassword_icon").is(":visible"));
     //return false;
    if($("#mail_icon").is(":visible") && $("#password_icon").is(":visible") && $("#repassword_icon").is(":visible")){
@@ -170,10 +171,7 @@ $(".submitbtn").click(function(){
   
 });
 
-  $(".fb_login_btn").click(function(){
-    alert("111");
-    fb_comm_login();
-  });
+
 </script>
 </body>
 </html>
