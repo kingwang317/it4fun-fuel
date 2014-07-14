@@ -9,8 +9,9 @@ jQuery(document).ready(function ($) {
     DATA.dom.joblist=$("ul.joblist");
     DATA.dom.addjob=$("#addjob");
     DATA.dom.submit=$("input.submit");
-
-    $( ".datepicker1" ).datepicker();
+ 
+    $( ".datepicker1" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    $( "#birth" ).datepicker({ dateFormat: 'yy-mm-dd' });
     //$( "#editbox div.reight div.submitbox span.msg" ).hide();
 
     DATA.dom.loginbox.click(function(){
