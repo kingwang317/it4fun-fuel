@@ -23,12 +23,12 @@ jQuery(document).ready(function ($) {
     //    DATA.dom.schoollist.append(schoolItem);
     // });
 
-    DATA.dom.addjob.click(function(){
-       num=DATA.dom.joblist.children("li").size()+1; 
-       jobItem ="<li class='l"+num+"'><input type='text' name='company"+num+"' value=''><br><input type='text' name='position"+num+"' value=''><br><input type='text' class='datestart datepicker"+num+"' name='datestart"+num+"' value=''>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type='text' class='dateend datepicker"+num+"' name='dateend"+num+"' value=''><br></li>";
-       DATA.dom.joblist.append(jobItem);
-       $( ".datepicker"+num ).datepicker();
-    });
+    // DATA.dom.addjob.click(function(){
+    //    num=DATA.dom.joblist.children("li").size()+1; 
+    //    jobItem ="<li class='l"+num+"'><input type='text' name='company"+num+"' value=''><br><input type='text' name='position"+num+"' value=''><br><input type='text' class='datestart datepicker"+num+"' name='datestart"+num+"' value=''>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type='text' class='dateend datepicker"+num+"' name='dateend"+num+"' value=''><br></li>";
+    //    DATA.dom.joblist.append(jobItem);
+    //    $( ".datepicker"+num ).datepicker();
+    // });
 
     DATA.dom.submit.click(function(){
 

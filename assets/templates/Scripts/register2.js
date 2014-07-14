@@ -24,12 +24,12 @@ jQuery(document).ready(function ($) {
     //    DATA.dom.schoollist.append(schoolItem);
     // });
 
-    DATA.dom.addjob.click(function(){
-       num=DATA.dom.joblist.children("li").size()+1; 
-       jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value=''><br><input type='text' name='job_title_"+num+"' value=''><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' value=''>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' value=''><br></li>";
-       DATA.dom.joblist.append(jobItem);
-       $( ".datepicker"+num ).datepicker({ dateFormat: 'yy-mm-dd' });
-    });
+    // DATA.dom.addjob.click(function(){
+    //    num=DATA.dom.joblist.children("li").size()+1; 
+    //    jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value=''><br><input type='text' name='job_title_"+num+"' value=''><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' value=''>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' value=''><br></li>";
+    //    DATA.dom.joblist.append(jobItem);
+    //    $( ".datepicker"+num ).datepicker({ dateFormat: 'yy-mm-dd' });
+    // });
 
     DATA.dom.submit.click(function(){
         var msg = "";
