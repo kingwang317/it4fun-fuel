@@ -795,7 +795,7 @@ width: 100%;
 #editbox div.reight div.aboutmeinfo{
 	width: 100%;
 	min-height: 35px;
-	height: auto;
+	height: 150px;
 	margin-bottom: 12px;
 }
 
@@ -1086,6 +1086,12 @@ div#logindialog div.fbbox p{
 div#logindialog div.fbbox div{
 	float: left;
 	cursor: pointer;
+}
+
+#about_self{
+	margin: 0px; 
+	width: 345px; 
+	height: 100px;
 }
 
 #lstBox1{

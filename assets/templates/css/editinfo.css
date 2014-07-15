@@ -17,7 +17,11 @@ body {
 	height: auto;
 	margin: 0 auto;
 }
-
+#about_self{
+	margin: 0px; 
+	width: 345px; 
+	height: 100px;
+}
 #headerbox{
 	position: relative;
 	width:1110px;
@@ -815,7 +819,7 @@ width: 100%;
 #editbox div.reight div.aboutmeinfo{
 	width: 100%;
 	min-height: 35px;
-	height: auto;
+	height: 150px;
 	margin-bottom: 32px;
 }
 

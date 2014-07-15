@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
-    <title></title>    
+    <title>Young Talent - 註冊步驟2</title>    
     <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/reset.css" type="text/css" media="all" >
     <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/register2.css" type="text/css" media="all" >
     <link rel="stylesheet" href="<?php echo site_url()?>assets/css/jquery.autocomplete.css" type="text/css" media="all" >
@@ -88,9 +88,9 @@
                                     <li class="l1">
                                         <input type="text" name="job_company_name_1" value="" placeholder="公司" /><br>
                                         <input type="text" name="job_title_1" value="" placeholder="職稱" /><br>
-                                        <input type="text" class="datestart datepicker1" name="job_start_date_1" value="">
+                                        <input type="text" class="datestart datepicker1" name="job_start_date_1" placeholder="西元年-月-日" value="">
                                         &nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;
-                                        <input type="text" class="dateend datepicker1" name="job_end_date_1" value=""><br>
+                                        <input type="text" class="dateend datepicker1" name="job_end_date_1" placeholder="西元年-月-日" value=""><br>
                                     </li>
                                 </ul>
                                 <div id="addjob">新增一筆經驗</div>
@@ -149,20 +149,6 @@
                             </div>
                         </div>
                         <!-- *** -->
-                        <div class="aboutmeinfo">
-                            <div class="left">
-                                <p>關於自己</p>
-                            </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1">
- 
-                                        <textarea name="about_self" placeholder="介紹一下你自已吧" rows="3" cols="40" maxlength="100"></textarea>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- *** -->
                         <div class="recommendedinfo">
                             <div class="left">
                                 <p>推薦人</p>
@@ -174,6 +160,21 @@
                             </div>
                         </div>
                         <!-- *** -->
+                        <div class="aboutmeinfo">
+                            <div class="left">
+                                <p>關於自己</p>
+                            </div>
+                            <div class="reight">
+                                <ul>
+                                    <li class="l1">
+ 
+                                        <textarea name="about_self" id="about_self" placeholder="介紹一下你自已吧" rows="3" cols="40" maxlength="100"></textarea>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- *** -->
                         <div class="submitbox">
                             <span class="msg">*你沒有填完所有表格</span>&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="submit" class="submit" value="送出">
@@ -184,7 +185,7 @@
                 </div>
             </div>
             <div id="fbbox">
-                <img src="<?php echo site_url()?>assets/templates/images/pic/pic5.png">
+                <?php $this->load->view('_blocks/_facebook')?>
             </div>
         </div>
         <?php $this->load->view('_blocks/_footer')?>
@@ -220,7 +221,7 @@
 
                 DATA.dom.addjob.click(function(){
                    num=DATA.dom.joblist.children("li").size()+1; 
-                   jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value='' placeholder='公司' /><br><input type='text' name='job_title_"+num+"' value='' placeholder='職稱' /><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' value=''>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' value=''><br></li>";
+                   jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value='' placeholder='公司' /><br><input type='text' name='job_title_"+num+"' value='' placeholder='職稱' /><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' placeholder='西元年-月-日' value=''>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' placeholder='西元年-月-日' value=''><br></li>";
                    DATA.dom.joblist.append(jobItem);
                    $( ".datepicker"+num ).datepicker({ dateFormat: 'yy-mm-dd' });
                 });
