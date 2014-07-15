@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div id="fbbox">
-                <img src="<?php echo site_url()?>assets/templates/images/pic/pic5.png">
+                <?php $this->load->view('_blocks/_facebook')?>
             </div>
         </div>
         <?php $this->load->view('_blocks/_footer')?>

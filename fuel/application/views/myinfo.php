@@ -155,7 +155,7 @@
                 <?php $this->load->view('_blocks/_facebook')?>
             </div>
         </div>
-        <?php $this->load->view('_blocks/_header')?>
+        <?php $this->load->view('_blocks/_footer')?>
     </div>
 </body>
 </html>

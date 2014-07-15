@@ -247,9 +247,10 @@
                     countyName: 'address_city',
                     districtName: 'address_area',
                     zipcodeName: 'address_zip',
+                    countySel: '<?php echo $data[0]->address_city?>',
                     districtSel: '<?php echo $data[0]->address_area?>',
                     zipcodeSel: '<?php echo $data[0]->address_zip?>',
-                    countySel: '<?php echo $data[0]->address_city?>',
+                    
                     'css': [
                                 'addr-county', //縣市
                                 'addr-distrcit',  // 鄉鎮市區

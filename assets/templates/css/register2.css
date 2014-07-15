@@ -1,5 +1,5 @@
 body {
-	font-family: "微軟正黑體、新細明體、細明體、Arial";
+	font-family: "微軟正黑體","Helvetica"; 
 	color: #666666;
 	background-color:#ffffff;
 }
@@ -523,7 +523,7 @@ body {
 	width: 210px;
 	padding: 0 15px 0 0;
 	min-height: 35px;
-	background: url("../images/icon/icon11.png");
+	background: url("../images/icon/icon3.png");
 	background-repeat: no-repeat;
 	background-position: 180px 0px;
 }
@@ -1162,8 +1162,7 @@ div#logindialog div.fbbox div{
 	width:1110px;
 	height: 317px;
 }
-.addr-county{background:#4169E1;color:#fff}
-.addr-district{background:#4169E1;color:#fff}
+
 .addr-zip{display: none}
 /*-------------------*/
 
