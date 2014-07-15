@@ -21,14 +21,14 @@ class Code_model extends CI_Model {
 
         if ($user) {
 
-            $data['logout_url'] = site_url('welcome/logout'); // Logs off application
+            $data['logout_url'] = site_url('user/logout'); // Logs off application
             // OR 
             // Logs off FB!
             // $data['logout_url'] = $this->facebook->getLogoutUrl();
 
         } else {
             $data['login_url'] = $this->facebook->getLoginUrl(array(
-                'redirect_uri' => site_url('welcome/login'), 
+                'redirect_uri' => site_url('user/do_fb_regi'), 
                 'scope' => array("email") // permissions here
             ));
         }
