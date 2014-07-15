@@ -535,6 +535,59 @@ body {
 
 /*-------------------*/
 
+#editbox div.reight div.addressinfo{
+	width: 100%;
+	min-height: 80px;
+	height: auto;
+	
+}
+
+#editbox div.reight div.addressinfo div.left{
+	float: left;
+	width: 210px;
+	padding: 0 15px 0 0;
+	min-height: 35px;
+	background: url("../images/icon/icon11.png");
+	background-repeat: no-repeat;
+	background-position: 180px 0px;
+}
+
+#editbox div.reight div.addressinfo div.left p{
+	width: 165px;
+	height: 35px;
+	line-height: 35px;
+	text-align: right;
+	font-size: 18px;
+	color: #535353;
+	padding: 0 45px 0 0;
+}
+
+#editbox div.reight div.addressinfo div.reight{
+	margin: 0 0 0 225px;
+	width: auto;
+	min-height: 35px;
+}
+
+#editbox div.reight div.addressinfo div.reight ul{}
+#editbox div.reight div.addressinfo div.reight ul li{
+	height: 35px; 
+	color: #535353;
+	font-size: 16px;
+	line-height: 35px;
+}
+#editbox div.reight div.addressinfo div.reight ul li input{
+	width: 350px;
+	height: 32px;
+	border:1px solid #bababa;
+	padding: 0;
+	margin: 0;
+	font-size: 18px;
+	color: #666;
+	line-height: 32px;
+}
+
+/*-------------------*/
+
 #editbox div.reight div.schoolinfo{
 	width: 100%;
 	min-height: 35px;
@@ -1077,7 +1130,9 @@ div#logindialog div.fbbox div{
 	width:1110px;
 	height: 317px;
 }
-
+.addr-county{background:#4169E1;color:#fff}
+.addr-district{background:#4169E1;color:#fff}
+.addr-zip{display: none}
 /*-------------------*/
 
 br.CLEAR{ clear:both; font-size:1px; height:1px; line-height:1px;}

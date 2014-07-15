@@ -13,6 +13,7 @@
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/register2.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/js/jquery.autocomplete.min.js"></script>
+    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery.twzipcode.min.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/index.js"></script>
 </head>
 <body>
@@ -56,6 +57,20 @@
                                 <ul>
                                     <li class="l1"><input type="text" name="contact_tel" id="contact_tel" value=""></li>
                                 </ul>
+                            </div>
+                        </div>
+                        <div class="addressinfo">
+                            <div class="left">
+                                <p>聯絡地址</p>
+                            </div>
+                            <div class="reight">
+                                <ul>
+                                    <li class="l1">
+                                        <div id="twzipcode"></div>
+                                        <input type="text" name="address" id="address" placeholder="地址" value="">
+                                    </li>
+                                </ul>
+                                
                             </div>
                         </div>
                         <!-- *** -->
@@ -194,7 +209,16 @@
            
 
             jQuery(document).ready(function($) {
-             
+                $('#twzipcode').twzipcode({
+                    countyName: 'address_city',
+                    districtName: 'address_area',
+                    zipcodeName: 'address_zip',
+                    'css': [
+                                'addr-county', //縣市
+                                'addr-distrcit',  // 鄉鎮市區
+                                'addr-zip' // 郵遞區號
+                            ]
+                });
                 var school_data; 
 
                 $.ajax({
