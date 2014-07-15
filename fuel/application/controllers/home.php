@@ -19,28 +19,20 @@ class Home extends CI_Controller {
 	function index()
 	{	
 		$this->load->helper('cookie');
-		$this->load->model('about_case_model');
+		
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");
 		$all_cate = array();
 
-		$case_cate	= $this->about_case_model->get_case_cate_code();
-
-		if(isset($case_cate))
-		{
-			foreach ($case_cate as $key => $row) 
-			{
-				$sub_cate_result = $this->about_case_model->get_case_sub_cate($row->code_id);
-
-				$all_cate[$key]['parent_cate'] 		= $row;
-				$all_cate[$key]['sub_cate_result']	= $sub_cate_result;
-			}
-		}
+		$this->load->model('code_model');
+		$fb_data	= $this->code_model->get_fb_data();
+		$vars['fb_data'] = $fb_data;
 
 		// use Fuel_page to render so it will grab all opt-in variables and do any necessary parsing
 		$vars['views'] = 'home';
 		$vars['all_cate']	= $all_cate;
 		$vars['base_url'] = base_url();
+		
 		$page_init = array('location' => 'home');
 		$this->fuel->pages->render('home', $vars);
 		//$this->load->module_library(FUEL_FOLDER, 'fuel_page', $page_init);
@@ -54,6 +46,10 @@ class Home extends CI_Controller {
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");
 
+		$this->load->model('code_model');
+		$fb_data	= $this->code_model->get_fb_data();
+		$vars['fb_data'] = $fb_data;
+
 		$vars['views'] = 'contact';
 		$vars['base_url'] = base_url();
 		$page_init = array('location' => 'home');
@@ -66,6 +62,10 @@ class Home extends CI_Controller {
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");
 
+		$this->load->model('code_model');
+		$fb_data	= $this->code_model->get_fb_data();
+		$vars['fb_data'] = $fb_data;
+
 		$vars['views'] = 'campusevents';
 		$vars['base_url'] = base_url();
 		$page_init = array('location' => 'home');
@@ -77,6 +77,10 @@ class Home extends CI_Controller {
 		//$this->load->model('about_case_model');
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");
+
+		$this->load->model('code_model');
+		$fb_data	= $this->code_model->get_fb_data();
+		$vars['fb_data'] = $fb_data;
 
 		$vars['views'] = 'terms';
 		$vars['base_url'] = base_url();

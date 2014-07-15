@@ -24,11 +24,15 @@
             <div id="editbox">
                 <form action="<?php echo site_url()?>/user/do_edit/" method="POST" enctype="multipart/form-data" >  
                 <div class="left">
-                    <?php if($data[0]->avatar==""){ ?>
+                    <?php if($data[0]->avatar=="" && $data[0]->fb_account == ""){ ?>
                         <div class="head"></div>
-                    <?php }else{ ?>
+                    <?php }elseif($data[0]->avatar!=""){ ?>
                         <div class="head" style="background:url(<?php echo site_url()."/assets/avatar/".$data[0]->avatar.")" ?>" ></div>
+                     <?php }elseif($data[0]->fb_account!=""){ ?>
+                     <img class="head" data-src="holder.js/140x140" alt="140x140" src="https://graph.facebook.com/<?php echo $data[0]->fb_account  ?>/picture?type=large" style="width: 140px; height: 140px;">
+                       
                     <?php } ?>
+                    <br />(140*140) PNG IMAGE
                     <input type="file" name="avatar" id="avatar">
                    
                 </div>
@@ -224,7 +228,7 @@
                         </div>
                     
                         <div class="submitbox">
-                            <span class="msg">*你沒有填完所有表格</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="msg"></span>&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="submit" class="submit" value="送出">
                         </div>
 

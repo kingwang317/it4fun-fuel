@@ -50,10 +50,12 @@ $route['register/school'] 			= 'register/getSchool';
 
 $route['user/myinfo'] 			= 'user/myinfo';
 $route['user/editinfo'] 		= 'user/editinfo';
-$route['user/fblogin'] 			= 'user/fb_login';
-$route['user/fbreg'] 			= 'user/fb_reg';
+$route['user/do_fb_login'] 			= 'user/do_fb_login';
+$route['user/do_fb_regi'] 			= 'user/do_fb_regi';
 $route['user/do_login']			= 'user/do_login';
 $route['user/logout'] 			= 'user/logout';
+
+$route['login'] 			= 'welcome/login';
 
 
 $route['home/campusevents'] 	= 'home/campusevents';

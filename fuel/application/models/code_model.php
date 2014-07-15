@@ -4,6 +4,40 @@ class Code_model extends CI_Model {
     {
         $this->load->database();
     }
+    public function get_fb_data(){
+        $this->load->library('facebook'); 
+
+        $user = $this->facebook->getUser();
+        
+        if ($user) {
+            try {
+                $data['user_profile'] = $this->facebook->api('/me');
+            } catch (FacebookApiException $e) {
+                $user = null;
+            }
+        }else {
+            $this->facebook->destroySession();
+        }
+
+        if ($user) {
+
+            $data['logout_url'] = site_url('welcome/logout'); // Logs off application
+            // OR 
+            // Logs off FB!
+            // $data['logout_url'] = $this->facebook->getLogoutUrl();
+
+        } else {
+            $data['login_url'] = $this->facebook->getLoginUrl(array(
+                'redirect_uri' => site_url('welcome/login'), 
+                'scope' => array("email") // permissions here
+            ));
+        }
+
+        if(!isset($data['login_url'])){
+            $data['login_url'] = site_url('user/do_fb_regi');
+        }
+        return $data;
+    }
 
     public function get_school_list($filter = "")
     {
@@ -154,7 +188,7 @@ class Code_model extends CI_Model {
         return;
     }
 
-    public function do_register_resume($email, $password)
+    public function do_register_resume($email, $password,$name="",$fb_email="",$fb_id="",$birth="",$contact_tel="")
     {
 
         $check_sql = @" SELECT account FROM mod_resume where account = '$email' ";
@@ -164,10 +198,12 @@ class Code_model extends CI_Model {
         {
             return false;
         }
+        if($fb_email == ""){
+            $fb_email = $email;
+        }
 
-
-        $sql = @" INSERT INTO mod_resume(account,password,name,birth,contact_tel,contact_mail,create_time)VALUES(?,MD5(?),?,?,?,?,NOW())";
-        $para = array($email,$password, "", "","",$email);
+        $sql = @" INSERT INTO mod_resume(account,password,name,birth,contact_tel,contact_mail,fb_account,create_time)VALUES(?,MD5(?),?,?,?,?,?,NOW())";
+        $para = array($email,$password, $name, $birth,$contact_tel,$fb_email,$fb_id);
         $success = $this->db->query($sql, $para);
 
         if($success)
@@ -180,7 +216,7 @@ class Code_model extends CI_Model {
 
     public function do_update_resume($data)
     {
-
+        //print_r($data);
 
         $account_arr = array();
         $school_arr = array();
@@ -209,17 +245,10 @@ class Code_model extends CI_Model {
                                 address_zip = ?,
                                 address = ?,
                                 job_status = ?,
-                                about_self = ?,
-                                recommended  = ? ,
-                                avatar = ?
+                                about_self = ?
                                 WHERE account = ? ";
 
-        if(!isset($account_arr["recommended"])){
-            $account_arr["recommended"] = "";
-        }
-        if(!isset($account_arr["avatar"])){
-            $account_arr["avatar"] = "";
-        }
+
         $para = array(
             $account_arr["name"],
             $account_arr["birth"], 
@@ -230,11 +259,33 @@ class Code_model extends CI_Model {
             $account_arr["address"],  
             $account_arr["now_status"], 
             $account_arr["about_self"], 
-            $account_arr["recommended"],
-            $account_arr["avatar"],
             $account_arr["account"]
             );
         $res_1 = $this->db->query($update_accunt_sql, $para);
+
+
+        if(isset($account_arr["recommended"]) && $account_arr["recommended"] != null && $account_arr["recommended"] != ""){
+            $account_arr["recommended"] = "";
+            $update_sql_1 = " UPDATE mod_resume SET 
+                        recommended = ?
+                        WHERE account = ? ";
+            $para = array(
+                $account_arr["recommended"], 
+                $account_arr["account"]
+            );
+
+            $res = $this->db->query($update_sql_1, $para);
+        }
+        if(isset($account_arr["avatar"]) && $account_arr["avatar"] != null && $account_arr["avatar"] != ""){
+            $update_sql_2 = " UPDATE mod_resume SET 
+                        avatar = ?
+                        WHERE account = ? ";
+            $para = array(
+                $account_arr["avatar"], 
+                $account_arr["account"]
+            );                       
+            $res = $this->db->query($update_sql_2, $para);
+        }
 
         //print_r($account_arr);
         //die();

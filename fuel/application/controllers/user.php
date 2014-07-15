@@ -128,7 +128,7 @@ class User extends CI_Controller {
 		$post_arr = $this->input->post();
 		$config['upload_path'] = assets_server_path('avatar/');
 		$config['allowed_types'] = 'png';
-		$config['max_size']	= '100';
+		$config['max_size']	= '9999';
 		$config['max_width']  = '1024';
 		$config['max_height']  = '768';
 
@@ -147,13 +147,18 @@ class User extends CI_Controller {
 		if (!$this->upload->do_upload('pic'))
 		{
 			$msg = array('error'=>$this->upload->display_errors());
-
+			//echo "111111";
+			//echo "212121";
+			//print_r($msg);
+			//die();
 			//$this->load->view('upload_form',$error);
 		}
 		else
 		{
 			$data = array('upload_data'=>$this->upload->data());
-
+			//echo "222222";
+			//print_r($data);
+			//die();
 			$post_arr["avatar"] = $data["upload_data"]["file_name"];
 			//$this->load->view('upload_success',$data);
 		}
@@ -225,6 +230,79 @@ class User extends CI_Controller {
 			    
         }
     }
+
+    public function do_fb_login(){
+
+		$this->load->library('facebook'); // Automatically picks appId and secret from config
+        // OR
+        // You can pass different one like this
+        //$this->load->library('facebook', array(
+        //    'appId' => 'APP_ID',
+        //    'secret' => 'SECRET',
+        //    ));
+
+		$user = $this->facebook->getUser();
+        
+        if ($user) {
+            try {
+                $data['user_profile'] = $this->facebook->api('/me');
+            } catch (FacebookApiException $e) {
+                $user = null;
+            }
+        }else {
+            $this->facebook->destroySession();
+        }
+
+        if ($user) {
+
+            $data['logout_url'] = site_url('welcome/logout'); // Logs off application
+            // OR 
+            // Logs off FB!
+            // $data['logout_url'] = $this->facebook->getLogoutUrl();
+
+        } else {
+            $data['login_url'] = $this->facebook->getLoginUrl(array(
+                'redirect_uri' => site_url('welcome/login'), 
+                'scope' => array("email") // permissions here
+            ));
+        }
+        $this->load->view('login',$data);
+
+	}
+
+    public function do_fb_regi(){
+    	$this->load->helper('cookie');
+		$this->load->model('code_model');
+
+		$data = $this->code_model->get_fb_data();
+
+
+		if(isset($data['user_profile'])){
+
+			$this->input->set_cookie("ytalent_account","", time()-3600);
+			$mail = $data['user_profile']['id'];
+			$password = $data['user_profile']['id'];
+			$name = "";
+			$fb_email = "";
+			if(isset($data['user_profile']['name'])){
+				$name = $data['user_profile']['name'];
+			}
+			if(isset($data['user_profile']['email'])){
+				$fb_email = $data['user_profile']['email'];
+			}
+			$result = $this->code_model->do_register_resume($mail,$password,$name,$fb_email,$data['user_profile']['id']);
+			$this->input->set_cookie("ytalent_account",$mail, time()+3600);
+			$this->input->set_cookie("ytalent_fb_logout_url",$data['logout_url'], time()+3600);
+
+			$this->comm->plu_redirect(site_url()."user/editinfo?account=".$mail, 0, "FACEBOOK登入成功");
+
+		}else{
+			$this->comm->plu_redirect(site_url(), 0, "FACEBOOK登入失敗");
+		}
+
+
+
+	}
 	function step3()
 	{	
 		$this->load->model('code_model');
@@ -241,96 +319,7 @@ class User extends CI_Controller {
 
 	function fb_login()
 	{	
-		$this->load->model('code_model');
-        $fbid = NULL;
-        if($this->input->post('fbid') && $this->input->post('signed_request'))
-        {
-            $fbid = $this->input->post('fbid');
 
-            /*
-				加強登入機制安全性
-            */
-
-            $signed_request = $this->input->post('signed_request');
-	        list($encoded_sig, $payload) = explode('.', $signed_request, 2); 
-
-	        // decode the data
-	        $expected_sig = hash_hmac('sha256', $payload, FB_APP_SECRET, $raw = true);
-
-	        $sig = $this->base64_url_decode($encoded_sig);
-
-            if($sig !== $expected_sig)
-            {
-            	$fbid = NULL;
-            	$result['status'] = -99;
-            	$result['message'] = "Promession Deny";
-            }
-        }
-
-        if($fbid != NULL)
-        {
-        	$result['fbid'] = $fbid;
-        	$basic_info = $this->code_model->get_account_data($fbid);
-
-			$this->load->helper('convert');
-			$this->load->helper('cookie');
-			
-        	if($basic_info != null)
-        	{
-				$valid_user = $this->member_manage_model->valid_user_by_fbid($fbid);
-				if (!empty($valid_user)) 
-				{
-					$this->fuel_auth->set_valid_user_fb($valid_user);
-					// reset failed login attempts
-					// set the cookie for viewing the live site with added FUEL capabilities
-					$config = array(
-						'name' => $this->fuel->auth->get_fuel_trigger_cookie_name(), 
-						'value' => serialize(array('id' => $this->fuel->auth->user_data('id'), 'language' => $this->fuel->auth->user_data('language'))),
-						'expire' => 3600,
-						//'path' => WEB_PATH
-						'path' => $this->fuel->config('fuel_cookie_path')
-					);
-					set_cookie($config);
-
-                    if(empty($basic_info->cli_mobile))
-                    {
-                        $result['cli_mobile'] = -1;
-                    }
-                    else
-                    {
-                        $result['cli_mobile'] = $basic_info->cli_mobile;
-                    }
-
-					$result['status'] = 1;
-					$result['user_data'] = $this->fuel->auth->user_data('id');
-				}
-				else
-				{
-					$result['status'] = -1;
-				}
-        	}
-        	else
-        	{
-			    $result['status'] = -3;
-			    $result['fbid'] = $fbid;
-			    $result['signed_request'] = $this->input->post('signed_request');
-			    $result['message'] = 'FB ID Not Exist';
-        	}
-        }
-        else
-        {
-        	$result['status'] = -99;
-        	$result['message'] = "Promession Deny";
-        }
-
-        if(is_ajax())
-        {
-        	echo json_encode($result);
-        }
-        else
-        {
-        	show_404();
-        }
 	}
 	
 }

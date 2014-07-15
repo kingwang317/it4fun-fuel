@@ -45,13 +45,12 @@
             <div class="submit">
                 <input type="submit" class="submitbtn" name="submitbtn_1" id="submitbtn_1" value="送出">
             </div>
-            <!--
+            
             <div class="fbbox">
                 <p>使用臉書登入，又快又方便 &nbsp;&nbsp;&nbsp;&nbsp;</p> 
-                <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
-
+                <div><a href="<?php echo $fb_data['login_url'] ?>"><img src="<?php echo site_url()?>assets/templates/images/icon/loginFB.png"></a></div>
             </div>
-        -->
+        
         </form>
     </div>
       <div id="logindialog">
@@ -72,13 +71,13 @@
             <div class="submit">
                 <input type="submit" class="submitbtn" name="submitbtn_2" id="submitbtn_2"  value="登入">
             </div>
-            <!--
+            
             <div class="fbbox">
                 <p>使用臉書登入，又快又方便 &nbsp;&nbsp;&nbsp;&nbsp;</p> 
-                <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
-
+                
+                <div><a href="<?php echo $fb_data['login_url'] ?>"><img src="<?php echo site_url()?>assets/templates/images/icon/loginFB.png"></a></div>
             </div>
-        -->
+        
         </form>
     </div>
 

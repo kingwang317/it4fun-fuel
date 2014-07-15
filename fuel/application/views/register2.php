@@ -191,7 +191,7 @@
 
                         <!-- *** -->
                         <div class="submitbox">
-                            <span class="msg">*你沒有填完所有表格</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="msg"></span>&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="submit" class="submit" value="送出">
                         </div>
 
