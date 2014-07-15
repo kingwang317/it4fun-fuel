@@ -5,6 +5,15 @@
 	<div id="dialog-confirm" title="刪除確認?">
 	  <p></p>
 	</div>
+
+	<div class="row">
+		<div class="span12">
+			<ul class="breadcrumb">
+			  <li>位置：履歷列表</li>
+			</ul>
+		</div>
+	</div>
+
 	<div class="row" style="">
 	    <div class="col-md-2 sheader"><h4>履歷列表</h4></div>
 	    <div class="col-md-10 sheader">
@@ -27,21 +36,39 @@
 			 
 			</div>
 			<div class="form-inline">
+				<div class="form-group">
+					推薦人
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control m-bot15" placeholder="Search..." value="<?php echo $search_recommended; ?>" name="search_recommended"/>
+				</div>
+			 
+			</div>
+			<div class="form-inline">
+				<div class="form-group">
+					註冊日期（起）
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control m-bot15" placeholder="註冊日期（起）" value="<?php echo $create_time_s; ?>" id="create_time_s" name="create_time_s"/>
+				</div>
+			 
+			</div>
+			<div class="form-inline">
+				<div class="form-group">
+					註冊日期（迄）
+				</div>
+				<div class="form-group"> 
+					<input type="text" class="form-control m-bot15" placeholder="註冊日期（迄）" value="<?php echo $create_time_e; ?>" id="create_time_e" name="create_time_e"/>
+				</div> 
+			</div>
+			<div class="form-inline">
 				 
 				<div class="form-group">
 					<button type="submit" class="btn btn-info m-bot15">搜尋</button>
 				</div>
 			</div>
 	    </div>
-	</div>
-
-	<div class="row">
-		<div class="span12">
-			<ul class="breadcrumb">
-			  <li>位置：履歷列表</li>
-			</ul>
-		</div>
-	</div>
+	</div> 
 
 	<div class="row notify" style="margin:10px 10px; font-size: 12px; display:none">
 		<div class="bs-docs-example">
@@ -57,6 +84,9 @@
 			<header class="panel-heading">
 				<button class="btn btn-info" type="button" onClick="aHover('<?php echo $create_url;?>')">新增履歷</button>
 			</header>
+			<div class="alert alert-success" role="alert">
+				<strong>共<?php echo $total_rows;?>筆</strong>
+			</div>
 			<table class="table table-striped table-advance table-hover">
 				<thead>
 					<tr>
@@ -128,6 +158,10 @@
 	}
 
 	$j("document").ready(function($) {
+
+		$('#create_time_e').datepicker({dateFormat: 'yy-mm-dd'});
+		$('#create_time_s').datepicker({dateFormat: 'yy-mm-dd'});
+
 		$j("#select-all").click(function() {
 
 		   if($j("#select-all").prop("checked"))

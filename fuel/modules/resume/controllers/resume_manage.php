@@ -26,15 +26,31 @@ class Resume_manage extends Fuel_base_controller {
 	 
 		$search_account = $this->input->get_post("search_account");
 		$search_name = $this->input->get_post("search_name");
+		$search_recommended = $this->input->get_post("search_recommended");
+		$create_time_s = $this->input->get_post("create_time_s");
+		$create_time_e = $this->input->get_post("create_time_e");
 
 		$filter = " WHERE 1=1  ";
 
 		if (!empty($search_name)) {
-			$filter .= " AND name LIKE '%".$search_name."%'";
+			$filter .= " AND name LIKE '%$search_name%'";
 		}
 
 		if (!empty($search_account)) {
-			$filter .= " AND account LIKE '%".$search_account."%'";
+			$filter .= " AND account LIKE '%$search_account%'";
+		}
+
+
+		if (!empty($search_recommended)) {
+			$filter .= " AND recommended = '$search_recommended'";
+		}
+
+		if (!empty($create_time_s)) {
+			$filter .= " AND create_time >= '$create_time_s'";
+		}
+
+		if (!empty($create_time_e)) {
+			$filter .= " AND create_time <= '$create_time_e'";
 		}
  
 		
@@ -49,8 +65,12 @@ class Resume_manage extends Fuel_base_controller {
 
 		$results = $this->resume_manage_model->get_resume_list($dataStart, $dataLen,$filter);
 		
-
+		$vars['total_rows'] = $total_rows;
 		$vars['search_account'] = $search_account;
+		$vars['search_name'] = $search_name;
+		$vars['search_recommended'] = $search_recommended;
+		$vars['create_time_s'] = $create_time_s;
+		$vars['create_time_e'] = $create_time_e;
 		$vars['search_name'] = $search_name;
 		$vars['form_action'] = $base_url.'fuel/resume/lists';
 		$vars['form_method'] = 'POST';
