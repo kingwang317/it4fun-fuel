@@ -1,3 +1,18 @@
+
+<?php
+$this->load->model('code_model');
+$account = $this->code_model->get_logged_in_account();
+$recommended_id = $this->input->get("recid");
+if($recommended_id != null && $recommended_id  != ""){
+    $this->load->helper('cookie');
+    $this->input->set_cookie("ytalent_recommended_id","", time()-3600);
+    $this->input->set_cookie("ytalent_recommended_id",$recommended_id, time()+3600);
+}
+
+//echo $this->input->cookie("ytalent_recommended_id");
+
+?>
+
 <div id="headerbox">
     <a class="logo" href="<?php echo site_url()?>"></a>
     <ul class="menu">
@@ -7,8 +22,13 @@
     </ul>
 
 
-    <?php if(strpos($views,"home") >-1){ ?>
+    <?php if(1==1){ ?>
+
+    <?php if($account != null && $account != ""){?>
+    <a href="<?php echo site_url()?>user/myinfo"><div id="myinfobox" ></div></a>
+    <?php }else{ ?>
     <div id="loginbox">登入</div>
+    <?php } ?>
     <div id="logdata"></div>
     
     

@@ -171,7 +171,7 @@
                             </div>
                             <div class="reight">
                                 <ul>
-                                    <li class="l1"><input type="text" name="recommended"></li>
+                                    <li class="l1"><input type="text" name="recommended" value="<?php echo $recommended_id ?>"></li>
                                 </ul>
                             </div>
                         </div>

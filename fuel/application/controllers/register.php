@@ -69,7 +69,7 @@ class Register extends CI_Controller {
 	function step2()
 	{	
 		$this->load->model('code_model');
-		
+		$this->load->helper('cookie');
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");
 		$all_cate = array();
@@ -77,9 +77,12 @@ class Register extends CI_Controller {
 		$school_list = $this->code_model->get_school_list();
 		$skill_list = $this->code_model->get_skill();
 
+		$recommended_id = $this->input->cookie("ytalent_recommended_id");
+
 		$vars['views'] = 'register2';
 		$vars['school_list']	= $school_list;
 		$vars['skill_list']	= $skill_list;
+		$vars['recommended_id']	= $recommended_id;
 		$vars['account'] = $this->input->get("account");
 		$vars['token'] = $this->input->get("token");
 		$vars['post'] = "";

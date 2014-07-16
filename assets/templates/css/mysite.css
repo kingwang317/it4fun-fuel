@@ -225,3 +225,19 @@ div#logindatabox div.fbbox div{
 	float: left;
 	cursor: pointer;
 }
+
+#myinfobox{
+	position: absolute;
+	top: 30px; 
+	left: 989px;
+	min-width: 26px;
+	width: auto;
+	height: 17px;
+	line-height: 17px;
+	background: url("../images/icon/login2.png");	
+	background-repeat: no-repeat;
+	color: #525252;
+	padding: 0 0 0 30px;
+	cursor: pointer;
+}
+

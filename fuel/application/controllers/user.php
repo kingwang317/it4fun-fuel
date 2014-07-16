@@ -94,12 +94,13 @@ class User extends CI_Controller {
 	function editinfo()
 	{	
 		$this->load->model('code_model');
-		
+		$this->load->helper('cookie');
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");
 		$all_cate = array();
 
 		$account = $this->code_model->get_logged_in_account();
+		$recommended_id = $this->input->cookie("ytalent_recommended_id");
 
 		if($account == null){
 			$this->comm->plu_redirect(site_url(), 0, "尚未登入");
@@ -108,6 +109,7 @@ class User extends CI_Controller {
 		$account_data = $this->code_model->get_account_data($account);
 		$skill_list = $this->code_model->get_user_not_skill($account);
 
+
 		// $school_list = $this->code_model->get_school_list(" WHERE account = '$account' ");
 		$user_skill_list = $this->code_model->get_skill_list(" WHERE account = '$account' ");
 	
@@ -115,6 +117,7 @@ class User extends CI_Controller {
 		// $vars['school_list']	= $school_list;
 		$vars['user_skill_list']	= $user_skill_list;
 		$vars['views'] = 'editinfo';
+		$vars['recommended_id'] = $recommended_id;
 		$vars['account'] = $account;
 		$vars['account'] = $this->input->get("account");
 		$vars['token'] = $this->input->get("token");

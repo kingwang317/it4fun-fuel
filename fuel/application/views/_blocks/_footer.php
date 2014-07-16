@@ -1,3 +1,9 @@
+
+<?php
+$this->load->model('code_model');
+$fb_data  = $this->code_model->get_fb_data();
+?>
+
 <div id="footerbox">
     <div id="footernavbox">
         <div class="nav">
