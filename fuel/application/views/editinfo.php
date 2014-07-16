@@ -32,7 +32,7 @@
                      <img class="head" data-src="holder.js/140x140" alt="140x140" src="https://graph.facebook.com/<?php echo $data[0]->fb_account  ?>/picture?type=large" style="width: 140px; height: 140px;">
                        
                     <?php } ?>
-                    <br />(140*140) PNG IMAGE
+                    <br /><span style="font-size:12px;">限制140x140以內，PNG的圖片</span>
                     <input type="file" name="avatar" id="avatar">
                    
                 </div>

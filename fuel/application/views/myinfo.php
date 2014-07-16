@@ -18,14 +18,20 @@
             <?php $this->load->view('_blocks/_header')?>
             <div id="bodybox01">
                 <?php 
-                if($data[0]->avatar == ""){
-                    $icon_path = site_url()."assets/templates/images/icon/head.png";
+                if($data[0]->avatar == null &&  $data[0]->avatar == ""){
+                    if($data[0]->fb_account == null && $data[0]->fb_account == ""){
+                        $icon_path = site_url()."assets/templates/images/icon/head.png";
+                    }else{
+                        $icon_path = "https://graph.facebook.com/".$data[0]->fb_account."/picture?type=large" ;
+                    }
+                    
                 }else{
+
                     $icon_path = site_url()."assets/avatar/".$data[0]->avatar;
                 }
 
                 ?>
-                <div class="l"><img src="<?php echo $icon_path ?>"></div>
+                <div class="l"><img src="<?php echo $icon_path ?>" style="width:140px"/> </div>
                 <div class="r">
                     <?php //print_r($data); ?>
                     <p class="name"><?php echo $data[0]->name?></p>

@@ -143,10 +143,10 @@ class User extends CI_Controller {
         $_FILES['pic']['tmp_name']= $files['avatar']['tmp_name'];
         $_FILES['pic']['error']= $files['avatar']['error'];
         $_FILES['pic']['size']= $files['avatar']['size'];    
-
+        $msg = null;
 		if (!$this->upload->do_upload('pic'))
 		{
-			$msg = array('error'=>$this->upload->display_errors());
+			$msg = "頭像圖片更新失敗，限制140x140以內，PNG的圖片";
 			//echo "111111";
 			//echo "212121";
 			//print_r($msg);
@@ -173,7 +173,7 @@ class User extends CI_Controller {
 		//$this->comm->plu_redirect(site_url(), 0, $msg);
 		$result = $this->code_model->do_update_resume($post_arr);
 		if($result){
-			$this->comm->plu_redirect(site_url()."user/myinfo?account=".$post_arr['account'], 0, null);
+			$this->comm->plu_redirect(site_url()."user/myinfo?account=".$post_arr['account'], 0, $msg);
 		}else{
 			$this->comm->plu_redirect(site_url(), 0, "更新失敗");
 		}
