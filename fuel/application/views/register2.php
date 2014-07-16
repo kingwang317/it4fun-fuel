@@ -106,6 +106,7 @@
                                         <input type="text" class="datestart datepicker1" name="job_start_date_1" placeholder="西元年-月-日" value="">
                                         &nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;
                                         <input type="text" class="dateend datepicker1" name="job_end_date_1" placeholder="西元年-月-日" value=""><br>
+                                        <b>在職中，離職日期請留空</b>
                                     </li>
                                 </ul>
                                 <div id="addjob">新增一筆經驗</div>
@@ -245,7 +246,7 @@
 
                 DATA.dom.addjob.click(function(){
                    num=DATA.dom.joblist.children("li").size()+1; 
-                   jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value='' placeholder='公司' /><br><input type='text' name='job_title_"+num+"' value='' placeholder='職稱' /><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' placeholder='西元年-月-日' value=''>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' placeholder='西元年-月-日' value=''><br></li>";
+                   jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value='' placeholder='公司' /><br><input type='text' name='job_title_"+num+"' value='' placeholder='職稱' /><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' placeholder='西元年-月-日' value=''>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' placeholder='西元年-月-日' value=''><br><b>在職中，離職日期請留空</b></li>";
                    DATA.dom.joblist.append(jobItem);
                    $( ".datepicker"+num ).datepicker({ dateFormat: 'yy-mm-dd' });
                 });

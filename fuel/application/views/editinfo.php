@@ -142,6 +142,7 @@
                                         <input type="text" class="datestart datepicker<?php echo $count ?>" name="job_start_date_<?php echo $count ?>" placeholder='西元年-月-日' value="<?php echo $value->job_start_date ?>">
                                         &nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;
                                         <input type="text" class="dateend datepicker<?php echo $count ?>" name="job_end_date_<?php echo $count ?>" placeholder='西元年-月-日' value="<?php echo $value->job_end_date ?>"><br>
+                                        <b>在職中，離職日期請留空</b>
                                     </li>
                                 <?php
                                     $count++;  
@@ -149,6 +150,7 @@
                                 ?>           
                                        
                                 </ul>
+
                                 <div id="addjob">新增一筆經驗</div>
                             </div>
                         </div>
@@ -214,6 +216,18 @@
                             </div>
                         </div>
                         <!-- *** -->
+                        <?php if($data[0]->recommended == null || $data[0]->recommended == ""){ ?>
+                        <div class="recommendedinfo">
+                            <div class="left">
+                                <p>推薦人</p>
+                            </div>
+                            <div class="reight">
+                                <ul>
+                                    <li class="l1"><input type="text" name="recommended"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <?php } ?>
                         <div class="aboutmeinfo">
                             <div class="left">
                                 <p>關於自己</p>
@@ -293,7 +307,7 @@
 
                 DATA.dom.addjob.click(function(){
                    num=DATA.dom.joblist.children("li").size()+1; 
-                   jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value='' placeholder='公司' /><br><input type='text' name='job_title_"+num+"' value='' placeholder='職稱' /><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' placeholder='西元年-月-日' value=''>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' placeholder='西元年-月-日' value=''><br></li>";
+                   jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value='' placeholder='公司' /><br><input type='text' name='job_title_"+num+"' value='' placeholder='職稱' /><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' placeholder='西元年-月-日' value=''>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' placeholder='西元年-月-日' value=''><br><b>在職中，離職日期請留空</b></li>";
                    DATA.dom.joblist.append(jobItem);
                    $( ".datepicker"+num ).datepicker({ dateFormat: 'yy-mm-dd' });
                 });

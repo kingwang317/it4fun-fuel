@@ -76,21 +76,7 @@ class Register extends CI_Controller {
 
 		$school_list = $this->code_model->get_school_list();
 		$skill_list = $this->code_model->get_skill();
-/*
-		if(isset($case_cate))
-		{
-			foreach ($case_cate as $key => $row) 
-			{
-				$sub_cate_result = $this->about_case_model->get_case_sub_cate($row->code_id);
 
-				$all_cate[$key]['parent_cate'] 		= $row;
-				$all_cate[$key]['sub_cate_result']	= $sub_cate_result;
-			}
-		}
-*/
-		// use Fuel_page to render so it will grab all opt-in variables and do any necessary parsing
-		//print_r($skill_list);
-		//die();
 		$vars['views'] = 'register2';
 		$vars['school_list']	= $school_list;
 		$vars['skill_list']	= $skill_list;
@@ -99,9 +85,7 @@ class Register extends CI_Controller {
 		$vars['post'] = "";
 		$page_init = array('location' => 'home');
 		$this->fuel->pages->render('register2', $vars);
-		//$this->load->module_library(FUEL_FOLDER, 'fuel_page', $page_init);
-		//$this->fuel_page->add_variables($vars);
-		//$this->fuel_page->render(FALSE, FALSE); //第二個FALSE為在前台不顯示ADMIN BAR
+
 	}
 	function step2_save(){
 		

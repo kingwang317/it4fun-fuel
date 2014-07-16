@@ -262,10 +262,11 @@ class Code_model extends CI_Model {
             $account_arr["account"]
             );
         $res_1 = $this->db->query($update_accunt_sql, $para);
-
+ //print_r($account_arr);
+        //die();
 
         if(isset($account_arr["recommended"]) && $account_arr["recommended"] != null && $account_arr["recommended"] != ""){
-            $account_arr["recommended"] = "";
+            
             $update_sql_1 = " UPDATE mod_resume SET 
                         recommended = ?
                         WHERE account = ? ";
@@ -287,8 +288,7 @@ class Code_model extends CI_Model {
             $res = $this->db->query($update_sql_2, $para);
         }
 
-        //print_r($account_arr);
-        //die();
+       
 
         $delete_school_sql = "DELETE FROM mod_school WHERE account = ?";
         $para = array(
