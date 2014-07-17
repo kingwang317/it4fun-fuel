@@ -61,7 +61,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 col-sm-2 control-label">地址</label>
 							<div class="col-sm-4">
-								<input type="text" class="col-sm-4" name="address_zip" placeholder="郵遞區號" value="<?php echo  $result->address_zip; ?>" /> 
+								<!-- <input type="text" class="col-sm-4" name="address_zip" placeholder="郵遞區號" value="<?php echo  $result->address_zip; ?>" /> 
 								<select name="address_city" id="address_city" class="col-sm-4">
 									<option value='-1'>請選擇</option>
 									<?php
@@ -80,7 +80,8 @@
 								</select>
 								<select name="address_area" id="address_area" class="col-sm-4"> 
 								</select>
-								<input type="text" class="form-control" name="address" value="<?php echo  $result->address; ?>"> 
+								<input type="text" class="form-control" name="address" value="<?php echo  $result->address; ?>">  -->
+								<?php echo "[$result->address_zip] $result->address_city $result->address_area $result->address" ?>
 							</div>
 						</div>	
 						<div class="form-group">

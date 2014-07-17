@@ -98,6 +98,8 @@
 						<th>姓名</th>
 						<th>FB ID</th>
 						<th>電話</th>
+						<th>年齡</th>
+						<th>地址</th>
 						<th>電子郵件</th>
 						<th>註冊日期</th>
 						<th>刪除</th>
@@ -120,6 +122,18 @@
 						<td><a href="<?php echo $edit_url.$rows->account?>"><?php echo $rows->name?></a></td>
 						<td><a target="_blank" href="<?php echo "http://www.facebook.com/".$rows->fb_account?>"><?php echo $rows->fb_account?></a></td>
 						<td><?php echo $rows->contact_tel?></td>
+						<td>
+					       <?php 
+                             $birthDate = explode("-", $rows->birth);
+                              //get age from date or birthdate
+                              $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
+                                ? ((date("Y") - $birthDate[0]) - 1)
+                                : (date("Y") - $birthDate[0]));
+                            	echo $age;
+
+                            ?>
+						</td>
+						<td><?php echo "[$rows->address_zip] $rows->address_city $rows->address_area $rows->address" ?></td>
 						<td><?php echo $rows->contact_mail?></td>
 						<td><?php echo $rows->create_time?></td>
 						<td>
@@ -133,7 +147,7 @@
 					{
 					?>
 						<tr>
-							<td colspan="7">No results.</td>
+							<td colspan="8">No results.</td>
 						</tr>
 					<?php
 					}
