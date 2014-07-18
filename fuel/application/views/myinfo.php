@@ -154,6 +154,25 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="stateinfo">
+                        <div class="left">
+                            <p>尋找工作</p>
+                        </div>
+                        <div class="reight">
+                            <ul>
+                                <li>
+                                    <?php  
+                                    if($data[0]->find_job_kind == "0"){
+                                        echo "我目前在找打工";
+                                    }elseif($data[0]->find_job_kind == "1"){
+                                        echo "我目前在找全職工作";
+                                    }
+
+                                ?> 
+                                </li>                                
+                            </ul>
+                        </div>
+                    </div>
 
                 </div>
             </div>

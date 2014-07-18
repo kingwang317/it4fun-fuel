@@ -216,6 +216,21 @@
                             </div>
                         </div>
                         <!-- *** -->
+                        <!-- *** -->
+                        <div class="employmentstatusinfo">
+                            <div class="left">
+                                <p>尋找工作</p>
+                            </div>
+                            <div class="reight">
+                                <ul>
+                                    <li class="l1">
+                                        <input type="radio" name="find_kind" value="0" <?php echo $data[0]->find_job_kind==0?"checked":""; ?> ><span style="width:auto;">&nbsp;&nbsp;我目前在找打工&nbsp;&nbsp;</span>
+                                        <input type="radio" name="find_kind" value="1" <?php echo $data[0]->find_job_kind==1?"checked":""; ?> ><span style="width:auto;">&nbsp;&nbsp;我目前在找全職工作</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- *** -->
                         <?php if($data[0]->recommended == null || $data[0]->recommended == ""){ ?>
                         <div class="recommendedinfo">
                             <div class="left">

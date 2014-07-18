@@ -251,6 +251,7 @@ class Code_model extends CI_Model {
                                 address_zip = ?,
                                 address = ?,
                                 job_status = ?,
+                                find_job_kind = ?,
                                 about_self = ?
                                 WHERE account = ? ";
 
@@ -264,6 +265,7 @@ class Code_model extends CI_Model {
             $account_arr["address_zip"], 
             $account_arr["address"],  
             $account_arr["now_status"], 
+            $account_arr["find_kind"], 
             $account_arr["about_self"], 
             $account_arr["account"]
             );

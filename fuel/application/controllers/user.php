@@ -93,6 +93,8 @@ class User extends CI_Controller {
 
 	function editinfo()
 	{	
+
+		//ALTER TABLE  `mod_resume` ADD  `find_job_kind` INT( 10 ) NULL
 		$this->load->model('code_model');
 		$this->load->helper('cookie');
 		$this->set_meta->set_meta_data();
@@ -147,7 +149,7 @@ class User extends CI_Controller {
         $_FILES['pic']['error']= $files['avatar']['error'];
         $_FILES['pic']['size']= $files['avatar']['size'];    
         $msg = null;
-		if (!$this->upload->do_upload('pic'))
+		if (!$this->upload->do_upload('pic') && $_FILES['pic']['size'] != 0)
 		{
 			$msg = "頭像圖片更新失敗，限制140x140以內，PNG的圖片";
 			//echo "111111";

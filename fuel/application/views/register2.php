@@ -165,6 +165,21 @@
                             </div>
                         </div>
                         <!-- *** -->
+                        <!-- *** -->
+                        <div class="employmentstatusinfo">
+                            <div class="left">
+                                <p>尋找工作</p>
+                            </div>
+                            <div class="reight">
+                                <ul>
+                                    <li class="l1">
+                                        <input type="radio" name="find_kind" value="0"  ><span style="width:auto;">&nbsp;&nbsp;我目前在找打工&nbsp;&nbsp;</span>
+                                        <input type="radio" name="find_kind" value="1"  ><span style="width:auto;">&nbsp;&nbsp;我目前在找全職工作</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- *** -->
                         <div class="recommendedinfo">
                             <div class="left">
                                 <p>推薦人</p>
