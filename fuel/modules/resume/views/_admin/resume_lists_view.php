@@ -102,6 +102,7 @@
 						<th>地址</th>
 						<th>電子郵件</th>
 						<th>註冊日期</th>
+						<th>尋找工作</th>
 						<th>刪除</th>
 					</tr>
 				</thead>
@@ -136,6 +137,15 @@
 						<td><?php echo "[$rows->address_zip] $rows->address_city $rows->address_area $rows->address" ?></td>
 						<td><?php echo $rows->contact_mail?></td>
 						<td><?php echo $rows->create_time?></td>
+						<td>
+							<?php  
+                                if($rows->find_job_kind == "0"){
+                                    echo "我目前在找打工";
+                                }elseif($rows->find_job_kind == "1"){
+                                    echo "我目前在找全職工作";
+                                }
+                            ?> 
+						</td>
 						<td>
 							<button class="btn btn-xs btn-danger del" type="button" onclick="dialog_chk('<?php echo $rows->account?>')">刪除</button>
 						</td>

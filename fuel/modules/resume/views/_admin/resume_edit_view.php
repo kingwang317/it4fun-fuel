@@ -115,6 +115,19 @@
 							</div>
 						</div>	
 						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">尋找工作</label>
+							<div class="col-sm-4">
+								 <?php 
+
+								 	if($result->find_job_kind == "0"){
+		                                echo "我目前在找打工";
+		                            }elseif($result->find_job_kind == "1"){
+		                                echo "我目前在找全職工作";
+		                            }
+								  ?>
+							</div>
+						</div>	
+						<div class="form-group">
 							<label class="col-sm-2 col-sm-2 control-label">不想就業的類別</label>
 							<div class="col-sm-4">
 							 
