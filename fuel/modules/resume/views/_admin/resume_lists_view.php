@@ -120,7 +120,7 @@
 								<input type="checkbox" name="account[]" account="<?php echo $rows->account?>"/>
 							</label>
 						</td>
-						<td><a href="<?php echo $edit_url.$rows->account?>"><?php echo $rows->name?></a></td>
+						<td><a href="<?php echo $edit_url.$rows->account?>"><?php echo $rows->name != ""?$rows->name:"未填寫";?></a></td>
 						<td><a target="_blank" href="<?php echo "http://www.facebook.com/".$rows->fb_account?>"><?php echo $rows->fb_account?></a></td>
 						<td><?php echo $rows->contact_tel?></td>
 						<td>
@@ -130,7 +130,7 @@
                               $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
                                 ? ((date("Y") - $birthDate[0]) - 1)
                                 : (date("Y") - $birthDate[0]));
-                            	echo $age;
+                            	echo ($age>70 || $age < 16) ? "未正確填寫生日":$age;
 
                             ?>
 						</td>
