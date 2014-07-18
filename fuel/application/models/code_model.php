@@ -4,20 +4,26 @@ class Code_model extends CI_Model {
     {
         $this->load->database();
     }
+
     public function get_fb_data(){
         $this->load->library('facebook'); 
-
         $user = $this->facebook->getUser();
+        //print_r($user);
+        //die();
         
         if ($user) {
             try {
                 $data['user_profile'] = $this->facebook->api('/me');
             } catch (FacebookApiException $e) {
+                //print_r($e);
+                //die();
                 $user = null;
             }
         }else {
             $this->facebook->destroySession();
         }
+
+
 
         if ($user) {
 

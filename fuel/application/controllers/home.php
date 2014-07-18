@@ -19,7 +19,7 @@ class Home extends CI_Controller {
 	function index()
 	{	
 		$this->load->helper('cookie');
-		
+		$this->load->library('facebook'); 
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");
 		$all_cate = array();

@@ -39,8 +39,8 @@ class Welcome extends CI_Controller {
             ));
         }
 
-        print_r($data);
-        die();
+        //print_r($data);
+        //die();
         $this->load->view('login',$data);
 
 	}

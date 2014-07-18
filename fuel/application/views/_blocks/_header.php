@@ -1,4 +1,3 @@
-
 <?php
 $this->load->model('code_model');
 $account = $this->code_model->get_logged_in_account();
