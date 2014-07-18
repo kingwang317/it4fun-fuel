@@ -334,7 +334,7 @@ class Code_model extends CI_Model {
 
                 $para = array(
                     $account_arr["account"],
-                    $school_id ,//$school_arr["school_id_$i"], 
+                    $school_id ,
                     $is_grad, 
                     $is_attend  
                 );

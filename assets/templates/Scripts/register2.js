@@ -33,12 +33,17 @@ jQuery(document).ready(function ($) {
 
     DATA.dom.submit.click(function(){
         var msg = "";
+        var datePattern=/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/;
         //alert($("#contact_tel").val().length);
         if($("#name").val() == ""){
           msg += "請填打姓名 \n";
         }
         if($("#contact_tel").val() == "" || isNaN($("#contact_tel").val()) || ($("#contact_tel").val().length < 8 || $("#contact_tel").val().length > 16) ){
           msg += "請填打正確的聯絡電話 \n";
+        }
+
+        if(!$("#birth").val().match(datePattern)){
+          msg += "請填打正確的生日格式 \n";
         }
 
         if(msg != ""){

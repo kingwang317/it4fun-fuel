@@ -35,16 +35,12 @@ class Register extends CI_Controller {
 				$all_cate[$key]['sub_cate_result']	= $sub_cate_result;
 			}
 		}
-
-		// use Fuel_page to render so it will grab all opt-in variables and do any necessary parsing
+		
 		$vars['views'] = 'home';
 		$vars['all_cate']	= $all_cate;
 		$vars['base_url'] = base_url();
 		$page_init = array('location' => 'home');
 		$this->fuel->pages->render('home', $vars);
-		//$this->load->module_library(FUEL_FOLDER, 'fuel_page', $page_init);
-		//$this->fuel_page->add_variables($vars);
-		//$this->fuel_page->render(FALSE, FALSE); //第二個FALSE為在前台不顯示ADMIN BAR
 	}
 
 	function step1_save(){
