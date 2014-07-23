@@ -219,7 +219,108 @@ class Code_model extends CI_Model {
 
         return;
     }
+    public function do_contact($data)
+    {
+        //print_r($data);
 
+        $contact_arr = array();
+        $job_arr = array();
+        $skill_require_arr = array();
+        $skill_learn_arr = array();
+
+        foreach ($data as $key => $value) {
+            //echo $key."-".strpos($key,"job_");
+            if(strpos($key,"learn_skill")>-1){
+                $skill_learn_arr = $value;
+            }elseif(strpos($key,"require_skill")>-1){
+                $skill_require_arr = $value;
+            }elseif(strpos($key,"job_")>-1){
+                $job_arr[$key] = $value;
+            }else{
+                $contact_arr[$key] = $value;
+            }
+        }
+        //print_r($contact_arr);
+        //print_r($job_arr);
+        //print_r($skill_require_arr);
+        //print_r($skill_learn_arr);
+        //die();
+
+
+        $insert_contact_sql = " INSERT INTO mod_contact(
+                                name,
+                                email,
+                                contact_tel ,
+                                contact_type,
+                                content,
+                                contact_status)VALUES(?,?,?,?,?,?)";
+
+
+        $para = array(
+                $contact_arr["name"],
+                $contact_arr["mail"], 
+                $contact_arr["phone"], 
+                $contact_arr["contact_type"], 
+                $contact_arr["content"], 
+                0
+            );
+        $res_1 = $this->db->query($insert_contact_sql, $para);
+
+        $sql = "SELECT last_insert_id() as ID";
+        $id_result= $this->db->query($sql);
+        $contact_id = $id_result->row()->ID; 
+
+
+        $insert_job_sql = " INSERT INTO mod_job(
+                                contact_id,
+                                company_name,
+                                job_address ,
+                                salary_hour,
+                                salary_week,
+                                salary_month)VALUES(?,?,?,?,?,?)";
+
+
+        $para = array(
+                $contact_id,
+                $job_arr["job_company_name"], 
+                $job_arr["job_address"], 
+                $job_arr["job_salary_hour"], 
+                $job_arr["job_salary_week"],
+                $job_arr["job_salary_month"]
+            );
+        $res_2 = $this->db->query($insert_job_sql, $para);
+
+        $sql = "SELECT last_insert_id() as ID";
+        $id_result= $this->db->query($sql);
+        $job_id = $id_result->row()->ID; 
+
+
+        foreach ($skill_require_arr as $key) {
+            $insert_skill_sql = " INSERT INTO  mod_skill (account,skill_id,job_id,skill_type)VALUES(?,?,'$job_id','0')";
+
+
+            $para = array(
+                "",
+                $key
+            );
+
+            $this->db->query($insert_skill_sql, $para);
+        }
+
+        foreach ($skill_learn_arr as $key) {
+            $insert_skill_sql = " INSERT INTO  mod_skill (account,skill_id,job_id,skill_type)VALUES(?,?,'$job_id','1')";
+
+
+            $para = array(
+                "",
+                $key
+            );
+
+            $this->db->query($insert_skill_sql, $para);
+        }
+
+        return true;
+    }
     public function do_update_resume($data)
     {
         //print_r($data);

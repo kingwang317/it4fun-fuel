@@ -24,7 +24,7 @@
                     <div class="ok">
                         <div class="icon"><img src="<?php echo site_url()?>assets/templates/images/icon/icon16.png"></div>
                         <p class="b">恭喜 !</p>
-                        <p class="s">您已經完成登錄</p>
+                        <p class="s">我們專業顧問會先定位適合你的職缺，有適合職缺會有專人聯絡您</p>
                         <a style="text-decoration:none" href="<?php echo site_url()?>/user/myinfo?account=<?php echo $account ?>"><div class="showbtn">查看資料</div></a>
                     </div>
                     

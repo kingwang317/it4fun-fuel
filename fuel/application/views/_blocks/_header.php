@@ -8,6 +8,8 @@ if($recommended_id != null && $recommended_id  != ""){
     $this->input->set_cookie("ytalent_recommended_id",$recommended_id, time()+3600);
 }
 
+//echo $title;
+
 //echo $this->input->cookie("ytalent_recommended_id");
 
 ?>
@@ -15,9 +17,9 @@ if($recommended_id != null && $recommended_id  != ""){
 <div id="headerbox">
     <a class="logo" href="<?php echo site_url()?>"></a>
     <ul class="menu">
-       <!-- <li><a href="<?php echo site_url()?>home/campusevents/">校園活動</a></li>
-        <li><a href="<?php echo site_url()?>home/campusevents/">關於我們</a></li>      
-        -->       
+       <!-- <li><a href="<?php echo site_url()?>home/campusevents/">校園活動</a></li>-->  
+        <li><a href="<?php echo site_url()?>home/aboutus/">關於我們</a></li>      
+             
     </ul>
 
 

@@ -58,8 +58,10 @@ $route['user/logout'] 			= 'user/logout';
 $route['login'] 			= 'welcome/login';
 
 
+$route['home/aboutus'] 	= 'home/aboutus';
 $route['home/campusevents'] 	= 'home/campusevents';
 $route['home/contact'] 			= 'home/contact';
+$route['home/do_contact'] 			= 'home/do_contact';
 $route['user/logout'] 			= 'user/logout';
 
 $route['case'] 					= 'about_case/index';

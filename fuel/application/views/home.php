@@ -28,24 +28,23 @@
 <body>
     <div id="maincontain">
         <div id="contentbox">
-            
-            <?php $this->load->view('_blocks/_header')?>
 
-            <div id="bodybox01" style="display:none">
+            <?php  $this->load->view('_blocks/_header')?>
+
+            <div id="bodybox01" >
                 <div class="top">
                     <ul>
                         <li class="subject">合作夥伴</li>
-                        <li class="logo1"><img src="<?php echo site_url()?>assets/templates/images/company/logo1.png"></li>
-                        <li class="logo2"><img src="<?php echo site_url()?>assets/templates/images/company/logo2.png"></li>
-                        <li class="logo3"><img src="<?php echo site_url()?>assets/templates/images/company/logo3.png"></li>
-                        <li class="logo4"><img src="<?php echo site_url()?>assets/templates/images/company/logo4.png"></li>
-                        <li class="logo5"><img src="<?php echo site_url()?>assets/templates/images/company/logo5.png"></li>
+                        <li class="logo1"><img src="<?php echo site_url()?>assets/templates/images/company/1.png"></li>
+                        <li class="logo2"><img src="<?php echo site_url()?>assets/templates/images/company/2.png"></li>
+                        <li class="logo3"><img src="<?php echo site_url()?>assets/templates/images/company/3.png"></li>
                     </ul>
                 </div>
-                <div class="bottom">
-                    <h2>札根青春、成就夢想</h2>
+                <div class="bottom" style="display:hidden">
+                    <h2>就是你，年輕人</h2>
                     <p>
-                    問及在過去的工讀經驗中，是否與自已所學有關?59%的受訪者表示並未進入與所學相關的工作領域工讀。但有趣的是詢問他們願意選擇「薪資較高，但與所學關連性較低」的工作，或是選擇「薪資較低，但與所學關連性較高」的工作時，有五成以上的大學生，研究生願意選擇後者，也就是希望能從事「能發揮專長的工讀工作」。針對這項結果，104人力銀行認
+我們是由資深人力資源團隊及數家國際級人力資源顧問公司共同建置之平台，與年輕的學生團隊聯合執行管理。在Young Talent的團隊中，我們重視年輕人的價值，同時強調創意的執行。我們比其他人懂你們求職的需求以及對未來的期待!
+提早加入我們，登錄你的簡歷，提早替你的履歷加分!在Young Talent你可以收到豐富的職缺訊息，職場趨勢。我們不定期舉辦各式活動，讓新鮮人保持新鮮，履歷、經歷、腦袋卻絕不陽春!
                     </p>
                 </div>
             </div>

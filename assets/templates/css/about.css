@@ -1,5 +1,5 @@
 body {
-	font-family: "微軟正黑體","Helvetica"; 
+	font-family: "微軟正黑體、新細明體、細明體、Arial";
 	color: #666666;
 	background-color:#ffffff;
 }
@@ -127,115 +127,46 @@ body {
 
 /*-------------------*/
 #bodybox01{
-	width: 992px;
-	height: 335px;	
+	width: 990px;
+	min-height: 317px;	
 	margin: 0 auto;
-	padding: 25px 0 0 0 ;	
+	padding: 25px 0 0 0;
+
 }
 
 #bodybox02{
-	width: 570px;
-	height: 690px;	
-	padding: 50px 210px 20px 210px;
+	width: 990px;
+	min-height: 372px;	
 	margin: 0 auto;
+
 }
 
-#bodybox02 p.title{
-	font-size: 38px;
-	color: #535353;
-	margin-bottom: 20px;
+#bodybox02 p.title {	
+	font-size: 36px;
+	line-height: 100px;
 }
 
-#bodybox02 p.desc{
+#bodybox02 p.content {
 	font-size: 18px;
-	color: #535353;
-	line-height: 21px;
+	line-height: 28px;
+	letter-spacing: 1px;
 	margin-bottom: 30px;
 }
 
-#bodybox02 div.item{
-	width: 100%;
-	height: 30px;
-	margin-bottom: 15px;
+#bodybox02 p.title2 {	
+	font-size: 28px;
+	line-height: 40px;
 }
 
-#bodybox02 div.item4{
-	width: 100%;
-	height: 280px;
-	margin-bottom: 15px;
-}
-
-#bodybox02 div.item div.ll{
-	float: left;
-	width: 75px;
-	height: 30px;
-	line-height: 30px;
-	font-size: 18px;
-	text-align: right;
-	padding: 0 20px 0 0;
-}
-
-#bodybox02 div.item div.rr{
-	width: auto;
-	height: 30px;
-	margin: 0 0 0 95px;
-	line-height: 30px;
-}
-
-#bodybox02 div.item div.rr input{
-	width: 100%;
-	border: #ccc 1px solid;
-	margin-top: 5px;
-	height: 25px;
-}
-
-#bodybox02 div.item div.rr input.verificationcode{
-	width: 50%;
-	border: #ccc 1px solid;
-}
-
-#bodybox02 div.item div.rr textarea{
-	width: 100%;
-	height: 280px;
-	border: #ccc 1px solid;
-}
-
-#bodybox02 div.item div.rr input.submit{
-	width: 140px;
-	height: 43px;
-	background: #c0c0c0;
+#bodybox02 p.title3 {	
 	font-size: 21px;
-	line-height: 43px;
-	color: #fff;
+	line-height: 40px;
 	font-weight: bold;
-	cursor: pointer;
 }
 
-#bodybox02 ul{}
-#bodybox02 ul li{
-	height: 35px; 
-	color: #535353;
-	font-size: 16px;
-	line-height: 35px;
-}
-#bodybox02 ul li input{
-	float: left;
-	width: 32px;
-	height: 32px;
-	border:1px solid #bababa;
-	padding: 0;
-	margin: 0;
+#bodybox02 ul li {	
 	font-size: 18px;
-	color: #666;
-	line-height: 32px;
-}
-#bodybox02 ul li span{
-	float: left;
-	display: block;
-	width: 70px;
-	height: 32px;
-	line-height: 32px;
-	font-size: 18px;
+	line-height: 24px;
 }
 
 #bodybox03{
@@ -254,6 +185,237 @@ div#wall{
 	height: 100%;
 	background: rgba(0,0,0,0);
 }
+
+
+div#logindatabox{
+	position: fixed;
+	top:0px;
+	left: 0px;
+	display: none;
+	width: 653px;
+	height: 441px;
+	padding: 10px 10px 15px 10px;
+	border: solid 1px #ccc;
+	background: #fff;
+}
+
+div#logindatabox div.close{
+	position: absolute;
+	top:5px;
+	right: 10px;
+	width: 22px;
+	height: 22px;
+	background: url("../images/icon/close.png");
+	cursor: pointer;
+}
+
+div#logindatabox div.subject{
+	line-height: 50px;
+	font-size: 24px;
+	color: #535353;
+
+}
+
+div#logindatabox div.line{
+	width: 100%;
+	height:2px;
+	background: #ccc; 
+}
+
+div#logindatabox div.account{
+	clear: both;
+	width: 100%;
+	height: 33px;
+	line-height: 33px;
+	margin-bottom: 10px;
+}
+
+div#logindatabox div.account div.title{
+	float: left;
+	width: 99px;
+	height: 33px;
+	line-height: 33px;
+	padding: 0 25px 0 0;
+	text-align: right;
+}
+
+div#logindatabox div.account div.input{
+	float: left;
+	width: 407px;
+	height: 33px;
+	line-height: 33px;
+}
+
+div#logindatabox div.account div.input input{
+	width: 403px;
+	height: 27px;
+	line-height: 30px;
+}
+
+div#logindatabox div.account div.icon{
+	float: left;
+	min-width: 120px;
+	max-width: 122px;
+	height: 33px;
+	line-height: 33px;
+}
+
+div#logindatabox div.account div.icon div.ok{
+	width: 44px;
+	height: 33px;
+	background: url("../images/icon/ok.png");
+}
+
+div#logindatabox div.password{
+	clear: both;
+	width: 100%;
+	height: 33px;
+	line-height: 33px;
+	margin-bottom: 10px;
+}
+
+div#logindatabox div.password div.title{
+	float: left;
+	width: 99px;
+	height: 33px;
+	line-height: 33px;
+	padding: 0 25px 0 0;
+	text-align: right;
+}
+
+div#logindatabox div.password div.input{
+	float: left;
+	width: 407px;
+	height: 33px;
+	line-height: 33px;
+}
+
+div#logindatabox div.password div.input input{
+	width: 403px;
+	height: 27px;
+	line-height: 30px;
+}
+
+div#logindatabox div.password div.icon{
+	float: left;
+	min-width: 120px;
+	max-width: 122px;
+	height: 33px;
+	line-height: 33px;
+}
+
+div#logindatabox div.password div.icon div.ok{
+	width: 44px;
+	height: 33px;
+	background: url("../images/icon/ok.png");
+}
+
+
+div#logindatabox div.confirmpassword{
+	clear: both;
+	width: 100%;
+	height: 33px;
+	line-height: 33px;
+	margin-bottom: 10px;
+}
+
+div#logindatabox div.confirmpassword div.title{
+	float: left;
+	width: 99px;
+	height: 33px;
+	line-height: 33px;
+	padding: 0 25px 0 0;
+	text-align: right;
+}
+
+div#logindatabox div.confirmpassword div.input{
+	float: left;
+	width: 407px;
+	height: 33px;
+	line-height: 33px;
+}
+
+div#logindatabox div.confirmpassword div.input input{
+	width: 403px;
+	height: 27px;
+	line-height: 30px;
+}
+
+div#logindatabox div.confirmpassword div.icon{
+	float: left;
+	min-width: 120px;
+	max-width: 122px;
+	height: 33px;
+	line-height: 33px;
+}
+
+div#logindatabox div.confirmpassword div.icon div.ok{
+	width: 44px;
+	height: 33px;
+	background: url("../images/icon/ok.png");
+}
+
+div#logindatabox div.agree{
+	width: auto;
+	height: 20px;
+	text-align: right;
+	padding: 0 125px 0 0;
+	margin: 0 0 10px 0;
+}
+
+div#logindatabox div.agree input{
+	float: right;
+	width: 20px;
+	height: 20px;
+	line-height: 21px;
+}
+
+div#logindatabox div.agree p{
+	float: right;
+	line-height: 21px;
+}
+
+div#logindatabox div.agree p a{
+	color: #535353;
+}
+
+div#logindatabox div.submit{
+	clear: both;
+	text-align: right;
+	padding: 0 125px 0 0; 
+	margin: 0 0 20px 0;
+}
+div#logindatabox div.submit input{
+	border-radius: 5px;
+	color: #fff;
+	font-size: 18px;
+	padding: 5px 15px 5px 15px;
+	text-align: center;
+	background: #f89700;
+	border:1px solid #ccc ;
+	line-height: 21px;	
+	cursor: pointer;
+}
+
+div#logindatabox div.fbbox{
+	clear: both;
+	text-align: right;
+	padding: 0 0 0 60px; 
+	font-size: 18px;
+}
+
+div#logindatabox div.fbbox p{
+	float: left;
+	line-height: 41px;
+	color: #999;
+}
+
+div#logindatabox div.fbbox div{
+	float: left;
+	cursor: pointer;
+}
+
+/*-----------------------------*/
 
 div#logindialog{
 	position: fixed;
@@ -412,24 +574,6 @@ div#logindialog div.fbbox p{
 div#logindialog div.fbbox div{
 	float: left;
 	cursor: pointer;
-}
-
-#lstBox1{
-	width: 150px;
-	height: 200px;
-}
-#lstBox2{
-	width: 150px;
-	height: 200px;
-}
-
-#lstBox3{
-	width: 150px;
-	height: 200px;
-}
-#lstBox4{
-	width: 150px;
-	height: 200px;
 }
 
 /*-------------------*/

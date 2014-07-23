@@ -6,6 +6,7 @@ class Home extends CI_Controller {
 		parent::__construct();
 		define('FUELIFY', FALSE);
 		$this->load->library('set_meta');
+		$this->load->library('comm');
 	}
 
 	function home() 
@@ -50,11 +51,26 @@ class Home extends CI_Controller {
 		$fb_data	= $this->code_model->get_fb_data();
 		$vars['fb_data'] = $fb_data;
 
+		$skill_list = $this->code_model->get_user_not_skill("");
+		
+	
+		$vars['skill_list']	= $skill_list;
+
 		$vars['views'] = 'contact';
 		$vars['base_url'] = base_url();
 		$page_init = array('location' => 'home');
 		$this->fuel->pages->render('contact', $vars);
-
+	}
+	function do_contact(){
+		$this->load->model('code_model');
+		$post_arr = $this->input->post();
+		$this->set_meta->set_meta_data();
+		$result = $this->code_model->do_contact($post_arr);
+		if($result){
+			$this->comm->plu_redirect(site_url(), 0, "已收到您的聯絡資訊，我們將儘快為您處理");
+		}else{
+			$this->comm->plu_redirect(site_url(), 0, "失敗");
+		}
 	}
 	function campusevents()
 	{	
@@ -86,6 +102,23 @@ class Home extends CI_Controller {
 		$vars['base_url'] = base_url();
 		$page_init = array('location' => 'home');
 		$this->fuel->pages->render('terms', $vars);
+
+	}
+
+		function aboutus()
+	{	
+		//$this->load->model('about_case_model');
+		$this->set_meta->set_meta_data();
+		fuel_set_var('page_id', "1");
+
+		$this->load->model('code_model');
+		$fb_data	= $this->code_model->get_fb_data();
+		$vars['fb_data'] = $fb_data;
+
+		$vars['views'] = 'aboutus';
+		$vars['base_url'] = base_url();
+		$page_init = array('location' => 'home');
+		$this->fuel->pages->render('aboutus', $vars);
 
 	}
 }
