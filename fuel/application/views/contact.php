@@ -54,7 +54,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div>                
+                    <div id="job_div" style="display:none">                
                    <div class="item">
                         <div class="ll">公司名稱</div>
                         <div class="rr"><input type="text" name="job_company_name" class="phone"></div>
@@ -67,9 +67,9 @@
                         <div class="ll">薪水</div>
                         <div class="rr">
 
-                                    <span style="width:auto;"><input style="width:auto;" type="radio" name="salary" value="0" >&nbsp;時薪&nbsp;<input style="width:auto;"type="text" name="job_salary_hour" class="phone"></span><br />
-                                    <span style="width:auto;"><input style="width:auto;" type="radio" name="salary" value="1" >&nbsp;週薪&nbsp;<input style="width:auto;" type="text" name="job_salary_week" class="phone"></span><br />
-                                    <span style="width:auto;"><input style="width:auto;" type="radio" name="salary" value="2" >&nbsp;月薪&nbsp;<input style="width:auto;" type="text" name="job_salary_month" class="phone"></span><br />
+                                    <span style="width:auto;">&nbsp;時薪&nbsp;<input style="width:auto;"type="text" name="job_salary_hour" class="phone"></span><br />
+                                    <span style="width:auto;">&nbsp;週薪&nbsp;<input style="width:auto;" type="text" name="job_salary_week" class="phone"></span><br />
+                                    <span style="width:auto;">&nbsp;月薪&nbsp;<input style="width:auto;" type="text" name="job_salary_month" class="phone"></span><br />
 
                         </div>
                     </div>
@@ -200,7 +200,18 @@
 
 
            jQuery(document).ready(function($) {
-            
+                $('input:radio[name="contact_type"]').change(
+                    function(){
+
+                        if ($(this).is(':checked') && $(this).val() == '2') {
+
+                            
+                            $( "#job_div" ).show();
+                        }else{
+                            //alert($(this).val());
+                            $( "#job_div" ).hide();
+                        }
+                });
                 $('#btnRight1').click(function(e) {
                     var selectedOpts = $('#lstBox1 option:selected');
                     if (selectedOpts.length == 0) {
