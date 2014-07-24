@@ -38,6 +38,15 @@ jQuery(document).ready(function ($) {
         if($("#name").val() == ""){
           msg += "請填打姓名 \n";
         }
+        if($("#birth").val() == ""){
+          msg += "請填打生日 \n";
+        }
+        if($("#address").val() == ""){
+          msg += "請填打居住地址 \n";
+        }
+        if($("#school_id_1").val() == ""){
+          msg += "請填打就讀/畢業學校 \n";
+        }
         if($("#contact_tel").val() == "" || isNaN($("#contact_tel").val()) || ($("#contact_tel").val().length < 8 || $("#contact_tel").val().length > 16) ){
           msg += "請填打正確的聯絡電話 \n";
         }

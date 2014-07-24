@@ -33,12 +33,7 @@
 
             <div id="bodybox01" >
                 <div class="top">
-                    <ul>
-                        <li class="subject">合作夥伴</li>
-                        <li class="logo1"><img src="<?php echo site_url()?>assets/templates/images/company/1.png"></li>
-                        <li class="logo2"><img src="<?php echo site_url()?>assets/templates/images/company/2.png"></li>
-                        <li class="logo3"><img src="<?php echo site_url()?>assets/templates/images/company/3.png"></li>
-                    </ul>
+                    <?php echo fuel_block("index_partners_icon") ?>
                 </div>
                 <div class="bottom" style="display:hidden">
                     <h2>就是你，年輕人</h2>

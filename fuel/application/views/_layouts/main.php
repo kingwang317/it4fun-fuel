@@ -3,6 +3,7 @@
 
 	<?php 
 		if(isset($views)){
+			//define('FUELIFY', FALSE);
 			$this->load->view($views);
 		}
 		else
