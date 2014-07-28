@@ -123,9 +123,10 @@ class Resume_manage_model extends MY_Model {
 											exclude_cate,
 											job_location,
 											fb_account,
+											note,
 											create_time
 										) 
-				VALUES (?, MD5('$password') ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,NOW())";
+				VALUES (?, MD5('$password') ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,NOW())";
 				$password=$insert_data['password'];
 		$para = array(
 				$insert_data['account'], 
@@ -141,6 +142,7 @@ class Resume_manage_model extends MY_Model {
 				$insert_data['about_self'], 
 				$insert_data['exclude_cate'],
 				$insert_data['job_location'],
+				$insert_data['note'],
 				$insert_data['fb_account']
 			);
 		$success = $this->db->query($sql, $para);
@@ -167,7 +169,8 @@ class Resume_manage_model extends MY_Model {
 										about_self		= ?,
 										exclude_cate		= ?,
 										job_location		= ?,
-										fb_account		= ?
+										fb_account		= ?,
+										note		= ?
 				WHERE account = ?";
 		$para = array(
 				$update_data['name'],
@@ -183,6 +186,7 @@ class Resume_manage_model extends MY_Model {
 				$update_data['exclude_cate'],
 				$update_data['job_location'],
 				$update_data['fb_account'],
+				$update_data['note'],
 				$update_data['account']
 			);
 		$success = $this->db->query($sql, $para);

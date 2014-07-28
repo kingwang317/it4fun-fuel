@@ -113,6 +113,14 @@
 								 <textarea class="form-control" rows="3" name="about_self"><?php echo  $result->about_self; ?></textarea>
 							 
 							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">管理備註</label>
+							<div class="col-sm-4">
+							 
+								 <textarea class="form-control" rows="3" name="note"><?php echo  $result->note; ?></textarea>
+							 
+							</div>
 						</div>	
 						<div class="form-group">
 							<label class="col-sm-2 col-sm-2 control-label">尋找工作</label>

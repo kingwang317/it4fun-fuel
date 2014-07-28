@@ -103,6 +103,7 @@
 						<th>電子郵件</th>
 						<th>註冊日期</th>
 						<th>尋找工作</th>
+						<th>管理者備註</th>
 						<th>刪除</th>
 					</tr>
 				</thead>
@@ -146,6 +147,7 @@
                                 }
                             ?> 
 						</td>
+						<td><?php echo $rows->note?></td>
 						<td>
 							<button class="btn btn-xs btn-danger del" type="button" onclick="dialog_chk('<?php echo $rows->account?>')">刪除</button>
 						</td>

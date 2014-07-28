@@ -142,6 +142,7 @@ class Resume_manage extends Fuel_base_controller {
 		$insert_data['address_area'] = $this->input->get_post("address_area");
 		$insert_data['address'] = $this->input->get_post("address");
 		$insert_data['job_status'] = $this->input->get_post("job_status");
+		$insert_data['note'] = $this->input->get_post("note");
 		$insert_data['about_self'] = $this->input->get_post("about_self");
 		$insert_data['exclude_cate'] = implode(";",$this->input->get_post("exclude_cate"));
 		$insert_data['job_location'] = implode(";",$this->input->get_post("place"));
@@ -236,6 +237,7 @@ class Resume_manage extends Fuel_base_controller {
 			$update_data['address_city'] = $this->input->get_post("address_city");
 			$update_data['address_area'] = $this->input->get_post("address_area");
 			$update_data['address'] = $this->input->get_post("address");
+			$update_data['note'] = $this->input->get_post("note");
 			$update_data['job_status'] = $this->input->get_post("job_status");
 			$update_data['about_self'] = $this->input->get_post("about_self");
 			$exclude_cate = $this->input->get_post("exclude_cate");
