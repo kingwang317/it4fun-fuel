@@ -41,6 +41,22 @@ class Resume_manage_model extends MY_Model {
 		return;
 	}
 
+	public function get_resume_option($col)
+	{
+		$sql = @"SELECT distinct $col FROM mod_resume where $col <> '' ";
+	
+		$query = $this->db->query($sql);
+
+		if($query->num_rows() > 0)
+		{
+			$result = $query->result();
+
+			return $result;
+		}
+
+		return;
+	}
+
 	public function get_resume_skill($account)
 	{
 		$sql = @"SELECT b.code_name FROM mod_skill a left join mod_code b on a.skill_id = b.code_id  where account=?";

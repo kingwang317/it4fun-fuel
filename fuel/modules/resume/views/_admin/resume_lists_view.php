@@ -14,61 +14,177 @@
 		</div>
 	</div>
 
+	<div class="row">
+		<label class="col-sm-1 control-label" >
+			姓名
+		</label>
+	    <div class="col-sm-2">
+	        <input type="text" class="form-control m-bot15" placeholder="" value="<?php echo $search_name; ?>" name="search_name"/>
+	    </div>
+	    <label class="col-sm-1 control-label" >
+			ID
+		</label>
+	    <div class="col-sm-2">
+	        <input type="text" class="form-control m-bot15" placeholder="" value="<?php echo $search_id; ?>" name="search_id"/>
+	    </div>
+	</div> 
+	<div class="row">
+		<label class="col-sm-1 control-label" >
+			推薦人
+		</label>
+	    <div class="col-sm-2">
+	        <select name="search_recommended">
+	        	<option value="">不拘</option>
+				<?php
+					if(isset($recommended_ary)):
+				?>	
+				<?php   foreach($recommended_ary as $key=>$rows):?>
+					<option value="<?php echo $rows->code_key ?>" <?php if ($search_recommended == $rows->code_key): ?>
+						selected
+					<?php endif ?>><?php echo $rows->code_name ?></option>
+				<?php endforeach;?>
+				<?php endif;?>
+			</select>
+	    </div>
+	</div>
+	<div class="row">
+		<label class="col-sm-1 control-label" >
+			註冊日期
+		</label>
+	    <div class="col-sm-2">
+	        <input type="text" class="form-control m-bot15 col-sm-4" placeholder="" value="<?php echo $create_time_s; ?>" id="create_time_s" name="create_time_s"/>
+	       
+	    </div>
+	    <div class="col-sm-1">
+	    	~
+	    </div>
+	    <div class="col-sm-2"> 
+	        <input type="text" class="form-control m-bot15" placeholder="" value="<?php echo $create_time_e; ?>" id="create_time_e" name="create_time_e"/>
+	    </div>
+	</div>
+	<div class="row">
+		<label class="col-sm-1 control-label" >
+			地區
+		</label>
+	    <div class="col-sm-2">
+	         <!-- <input type="text" class="form-control m-bot15" placeholder="" value="<?php echo $search_location; ?>" name="search_location"/> -->
+	         <select name="search_city">
+	        	<option value="" <?php echo $search_city == ""?"selected":""; ?>>不拘</option>
+				<?php
+					if(isset($city_ary)):
+				?>	
+				<?php   foreach($city_ary as $key=>$rows):?>
+					<option value="<?php echo $rows->address_city ?>" <?php if ($search_city == $rows->address_city): ?>
+						selected
+					<?php endif ?>><?php echo $rows->address_city ?></option>
+				<?php endforeach;?>
+				<?php endif;?>
+			</select>
+	    </div> 
+	</div>
+	<div class="row">		 
+		<label class="col-sm-1 control-label" >
+			年齡範圍
+		</label>
+	    <div class="col-sm-2">
+	         <input type="text" class="form-control m-bot15" placeholder="" value="<?php echo $search_age_s; ?>" name="search_age_s"/>
+	    </div>
+	     <div class="col-sm-1">
+	    	~
+	    </div>
+	    <div class="col-sm-2">
+	         <input type="text" class="form-control m-bot15" placeholder="" value="<?php echo $search_age_e; ?>" name="search_age_e"/>
+	    </div>
+	</div>	 
+	<div class="row">
+		<label class="col-sm-1 control-label" >
+			尋找工作狀態
+		</label>
+	    <div class="col-sm-2">
+	         <select name="search_find_job_kind">
+	        	<option value=""  <?php echo $search_find_job_kind == ""?"selected":""; ?> >不拘</option>
+	        	<option value="0" <?php echo $search_find_job_kind == "0"?"selected":""; ?> >找打工</option>
+	        	<option value="1" <?php echo $search_find_job_kind == "1"?"selected":""; ?> >找全職工作</option>
+			</select>
+	    </div>
+		<label class="col-sm-1 control-label" >
+			就業狀態
+		</label>
+	    <div class="col-sm-2">
+	        <select name="search_job_state">
+	        	<option value=""  <?php echo $search_job_state == ""?"selected":""; ?>>不拘</option>
+				<option value="0" <?php echo $search_job_state == "0"?"selected":""; ?>>在職</option>
+	        	<option value="1" <?php echo $search_job_state == "1"?"selected":""; ?>>在學</option>
+				<option value="2" <?php echo $search_job_state == "2"?"selected":""; ?>>待業</option>
+			</select>
+	         
+	    </div>
+	</div>
+	 
+	<div class="row">
+		<label class="col-sm-1 control-label" >
+			就讀學校
+		</label>
+	    <div class="col-sm-2">
+	         <select name="search_school">
+	        	<option value="" <?php echo $search_school == ""?"selected":""; ?>>不拘</option>
+				<?php
+					if(isset($school_ary)):
+				?>	
+				<?php   foreach($school_ary as $key=>$rows):?>
+					<option value="<?php echo $rows->code_id ?>" <?php if ($search_school == $rows->code_id): ?>
+						selected
+					<?php endif ?>><?php echo $rows->code_name ?></option>
+				<?php endforeach;?>
+				<?php endif;?>
+			</select>
+	    </div> 
+	</div>
+ 	<div class="row">
+		<label class="col-sm-1 control-label" >
+			工作技能
+		</label>
+	    <div class="col-sm-2">
+	         <select name="search_skill">
+	        	<option value="" <?php echo $search_skill == ""?"selected":""; ?>>不拘</option>
+				<?php
+					if(isset($skill_ary)):
+				?>	
+				<?php   foreach($skill_ary as $key=>$rows):?>
+					<option value="<?php echo $rows->code_id ?>" <?php if ($search_skill == $rows->code_id): ?>
+						selected
+					<?php endif ?>><?php echo $rows->code_name ?></option>
+				<?php endforeach;?>
+				<?php endif;?>
+			</select>
+	    </div>
+	</div>
+	<div class="row">
+		<label class="col-sm-1 control-label" >
+			是否有工作經驗
+		</label>
+	    <div class="col-sm-2">
+	         <select name="search_exp">
+	        	<option value=""  <?php echo $search_exp == ""?"selected":""; ?> >不拘</option>
+	        	<option value="1" <?php echo $search_exp == "1"?"selected":""; ?> >有</option>
+	        	<option value="0" <?php echo $search_exp == "0"?"selected":""; ?> >無</option>
+			</select>
+	    </div>
+	</div>
+
 	<div class="row" style="">
-	    <div class="col-md-2 sheader"><h4>履歷列表</h4></div>
-	    <div class="col-md-10 sheader">
-			<div class="form-inline">
-				<div class="form-group">
-					姓名
-				</div>
-				<div class="form-group">
-					<input type="text" class="form-control m-bot15" placeholder="Search..." value="<?php echo $search_name; ?>" name="search_name"/>
-				</div>
+ 		
+	    <div class="col-md-12 sheader"> 
 			 
-			</div>
-			<div class="form-inline">
+			<div class="form-inline" style="margin-top:10px" >
 				<div class="form-group">
-					帳號
-				</div>
-				<div class="form-group">
-					<input type="text" class="form-control m-bot15" placeholder="Search..." value="<?php echo $search_account; ?>" name="search_account"/>
-				</div>
-			 
-			</div>
-			<div class="form-inline">
-				<div class="form-group">
-					推薦人
-				</div>
-				<div class="form-group">
-					<input type="text" class="form-control m-bot15" placeholder="Search..." value="<?php echo $search_recommended; ?>" name="search_recommended"/>
-				</div>
-			 
-			</div>
-			<div class="form-inline">
-				<div class="form-group">
-					註冊日期（起）
-				</div>
-				<div class="form-group">
-					<input type="text" class="form-control m-bot15" placeholder="註冊日期（起）" value="<?php echo $create_time_s; ?>" id="create_time_s" name="create_time_s"/>
-				</div>
-			 
-			</div>
-			<div class="form-inline">
-				<div class="form-group">
-					註冊日期（迄）
-				</div>
-				<div class="form-group"> 
-					<input type="text" class="form-control m-bot15" placeholder="註冊日期（迄）" value="<?php echo $create_time_e; ?>" id="create_time_e" name="create_time_e"/>
-				</div> 
-			</div>
-			<div class="form-inline">
-				 
-				<div class="form-group">
-					<button type="submit" class="btn btn-info m-bot15">搜尋</button>
+					<button type="submit" class="btn btn-warning">搜尋</button>
+					<button class="btn btn-info" type="button" onClick="aHover('<?php echo $create_url;?>')">新增履歷</button>
 				</div>
 			</div>
 	    </div>
 	</div> 
+ 
 
 	<div class="row notify" style="margin:10px 10px; font-size: 12px; display:none">
 		<div class="bs-docs-example">
@@ -82,7 +198,7 @@
 	<div class="row">
 		<section class="panel">
 			<header class="panel-heading">
-				<button class="btn btn-info" type="button" onClick="aHover('<?php echo $create_url;?>')">新增履歷</button>
+		 
 			</header>
 			<div class="alert alert-success" role="alert">
 				<strong>共<?php echo $total_rows;?>筆</strong>
@@ -95,6 +211,7 @@
 								<input type="checkbox" id="select-all"/>
 							</label>
 						</th>
+						<th>ID</th>
 						<th>姓名</th>
 						<th>FB ID</th>
 						<th>電話</th>
@@ -120,6 +237,7 @@
 								<input type="checkbox" name="account[]" account="<?php echo $rows->account?>"/>
 							</label>
 						</td>
+						<td><?php echo $rows->id; ?></td>
 						<td><a href="<?php echo $edit_url.$rows->account?>"><?php echo $rows->name != ""?$rows->name:"未填寫";?></a></td>
 						<td><a target="_blank" href="<?php echo "http://www.facebook.com/".$rows->fb_account?>"><?php echo $rows->fb_account?></a></td>
 						<td><?php echo $rows->contact_tel?></td>
