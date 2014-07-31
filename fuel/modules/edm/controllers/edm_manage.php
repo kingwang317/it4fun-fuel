@@ -232,7 +232,7 @@ class Edm_manage extends Fuel_base_controller {
 		if($edm_id)
 		{
 			$target_url = $base_url.'fuel/edm/loglist';
-			$total_rows = $this->edm_manage_model->get_total_rows();
+			$total_rows = $this->edm_manage_model->get_edm_log_total_rows($edm_id);
 			$config = $this->set_page->set_config($target_url, $total_rows, $dataStart, 20);
 			$dataLen = $dataStart + $config['per_page'];
 			$this->pagination->initialize($config);

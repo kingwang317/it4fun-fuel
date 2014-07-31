@@ -25,6 +25,21 @@ class Edm_manage_model extends MY_Model {
 		return 0;
 	}
 
+	public function get_edm_log_total_rows($edm_id)
+	{
+		$sql = @"SELECT COUNT(*) AS total_rows FROM mod_edm_log WHERE edm_id = '$edm_id' ";
+		$query = $this->db->query($sql);
+
+		if($query->num_rows() > 0)
+		{
+			$row = $query->row();
+
+			return $row->total_rows;
+		}
+
+		return 0;
+	}
+
 	public function get_edm_list($dataStart, $dataLan)
 	{
 		$sql = @"SELECT * FROM mod_edm ORDER BY send_time DESC LIMIT $dataStart, $dataLan";
@@ -73,7 +88,7 @@ class Edm_manage_model extends MY_Model {
 
 	public function add_log($post_data, $edm_id)
 	{
-		$sql = @"SELECT cli_id, cli_email FROM mod_client WHERE agree_edm=1 ORDER BY cli_id ASC";
+		$sql = @"SELECT account, contact_mail FROM mod_resume WHERE contact_mail is not null AND contact_mail != '' ";
 		$query = $this->db->query($sql);
 
 		if($query->num_rows() > 0 )
@@ -85,7 +100,7 @@ class Edm_manage_model extends MY_Model {
 				foreach($result as $key=>$row)
 				{
 					$sql = @"INSERT INTO mod_edm_log (edm_id, subject, has_send, msg, content, target, member_id) VALUES (?, ?, 0, 0, ?, ?, ?)";
-					$para = array($edm_id, $post_data['subject'], $post_data['content'], $row->cli_email, $row->cli_id);
+					$para = array($edm_id, $post_data['subject'], $post_data['content'], $row->contact_mail, $row->account);
 					$this->db->query($sql, $para);
 				}
 			}
@@ -171,7 +186,7 @@ class Edm_manage_model extends MY_Model {
 
 	public function get_send_record_list($edm_id, $dataStart, $dataLen)
 	{
-		$sql = @"SELECT el.edm_log_id, el.target, m.member_name, el.run_date, el.has_send FROM mod_edm_log el, mod_member m WHERE el.member_id=m.member_id AND edm_id=? ORDER BY el.run_date DESC LIMIT $dataStart, $dataLen";
+		$sql = @"SELECT el.edm_log_id, el.target, m.name, el.run_date, el.has_send FROM mod_edm_log el LEFT JOIN mod_resume m ON el.member_id=m.account WHERE edm_id=? ORDER BY el.run_date DESC LIMIT $dataStart, $dataLen";
 		$para = array($edm_id);
 		$query = $this->db->query($sql, $para);
 

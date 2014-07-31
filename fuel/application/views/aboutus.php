@@ -26,36 +26,7 @@
             </div>
         -->
             <div id="bodybox02">
-                <p class="title">About Young Talent</p>
-                <p class="content">
-                    我們是專門為年輕人設立的找工作平台<br/>
-                    擔心因為年紀輕，經歷少就在求職路上處處碰壁? <br/>
-                    年輕，其實就是你的優勢!<br/>
-                    在Young Talent，年輕的你就是我們的主力戰將。<br/>
-                </p>
-                <p class="content">
-                    我們是由資深人力資源團隊及數家國際級人力資源顧問公司共同建置之平台，<br/>
-                    與年輕的學生團隊聯合執行管理。<br/>
-                    在Young Talent的團隊中，我們重視年輕人的價值，同時強調創意的執行。<br/>
-                    我們比其他人懂你們求職的需求以及對未來的期待!<br/>
-                </p>  
-
-                <p class="content">
-                    提早加入我們，登錄你的簡歷，提早替你的履歷加分!<br/>
-                    在Young Talent你可以收到豐富的職缺訊息，職場趨勢。<br/>
-                    我們不定期舉辦各式活動，<br/>
-                    讓新鮮人保持新鮮，履歷、經歷、腦袋卻絕不陽春!<br/>
-                </p>  
-
-                <p class="title">如何使用Young Talent網站</p>
-                <p class="content">
-                    請先登錄你的基本資料。<br/>
-                    在別的網站，你只能苦苦等待應徵職缺的公司回覆你。<br/>
-                    在Young Talent，我們的顧問會先定位適合你的職缺，接著主動聯繫你。<br/>
-                    我們為你分析職缺優劣，分享不同職缺可以學習到的技能。<br/>
-                    在Young Talent，我們讓你 優雅 從容 快速 地進入職場!<br/>
-                </p>
-                <br/><br/><br/>
+                <?php echo fuel_block("aboutus") ?>
             </div>
             
             <div id="bodybox03">

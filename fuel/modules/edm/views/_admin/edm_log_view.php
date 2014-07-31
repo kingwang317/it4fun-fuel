@@ -59,7 +59,7 @@
 								<input type="checkbox" name="edm_log_id[]" edmid="<?php echo $rows->edm_log_id?>"/>
 							</label>
 						</td>						
-						<td><?php echo $rows->member_name?></td>
+						<td><?php echo $rows->name?></td>
 						<td>
 							<?php echo $rows->target?>
 						</td>
