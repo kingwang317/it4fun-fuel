@@ -323,7 +323,7 @@ $config['nav']['manage'] = array(
 	'permissions'       => lang('module_permissions'),
 	'manage/cache'      => lang('module_manage_cache'), 
 	'logs'              => lang('module_manage_activity'),
-	'settings'          => lang('module_manage_settings'),
+	//'settings'          => lang('module_manage_settings'),
 	);
 
 // will auto arrange the navigation into the normal order

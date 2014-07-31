@@ -27,12 +27,7 @@
             <div id="bodybox03">
                 <img src="<?php echo site_url()?>assets/templates/images/pic/pic10.png">
             </div>
-            <div id="bodybox04">
-                <p class="title">紮根青春，成就夢想</p>
-                <p class="content">
-                    許多工作其實都不用工作經驗，也用不到履歷表。填寫履歷就成了一個多餘又麻煩的事情，那何不把它省略呢？因此，我們只需要您的基本資料, 就可以幫您找到許多打工機會以及初階工作，而且這一切都是免費的!好工作，不找嗎?許多工作其實都不用工作經驗，也用不到履歷表。填寫履歷就成了一個多餘又麻煩的事情，那何不把它省略呢!因此，我們只需要您的基本資料，就可以幫您找到許多打工機會以及初階工作，而且這一切都是免費的!好工作，不找嗎?
-                </p>
-            </div>
+            <?php echo fuel_block("campusevents") ?>
             <div id="bodybox05">
                 <?php $this->load->view('_blocks/_facebook')?>
             </div>
