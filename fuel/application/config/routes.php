@@ -59,6 +59,7 @@ $route['login'] 			= 'welcome/login';
 
 
 $route['home/aboutus'] 	= 'home/aboutus';
+$route['home/login'] 	= 'home/login';
 $route['home/campusevents'] 	= 'home/campusevents';
 $route['home/contact'] 			= 'home/contact';
 $route['home/do_contact'] 			= 'home/do_contact';

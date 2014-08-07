@@ -19,9 +19,7 @@
             <div class="ok">
                 <img src="<?php echo site_url()?>assets/mobile_template/images/icon/ok2.png" >
             </div>
-            <p class="txt1">恭喜&nbsp;！</p>
-            <p class="txt2">有適合職缺會有專人聯絡您！</p>
-            <p class="txt3">＊受限於行動裝置功能，<br> 請至全功能網站查看您的資料。</p>
+            <?php echo fuel_block("m_register3") ?>
         </div>
         <?php $this->load->view('_blocks/_m_footer')?>
     </div>

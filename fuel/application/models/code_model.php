@@ -42,7 +42,7 @@ class Code_model extends CI_Model {
         if($mobile_browser>0) {
             return true; //手機版
         }else {
-            return true;  //電腦版
+            return false;  //電腦版
         }
     }
     public function send_mail_by_id($id,$target=""){

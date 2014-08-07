@@ -14,27 +14,28 @@
 <body>
     <div id="maincontain">        
         <div id="textbox">
-            <form>
+            <form action="<?php echo site_url()?>register/step1_save/" method="POST">
                 <p class="title">註冊帳號</p>  
                 <p class="line"></p>
 
                 <p class="name">電子郵件</p>
-                <input type="text" class="mail" >
-                <span class="ok"><img src="<?php echo site_url()?>assets/mobile_template/images/icon/ok.png"></span>
+                <input type="text" class="mail" name="mail" id="mail" >
+                <span class="ok" id="mail_icon" ><img src="<?php echo site_url()?>assets/mobile_template/images/icon/ok.png"></span>
 
                 <p class="name">密碼</p>
-                <input type="password" class="passwd1" >
+                <input type="password" class="passwd1"  name="password" id="password" >
+                <span class="ok" id="password_icon" ><img src="<?php echo site_url()?>assets/mobile_template/images/icon/ok.png"></span>
 
                 <p class="name">確認密碼</p>
-                <input type="password" class="passwd2" >
-                <span class="ok"><img src="<?php echo site_url()?>assets/mobile_template/images/icon/ok.png"></span>
+                <input type="password" class="passwd2" name="repassword" id="repassword" >
+                <span class="ok" id="repassword_icon"><img src="<?php echo site_url()?>assets/mobile_template/images/icon/ok.png"></span>
                 <br class="CLEAR">
 
                 <div class="checkbox">
-                <input type="checkbox" class="checkbox"> <p>我同意<a href="#">網站使用條款</a></p>
+                <input type="checkbox" class="checkbox" name="agree" id="agree"> <p>我同意<a href="<?php echo site_url()?>home/terms/">網站使用條款</a></p>
                 </div>
 
-                <input type="submit" class="submit" value="下一步">
+                <input type="submit" class="submit" name="submitbtn_1" id="submitbtn_1" value="下一步">
             </form>
             <p class="or">或是</p>
             <p class="fbtxt">使用臉書帳號登入，又快又方便</p>
@@ -117,16 +118,6 @@ $("#submitbtn_1").click(function(){
   
 });
 
-$("#submitbtn_2").click(function(){
-    //alert($("#repassword_icon").is(":visible"));
-    //return false;
-   if($("#login_mail").val() == "" || $("#login_password").val() == ""){
-        alert("請輸入帳號密碼");
-            return false;
-   }
-   return true;
-  
-});
 </script>
 <script type="text/javascript" src="<?php echo site_url()?>assets/js/fb.js?t=<?=$t?>"></script>
 </html>
