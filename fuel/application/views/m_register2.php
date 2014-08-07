@@ -268,9 +268,9 @@
 
                 DATA.dom.addjob.click(function(){
                    num=DATA.dom.joblist.children("li").size()+1; 
-                   jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value='' placeholder='公司' /><br><input type='text' name='job_title_"+num+"' value='' placeholder='職稱' /><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' placeholder='西元年-月-日' value=''>~<input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' placeholder='西元年-月-日' value=''><br><b>在職中，離職日期請留空</b></li>";
+                   jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value='' placeholder='公司' /><br><input type='text' name='job_title_"+num+"' value='' placeholder='職稱' /><br><input type='date' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' placeholder='西元年-月-日' value=''>~<input type='date' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' placeholder='西元年-月-日' value=''><br><b>在職中，離職日期請留空</b></li>";
                    DATA.dom.joblist.append(jobItem);
-                   $( ".datepicker"+num ).datepicker({ dateFormat: 'yy-mm-dd' });
+                   // $( ".datepicker"+num ).datepicker({ dateFormat: 'yy-mm-dd' });
                 });
 
                 $('#btnRight').click(function(e) {
