@@ -75,15 +75,23 @@ class Register extends CI_Controller {
 
 		$recommended_id = $this->input->cookie("ytalent_recommended_id");
 
-		$vars['views'] = 'register2';
 		$vars['school_list']	= $school_list;
 		$vars['skill_list']	= $skill_list;
 		$vars['recommended_id']	= $recommended_id;
 		$vars['account'] = $this->input->get("account");
 		$vars['token'] = $this->input->get("token");
 		$vars['post'] = "";
-		$page_init = array('location' => 'home');
-		$this->fuel->pages->render('register2', $vars);
+
+
+		if($this->code_model->is_mobile()){
+			$vars['views'] = 'm_register2';
+			$page_init = array('location' => 'm_register2');
+			$this->fuel->pages->render('m_register2', $vars);
+		}else{
+			$vars['views'] = 'register2';
+			$page_init = array('location' => 'register2');
+			$this->fuel->pages->render('register2', $vars);
+		}
 
 	}
 	function step2_save(){
@@ -121,6 +129,16 @@ class Register extends CI_Controller {
 		$vars['token'] = $this->input->get("token");
 		$page_init = array('location' => 'home');
 		$this->fuel->pages->render('register3', $vars);
+
+		if($this->code_model->is_mobile()){
+			$vars['views'] = 'm_register3';
+			$page_init = array('location' => 'm_register3');
+			$this->fuel->pages->render('m_register3', $vars);
+		}else{
+			$vars['views'] = 'register3';
+			$page_init = array('location' => 'register3');
+			$this->fuel->pages->render('register3', $vars);
+		}
 	}
 
 	function getSchool()

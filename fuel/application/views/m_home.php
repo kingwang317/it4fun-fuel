@@ -14,8 +14,8 @@
 <body>
     <div id="maincontain">        
         <div id="banner">
-            <a href="#" class="registration">註&nbsp;冊</a>
-            <a href="#" class="login">或&nbsp;&nbsp;&nbsp;&nbsp;登入帳號</a>
+            <a href="<?php echo site_url()?>register/" class="registration">註&nbsp;冊</a>
+            <a href="<?php echo site_url()?>home/login/" class="login">或&nbsp;&nbsp;&nbsp;&nbsp;登入帳號</a>
         </div>
         <div id="title">
             合作夥伴

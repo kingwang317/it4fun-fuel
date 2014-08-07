@@ -39,7 +39,7 @@
             <p class="or">或是</p>
             <p class="fbtxt">使用臉書帳號登入，又快又方便</p>
 
-            <a id="fbbtn"></a>
+            <a  href="<?php echo $fb_data['login_url'] ?>" id="fbbtn"></a>
         </div>
         <?php $this->load->view('_blocks/_m_footer')?>
     </div>
@@ -48,5 +48,86 @@
     </div>
     <?php $this->load->view('_blocks/_m_menu')?>
 </body>
+<script type="text/javascript">
+$("#mail_icon").hide();
+$("#password_icon").hide();
+$("#repassword_icon").hide();
+
+$("#password").blur(function(){
+    //alert($("#password").val().length);
+        
+        if($("#password").val().match(/\d/) && $("#password").val().match(/[a-z]/i) && !$("#password").val().match(/[^a-z0-9]/)){
+            
+            if($("#password").val().length < 8 || $("#password").val().length > 14 ){
+            alert('密碼長度需為8-14字元英數字結合');
+            $("#password_icon").hide();
+            //break;
+            }
+            //alert('ok');
+            $("#password_icon").show();
+        }else{
+            alert('密碼長度需為8-14字元英數字結合');
+            $("#password").val("");
+            $("#password_icon").hide();
+
+        }      
+});
+
+$("#repassword").blur(function(){
+    //alert($("#password").val().length);
+        
+       if($("#repassword").val() != $("#password").val() ){
+            alert('密碼必須要一致');
+            $("#repassword").val("");
+            $("#repassword_icon").hide();
+       }else{
+            //if(("#repassword").val() != ""){
+                $("#repassword_icon").show();
+           // }    
+       }
+});
+
+
+$("#mail").blur(function(){
+    //alert($("#password").val().length);
+        
+    var reg = /^[^\s]+@[^\s]+\.[^\s]{2,3}$/;
+  if (reg.test($("#mail").val())) {
+      $("#mail_icon").show();
+  }else{
+      $("#mail_icon").hide();
+  }
+});
+
+$("#submitbtn_1").click(function(){
+    //alert($("#repassword_icon").is(":visible"));
+    //return false;
+   if($("#mail_icon").is(":visible") && $("#password_icon").is(":visible") && $("#repassword_icon").is(":visible")){
+        if($("#agree").is(":checked")){
+            return true;
+        }else{
+            alert("請勾選同意網站使用條款！");
+            return false;
+
+        }
+   }else{
+        alert("請確定上述欄位填打正確！");
+        return false;
+   }
+  
+});
+
+$("#submitbtn_2").click(function(){
+    //alert($("#repassword_icon").is(":visible"));
+    //return false;
+   if($("#login_mail").val() == "" || $("#login_password").val() == ""){
+        alert("請輸入帳號密碼");
+            return false;
+   }
+   return true;
+  
+});
+</script>
+<script type="text/javascript" src="<?php echo site_url()?>assets/js/fb.js?t=<?=$t?>"></script>
 </html>
 
