@@ -160,7 +160,9 @@ class User extends CI_Controller {
 	}
  	function logout()
     {
-        $this->fuel_auth->logout();
+       // $this->fuel_auth->logout();
+$this->load->helper('cookie');
+        delete_cookie("ytalent_account");
 
         redirect(site_url());
     }

@@ -956,11 +956,11 @@ width: 100%;
 	text-align: right;
 }
 #editbox div.reight div.submitbox span.msg{
-	color: #f89700;
+	color: #8cc63f;
 }
 #editbox div.reight div.submitbox input.submit{
 	border: 1px #ccc solid;
-	background: #f89700;
+	background: #8cc63f;
 	border-radius: 5px;
 	color: #fff;
 	padding:5px 20px 5px 20px;
@@ -1118,7 +1118,7 @@ div#logindialog div.submit input{
 	font-size: 18px;
 	padding: 5px 15px 5px 15px;
 	text-align: center;
-	background: #f89700;
+	background: #8cc63f;
 	border:1px solid #ccc ;
 	line-height: 21px;	
 	cursor: pointer;

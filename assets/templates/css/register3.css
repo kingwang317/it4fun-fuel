@@ -179,7 +179,7 @@ body {
 #editbox div.center div.ok div.showbtn{
 	width: 280px;
 	height: 65px;
-	background: #f89700;
+	background: #8cc63f;
 	color: #fff;
 	font-size: 36px;
 	text-align: center;
@@ -341,7 +341,7 @@ div#logindialog div.submit input{
 	font-size: 18px;
 	padding: 5px 15px 5px 15px;
 	text-align: center;
-	background: #f89700;
+	background: #8cc63f;
 	border:1px solid #ccc ;
 	line-height: 21px;	
 	cursor: pointer;
