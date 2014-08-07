@@ -116,6 +116,7 @@
                         <table >
                             <tr>
                                 <td > 
+                                    未選取的技能
                                    <select multiple="multiple" id='lstBox1'>
                                        <?php
                                             if(isset($skill_list))
@@ -135,12 +136,13 @@
                         </tr>
                         <tr>
                             <td  >
-                                <input type='button' id='btnRight' value ='  >  '/>
-                                <br/><br/><input type='button' id='btnLeft' value ='  <  '/>
+                                <input type='button' id='btnRight' value ='選取技能'/>
+                                <br/><br/><input type='button' id='btnLeft' value ='移除技能'/>
                             </td>
                         </tr>
                         <tr>
                              <td >
+                                已選取的技能
                                 <select multiple="multiple" id='lstBox2' name="skill[]" >
                                     
                                 </select>
