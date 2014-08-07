@@ -62,7 +62,7 @@ body {
 	margin: 0 auto;
 }
 
-input , textarea{
+input , textarea , select{
 	font-size: 30px;
 	width: 550px;
 	height: 60px;
