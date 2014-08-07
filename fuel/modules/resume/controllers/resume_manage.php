@@ -457,10 +457,10 @@ class Resume_manage extends Fuel_base_controller {
 			$update_data['birth'] = $this->input->get_post("birth");
 			$update_data['contact_tel'] = $this->input->get_post("contact_tel");
 			$update_data['contact_mail'] = $this->input->get_post("contact_mail");
-			$update_data['address_zip'] = $this->input->get_post("address_zip");
-			$update_data['address_city'] = $this->input->get_post("address_city");
-			$update_data['address_area'] = $this->input->get_post("address_area");
-			$update_data['address'] = $this->input->get_post("address");
+			// $update_data['address_zip'] = $this->input->get_post("address_zip");
+			// $update_data['address_city'] = $this->input->get_post("address_city");
+			// $update_data['address_area'] = $this->input->get_post("address_area");
+			// $update_data['address'] = $this->input->get_post("address");
 			$update_data['note'] = $this->input->get_post("note");
 			$update_data['job_status'] = $this->input->get_post("job_status");
 			$update_data['about_self'] = $this->input->get_post("about_self");
