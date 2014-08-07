@@ -237,10 +237,10 @@
                             ]
                 });
 
-                $('input[type=date]').datepicker({
-                    // Consistent format with the HTML5 picker
-                    dateFormat: 'yy-mm-dd'
-                });
+                // $('input[type=date]').datepicker({
+                //     // Consistent format with the HTML5 picker
+                //     dateFormat: 'yy-mm-dd'
+                // });
 
                 var school_data; 
 
