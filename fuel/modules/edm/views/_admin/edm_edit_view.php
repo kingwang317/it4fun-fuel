@@ -26,15 +26,15 @@
 		$j( "#edm_send_time" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 
 		$j("#sendbtn").click(function(){
-			$j("#addForm").attr("action", $(this).attr('data-href'));
+			$j("#form").attr("action", $(this).attr('data-href'));
 
-			$j("#addForm").submit();
+			$j("#form").submit();
 		});
 
 		$j("#addbtn").click(function(){
-			$j("#addForm").attr("action", $(this).attr('data-href'));
+			$j("#form").attr("action", $(this).attr('data-href'));
 
-			$j("#addForm").submit();
+			$j("#form").submit();
 		});
 
 	});
@@ -56,7 +56,6 @@
 </div>
 <div class="row" style="margin:10px 10px" id="fileupload">
 	<div class="col-md-12">
-		<form method="post" action="" enctype="multipart/form-data" id="addForm">
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -80,14 +79,13 @@
 					</tr>
 					<tr>
 						<td colspan="2" style="text-align:right">
-							<button class="btn btn-small btn-primary" type="submit" id="sendbtn" data-href="<?php echo $send_url;?>">送出信件</button>
+						<!--	<button class="btn btn-small btn-primary" type="submit" id="sendbtn" data-href="<?php echo $send_url;?>">送出信件</button>-->
 							<button class="btn btn-small btn-primary" type="submit" id="addbtn" data-href="<?php echo $submit_url.$edm_result->edm_id;?>">儲存信件</button>
 							<button class="btn btn-small btn-warning" type="button" onclick="aHover('<?php echo $back_url?>')">取消</button>
 						</td>
 					</tr>
 				</tobdy>
 			</table>
-		</form>
 	</div>
 </div>
 

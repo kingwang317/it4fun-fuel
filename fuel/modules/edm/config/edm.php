@@ -19,8 +19,8 @@ $config['tables']['mod_edm'] = 'mod_edm';
 
 
 $config['edm_javascript'] = array(
-	'jquery.colorbox-min.js',
-	'doT.min.js'
+	'jquery.min.js',
+	'jquery-ui.min.js'
 );
 
 $config['ck_js'] = array(

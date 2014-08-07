@@ -17,30 +17,30 @@ class Register extends CI_Controller {
 
 	function index()
 	{	
-		$this->load->model('about_case_model');
-		
+		$this->load->helper('cookie');
+		$this->load->library('facebook'); 
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");
 		$all_cate = array();
 
-		$case_cate	= $this->about_case_model->get_case_cate_code();
+		$this->load->model('code_model');
 
-		if(isset($case_cate))
-		{
-			foreach ($case_cate as $key => $row) 
-			{
-				$sub_cate_result = $this->about_case_model->get_case_sub_cate($row->code_id);
 
-				$all_cate[$key]['parent_cate'] 		= $row;
-				$all_cate[$key]['sub_cate_result']	= $sub_cate_result;
-			}
-		}
+
+
+
+		$fb_data	= $this->code_model->get_fb_data();
+		$vars['fb_data'] = $fb_data;
+
+		// use Fuel_page to render so it will grab all opt-in variables and do any necessary parsing
 		
-		$vars['views'] = 'home';
 		$vars['all_cate']	= $all_cate;
 		$vars['base_url'] = base_url();
-		$page_init = array('location' => 'home');
-		$this->fuel->pages->render('home', $vars);
+
+		$vars['views'] = 'm_register1';
+		$page_init = array('location' => 'm_register1');
+		$this->fuel->pages->render('m_register1', $vars);
+
 	}
 
 	function step1_save(){

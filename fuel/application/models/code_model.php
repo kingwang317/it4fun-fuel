@@ -4,7 +4,129 @@ class Code_model extends CI_Model {
     {
         $this->load->database();
     }
+    public function is_mobile(){
+        $mobile_browser = '0';
+ 
+        if(preg_match('/(up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone)/i', strtolower($_SERVER['HTTP_USER_AGENT']))) {
+            $mobile_browser++;
+        }
+         
+        if((strpos(strtolower($_SERVER['HTTP_ACCEPT']),'application/vnd.wap.xhtml+xml')>0) or ((isset($_SERVER['HTTP_X_WAP_PROFILE']) or isset($_SERVER['HTTP_PROFILE'])))) {
+            $mobile_browser++;
+        }    
+         
+        $mobile_ua = strtolower(substr($_SERVER['HTTP_USER_AGENT'],0,4));
+        $mobile_agents = array(
+            'w3c ','acs-','alav','alca','amoi','audi','avan','benq','bird','blac',
+            'blaz','brew','cell','cldc','cmd-','dang','doco','eric','hipt','inno',
+            'ipaq','java','jigs','kddi','keji','leno','lg-c','lg-d','lg-g','lge-',
+            'maui','maxo','midp','mits','mmef','mobi','mot-','moto','mwbp','nec-',
+            'newt','noki','oper','palm','pana','pant','phil','play','port','prox',
+            'qwap','sage','sams','sany','sch-','sec-','send','seri','sgh-','shar',
+            'sie-','siem','smal','smar','sony','sph-','symb','t-mo','teli','tim-',
+            'tosh','tsm-','upg1','upsi','vk-v','voda','wap-','wapa','wapi','wapp',
+            'wapr','webc','winw','winw','xda','xda-','Googlebot-Mobile');
+         
+        if(in_array($mobile_ua,$mobile_agents)) {
+            $mobile_browser++;
+        }
+         
+        if (strpos(strtolower($_SERVER['HTTP_USER_AGENT']),'OperaMini')>0) {
+            $mobile_browser++;
+        }
+         
+        if (strpos(strtolower($_SERVER['HTTP_USER_AGENT']),'windows')>0) {
+            $mobile_browser=0;
+        }
+         
+        if($mobile_browser>0) {
+            return true; //手機版
+        }else {
+            return true;  //電腦版
+        }
+    }
+    public function send_mail_by_id($id,$target=""){
 
+        $sql = @" SELECT * FROM mod_edm WHERE edm_id = ? LIMIT 1";
+        $para = array(
+            $id
+        );
+
+        $res_1 = $this->db->query($sql, $para);
+
+        if($res_1->num_rows() > 0)
+        {
+            $result = $res_1->result();
+            //print_r($result);
+            //echo $result[0]->edm_id;
+           // echo fuel_var("mail_from_name");
+            $from_name = $this->get_site_var("mail_from_name");
+            $from_mail = $this->get_site_var("mail_from");
+            $subject = $result[0]->subject;
+            $content = "<html><header></header><body>";
+            $content .= htmlspecialchars_decode($result[0]->content);
+            $content .= "</body></html>";
+            $this->load->library('email');
+            //$this->email->mailtype('html');
+
+            $this->email->from($from_mail, $from_name);
+            $this->email->to($target); 
+            //$this->email->cc('another@another-example.com'); 
+            //$this->email->bcc('them@their-example.com'); 
+
+            $this->email->subject($subject);
+            $this->email->message($content); 
+
+            //$this->email->send();
+
+            if($this->email->send())
+            {
+                //echo "success";
+                $this->set_mail_log($id,$subject,'1',$content,$target);
+                
+               // echo $this->email->print_debugger();
+            }
+            else
+            {
+                $this->set_mail_log($id,$subject,'0',$content,$target);
+               // echo $this->email->print_debugger();
+            }
+            return $this->email->print_debugger();
+        }else{
+            return false;
+        }
+    }
+
+    public function set_mail_log($edm_id,$subject,$has_send,$content,$target){
+        $sql = "INSERT INTO `mod_edm_log`( `edm_id`, `subject`, `has_send`, `msg`, `run_date`, `content`, `target`, `member_id`) 
+        VALUES (?,?,?,?,NOW(),?,?,?)";
+
+        $para = array(
+            $edm_id,
+            $subject,
+            $has_send,
+            '0',
+            $content,
+            $target,
+            $target
+        );
+
+        $res_1 = $this->db->query($sql, $para);
+    }
+
+    public function get_site_var($name){
+        $sql = @"SELECT value FROM fuel_site_variables WHERE name = '$name' LIMIT 1 ";
+        $query = $this->db->query($sql);
+        //echo $sql;exit;
+        if($query->num_rows() > 0)
+        {
+            $result = $query->result();
+
+            return $result[0]->value;
+        }
+
+        return null;
+    }
     public function get_fb_data(){
         $this->load->library('facebook'); 
         $user = $this->facebook->getUser();
@@ -72,6 +194,7 @@ class Code_model extends CI_Model {
 
         if($res_1->num_rows() > 0)
         {
+
             return true;
         }else{
             return false;
@@ -207,6 +330,8 @@ class Code_model extends CI_Model {
         if($fb_email == ""){
             $fb_email = $email;
         }
+        if(strpos($fb_email, "@") > -1 )
+            $mail_res  = $this->code_model->send_mail_by_id("4",$fb_email);
 
         $sql = @" INSERT INTO mod_resume(account,password,name,birth,contact_tel,contact_mail,fb_account,create_time)VALUES(?,MD5(?),?,?,?,?,?,NOW())";
         $para = array($email,$password, $name, $birth,$contact_tel,$fb_email,$fb_id);
