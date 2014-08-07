@@ -177,10 +177,7 @@ class Resume_manage_model extends MY_Model {
 										birth 	= ?,
 										contact_tel 	= ?,
 										contact_mail = ?,
-										-- address_city	= ?,
-										-- address_area	= ?,
-										-- address_zip		= ?,
-										-- address		= ?,
+									 
 										job_status		= ?,
 										about_self		= ?,
 										exclude_cate		= ?,
