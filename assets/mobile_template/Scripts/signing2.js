@@ -10,8 +10,12 @@ jQuery(document).ready(function ($) {
     DATA.dom.submit=$("input.submit");
 
     //$( ".datepicker1" ).datepicker();
-    $( ".datepicker1" ).datepicker({ dateFormat: 'yy-mm-dd' });
-    $( "#birth" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    // $( ".datepicker1" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    // $( "#birth" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    // $('input[type=date]').datepicker({
+    //     // Consistent format with the HTML5 picker
+    //     dateFormat: 'yy-mm-dd'
+    // });
 
     
     // DATA.dom.addschool.click(function(){

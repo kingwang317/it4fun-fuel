@@ -41,7 +41,7 @@
                     </div>
                     <div class="bottom">
                         <ul>
-                            <li class="l1"><input type="text" name="birth" id="birth" value=""></li>
+                            <li class="l1"><input type="date" name="birth" id="birth" value=""></li>
                         </ul>
                     </div>
                 </div>
@@ -98,9 +98,9 @@
                             <li class="l1">
                                 <input type="text" name="job_company_name_1" value="" placeholder="公司" /><br>
                                 <input type="text" name="job_title_1" value="" placeholder="職稱" /><br>
-                                <input type="text" class="datestart datepicker1" name="job_start_date_1" placeholder="西元年-月-日" value="">
+                                <input type="date" class="datestart datepicker1" name="job_start_date_1" placeholder="西元年-月-日" value="">
                                  ~ 
-                                <input type="text" class="dateend datepicker1" name="job_end_date_1" placeholder="西元年-月-日" value=""><br>
+                                <input type="date" class="dateend datepicker1" name="job_end_date_1" placeholder="西元年-月-日" value=""><br>
                                 <b>在職中，離職日期請留空</b>
                             </li>
                         </ul>
@@ -234,6 +234,12 @@
                                 'addr-zip' // 郵遞區號
                             ]
                 });
+
+                $('input[type=date]').datepicker({
+                    // Consistent format with the HTML5 picker
+                    dateFormat: 'yy-mm-dd'
+                });
+
                 var school_data; 
 
                 $.ajax({
