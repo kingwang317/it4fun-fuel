@@ -255,7 +255,20 @@
                                 </ul>
                             </div>
                         </div>
-                    
+                        <?php if($data[0]->fb_account == null || $data[0]->fb_account == ""){ ?>
+                    <div class="aboutmeinfo">
+                            <div class="left">
+                                <p>與Facebook連結</p>
+                            </div>
+                            <div class="reight">
+                                <ul>
+                                    <li class="l1"> 
+                                        <a href="<?php echo $fb_data['login_url'] ?>" ><img src="<?php echo site_url()?>assets/templates/images/icon/facebook-connect.png" /></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <?php } ?>
                         <div class="submitbox">
                             <span class="msg"></span>&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="submit" class="submit" value="送出">

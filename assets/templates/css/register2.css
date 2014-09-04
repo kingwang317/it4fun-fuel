@@ -135,7 +135,7 @@ body {
 
 #editbox div.step2{
 	width: 700px;
-	min-height: 170px;
+	min-height: 122px;
 	margin: 0 auto;
 	background: url("../images/icon/step2.png");
 }
@@ -346,7 +346,7 @@ body {
 #editbox div.reight div.msg1{
 	width: auto;
 	text-align: right;
-	color: #8cc63f;
+	color: #ffa340;
 	padding: 0 120px 0 0;
 	margin: 0 0 12px 0 ;
 }
@@ -956,11 +956,11 @@ width: 100%;
 	text-align: right;
 }
 #editbox div.reight div.submitbox span.msg{
-	color: #8cc63f;
+	color: #f89700;
 }
 #editbox div.reight div.submitbox input.submit{
 	border: 1px #ccc solid;
-	background: #8cc63f;
+	background: #f89700;
 	border-radius: 5px;
 	color: #fff;
 	padding:5px 20px 5px 20px;
@@ -1118,7 +1118,7 @@ div#logindialog div.submit input{
 	font-size: 18px;
 	padding: 5px 15px 5px 15px;
 	text-align: center;
-	background: #8cc63f;
+	background: #f89700;
 	border:1px solid #ccc ;
 	line-height: 21px;	
 	cursor: pointer;

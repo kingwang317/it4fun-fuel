@@ -43,8 +43,8 @@
                     </p>
                 </div>
             </div>
-            <div id="bodybox02" style="display:none">
-                <img src="<?php echo site_url()?>assets/templates/images/pic/pic1.png">
+            <div id="bodybox02">
+                  <?php echo fuel_block("index_bodybox02") ?>
             </div>
             <div id="bodybox03">
                 <img src="<?php echo site_url()?>assets/templates/images/pic/pic2.png">

@@ -17,12 +17,14 @@
             <a href="<?php echo site_url()?>register/" class="registration">註&nbsp;冊</a>
             <a href="<?php echo site_url()?>home/login/" class="login">或&nbsp;&nbsp;&nbsp;&nbsp;登入帳號</a>
         </div>
+    <!--
         <div id="title">
             合作夥伴
         </div>
         <div id="partner">
             <img src="<?php echo site_url()?>assets/mobile_template/images/pic/pic2.jpg">
         </div>
+    -->
         <?php $this->load->view('_blocks/_m_footer')?>
     </div>
     <div id="header">

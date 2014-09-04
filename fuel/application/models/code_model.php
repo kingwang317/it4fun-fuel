@@ -4,6 +4,14 @@ class Code_model extends CI_Model {
     {
         $this->load->database();
     }
+
+public function do_update_fbid2resume($account,$fbid){
+    $sql = " UPDATE mod_resume SET fb_account = '$fbid' WHERE account = '$account' ";
+    $res_1 = $this->db->query($sql);
+    return true;
+
+}
+
     public function is_mobile(){
     
 
@@ -95,7 +103,7 @@ class Code_model extends CI_Model {
 
         return null;
     }
-    public function get_fb_data(){
+    public function get_fb_data($redirect_uri="user/do_fb_regi"){
         $this->load->library('facebook'); 
         $user = $this->facebook->getUser();
         //print_r($user);
@@ -124,13 +132,13 @@ class Code_model extends CI_Model {
 
         } else {
             $data['login_url'] = $this->facebook->getLoginUrl(array(
-                'redirect_uri' => site_url('user/do_fb_regi'), 
+                'redirect_uri' => site_url($redirect_uri), 
                 'scope' => array("email") // permissions here
             ));
         }
 
         if(!isset($data['login_url'])){
-            $data['login_url'] = site_url('user/do_fb_regi');
+            $data['login_url'] = site_url($redirect_uri);
         }
         return $data;
     }

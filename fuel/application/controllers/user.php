@@ -82,6 +82,23 @@ class User extends CI_Controller {
 	
 	}
 
+	function do_connect_fb2account(){
+		$this->load->model('code_model');
+		$account = $this->code_model->get_logged_in_account();
+
+		$data = $this->code_model->get_fb_data();
+
+
+		if(isset($data['user_profile'])){
+			$result = $this->code_model->do_update_fbid2resume($account,$data['user_profile']['id']);
+			$this->comm->plu_redirect(site_url()."user/editinfo", 0, "FACEBOOK連接成功");
+
+		}else{
+			$this->comm->plu_redirect(site_url(), 0, "FACEBOOK連接失敗");
+		}
+
+
+	}
 	function editinfo()
 	{	
 
@@ -102,6 +119,10 @@ class User extends CI_Controller {
 		$account_data = $this->code_model->get_account_data($account);
 		$skill_list = $this->code_model->get_user_not_skill($account);
 		$user_skill_list = $this->code_model->get_skill_list(" WHERE account = '$account' ");
+
+
+		$fb_data	= $this->code_model->get_fb_data("user/do_connect_fb2account");
+		$vars['fb_data'] = $fb_data;
 	
 		$vars['skill_list']	= $skill_list;
 		$vars['user_skill_list']	= $user_skill_list;
@@ -217,6 +238,9 @@ $this->load->helper('cookie');
 			if(isset($data['user_profile']['email'])){
 				$fb_email = $data['user_profile']['email'];
 			}
+
+
+
 			$result = $this->code_model->do_register_resume($mail,$password,$name,$fb_email,$data['user_profile']['id']);
 			$this->input->set_cookie("ytalent_account",$mail, time()+3600);
 			$this->input->set_cookie("ytalent_fb_logout_url",$data['logout_url'], time()+3600);
