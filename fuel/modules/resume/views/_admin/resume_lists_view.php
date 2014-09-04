@@ -171,6 +171,31 @@
 			</select>
 	    </div>
 	</div>
+	<div class="row">
+		<label class="col-sm-1 control-label" >
+			電子郵件
+		</label>
+	    <div class="col-sm-2">
+	        <input type="text" class="form-control m-bot15" placeholder="" value="<?php echo $search_email; ?>" name="search_email"/>  
+	    </div>
+	</div>
+	<div class="row">
+		<label class="col-sm-1 control-label" >
+			關於自己
+		</label>
+	    <div class="col-sm-2">
+	        <input type="text" class="form-control m-bot15" placeholder="" value="<?php echo $search_about; ?>" name="search_about"/>  
+	    </div>
+	</div>
+	<div class="row">
+		<label class="col-sm-1 control-label" >
+			管理者備註
+		</label>
+	    <div class="col-sm-2">
+	        <input type="text" class="form-control m-bot15" placeholder="" value="<?php echo $search_note; ?>" name="search_note"/>  
+	    </div>
+	</div>
+
 
 	<div class="row" style="">
  		

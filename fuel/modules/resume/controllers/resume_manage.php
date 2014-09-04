@@ -41,6 +41,9 @@ class Resume_manage extends Fuel_base_controller {
 		$search_school        = $post_ary["search_school"];
 		$search_skill         = $post_ary["search_skill"];
 		$search_job_state     = $post_ary["search_job_state"];
+		$search_email     = $post_ary["search_email"];
+		$search_about     = $post_ary["search_about"];
+		$search_note     = $post_ary["search_note"];
 
 
 
@@ -251,6 +254,51 @@ class Resume_manage extends Fuel_base_controller {
 				$this->session->set_userdata('search_exp', "");
 			}			
 		}
+
+		if ($search_email != "") {
+			$filter .= " AND contact_mail LIKE '%$search_email%'";
+			$this->session->set_userdata('search_email', $search_email);
+		}else{
+			if (!isset($search_email) ) {
+				$search_email = $this->session->userdata('search_email'); 
+				if ($search_email != "") {
+					$search_email = $search_email;
+					$filter .= " AND contact_mail LIKE '%$search_email%'";
+				} 
+			}else{
+				$this->session->set_userdata('search_email', "");
+			}					
+		}
+
+		if ($search_about != "") {
+			$filter .= " AND about_self LIKE '%$search_about%'";
+			$this->session->set_userdata('search_about', $search_about);
+		}else{
+			if (!isset($search_about) ) {
+				$search_about = $this->session->userdata('search_about'); 
+				if ($search_about != "") {
+					$search_about = $search_about;
+					$filter .= " AND about_self LIKE '%$search_about%'";
+				} 
+			}else{
+				$this->session->set_userdata('search_about', "");
+			}					
+		}
+
+		if ($search_note != "") {
+			$filter .= " AND note LIKE '%$search_note%'";
+			$this->session->set_userdata('search_note', $search_note);
+		}else{
+			if (!isset($search_note) ) {
+				$search_note = $this->session->userdata('search_note'); 
+				if ($search_note != "") {
+					$search_note = $search_note;
+					$filter .= " AND note LIKE '%$search_note%'";
+				} 
+			}else{
+				$this->session->set_userdata('search_note', "");
+			}					
+		}
  
 		
 		$target_url = $base_url.'fuel/resume/lists/';
@@ -284,6 +332,9 @@ class Resume_manage extends Fuel_base_controller {
 		$vars['search_city'] = $search_city;
 		$vars['search_school'] = $search_school;
 		$vars['search_skill'] = $search_skill;
+		$vars['search_email'] = $search_email;
+		$vars['search_about'] = $search_about;
+		$vars['search_note'] = $search_note;
 
 
 		$vars['recommended_ary'] = $recommended_ary;
