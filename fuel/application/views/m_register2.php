@@ -34,6 +34,19 @@
                         </ul>
                     </div>
                 </div>
+                <div class="sexinfo">
+                    <div class="top">
+                        <p>性別</p>
+                    </div>
+                    <div class="bottom">
+                        <ul>
+                            <li class="l1">
+                                <input type="radio" name="sex" value="1" checked><span>&nbsp;&nbsp;男性</span>
+                                <input type="radio" name="sex" value="0"><span>&nbsp;&nbsp;女性</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <!-- *** -->
                 <div class="birthdayinfo">
                     <div class="top">

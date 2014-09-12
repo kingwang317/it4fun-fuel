@@ -80,6 +80,11 @@ input , textarea , select{
 	line-height:50px;
 }
 
+.sexinfo .top p{
+	font-size: 30px;
+	line-height:50px;
+}
+
 .birthdayinfo .top p{
 	font-size: 30px;
 	line-height:50px;

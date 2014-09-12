@@ -50,6 +50,19 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="sexinfo">
+                            <div class="left">
+                                <p>性別</p>
+                            </div>
+                            <div class="reight">
+                                <ul>
+                                    <li class="l1">
+                                        <input type="radio" name="sex" value="1" <?php echo $data[0]->sex==1?"checked":""; ?> ><span>&nbsp;&nbsp;男</span>
+                                        <input type="radio" name="sex" value="0" <?php echo $data[0]->sex==0?"checked":""; ?> ><span>&nbsp;&nbsp;女</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                         <!-- *** -->
                         <div class="birthdayinfo">
                             <div class="left">

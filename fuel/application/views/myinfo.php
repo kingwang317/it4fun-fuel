@@ -58,7 +58,7 @@
 
                     <div class="birthdayinfo">
                         <div class="left">
-                            <p>生日年紀</p>
+                            <p>性別</p>
                         </div>
                         <div class="reight">
                             <?php 
@@ -72,6 +72,17 @@
                             ?>
                             <ul>
                                 <li class="l1"><?php echo $data[0]->birth ?> ，<?php echo $age ?>歲</li>                                
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="sexinfo">
+                        <div class="left">
+                            <p>生日年紀</p>
+                        </div>
+                        <div class="reight">
+                            <ul>
+                                <li class="l1"><?php echo $data[0]->sex == 0?"女性":"男性"; ?></li>                                
                             </ul>
                         </div>
                     </div>

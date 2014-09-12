@@ -112,6 +112,12 @@ class Home extends CI_Controller {
 		$post_arr = $this->input->post();
 		$this->set_meta->set_meta_data();
 		$result = $this->code_model->do_contact($post_arr);
+		$result = $this->code_model->send_mail_by_id("5","YTalent@pplesearch.com");
+		$result = $this->code_model->send_mail_by_id("5","judyliu@pplesearch.com");
+		$result = $this->code_model->send_mail_by_id("5","chiaoyu@pplesearch.com");
+		//$result = $this->code_model->send_mail_by_id("5","kingwang317@gmail.com");
+		//$result = $this->code_model->send_mail_by_id("5","kingwang317@yahoo.com.tw");
+
 		if($result){
 			$this->comm->plu_redirect(site_url(), 0, "已收到您的聯絡資訊，我們將儘快為您處理");
 		}else{

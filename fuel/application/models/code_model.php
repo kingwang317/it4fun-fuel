@@ -454,7 +454,8 @@ public function do_update_fbid2resume($account,$fbid){
                                 address = ?,
                                 job_status = ?,
                                 find_job_kind = ?,
-                                about_self = ?
+                                about_self = ?,
+                                sex = ?
                                 WHERE account = ? ";
 
 
@@ -469,11 +470,12 @@ public function do_update_fbid2resume($account,$fbid){
             $account_arr["now_status"], 
             $account_arr["find_kind"], 
             $account_arr["about_self"], 
+            $account_arr["sex"],
             $account_arr["account"]
             );
         $res_1 = $this->db->query($update_accunt_sql, $para);
  //print_r($account_arr);
-        //die();
+       //die();
 
         if(isset($account_arr["recommended"]) && $account_arr["recommended"] != null && $account_arr["recommended"] != ""){
             
