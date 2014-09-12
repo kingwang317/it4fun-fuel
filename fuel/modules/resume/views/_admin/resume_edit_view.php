@@ -59,6 +59,15 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">性別</label>
+							<div class="col-sm-4">
+								 <select name="sex"> 
+						        	<option value="0" <?php echo $result->sex == "0"?"selected":""; ?> >女</option>
+						        	<option value="1" <?php echo $result->sex == "1"?"selected":""; ?> >男</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-sm-2 col-sm-2 control-label">地址</label>
 							<div class="col-sm-4">
 								<!-- <input type="text" class="col-sm-4" name="address_zip" placeholder="郵遞區號" value="<?php echo  $result->address_zip; ?>" /> 

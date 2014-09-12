@@ -196,6 +196,18 @@
 	    </div>
 	</div>
 
+	<div class="row">
+		<label class="col-sm-1 control-label" >
+			性別
+		</label>
+	    <div class="col-sm-2">
+	         <select name="search_sex">
+	        	<option value=""  <?php echo $search_sex == ""?"selected":""; ?> >不拘</option>
+	        	<option value="0" <?php echo $search_sex == "0"?"selected":""; ?> >女</option>
+	        	<option value="1" <?php echo $search_sex == "1"?"selected":""; ?> >男</option>
+			</select>
+	    </div>
+	</div>
 
 	<div class="row" style="">
  		
@@ -238,6 +250,7 @@
 						</th>
 						<th>ID</th>
 						<th>姓名</th>
+						<th>性別</th>
 						<th>FB ID</th>
 						<th>電話</th>
 						<th>年齡</th>
@@ -265,6 +278,15 @@
 						</td>
 						<td><?php echo $rows->id; ?></td>
 						<td><a href="<?php echo $edit_url.$rows->account?>"><?php echo $rows->name != ""?$rows->name:"未填寫";?></a></td>
+						<td>
+							<?php if ($rows->sex == "1"): ?>
+								男
+							<?php elseif ($rows->sex == "0"): ?>
+								女
+							<?php else: ?>
+								未填寫
+							<?php endif ?>
+						</td>	
 						<td><a target="_blank" href="<?php echo "http://www.facebook.com/".$rows->fb_account?>"><?php echo $rows->fb_account?></a></td>
 						<td><?php echo $rows->contact_tel?></td>
 						<td>

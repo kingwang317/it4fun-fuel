@@ -44,6 +44,7 @@ class Resume_manage extends Fuel_base_controller {
 		$search_email     = $post_ary["search_email"];
 		$search_about     = $post_ary["search_about"];
 		$search_note     = $post_ary["search_note"];
+		$search_sex     = $post_ary["search_sex"];
 
 
 
@@ -299,6 +300,21 @@ class Resume_manage extends Fuel_base_controller {
 				$this->session->set_userdata('search_note', "");
 			}					
 		}
+
+		if ($search_sex != "") {
+			$filter .= " AND sex = '$search_sex'";
+			$this->session->set_userdata('search_sex', $search_sex);
+		}else{
+			if (!isset($search_sex) ) {
+				$search_sex = $this->session->userdata('search_sex'); 
+				if ($search_sex != "") {
+					$search_sex = $search_sex;
+					$filter .= " AND sex = '$search_sex'";
+				} 
+			}else{
+				$this->session->set_userdata('search_sex', "");
+			}					
+		}
  
 		
 		$target_url = $base_url.'fuel/resume/lists/';
@@ -335,6 +351,7 @@ class Resume_manage extends Fuel_base_controller {
 		$vars['search_email'] = $search_email;
 		$vars['search_about'] = $search_about;
 		$vars['search_note'] = $search_note;
+		$vars['search_sex'] = $search_sex;
 
 
 		$vars['recommended_ary'] = $recommended_ary;
@@ -508,6 +525,7 @@ class Resume_manage extends Fuel_base_controller {
 			$update_data['birth'] = $this->input->get_post("birth");
 			$update_data['contact_tel'] = $this->input->get_post("contact_tel");
 			$update_data['contact_mail'] = $this->input->get_post("contact_mail");
+			$update_data['sex'] = $this->input->get_post("sex");
 			// $update_data['address_zip'] = $this->input->get_post("address_zip");
 			// $update_data['address_city'] = $this->input->get_post("address_city");
 			// $update_data['address_area'] = $this->input->get_post("address_area");

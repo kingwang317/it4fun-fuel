@@ -177,7 +177,7 @@ class Resume_manage_model extends MY_Model {
 										birth 	= ?,
 										contact_tel 	= ?,
 										contact_mail = ?,
-									 
+									 	sex = ?,
 										job_status		= ?,
 										about_self		= ?,
 										exclude_cate		= ?,
@@ -190,7 +190,7 @@ class Resume_manage_model extends MY_Model {
 				$update_data['birth'],
 				$update_data['contact_tel'],
 				$update_data['contact_mail'],
-				// $update_data['address_city'],
+				$update_data['sex'],
 				// $update_data['address_area'],
 				// $update_data['address_zip'],
 				// $update_data['address'],
