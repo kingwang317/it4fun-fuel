@@ -40,6 +40,45 @@ class Resume_manage_model extends MY_Model {
 
 		return;
 	}
+	public function get_resume_export_list()
+	{
+		$sql = @"SELECT 
+name as 'Last Name',
+'' as 'First Name',
+'' as 'Middle Name',
+name as 'Alias',
+(SELECT company_name FROM mod_exp WHERE r.account = account ORDER BY job_start_date DESC LIMIT 1) AS 'Company',
+(SELECT job_title FROM mod_exp WHERE r.account = account ORDER BY job_start_date DESC LIMIT 1) AS 'Designation',
+contact_tel as 'Mobile No',
+contact_tel as 'Office No',
+'' as 'Office Ext',
+contact_mail as 'Personal Email',
+contact_mail as 'Work Email',
+contact_tel as 'Home No',
+sex as 'Gender',
+birth as 'DateOfBirth',
+'' as 'Industry-Sector',
+'' as 'Function-SkillSet',
+about_self as 'Remarks',
+address as 'Address',
+address_zip as 'ZipCode',
+(SELECT (SELECT code_name FROM mod_code WHERE codekind_key = 'school' AND s.school_id = code_id ) FROM mod_school s WHERE r.account = s.account ORDER BY is_attend,is_grad DESC LIMIT 1) AS 'education',
+(SELECT CONCAT(IFNULL(company_name,''),'-', IFNULL(job_title,'')) FROM mod_exp WHERE r.account = account ORDER BY job_start_date DESC LIMIT 1) AS 'work-experence',
+fb_account as 'FBID' 
+FROM `mod_resume` AS r ";
+	
+		$query = $this->db->query($sql);
+
+		if($query->num_rows() > 0)
+		{
+			$result = $query->result();
+
+			return $result;
+		}
+
+		return;
+	}
+
 
 	public function get_resume_option($col)
 	{

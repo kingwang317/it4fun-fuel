@@ -217,6 +217,7 @@
 				<div class="form-group">
 					<button type="submit" class="btn btn-warning">搜尋</button>
 					<button class="btn btn-info" type="button" onClick="aHover('<?php echo $create_url;?>')">新增履歷</button>
+					<button class="btn btn-info" type="button" onClick="aHoverBlank('<?php echo $export_url;?>')">匯出Excel</button>
 				</div>
 			</div>
 	    </div>
@@ -346,6 +347,10 @@
 	function aHover(url)
 	{
 		location.href = url;
+	}
+	function aHoverBlank(url)
+	{
+		window.open(url);
 	}
 
 	$j("document").ready(function($) {

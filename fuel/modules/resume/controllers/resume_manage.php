@@ -334,7 +334,7 @@ class Resume_manage extends Fuel_base_controller {
 
 		$results = $this->resume_manage_model->get_resume_list($dataStart, $dataLen,$filter);
 		
-		
+
 		$vars['search_id'] = $search_id;
 		$vars['search_name'] = $search_name;
 		$vars['search_recommended'] = $search_recommended;
@@ -371,6 +371,7 @@ class Resume_manage extends Fuel_base_controller {
 
 		$vars['page_jump'] = $this->pagination->create_links();
 		$vars['create_url'] = $base_url.'fuel/resume/create';
+		$vars['export_url'] = $base_url.'fuel/resume/export_excel';
 		$vars['edit_url'] = $base_url.'fuel/resume/edit?account=';
 		$vars['del_url'] = $base_url.'fuel/resume/del';
 		$vars['multi_del_url'] = $base_url.'fuel/resume/do_multi_del';
@@ -618,6 +619,65 @@ class Resume_manage extends Fuel_base_controller {
 	    echo "<script type='text/javascript'>alert('$msg')</script>\n";
 	    echo "<noscript>$msg</noscript>\n";
 	    return;
+	}
+	function export_excel(){
+		$this->load->library('excel');
+
+			// Create new PHPExcel object
+			$objPHPExcel = new PHPExcel();
+
+			// Set properties
+			$objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
+										 ->setLastModifiedBy("Maarten Balliauw")
+										 ->setTitle("Office 2007 XLSX Test Document")
+										 ->setSubject("Office 2007 XLSX Test Document")
+										 ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
+										 ->setKeywords("office 2007 openxml php")
+										 ->setCategory("Test result file");
+
+			$col_name = array("Last Name","First Name","Middle Name","Alias","Company","Designation","Mobile No","Office No","Office Ext","Personal Email","Work Email","Home No","Gender","DateOfBirth","Industry-Sector","Function-SkillSet","Remarks","Address","ZipCode","education","work-experence","FBID");
+			$value = $this->resume_manage_model->get_resume_export_list();
+			$title = "Resume Data Export";
+			$file_name = "export_data";
+			
+			// Add some data
+			$row_num = 1;
+			$col_num = "A";
+			foreach($col_name as $cols){
+				
+				$objPHPExcel->setActiveSheetIndex(0)
+							->setCellValue($col_num++.$row_num, "$cols");
+			}
+			/*foreach($col_name as $cols){
+				
+				$objPHPExcel->setActiveSheetIndex(0)
+							->setCellValue($col_num++.$row_num, "$cols");
+			}*/
+			foreach($value as $rows){
+				$row_num++;
+				$col_num = "A";
+				foreach($rows as $key => $val ){
+					$objPHPExcel->setActiveSheetIndex(0)
+								->setCellValue($col_num++.$row_num, $val);		
+				}
+			}
+			// Rename sheet
+			$objPHPExcel->getActiveSheet()->setTitle($title);
+
+
+			// Set active sheet index to the first sheet, so Excel opens this as the first sheet
+			$objPHPExcel->setActiveSheetIndex(0);
+
+
+			// Redirect output to a client’s web browser (Excel5)
+			//flush();
+			ob_end_clean();
+			header('Content-Type: application/vnd.ms-excel');
+			header('Content-Disposition: attachment;filename="'.$file_name.'.xls"');
+			header('Cache-Control: max-age=0');
+
+			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+			$objWriter->save('php://output');
 	}
 
 }

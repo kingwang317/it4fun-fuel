@@ -167,6 +167,23 @@ $("#submitbtn_2").click(function(){
    return true;
   
 });
+
 </script>
-<script type="text/javascript" src="<?php echo site_url()?>assets/js/site.js?t=<?=$t?>"></script>
-<script type="text/javascript" src="<?php echo site_url()?>assets/js/fb.js?t=<?=$t?>"></script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 961814192;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/961814192/?value=0&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<script type="text/javascript" src="<?php echo site_url()?>assets/js/site.js"></script>
+<script type="text/javascript" src="<?php echo site_url()?>assets/js/fb.js"></script>
