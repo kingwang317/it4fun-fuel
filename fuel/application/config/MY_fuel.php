@@ -25,6 +25,7 @@ $config['fuel_mode'] = 'AUTO';
 $config['modules_allowed'] = array(
 	//'user_guide',
 	'resume',
+	'event',
 	 'contact',
 	// 'casehelp',
 	 //'case',
