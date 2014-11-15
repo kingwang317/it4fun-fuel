@@ -58,9 +58,6 @@ class Event_manage extends Fuel_base_controller {
 		$vars['page_jump'] = $this->pagination->create_links();
 		$vars['create_url'] = $base_url.'fuel/event/create';
 
-		$vars['form_action'] = $base_url.'fuel/event/lists';
-		$vars['form_method'] = 'POST';
-
 		$vars['edit_url'] 			= $base_url.'fuel/event/edit?event_id=';
 		$vars['del_url'] 			= $base_url.'fuel/event/del?event_id=';
 		$vars['multi_del_url'] 		= $base_url.'fuel/event/do_multi_del';
