@@ -21,10 +21,31 @@ class Event_manage extends Fuel_base_controller {
 	function lists($dataStart=0)
 	{
 		$base_url = base_url();
+
+		$search_type = $this->input->get_post("search_type");
+		$search_txt = $this->input->get_post("search_txt");
+		$filter = "";
+
+		switch ($search_type) 
+		{
+			case 0:
+				$filter = " WHERE event_title LIKE '%".$search_txt."%'";
+				break;
+			case 1:
+				$filter = " WHERE event_charge=".$search_txt;
+				break;
+			case 2:
+				$filter = " WHERE event_place LIKE '%".$search_txt."%'";
+				break;
+			
+			default:
+				$filter = "";
+				break;
+		}
+
 		$crumbs = array($this->module_uri => $this->module_name);
 		$this->fuel->admin->set_titlebar($crumbs);
 
-		$filter = "";
 		$target_url = $base_url.'fuel/event/lists/';
 
 		$total_rows = $this->event_manage_model->get_total_rows($filter);
@@ -32,10 +53,13 @@ class Event_manage extends Fuel_base_controller {
 		$dataLen = $config['per_page'];
 		$this->pagination->initialize($config);
 
-		$results = $this->event_manage_model->get_event_list($dataStart, $dataLen,$filter);
+		$results = $this->event_manage_model->get_event_list($dataStart, $dataLen, $filter);
 
 		$vars['page_jump'] = $this->pagination->create_links();
 		$vars['create_url'] = $base_url.'fuel/event/create';
+
+		$vars['form_action'] = $base_url.'fuel/event/lists';
+		$vars['form_method'] = 'POST';
 
 		$vars['edit_url'] 			= $base_url.'fuel/event/edit?event_id=';
 		$vars['del_url'] 			= $base_url.'fuel/event/del?event_id=';

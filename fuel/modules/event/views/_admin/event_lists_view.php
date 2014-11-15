@@ -25,11 +25,34 @@
 			<span>刪除成功</span>
 		</div>
 	</div>
-	<div class="row" style="">
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="form-horizontal tasi-form">
+				<div class="form-group">
+					<div class="col-sm-2">
+						<select class="form-control" name="search_type">
+							<option value="0">活動名稱</option>
+							<option value="1">活動費用</option>
+							<option value="2">活動地點</option>
+						</select>
+					</div>
+					<div class="col-sm-4">
+						<div class="input-group date event_start_date">
+						  <input type="text" class="form-control" size="16" name="search_txt" id="search_txt" placeholder="Search...">
+						    <span class="input-group-btn">
+						    <button type="button" class="btn btn-warning date-set isearch" style="height:34px;"><i class="glyphicon glyphicon-search"></i></button>
+						    </span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
 	    <div class="col-md-12 sheader"> 
 			<div class="form-inline" style="margin-top:10px" >
 				<div class="form-group">
-					<button type="submit" class="btn btn-warning">搜尋</button>
 					<button class="btn btn-info" type="button" onClick="aHover('<?php echo $create_url;?>')">新增活動</button>
 					<button type="button" class="btn btn-danger del-all" style="height:34px;"><i class="glyphicon glyphicon-trash"></i></button>
 				</div>
@@ -150,6 +173,24 @@
 	}
 
 	$j("document").ready(function($) {
+
+		$j("#event_start_date").datetimepicker({
+		    format: "yyyy-m-d hh:ii",
+		    autoclose: true
+		});
+
+		$j("#event_end_date").datetimepicker({
+		    format: "yyyy-m-d hh:ii",
+		    autoclose: true
+		});
+
+		$j(".isearch").on("click", function(){
+			var search_type = $("select[name='search_type']").val();
+			var search_txt = $("input[name='search_txt']").val();
+			var url = '<?php echo $search_url?>?search_type=' + search_type + '&search_txt=' + search_txt;
+
+			aHover(url);
+		});
 
 		$j(".del").on("click", function(){
 			$j(".do-del").show();
