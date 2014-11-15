@@ -17,20 +17,25 @@ require_once(FUEL_PATH.'helpers/asset_helper.php');
 require_once(APPPATH.'helpers/MY_html_helper.php');
 require_once(APPPATH.'helpers/MY_url_helper.php');
 require_once(APPPATH.'helpers/my_helper.php');
-include(APPPATH.'views/_blocks/header.php');
+//include(APPPATH.'views/_blocks/_header.php');
 ?>
-<link href="http://9icase.com/fuel/modules/case/assets/css/style.css?c=943948800" media="all" rel="stylesheet"/>
-<link href="http://9icase.com/fuel/modules/case/assets/css/style-responsive.css?c=943948800" media="all" rel="stylesheet"/>
+<link href="<?php echo site_url();?>assets/admin_css/font-awesome/css/font-awesome.css" media="all" rel="stylesheet"/>
+<link href="<?php echo site_url();?>assets/admin_css/style.css" media="all" rel="stylesheet"/>
+<body class="body-404">
+
 <div class="container">
 
   <section class="error-wrapper">
       <i class="icon-404"></i>
       <h1>404</h1>
       <h2>page not found</h2>
-      <p class="page-404">Something went wrong or that page doesn’t exist yet. <a href="<?php echo  site_url()?>">Return Home</a></p>
+      <p class="page-404">Something went wrong or that page doesn't exist yet. <a href="<?php echo site_url();?>">Return Home</a></p>
   </section>
 
 </div>
+
+
+</body>
 
 <!--
 <div id="error_404">
@@ -38,7 +43,7 @@ include(APPPATH.'views/_blocks/header.php');
 	<?php echo $message; ?>
 </div>
 -->
-<?php include(APPPATH.'views/_blocks/footer.php'); ?>
+<?php //include(APPPATH.'views/_blocks/_footer.php'); ?>
 <script>
 	jQuery(document).ready(function($) {
 		$("body").addClass("body-404");

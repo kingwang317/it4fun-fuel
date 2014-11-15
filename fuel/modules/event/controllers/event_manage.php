@@ -24,9 +24,29 @@ class Event_manage extends Fuel_base_controller {
 		$crumbs = array($this->module_uri => $this->module_name);
 		$this->fuel->admin->set_titlebar($crumbs);
 
+		$filter = "";
+		$target_url = $base_url.'fuel/event/lists/';
+
+		$total_rows = $this->event_manage_model->get_total_rows($filter);
+		$config = $this->set_page->set_config($target_url, $total_rows, $dataStart, 20);
+		$dataLen = $config['per_page'];
+		$this->pagination->initialize($config);
+
+		$results = $this->event_manage_model->get_event_list($dataStart, $dataLen,$filter);
+
+		$vars['page_jump'] = $this->pagination->create_links();
+		$vars['create_url'] = $base_url.'fuel/event/create';
+
+		$vars['edit_url'] 			= $base_url.'fuel/event/edit?event_id=';
+		$vars['del_url'] 			= $base_url.'fuel/event/del?event_id=';
+		$vars['multi_del_url'] 		= $base_url.'fuel/event/do_multi_del';
+		$vars['results'] 			= $results;
+		$vars['total_rows'] 		= $total_rows;
+		$vars['search_url'] 		= $base_url.'fuel/event/lists';
+		$vars['event_status_url']	= $base_url.'fuel/event/status/';
 		$vars['CI'] = & get_instance();
 
-		$vars['creat_url']	= $base_url.'fuel/event/create';
+
 		$this->fuel->admin->render('_admin/event_lists_view', $vars);
 
 	} 
@@ -49,27 +69,51 @@ class Event_manage extends Fuel_base_controller {
 	function do_create()
 	{
 		$module_uri = base_url().$this->module_uri;
-		 
-		$insert_data = array();
-		$insert_data['account'] = $this->input->get_post("account");
-		$insert_data['password'] = $this->input->get_post("password");
-		$insert_data['name'] = $this->input->get_post("name");
-		$insert_data['birth'] = $this->input->get_post("birth");
-		$insert_data['contact_tel'] = $this->input->get_post("contact_tel");
-		$insert_data['contact_mail'] = $this->input->get_post("contact_mail");
-		$insert_data['address_zip'] = $this->input->get_post("address_zip");
-		$insert_data['address_city'] = $this->input->get_post("address_city");
-		$insert_data['address_area'] = $this->input->get_post("address_area");
-		$insert_data['address'] = $this->input->get_post("address");
-		$insert_data['job_status'] = $this->input->get_post("job_status");
-		$insert_data['note'] = $this->input->get_post("note");
-		$insert_data['about_self'] = $this->input->get_post("about_self");
-		$insert_data['exclude_cate'] = implode(";",$this->input->get_post("exclude_cate"));
-		$insert_data['job_location'] = implode(";",$this->input->get_post("place"));
-		$insert_data['fb_account'] = $this->input->get_post("fb_account");
 
-		$success = $this->resume_manage_model->insert($insert_data);
-		$success = true;
+		$files = $_FILES;
+
+		$config['upload_path']		= assets_server_path('uploads/event/');
+		$config['allowed_types']	= 'gif|jpg|png';
+		$config['max_size']			= '10000';
+		$config['max_width']		= '1920';
+		$config['max_height']		= '1280';
+
+		$file_name = $this->gen_file_name().substr($files["event_photo"]["name"], strpos($files["event_photo"]["name"], "."));
+		$_FILES['event_photo']['name']		= $file_name;
+		$_FILES['event_photo']['type']		= $files['event_photo']['type'];
+		$_FILES['event_photo']['tmp_name']	= $files['event_photo']['tmp_name'];
+		$_FILES['event_photo']['error']		= $files['event_photo']['error'];
+		$_FILES['event_photo']['size']		= $files['event_photo']['size'];
+
+		$insert_data = array();
+		$insert_data['event_title']			= $this->input->get_post("event_title");
+		$insert_data['event_start_date']	= $this->input->get_post("event_start_date");
+		$insert_data['event_end_date']		= $this->input->get_post("event_end_date");
+		$insert_data['regi_start_date']		= $this->input->get_post("regi_start_date");
+		$insert_data['regi_end_date']		= $this->input->get_post("regi_end_date");
+		$insert_data['event_charge']		= $this->input->get_post("event_charge");
+		$insert_data['event_place']			= $this->input->get_post("event_place");
+		$insert_data['regi_limit_num']		= $this->input->get_post("regi_limit_num");
+		$insert_data['event_detail']		= $this->input->get_post("event_detail");
+		$insert_data['event_photo']			= $file_name;
+
+		$this->load->library('upload', $config);
+
+		// Alternately you can set preferences by calling the initialize function. Useful if you auto-load the class:
+		$this->upload->initialize($config);
+
+		$field_name = 'event_photo';
+		if(!$this->upload->do_upload($field_name))
+		{
+			$this->plu_redirect($module_uri, 0, $this->upload->display_errors());
+			die();
+		}
+		else
+		{
+			$success = $this->event_manage_model->insert($insert_data);
+		}
+
+
 		if($success)
 		{
 			$this->plu_redirect($module_uri, 0, "新增成功");
@@ -77,6 +121,9 @@ class Event_manage extends Fuel_base_controller {
 		}
 		else
 		{
+			$cmd = "rm ".$config['upload_path'].$file_name;
+			exec($cmd);
+
 			$this->plu_redirect($module_uri, 0, "新增失敗");
 			die();
 		}
@@ -87,130 +134,114 @@ class Event_manage extends Fuel_base_controller {
 	 
 	function edit()
 	{
-		$account = $this->input->get("account");
-		if(isset($account))
-		{
-			$result = $this->resume_manage_model->get_resume_detail($account);
-		}
-
-		$vars['form_action'] = base_url().'fuel/resume/do_edit?account='.$account;
-		$vars['form_method'] = 'POST';
-		$crumbs = array($this->module_uri => $this->module_name);
-		$this->fuel->admin->set_titlebar($crumbs);	
- 
-
-		$job_state = $this->codekind_manage_model->get_code_list_for_other_mod("job_state");
-		$vars['job_state'] = $job_state;
-
-		$job_cate = $this->codekind_manage_model->get_code_list_for_other_mod("job_cate");
-		$vars['job_cate'] = $job_cate;
-
-		$city = $this->codekind_manage_model->get_code_list_for_other_mod("city");
-		$vars['city'] = $city;
-
-		$place = $this->codekind_manage_model->get_code_list_for_other_mod("city");
-		$placeOrdered = array();
-
-		foreach ($place as $key) {
-			 $value = $this->codekind_manage_model->get_code_detail_by_parent_id($key->code_id);
-			 array_push($placeOrdered, $key);
-			 foreach ($value as $key2) {
-			 	array_push($placeOrdered, $key2);
-			 }
-		}
-		$vars['place'] = $placeOrdered;
-
-		$skill = $this->resume_manage_model->get_resume_skill($account);		
-		$vars["skill"] = $skill;
-
-		$school = $this->resume_manage_model->get_resume_school($account);		
-		$vars["school"] = $school;
-
-
-		$exp = $this->resume_manage_model->get_resume_exp($account);		
-		$vars["exp"] = $exp;
-	 
-
-		$vars['module_uri'] = base_url().$this->module_uri;
-		$vars["result"] = $result;
-		$vars["view_name"] = "修改履歷";
-		$this->fuel->admin->render('_admin/resume_edit_view', $vars);
-	}
-
-	function do_edit()
-	{
-		$account = $this->input->get("account");
 		$module_uri = base_url().$this->module_uri;
-		if(!empty($account))
+		$event_id = $this->input->get("event_id");
+
+		if($event_id)
 		{
-			$update_data = array();
-			$update_data['account'] = $this->input->get_post("account");
-			$password = $this->input->get_post("password");
-			if (!empty($password)) {
-				$update_data['password'] = $this->input->get_post("password");	
-			}
-			$update_data['name'] = $this->input->get_post("name");
-			$update_data['birth'] = $this->input->get_post("birth");
-			$update_data['contact_tel'] = $this->input->get_post("contact_tel");
-			$update_data['contact_mail'] = $this->input->get_post("contact_mail");
-			$update_data['sex'] = $this->input->get_post("sex");
-			// $update_data['address_zip'] = $this->input->get_post("address_zip");
-			// $update_data['address_city'] = $this->input->get_post("address_city");
-			// $update_data['address_area'] = $this->input->get_post("address_area");
-			// $update_data['address'] = $this->input->get_post("address");
-			$update_data['note'] = $this->input->get_post("note");
-			$update_data['job_status'] = $this->input->get_post("job_status");
-			$update_data['about_self'] = $this->input->get_post("about_self");
-			$exclude_cate = $this->input->get_post("exclude_cate");
-			if (is_array($exclude_cate)  && sizeof($exclude_cate)>0) { 
-				 $update_data['exclude_cate'] = implode(";",$exclude_cate );
-			}else{
-				$update_data['exclude_cate'] = "";
-			}
-			$place = $this->input->get_post("place");
-			if (is_array($place)  && sizeof($place)>0) {
-				 $update_data['job_location'] = implode(";",$place);
-			} else{
-				$update_data['job_location'] = "";
-			}
-			$update_data['fb_account'] = $this->input->get_post("fb_account");
+			$result = $this->event_manage_model->get_event_detail($event_id);
 
-			$success = $this->resume_manage_model->update($update_data);
-
-			if($success)
+			if(empty($result))
 			{
-				$this->plu_redirect($module_uri, 0, "更新成功");
-				die();
-			}
-			else
-			{
-				$this->plu_redirect($module_uri, 0, "更新失敗");
+				$this->plu_redirect($module_uri, 0, "查無此id");
 				die();
 			}
 		}
 		else
 		{
-			$this->plu_redirect($module_uri, 0, "更新失敗");
+			$this->plu_redirect($module_uri, 0, "查無此id");
 			die();
 		}
 
-		return;
-	} 
+		$vars['form_action'] = base_url().'fuel/event/do_edit?event_id='.$event_id;
+		$vars['form_method'] = 'POST';
+		$crumbs = array($this->module_uri => $this->module_name);
+		$this->fuel->admin->set_titlebar($crumbs);	
+ 
+	 
 
-	function getArea($code_id)
+		$vars['module_uri'] = base_url().$this->module_uri;
+		$vars["result"] = $result;
+		$vars["view_name"] = "修改活動";
+		$this->fuel->admin->render('_admin/event_edit_view', $vars);
+	}
+
+	function do_edit()
 	{
-		$response = $this->codekind_manage_model->get_code_detail_by_parent_id($code_id);
-		 
-		echo json_encode($response);
+		$module_uri = base_url().$this->module_uri;
+		$event_id = $this->input->get("event_id");
+		if(!empty($_FILES['event_photo']['name']))
+		{
+			$files = $_FILES;
+
+			$config['upload_path']		= assets_server_path('uploads/event/');
+			$config['allowed_types']	= 'gif|jpg|png';
+			$config['max_size']			= '10000';
+			$config['max_width']		= '1920';
+			$config['max_height']		= '1280';
+
+			$file_name = $this->gen_file_name().substr($files["event_photo"]["name"], strpos($files["event_photo"]["name"], "."));
+			$_FILES['event_photo']['name']		= $file_name;
+			$_FILES['event_photo']['type']		= $files['event_photo']['type'];
+			$_FILES['event_photo']['tmp_name']	= $files['event_photo']['tmp_name'];
+			$_FILES['event_photo']['error']		= $files['event_photo']['error'];
+			$_FILES['event_photo']['size']		= $files['event_photo']['size'];
+
+			$this->load->library('upload', $config);
+
+			// Alternately you can set preferences by calling the initialize function. Useful if you auto-load the class:
+			$this->upload->initialize($config);
+
+			$field_name = 'event_photo';
+			if(!$this->upload->do_upload($field_name))
+			{
+				$this->plu_redirect($module_uri, 0, $this->upload->display_errors());
+				die();
+			}
+			else
+			{
+				$event_photo = $this->event_manage_model->get_photo_name($event_id);
+
+				$cmd = "rm ".$config['upload_path'].$event_photo;
+				exec($cmd);
+				$this->event_manage_model->modify_photo_name($file_name, $event_id);
+			}
+
+		}
+
+		$insert_data = array();
+		$insert_data['event_title']			= $this->input->get_post("event_title");
+		$insert_data['event_start_date']	= $this->input->get_post("event_start_date");
+		$insert_data['event_end_date']		= $this->input->get_post("event_end_date");
+		$insert_data['regi_start_date']		= $this->input->get_post("regi_start_date");
+		$insert_data['regi_end_date']		= $this->input->get_post("regi_end_date");
+		$insert_data['event_charge']		= $this->input->get_post("event_charge");
+		$insert_data['event_place']			= $this->input->get_post("event_place");
+		$insert_data['regi_limit_num']		= $this->input->get_post("regi_limit_num");
+		$insert_data['event_detail']		= $this->input->get_post("event_detail");
+
+		$success = $this->event_manage_model->modify($insert_data, $event_id);
+		
+		if($success)
+		{
+			$this->plu_redirect($module_uri, 0, "修改成功");
+			die();
+		}
+		else
+		{
+			$this->plu_redirect($module_uri, 0, "修改失敗");
+			die();
+		}
+		return;
 	} 
 
 	function do_del()
 	{
-		$account = $this->input->get("account");
+		$event_id = $this->input->get("event_id");
 		$response = array();
-		if(!empty($account))
+		if(!empty($event_id))
 		{
-			$success = $this->resume_manage_model->del($account);
+			$success = $this->event_manage_model->del($event_id);
 
 			if($success)
 			{
@@ -227,6 +258,111 @@ class Event_manage extends Fuel_base_controller {
 		}
 
 		echo json_encode($response);
+	}
+
+	function do_multi_del()
+	{
+		$event_ids = $this->input->get_post("eventids");
+		$response = array();
+
+		if(!empty($event_ids))
+		{
+			if(is_array($event_ids))
+			{
+				$ids = implode(",", $event_ids);
+				$success = $this->event_manage_model->multi_del($ids);
+
+				if($success)
+				{
+					$response['status']	= 1;
+				}
+				else
+				{
+					$response['status']	= -1;
+				}
+			}
+			else
+			{
+				$response['status']	= -1;
+			}
+
+		}
+		else
+		{
+			$response['status']	= -1;
+		}
+
+		echo json_encode($response);
+
+		return;
+	}
+
+	function event_status($event_id)
+	{
+		$module_uri = base_url().$this->module_uri;
+
+		if($event_id)
+		{
+			$base_url = base_url();
+			$crumbs = array($this->module_uri => $this->module_name);
+			$this->fuel->admin->set_titlebar($crumbs);
+
+			$results = $this->event_manage_model->get_status_list($event_id);
+
+			$vars['module_uri']	= base_url().$this->module_uri;
+			$vars['view_name'] 	= "報名狀態";
+			$vars['bath_url']	= $base_url.'fuel/event/update/regitype';
+			$vars['results']	= $results;
+			$vars['total_rows']	= count($results);
+
+			$vars['CI'] = & get_instance();
+
+
+			$this->fuel->admin->render('_admin/event_status_view', $vars);			
+		}
+		else
+		{
+			$this->plu_redirect($module_uri, 0, "找不到資料");
+			die();
+		}
+	}
+
+	function do_batch_regi_type()
+	{
+		$regi_ids = $this->input->get_post("regiids");
+		$regi_type = $this->input->get_post("regi_type");
+		$response = array();
+
+		if(!empty($regi_ids))
+		{
+			if(is_array($regi_ids))
+			{
+				$ids = implode(",", $regi_ids);
+				$success = $this->event_manage_model->multi_update_regi_type($ids, $regi_type);
+
+				if($success)
+				{
+					$response['status']	= 1;
+				}
+				else
+				{
+					$response['status']	= -1;
+				}
+			}
+			else
+			{
+				$response['status']	= -1;
+			}
+
+		}
+		else
+		{
+			$response['status']	= -1;
+		}
+
+		echo json_encode($response);
+
+		return;
 	}
 
 	function plu_redirect($url, $delay, $msg)
@@ -247,64 +383,18 @@ class Event_manage extends Fuel_base_controller {
 	    echo "<noscript>$msg</noscript>\n";
 	    return;
 	}
-	function export_excel(){
-		$this->load->library('excel');
 
-			// Create new PHPExcel object
-			$objPHPExcel = new PHPExcel();
+	private function gen_file_name()
+	{
+		$r_char = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+		$file_name = "";
 
-			// Set properties
-			$objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
-										 ->setLastModifiedBy("Maarten Balliauw")
-										 ->setTitle("Office 2007 XLSX Test Document")
-										 ->setSubject("Office 2007 XLSX Test Document")
-										 ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
-										 ->setKeywords("office 2007 openxml php")
-										 ->setCategory("Test result file");
+		for($i=0; $i<10; $i++)
+		{
+			$file_name .= $r_char[rand(0, strlen($r_char) - 1)];
+		}
 
-			$col_name = array("Last Name","First Name","Middle Name","Alias","Company","Designation","Mobile No","Office No","Office Ext","Personal Email","Work Email","Home No","Gender","DateOfBirth","Industry-Sector","Function-SkillSet","Remarks","Address","ZipCode","education","work-experence","FBID");
-			$value = $this->resume_manage_model->get_resume_export_list();
-			$title = "Resume Data Export";
-			$file_name = "export_data";
-			
-			// Add some data
-			$row_num = 1;
-			$col_num = "A";
-			foreach($col_name as $cols){
-				
-				$objPHPExcel->setActiveSheetIndex(0)
-							->setCellValue($col_num++.$row_num, "$cols");
-			}
-			/*foreach($col_name as $cols){
-				
-				$objPHPExcel->setActiveSheetIndex(0)
-							->setCellValue($col_num++.$row_num, "$cols");
-			}*/
-			foreach($value as $rows){
-				$row_num++;
-				$col_num = "A";
-				foreach($rows as $key => $val ){
-					$objPHPExcel->setActiveSheetIndex(0)
-								->setCellValue($col_num++.$row_num, $val);		
-				}
-			}
-			// Rename sheet
-			$objPHPExcel->getActiveSheet()->setTitle($title);
-
-
-			// Set active sheet index to the first sheet, so Excel opens this as the first sheet
-			$objPHPExcel->setActiveSheetIndex(0);
-
-
-			// Redirect output to a client’s web browser (Excel5)
-			//flush();
-			ob_end_clean();
-			header('Content-Type: application/vnd.ms-excel');
-			header('Content-Disposition: attachment;filename="'.$file_name.'.xls"');
-			header('Cache-Control: max-age=0');
-
-			$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-			$objWriter->save('php://output');
+		return $file_name;
 	}
 
 }

@@ -12,3 +12,12 @@ CREATE TABLE `mod_event` (
   `regi_limit_num` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `mod_register` (
+  `regi_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `event_id` bigint(20) NOT NULL,
+  `account` varchar(20) NOT NULL DEFAULT '',
+  `drop_date` datetime NOT NULL,
+  `regi_type` int(3) NOT NULL,
+  PRIMARY KEY (`regi_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;

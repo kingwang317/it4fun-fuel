@@ -7,7 +7,9 @@ Website: http://thevectorlab.net/
 
 /* Import fonts */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
-
+::-webkit-scrollbar-thumb {
+      background-color: #bbb;
+} 
 body {
     color: #797979;
     background: #f1f2f7;
@@ -4633,3 +4635,24 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 .site-min-height {
     min-height: 900px;
 }
+
+div#fuel_main_panel{left: 200px}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+div#fuel_notification{z-index: 999;}
+h1{margin-top: 6px;}
