@@ -89,6 +89,7 @@ class Event_manage extends Fuel_base_controller {
 
 	function do_create()
 	{
+		$base_url = base_url();
 		$module_uri = base_url().$this->module_uri;
 
 		$files = $_FILES;
@@ -126,7 +127,7 @@ class Event_manage extends Fuel_base_controller {
 		$field_name = 'event_photo';
 		if(!$this->upload->do_upload($field_name))
 		{
-			$this->plu_redirect($module_uri, 0, $this->upload->display_errors());
+			$this->plu_redirect($base_url.'fuel/event/create', 0, $this->upload->display_errors());
 			die();
 		}
 		else
@@ -189,6 +190,7 @@ class Event_manage extends Fuel_base_controller {
 
 	function do_edit()
 	{
+		$base_url = base_url();
 		$module_uri = base_url().$this->module_uri;
 		$event_id = $this->input->get("event_id");
 		if(!empty($_FILES['event_photo']['name']))
@@ -216,7 +218,7 @@ class Event_manage extends Fuel_base_controller {
 			$field_name = 'event_photo';
 			if(!$this->upload->do_upload($field_name))
 			{
-				$this->plu_redirect($module_uri, 0, $this->upload->display_errors());
+				$this->plu_redirect($base_url.'fuel/event/edit?event_id='.$event_id, 0, $this->upload->display_errors());
 				die();
 			}
 			else
