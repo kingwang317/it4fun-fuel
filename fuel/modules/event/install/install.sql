@@ -1,5 +1,5 @@
 CREATE TABLE `mod_event` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `event_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `event_title` varchar(50) NOT NULL DEFAULT '',
   `event_start_date` datetime NOT NULL,
   `event_end_date` datetime NOT NULL,
@@ -10,8 +10,10 @@ CREATE TABLE `mod_event` (
   `event_detail` text,
   `event_photo` varchar(255) DEFAULT NULL,
   `regi_limit_num` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`event_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `mod_register` (
   `regi_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
