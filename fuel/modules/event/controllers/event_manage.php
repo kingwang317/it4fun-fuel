@@ -421,3 +421,4 @@ class Event_manage extends Fuel_base_controller {
 	}
 
 }
+?>

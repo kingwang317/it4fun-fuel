@@ -213,3 +213,4 @@ class Event_manage_model extends MY_Model {
 	}
 	
 }
+?>

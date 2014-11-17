@@ -111,13 +111,13 @@
 							<?php echo $row->event_charge;?>
 						</td>
 						<td>
-							<button class="btn btn-xs btn-info EventStatus" type="button" onClick="aHover('<?php echo $event_status_url.$row->event_id?>')">報名狀態</button>
+							<button class="btn btn-xs btn-info EventStatus" type="button" onClick="aHover('<?php echo $event_status_url.$row->event_id ?>')">報名狀態</button>
 						</td>
 						<td>
-							<button class="btn btn-xs btn-danger del" type="button" EventID="<?php echo $row->event_id?>">刪除</button>
+							<button class="btn btn-xs btn-danger del" type="button" EventID="<?php echo $row->event_id ?>">刪除</button>
 						</td>
 					</tr>
-				<?
+				<?php
 						}
 					}
 					else
@@ -126,7 +126,7 @@
 					<tr>
 						<td colspan="8">No results.</td>
 					</tr>
-				<?
+				<?php
 					}
 				?>
 
@@ -187,7 +187,7 @@
 		$j(".isearch").on("click", function(){
 			var search_type = $("select[name='search_type']").val();
 			var search_txt = $("input[name='search_txt']").val();
-			var url = '<?php echo $search_url?>?search_type=' + search_type + '&search_txt=' + search_txt;
+			var url = '<?php echo $search_url ?>?search_type=' + search_type + '&search_txt=' + search_txt;
 
 			aHover(url);
 		});
@@ -200,7 +200,7 @@
 		});
 
 		$j(".do-del").on("click", function(){
-			var	 api_url = '<?php echo $del_url?>' + $(this).attr("EventID");
+			var	 api_url = '<?php echo $del_url ?>' + $(this).attr("EventID");
 		   
 			$j.ajax({
 				url: api_url,
