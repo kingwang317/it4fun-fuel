@@ -57,6 +57,25 @@ class Event_manage_model extends MY_Model {
 		return;
 	}
 
+	public function do_regi_event($event_id, $account)
+	{
+		$sql = @"INSERT INTO mod_register (
+				event_id,
+				account,
+				drop_date,
+				regi_type)
+				VALUES(?, ?, NOW(), 0)";
+		$para = array($event_id, $account);
+		$success = $this->db->query($sql, $para);
+
+		if($success)
+		{
+			return true;
+		}
+
+		return;
+	}
+
 	public function insert($data)
 	{
 		$sql = @"INSERT INTO mod_event (
@@ -210,6 +229,63 @@ class Event_manage_model extends MY_Model {
 		}
 
 		return;
+	}
+
+	public function get_regi_limit($event_id)
+	{
+		$sql = @"SELECT regi_limit_num FROM mod_event WHERE event_id=?";
+		$para = array($event_id);
+		$query = $this->db->query($sql, $para);
+
+		if($query->num_rows() > 0)
+		{
+			$row = $query->row();
+			return $row->regi_limit_num;
+		}
+
+		return 0;
+	}
+
+	public function get_regi_num($event_id)
+	{
+		$sql = @"SELECT COUNT(*) AS total_rows FROM mod_register WHERE event_id=?";
+		$para = array($event_id);
+		$query = $this->db->query($sql, $para);
+
+		if($query->num_rows() > 0)
+		{
+			$row = $query->row();
+			return $row->total_rows;
+		}
+
+		return 0;
+	}
+
+	public function do_chk_limit($event_id)
+	{
+		$regi_limit = $this->get_regi_limit($event_id);
+		$regi_num 	= $this->get_regi_num($event_id);
+
+		if($regi_num < $regi_limit)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	public function do_chk_regied($event_id, $account)
+	{
+		$sql = @"SELECT account FROM mod_register WHERE event_id=? AND account=?";
+		$para = array($event_id, $account);
+		$query = $this->db->query($sql, $para);
+
+		if($query->num_rows() > 0)
+		{
+			return false;
+		}
+
+		return true;
 	}
 	
 }

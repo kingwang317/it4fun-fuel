@@ -57,6 +57,11 @@ $route['user/logout'] 			= 'user/logout';
 
 $route['login'] 			= 'welcome/login';
 
+$route['event']					= 'events';
+$route['event/(:num)']			= 'events/index/$1';
+$route['event/detail/(:num)']	= 'events/event_detail/$1';
+$route['api/regievent/(:num)']	= 'events/regi_event/$1';
+
 
 $route['home/aboutus'] 	= 'home/aboutus';
 $route['home/login'] 	= 'home/login';
