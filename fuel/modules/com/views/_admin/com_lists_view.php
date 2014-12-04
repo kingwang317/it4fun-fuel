@@ -6,13 +6,12 @@
 	  <p></p>
 	</div>
 	<div class="row" style="">
-	    <div class="col-md-2 sheader"><h3>發案者管理</h3></div>
+	    <div class="col-md-2"><h3>公司管理</h3></div>
 	    <div class="col-md-10 sheader">
 			<div class="form-inline">
 				<div class="form-group">
 					<select class="form-control input-sm" name="act">
-						<option value="by_name" <?php if($act == "by_name") echo "selected" ?>>依名稱</option>
-						<option value="by_email" <?php if($act == "by_email") echo "selected" ?>>email</option>
+						<option value="by_name" <?php if($act == "by_name") echo "selected" ?>>依名稱</option> 
 					</select>
 				</div>
 				<div class="form-group">
@@ -27,17 +26,7 @@
 	</div>
 
 	<div class="row state-overview">
-		<div class="col-lg-3 col-sm-6">
-			<section class="panel">
-				<div class="symbol terques">
-					<i class="icon-user"></i>
-				</div>
-				<div class="value">
-					<h1 class="count" value="<?php echo $new_count ?>"><?php echo $new_count ?></h1>
-					<p>今日註冊發案者數</p>
-				</div>
-			</section>
-		</div>
+	
 		<div class="col-lg-3 col-sm-6">
 			<section class="panel">
 				<div class="symbol blue">
@@ -45,7 +34,7 @@
 				</div>
 				<div class="value">
 					<h1 class="count2" value="<?php echo $total_count ?>"><?php echo $total_count ?></h1>
-					<p>所有發案者數</p>
+					<p>所有公司數</p>
 				</div>
 			</section>
 		</div>
@@ -62,7 +51,7 @@
 		</div>
 		
 	    <div class="span3"> 
-	    	<button class="btn btn-sm btn-info" type="button" onclick="aHover('<?php echo $create_url?>')">新增發案者</button>
+	    	<button class="btn btn-sm btn-info" type="button" onclick="aHover('<?php echo $create_url?>')">新增公司</button>
 	    </div>
 	    <div class="span10"></div>
 	</div>
@@ -85,12 +74,11 @@
 								<input type="checkbox" id="select-all"/>
 							</label>
 						</th>
-						<th>發案者名稱</th>
-						<th>電子郵件</th>
-						<th>行動電話</th>
-						<th>電話（日）</th>
-						<th>電話（夜）</th>
-						<th>註冊日期</th>
+						<th></th>
+						<th>ID</th>
+						<th>公司名稱</th>
+						<th>公司簡介</th>
+						<th>職缺</th>
 						<th>刪除</th>
 					</tr>
 				</thead>
@@ -105,17 +93,22 @@
 					<tr>
 						<td>
 							<label class="label_check c_on" for="checkbox-01">
-								<input type="checkbox" name="com_id[]" com_id="<?php echo $rows->com_id?>"/>
+								<input type="checkbox" name="com_id[]" com_id="<?php echo $rows->id?>"/>
 							</label>
 						</td>
-						<td><a href="<?php echo $edit_url.$rows->com_id?>"><?php echo $rows->com_title?></a></td>
-						<td><?php echo $rows->com_email?></td>
-						<td><?php echo $rows->com_mobile?></td>
-						<td><?php echo $rows->com_phone_day?></td>
-						<td><?php echo $rows->com_phone_night?></td>
-						<td><?php echo $rows->create_time?></td>
 						<td>
-							<button class="btn btn-xs btn-danger del" type="button" onclick="dialog_chk(<?php echo $rows->com_id?>)">刪除</button>
+							<?php if (isset($rows->company_logo) && !empty($rows->company_logo)): ?>
+								<img style="max-width:200px" src="<?php echo site_url()."assets/".$rows->company_logo; ?>" /> 
+							<?php endif ?> 
+						</td>
+						<td><?php echo $rows->id ?></td>
+						<td><a href="<?php echo $edit_url.$rows->id?>"><?php echo $rows->company_name?></a></td>
+						<td><?php echo substr(htmlspecialchars_decode($rows->company_intro),0,100)?></td>
+						<td>
+							<button class="btn btn-xs btn-info" type="button" onclick="aHover('<?php echo $job_url.$rows->id."/0" ?>')">職缺</button>
+						</td>
+						<td>
+							<button class="btn btn-xs btn-danger del" type="button" onclick="dialog_chk(<?php echo $rows->id?>)">刪除</button>
 						</td>
 					</tr>
 					<?php
@@ -125,7 +118,7 @@
 					{
 					?>
 						<tr>
-							<td colspan="8">No results.</td>
+							<td colspan="7">No results.</td>
 						</tr>
 					<?php
 					}
@@ -152,48 +145,48 @@
 		location.href = url;
 	}
 
-	$j("document").ready(function($) {
-		countUp($("h1.count").attr("value"));
-		countUp2($("h1.count2").attr("value"));
-		countUp3($("h1.count3").attr("value"));
-		$j("#select-all").click(function() {
+	$("document").ready(function($) {
+		// countUp($("h1.count").attr("value"));
+		// countUp2($("h1.count2").attr("value"));
+		// countUp3($("h1.count3").attr("value"));
+		$("#select-all").click(function() {
 
-		   if($j("#select-all").prop("checked"))
+		   if($("#select-all").prop("checked"))
 		   {
-				$j("input[name='com_id[]']").each(function() {
-					$j(this).prop("checked", true);
+				$("input[name='com_id[]']").each(function() {
+					$(this).prop("checked", true);
 				});
 		   }
 		   else
 		   {
-				$j("input[name='com_id[]']").each(function() {
-					$j(this).prop("checked", false);
+				$("input[name='com_id[]']").each(function() {
+					$(this).prop("checked", false);
 				});     
 		   }
 		});
 
-		$j("button.delall").click(function(){
+		$("button.delall").click(function(){
 			var com_ids = [];
 			var j = 0;
 			var postData = {};
 			var api_url = '<?php echo $multi_del_url?>';
-			$j("input[name='com_id[]']").each(function(i){
+			$("input[name='com_id[]']").each(function(i){
 				if($j(this).prop("checked"))
 				{
-					com_ids[j] = $j(this).attr('com_id');
+					com_ids[j] = $(this).attr('com_id');
 					j++;
 				}
 			});
 
 			postData = {'com_ids': com_ids};
-			$j( "#dialog-confirm p" ).text('您確定要刪除嗎？');
-			$j( "#dialog-confirm" ).dialog({
+			$( "#dialog-confirm p" ).text('您確定要刪除嗎？');
+			$( "#dialog-confirm" ).dialog({
 			  resizable: false,
 			  height:150,
 			  modal: true,
 			  buttons: {
 			    "Delete": function() {
-					$j.ajax({
+					$.ajax({
 						url: api_url,
 						type: 'POST',
 						async: true,
@@ -203,26 +196,26 @@
 						success: function(data, textStatus, jqXHR){
 							var data_json=jQuery.parseJSON(data);
 							console.log(data_json);
-							$j( "#dialog-confirm" ).dialog( "close" );
+							$( "#dialog-confirm" ).dialog( "close" );
 							if(data_json.status == 1)
 							{
-								$j(".notify").find("span").text('刪除成功');
-								$j(".notify").fadeIn(100).fadeOut(1000);
+								$(".notify").find("span").text('刪除成功');
+								$(".notify").fadeIn(100).fadeOut(1000);
 								setTimeout("update_page()", 500);
 							}
 							else
 							{
-								$j(".notify").find(".alert").addClass('alert-error');
-								$j(".notify").find(".alert").addClass('alert-block');
-								$j(".notify").find("span").text('刪除失敗');
-								$j(".notify").slideDown(500).delay(1000).fadeOut(200);
+								$(".notify").find(".alert").addClass('alert-error');
+								$(".notify").find(".alert").addClass('alert-block');
+								$(".notify").find("span").text('刪除失敗');
+								$(".notify").slideDown(500).delay(1000).fadeOut(200);
 							}
 
 						},
 					});
 			    },
 			    Cancel: function() {
-			      $j( this ).dialog( "close" );
+			      $( this ).dialog( "close" );
 			    }
 			  }
 			});
@@ -233,7 +226,7 @@
 	{
 		var	 api_url = '<?php echo $del_url?>' + com_id;
 	   
-		$j.ajax({
+		$.ajax({
 			url: api_url,
 			type: 'POST',
 			async: true,
@@ -242,11 +235,11 @@
 			success: function(data, textStatus, jqXHR){
 				var data_json=jQuery.parseJSON(data);
 				console.log(data_json);
-				$j( "#dialog-confirm" ).dialog( "close" );
+				$( "#dialog-confirm" ).dialog( "close" );
 				if(data_json.status == 1)
 				{
-					$j("#notification span").text('刪除成功');
-					$j("#notify").fadeIn(100).fadeOut(1000);
+					$("#notification span").text('刪除成功');
+					$("#notify").fadeIn(100).fadeOut(1000);
 					setTimeout("update_page()", 500);
 				}
 
@@ -255,8 +248,8 @@
 	}
 	function dialog_chk(com_id)
 	{
-		$j( "#dialog-confirm p" ).text('您確定要刪除嗎？');
-		$j( "#dialog-confirm" ).dialog({
+		$( "#dialog-confirm p" ).text('您確定要刪除嗎？');
+		$( "#dialog-confirm" ).dialog({
 		  resizable: false,
 		  height:150,
 		  modal: true,
@@ -265,7 +258,7 @@
 				del_com(com_id);
 		    },
 		    Cancel: function() {
-		      $j( this ).dialog( "close" );
+		      $( this ).dialog( "close" );
 		    }
 		  }
 		});

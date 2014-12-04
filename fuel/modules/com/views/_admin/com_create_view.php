@@ -1,12 +1,12 @@
 <?php //echo js($this->config->item('order_javascript'), 'order')?>
-<?php echo css($this->config->item('client_css'), 'client')?>
+<?php echo css($this->config->item('com_css'), 'com')?>
 <style>
 
 
 </style>
 <div id="main_content">
 	<div class="row" style="margin:10px 10px">
-	    <div class="span2 sheader"><h1>接案者管理</h1></div>
+	    <div class="span2 sheader"><h1>公司管理</h1></div>
 	    <div class="span11 sheader">
 	    </div>
 	</div>
@@ -14,7 +14,7 @@
 <div class="row" style="margin:10px 10px">
 	<div class="span12">
 		<ul class="breadcrumb">
-		  <li><a href="#">接案者管理</a></li>
+		  <li><a href="#">公司管理</a></li>
 		  <li class="active"><?php echo $view_name?></li>
 		</ul>
 	</div>
@@ -23,58 +23,39 @@
 		<div class="col-lg-12">
 			<section class="panel">
 				<header class="panel-heading">
-					外包案件修改
+					新增公司
 				</header>
 				<div class="panel-body">
 					<div class="form-horizontal tasi-form">
+						
 						<div class="form-group">
-							<label class="col-sm-2 col-sm-2 control-label">接案身分</label>
+							<label class="col-sm-2 col-sm-2 control-label">公司名稱</label>
 							<div class="col-sm-10">
-								<select name="cli_kind">
-									<?php
-										if(isset($cli_kind_result)):
-									?>	
-									<?php   foreach($cli_kind_result as $key=>$rows):?>
-												<option value="<?php echo $rows->code_id ?>"><?php echo $rows->code_title ?></option>
-										<?php endforeach;?>
-									<?php endif;?>
-								</select>
+								<input type="text" class="form-control" name="company_name" >
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 col-sm-2 control-label">接案暱稱</label>
+							<label class="col-sm-2 col-sm-2 control-label">公司簡介</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="cli_title" >
+								<textarea class="form-control" rows="8" id="company_intro" name="company_intro"></textarea>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 col-sm-2 control-label">案件內容</label>
-							<div class="col-sm-10">
-								<textarea class="form-control" name="cd_content" rows="20"><?php echo $case_result->cd_content?></textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 col-sm-2 control-label">執行時間</label>
+							<label class="col-sm-2 col-sm-2 control-label">公司簡介圖片</label>
 							<div class="col-md-4">
-								<input size="16" type="text" value="<?php echo $case_result->run_date?>" readonly class="form_datetime form-control" name="run_date">
+								<input type="file" class="form-control" name="company_intro_pic">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 col-sm-2 control-label">PO文時間</label>
+							<label class="col-sm-2 col-sm-2 control-label">公司LOGO</label>
 							<div class="col-md-4">
-								<input size="16" type="text" value="<?php echo $case_result->post_date?>" readonly class="form_datetime form-control" name="post_date">
+								<input type="file" class="form-control" name="company_logo">
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 col-sm-2 control-label">分類</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" name="board" value="<?php echo $case_result->board?>">
-							</div>
-						</div>
+						</div> 
 						<div class="form-group">
 							<div class="col-sm-12" style="text-align:center">
-								<button type="submit" class="btn btn-info" disabled>修改</button>
-								<button type="button" class="btn btn-danger" onClick="aHover('<?php echo $module_uri?>')">取消</button>
+								<button type="submit" class="btn btn-info" >新增</button>
+								<button type="button" class="btn btn-danger" onClick="aHover('<?php echo $back_url?>')">返回</button>
 							</div>
 						</div>
 					</div>
@@ -82,6 +63,10 @@
 			</section>
 		</div>
 	</div>
+
+
+<?php echo js($this->config->item('com_javascript'), 'com')?>
+<?php echo js($this->config->item('com_ck_javascript'), 'com')?>
 <script>
 	function aHover(url)
 	{
@@ -89,20 +74,22 @@
 	}
 
 	jQuery(document).ready(function($) {
-		var elem = $(".same_order");
-		$(".same_order").click(function(){
-			if($(this).is( ":checked" ))
-			{
-				$("#oa_name").val($("#order_name").val());
-				$("#oa_mobile").val($("#order_mobile").val());
-				$("#oa_addr").val($("#order_addr").val());
-			}
-			else
-			{
-				$("#oa_name").val("");
-				$("#oa_mobile").val("");
-				$("#oa_addr").val("");
-			}
-		});
+		
+		var config =
+            {
+                height: 380,
+                width: 850,
+                linkShowAdvancedTab: false,
+                scayt_autoStartup: false,
+                enterMode: Number(2),
+                toolbar_Full: [
+                				[ 'Styles', 'Format', 'Font', 'FontSize', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ],
+                				['Bold', 'Italic', 'Underline', '-', 'NumberedList', 'BulletedList'],
+                                ['Link', 'Unlink'], ['Undo', 'Redo', '-', 'SelectAll'], [ 'TextColor', 'BGColor' ],['Checkbox', 'Radio', 'Image' ], ['Source']
+                              ]
+
+            };
+		$( 'textarea#company_intro' ).ckeditor(config); 
+
 	});
 </script>

@@ -30,6 +30,7 @@ $config['modules_allowed'] = array(
 	// 'casehelp',
 	 //'case',
 	'codekind',
+	'com',
 	 'edm',
 	// 'member',
 	// 'google_analytics'

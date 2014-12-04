@@ -496,6 +496,9 @@ class Resume_manage extends Fuel_base_controller {
 		$skill = $this->resume_manage_model->get_resume_skill($account);		
 		$vars["skill"] = $skill;
 
+		$lang = $this->resume_manage_model->get_resume_lang($account);		
+		$vars["lang"] = $lang;
+
 		$school = $this->resume_manage_model->get_resume_school($account);		
 		$vars["school"] = $school;
 

@@ -98,7 +98,26 @@ FROM `mod_resume` AS r ";
 
 	public function get_resume_skill($account)
 	{
-		$sql = @"SELECT b.code_name FROM mod_skill a left join mod_code b on a.skill_id = b.code_id  where account=?";
+		$sql = @"SELECT b.code_name FROM mod_skill a left join mod_code b on a.skill_id = b.code_id  where skill_type='0' AND account=?";
+		$para = array($account);
+		$query = $this->db->query($sql, $para);
+
+		if($query->num_rows() > 0)
+		{
+			$result = $query->result();
+
+			return $result;
+		}
+
+		return;
+	}
+
+	public function get_resume_lang($account)
+	{
+		$sql = @"SELECT b.code_name lang_name ,c.code_name level_name FROM mod_lang a 
+		left join mod_code b on a.lang_id = b.code_id  
+		left join mod_code c on a.level_id = c.code_id 
+		where lang_type='0' AND account=?";
 		$para = array($account);
 		$query = $this->db->query($sql, $para);
 

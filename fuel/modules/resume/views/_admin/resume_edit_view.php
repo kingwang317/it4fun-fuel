@@ -211,6 +211,7 @@
 						      <li class="active"><a href="#skill" role="tab" data-toggle="tab">工作技能</a></li>
 						      <li class=""><a href="#exp" role="tab" data-toggle="tab">工作經驗</a></li>
 						      <li class=""><a href="#school" role="tab" data-toggle="tab">學歷</a></li>
+						      <li class=""><a href="#lang" role="tab" data-toggle="tab">語言</a></li>
 						    </ul>
 						    <div id="myTabContent" class="tab-content">
 						      <div class="tab-pane active" id="skill"> 
@@ -274,6 +275,27 @@
 														 	<?php endif ?>
 														<?php endif ?>
 													</td>
+												</tr>		  	
+														 
+										<?php
+											}
+										}
+									?>	
+									  </table> 
+						      </div>
+						      <div class="tab-pane" id="lang"> 
+									  <table class="table">
+									    	 <?php
+										if(isset($lang))
+										{
+											foreach ($lang as $key => $row) 
+											{
+										?> 	
+													  
+												<tr>
+													<td><?php echo $row->lang_name?></td>
+													<td><?php echo $row->level_name?></td>
+
 												</tr>		  	
 														 
 										<?php
