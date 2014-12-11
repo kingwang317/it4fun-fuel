@@ -24,7 +24,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 col-sm-2 control-label">分類群組</label>
 							<div class="col-sm-4">
-								<select name="codekind_key" id="codekind_key" class="form-control">
+								<select name="codekind_key" id="codekind_key" class="form-control" disabled>
 									<?php
 										if(isset($codekind_results))
 										{
@@ -37,12 +37,13 @@
 										}
 									?>
 								</select>
+								<input type="hidden" name="codekind_key" value="<?php echo $codekind_key; ?>" >
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-sm-2 control-label">上層分類</label>
 							<div class="col-sm-4">
-								<select name="parent_id" id="parent_id" class="form-control">
+								<select name="parent_id" id="parent_id" class="form-control" disabled>
 									<option value="-1">無</option>
 									<?php
 										if(isset($code_list))
@@ -56,6 +57,7 @@
 										}
 									?>
 								</select>
+								<input type="hidden" name="parent_id" value="<?php echo empty($code_id)?"-1":$code_id; ?>" >
 							</div>
 						</div>
 						<div class="form-group">
@@ -95,9 +97,33 @@
 						<div class="form-group">
 							<label class="col-sm-2 col-sm-2 control-label">語言</label>
 							<div class="col-md-4">
-								<input type="text" class="form-control" name="lang_code" value="">
+								<!-- <input type="text" class="form-control" name="lang_code" value=""> -->
+
+								<select name="lang_code" 
+									<?php if (isset($code_lang) && !empty($code_lang)): ?>
+										disabled
+									<?php endif ?>
+								>
+									<?php
+										if(isset($lang)):
+									?>	
+									<?php   foreach($lang as $key=>$rows):?>
+										<option value="<?php echo $rows->code_key ?>" 
+											<?php if (isset($code_lang) && !empty($code_lang) && $code_lang == $rows->code_key): ?>
+												selected
+											<?php endif ?>
+											><?php echo $rows->code_name ?></option>
+									<?php endforeach;?>
+									<?php endif;?>
+								</select>		
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">圖片(160*160)</label>
+							<div class="col-sm-4">
+								<input type="file" class="form-control" name="img" value=""> 
+							</div>
+						</div>	
 						<div class="form-group">
 							<div class="col-sm-12" style="text-align:center">
 								<button type="submit" class="btn btn-info">新增</button>
