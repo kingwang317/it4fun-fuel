@@ -4,11 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
     <title></title>    
-    <link rel="stylesheet" href="style.css" type="text/css" media="all" >
-    <link rel="stylesheet" href="js/lib/jquery-ui-1.11.0.custom/jquery-ui.css" type="text/css" media="all" >
-    <script type="text/javascript" src="js/lib/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="js/lib/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
-    <script type="text/javascript" src="js/common.js"></script>
+    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/style2.css" type="text/css" media="all" >
+    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.css" type="text/css" media="all" >
+    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
+    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/common.js"></script>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
         <div id="contentbox">
             <div id="headerbox">
                 <div id="header">
-                    <a class="logo" href="#"><img src="images/logo/logo.png"></a>
+                    <a class="logo" href="#"><img src="<?php echo site_url()?>assets/templates/images/logo/logo.png"></a>
                     <div class="usr">您好，<span>使用者名稱</span></div>
                     <ul class="menu">
                         <li><a href="#">職缺列表</a></li>
@@ -30,11 +30,11 @@
                     <table>
 
                         <tr>
-                            <td width="233" valign="top" style="padding-left:75px;"><img src="images/other/pic2.jpg"></td>
+                            <td width="233" valign="top" style="padding-left:75px;"><img src="<?php echo $photo_path.$result->company_logo; ?>"></td>
                             <td width="665" valign="top">
-                                <p class="company">台灣優衣褲股份有限公司</p>
-                                <p class="vacancies">賣場工讀生</p>
-                                <p class="desc">UNIQLO誠徵充滿朝氣與活力的工作夥伴，與我們一同創造讓顧客能夠「隨意挑選」的店舖環境。</p>
+                                <p class="company"><?php echo $result->company_name ?></p>
+                                <p class="vacancies"><?php echo $result->job_title ?></p>
+                                <p class="desc"><?php echo htmlspecialchars_decode($result->job_intro) ?></p>
                             </td>
                         </tr>
 
@@ -46,38 +46,47 @@
                         </tr>
                         <tr height="10"><td width="233">&nbsp;</td><td width="665">&nbsp;</td></tr>
                         <tr height="35">
-                            <td width="156" valign="top" style="padding-left:155px;background:url(images/icon/icon_8.jpg);background-repeat:no-repeat;background-position:120px 0px;">
+                            <td width="156" valign="top" style="padding-left:155px;background:url(<?php echo site_url()?>assets/templates/images/icon/icon_8.jpg);background-repeat:no-repeat;background-position:120px 0px;">
                             工作地點：
                             </td>
                             <td width="665" valign="top">                                 
-                                台北市 內湖區陽光街242號2樓
+                                <?php echo $result->job_address ?>
                             </td>
                         </tr>
                         <tr height="10"><td width="233">&nbsp;</td><td width="665">&nbsp;</td></tr>
                         <tr height="35">
-                            <td width="156" valign="top" style="padding-left:155px;background:url(images/icon/icon_9.jpg);background-repeat:no-repeat;background-position:120px 0px;">
+                            <td width="156" valign="top" style="padding-left:155px;background:url(<?php echo site_url()?>assets/templates/images/icon/icon_9.jpg);background-repeat:no-repeat;background-position:120px 0px;">
                             工作說明：
                             </td>
                             <td width="665" valign="top">                                 
-                                顧客接待‧收銀台對應‧衣褲修補‧商品整理補充‧環境維護，塑造一個讓顧客還想再度蒞臨的優質購物環境。  
+                               <?php echo htmlspecialchars_decode($result->job_desc) ?>  
                             </td>
                         </tr>
                         <tr height="10"><td width="233">&nbsp;</td><td width="665">&nbsp;</td></tr>
                         <tr height="35">
-                            <td width="156" valign="top" style="padding-left:155px;background:url(images/icon/icon_10.jpg);background-repeat:no-repeat;background-position:120px 0px;">
+                            <td width="156" valign="top" style="padding-left:155px;background:url(<?php echo site_url()?>assets/templates/images/icon/icon_10.jpg);background-repeat:no-repeat;background-position:120px 0px;">
                             工作技能：
                             </td>
-                            <td width="665" valign="top">                                 
-                                &nbsp;
+                            <td width="665" valign="top">  
+                                <?php echo $job_skill ?>
                             </td>
                         </tr>
                         <tr height="10"><td width="233">&nbsp;</td><td width="665">&nbsp;</td></tr>
                         <tr height="35">
-                            <td width="156" valign="top" style="padding-left:155px;background:url(images/icon/icon_11.jpg);background-repeat:no-repeat;background-position:120px 0px;">
+                            <td width="156" valign="top" style="padding-left:155px;background:url(<?php echo site_url()?>assets/templates/images/icon/icon_10.jpg);background-repeat:no-repeat;background-position:120px 0px;">
+                            語言能力:
+                            </td>
+                            <td width="665" valign="top">    
+                                <?php echo $job_lang ?>
+                            </td>
+                        </tr>
+                        <tr height="10"><td width="233">&nbsp;</td><td width="665">&nbsp;</td></tr>
+                        <tr height="35">
+                            <td width="156" valign="top" style="padding-left:155px;background:url(<?php echo site_url()?>assets/templates/images/icon/icon_11.jpg);background-repeat:no-repeat;background-position:120px 0px;">
                             工作條件：
                             </td>
                             <td width="665" valign="top">                                 
-                               可配合排班工作者優先考量
+                               <?php echo htmlspecialchars_decode($result->job_term) ?>
                             </td>
                         </tr>
                         <tr height="100">
@@ -88,11 +97,12 @@
                         </tr>
                         <tr height="10"><td width="233">&nbsp;</td><td width="665">&nbsp;</td></tr>
                         <tr height="35">
-                            <td width="156" valign="top" style="padding-left:155px;background:url(images/icon/icon_12.jpg);background-repeat:no-repeat;background-position:120px 0px;">
+                            <td width="156" valign="top" style="padding-left:155px;background:url(<?php echo site_url()?>assets/templates/images/icon/icon_12.jpg);background-repeat:no-repeat;background-position:120px 0px;">
                             關於公司：
                             </td>
-                            <td width="665" valign="top">                                 
-                               <img src="images/other/pic5.jpg">
+                            <td width="665" valign="top"> 
+                                <?php echo htmlspecialchars_decode($result->company_intro) ?>                               
+                               
                             </td>
                         </tr>
                         <tr height="10"><td width="233">&nbsp;</td><td width="665">&nbsp;</td></tr>
@@ -102,7 +112,7 @@
                 </div>    
             </div>
             <div id="fbbox" style="display:none;">
-                <img src="images/fbbox.png">
+                <img src="<?php echo site_url()?>assets/templates/images/fbbox.png">
             </div>
             <div id="footerbox" style="display:none;">
                 <div id="footernavbox">
@@ -127,6 +137,34 @@
             </div>
         </div>
     </div>
+
+<script type="text/javascript">
+
+    jQuery(document).ready(function($) {
+        $(".dropresume").click(function(event) {
+            $.ajax({
+                url: '<?php echo $regi_url ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {job_id: '<?php echo $job_id ?>'},
+            })
+            .done(function(o) {
+                console.log("success");
+                console.log(o);
+                alert(o.msg);
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+            
+        });
+    });
+
+</script>
+
 </body>
 </html>
 

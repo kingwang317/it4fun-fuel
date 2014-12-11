@@ -74,7 +74,8 @@ class Com_manage_model extends MY_Model {
 
 	public function get_job_list($dataStart, $dataLen, $filter)
 	{
-		$sql = @"SELECT * FROM mod_job ".$filter." ORDER BY id DESC LIMIT $dataStart, $dataLen";
+		$sql = @"SELECT a.*,b.company_name ,b.company_logo FROM mod_job a left join mod_company b on a.company_id = b.id
+		$filter ORDER BY id DESC LIMIT $dataStart, $dataLen";
 
 		// echo $sql;
 		$query = $this->db->query($sql);
@@ -144,7 +145,8 @@ class Com_manage_model extends MY_Model {
 
 	public function get_job_detail($id)
 	{
-		$sql = @"SELECT * FROM mod_job WHERE id=?";
+		$sql = @"SELECT a.*,b.company_name ,b.company_logo,b.company_intro FROM mod_job a left join mod_company b on a.company_id = b.id 
+		   WHERE a.id=?";
 		$para = array($id);
 		$query = $this->db->query($sql, $para);
 
@@ -488,7 +490,10 @@ class Com_manage_model extends MY_Model {
 
 	public function get_job_lang_list($id)
 	{
-		$sql = @"SELECT * FROM mod_lang WHERE job_id=?";
+		$sql = @"SELECT a.*,b.code_name as lang_name,c.code_name as level_name FROM mod_lang a 
+		left join mod_code b on a.lang_id=b.code_id
+		left join mod_code c on a.level_id=c.code_id
+		 WHERE job_id=?";
 		$para = array($id);
 		$query = $this->db->query($sql, $para);
 
@@ -506,7 +511,7 @@ class Com_manage_model extends MY_Model {
 	 
 	public function get_job_skill_list($id)
 	{
-		$sql = @"SELECT * FROM mod_skill WHERE job_id=?";
+		$sql = @"SELECT a.*,b.code_name FROM mod_skill a left join mod_code b on a.skill_id=b.code_id WHERE job_id=?";
 		$para = array($id);
 		$query = $this->db->query($sql, $para);
 

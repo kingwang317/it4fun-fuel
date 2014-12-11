@@ -34,6 +34,12 @@ class Events extends CI_Controller {
 
 		$results = $this->event_manage_model->get_event_list($dataStart, $dataLen, $filter);
 
+
+		$this->load->model('code_model');
+
+		$fb_data	= $this->code_model->get_fb_data();
+		$vars['fb_data'] = $fb_data;
+
 		$vars['base_url'] 			= $base_url;
 		$vars['photo_path']			= $base_url.'assets/uploads/event/';
 		$vars['results']			= $results;

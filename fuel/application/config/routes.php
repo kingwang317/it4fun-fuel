@@ -62,6 +62,11 @@ $route['event/(:num)']			= 'events/index/$1';
 $route['event/detail/(:num)']	= 'events/event_detail/$1';
 $route['api/regievent/(:num)']	= 'events/regi_event/$1';
 
+$route['job']					= 'jobs';
+$route['job/(:num)']			= 'jobs/index/$1';
+$route['job/detail/(:num)']	= 'jobs/jobs_detail/$1';
+$route['api/do_deliver/(:num)']	= 'jobs/deliver/$1';
+
 
 $route['home/aboutus'] 	= 'home/aboutus';
 $route['home/login'] 	= 'home/login';

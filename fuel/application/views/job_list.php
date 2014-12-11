@@ -4,11 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
     <title></title>    
-    <link rel="stylesheet" href="style.css" type="text/css" media="all" >
-    <link rel="stylesheet" href="js/lib/jquery-ui-1.11.0.custom/jquery-ui.css" type="text/css" media="all" >
-    <script type="text/javascript" src="js/lib/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="js/lib/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
-    <script type="text/javascript" src="js/common.js"></script>
+    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/style2.css" type="text/css" media="all" >
+    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.css" type="text/css" media="all" >
+    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
+    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/common.js"></script>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
         <div id="contentbox">
             <div id="headerbox">
                 <div id="header">
-                    <a class="logo" href="#"><img src="images/logo/logo.png"></a>
+                    <a class="logo" href="#"><img src="<?php echo site_url()?>assets/templates/images/logo/logo.png"></a>
                     <div class="usr">您好，<span>使用者名稱</span></div>
                     <ul class="menu">
                         <li><a href="#">職缺列表</a></li>
@@ -29,7 +29,7 @@
                 <div class="leftbox">
                     <div class="box">
                         <div class="headbox">
-                            <div class="imgbox"><img src="images/head1.png"></div>
+                            <div class="imgbox"><img src="<?php echo site_url()?>assets/templates/images/head1.png"></div>
                             <p><span>使用者</span><br/>歡迎回來 !</p>                            
                         </div>
                         <ul>
@@ -58,88 +58,24 @@
                         </div>
                     </form>
                     <div class="itemsbox">
-                        <div class="item">
-                            <div class="imgbox">
-                                <img src="images/other/pic2.jpg">
+
+                        <?php foreach ($results as $key => $value): ?>
+                           <div class="item">
+                                <a href="<?php echo $job_detail_url.$value->id ?>">
+                                    <div class="imgbox">
+                                        <img src="<?php echo $photo_path.$value->company_logo; ?>">
+                                    </div>
+                                    <p class="title"><?php echo $value->company_name ?></p>
+                                    <p class="jobname"><?php echo $value->job_title ?></p>
+                                </a>
                             </div>
-                            <p class="title">迪卡儂運動用品</p>
-                            <p class="jobname">賣場工讀生</p>
-                        </div>
-                        <div class="item">
-                            <div class="imgbox">
-                                <img src="images/other/pic2.jpg">
-                            </div>
-                            <p class="title">迪卡儂運動用品</p>
-                            <p class="jobname">賣場工讀生</p>
-                        </div>
-                        <div class="item">
-                            <div class="imgbox">
-                                <img src="images/other/pic2.jpg">
-                            </div>
-                            <p class="title">迪卡儂運動用品</p>
-                            <p class="jobname">賣場工讀生</p>
-                        </div>
-                        <div class="item">
-                            <div class="imgbox">
-                                <img src="images/other/pic2.jpg">
-                            </div>
-                            <p class="title">迪卡儂運動用品</p>
-                            <p class="jobname">賣場工讀生</p>
-                        </div>
-                        <div class="item">
-                            <div class="imgbox">
-                                <img src="images/other/pic2.jpg">
-                            </div>
-                            <p class="title">迪卡儂運動用品</p>
-                            <p class="jobname">賣場工讀生</p>
-                        </div>
-                        <div class="item">
-                            <div class="imgbox">
-                                <img src="images/other/pic2.jpg">
-                            </div>
-                            <p class="title">迪卡儂運動用品</p>
-                            <p class="jobname">賣場工讀生</p>
-                        </div>
-                        <div class="item">
-                            <div class="imgbox">
-                                <img src="images/other/pic2.jpg">
-                            </div>
-                            <p class="title">迪卡儂運動用品</p>
-                            <p class="jobname">賣場工讀生</p>
-                        </div>
-                        <div class="item">
-                            <div class="imgbox">
-                                <img src="images/other/pic2.jpg">
-                            </div>
-                            <p class="title">迪卡儂運動用品</p>
-                            <p class="jobname">賣場工讀生</p>
-                        </div>
-                        <div class="item">
-                            <div class="imgbox">
-                                <img src="images/other/pic2.jpg">
-                            </div>
-                            <p class="title">迪卡儂運動用品</p>
-                            <p class="jobname">賣場工讀生</p>
-                        </div>
-                        <div class="item">
-                            <div class="imgbox">
-                                <img src="images/other/pic2.jpg">
-                            </div>
-                            <p class="title">迪卡儂運動用品</p>
-                            <p class="jobname">賣場工讀生</p>
-                        </div>
-                        <div class="item">
-                            <div class="imgbox">
-                                <img src="images/other/pic2.jpg">
-                            </div>
-                            <p class="title">迪卡儂運動用品</p>
-                            <p class="jobname">賣場工讀生</p>
-                        </div>
+                        <?php endforeach ?>
+                       
                     </div>                    
                 </div>
             </div>
             <div id="fbbox">
-                <img src="images/fbbox.png">
+                <img src="<?php echo site_url()?>assets/templates/images/fbbox.png">
             </div>
             <div id="footerbox">
                 <div id="footernavbox">

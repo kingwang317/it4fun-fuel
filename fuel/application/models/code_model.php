@@ -828,4 +828,36 @@ public function do_update_fbid2resume($account,$fbid){
         return;
     }
 
+    public function do_regi_event($job_id,$account){
+        $sql = @"INSERT INTO mod_drop_resume (job_id,account, drop_date) VALUES (?, ?, NOW())";
+        $para = array(
+                $job_id,
+                $account
+            );
+        $success = $this->db->query($sql, $para);
+
+        if($success)
+        {
+            return true;
+        }
+
+        return;
+    }
+
+    public function do_chk_deliver($job_id,$account){
+        $sql = @"SELECT * FROM mod_drop_resume WHERE job_id=? AND account=?";
+        $para = array(
+                $job_id,
+                $account
+            );
+        $query = $this->db->query($sql, $para);
+
+        if($query->num_rows() > 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
 }
