@@ -9,22 +9,13 @@
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/common.js"></script>
+    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/mysite.css" type="text/css" media="all" >
 </head>
 
 <body>
     <div id="maincontain">
         <div id="contentbox">
-            <div id="headerbox">
-                <div id="header">
-                    <a class="logo" href="#"><img src="<?php echo site_url()?>assets/templates/images/logo/logo.png"></a>
-                    <div class="usr">您好，<span>使用者名稱</span></div>
-                    <ul class="menu">
-                        <li><a href="#">職缺列表</a></li>
-                        <li><a href="#">活動報名</a></li> 
-                        <li><a href="#">登出</a></li>             
-                    </ul>  
-                </div>                          
-            </div>
+            <?php  $this->load->view('_blocks/_header')?>
             <div id="mybox">                
                 <div id="vacanciesbox">
                     <table>
@@ -114,28 +105,8 @@
             <div id="fbbox" style="display:none;">
                 <img src="<?php echo site_url()?>assets/templates/images/fbbox.png">
             </div>
-            <div id="footerbox" style="display:none;">
-                <div id="footernavbox">
-                    <div class="nav">
-                        <ul>
-                            <li><a href="#">關於我們</a></li>
-                            <li><a href="#">刊登職缺</a></li>
-                            <li><a href="#">找打工</a></li>
-                            <li><a href="#">常見問題</a></li>
-                            <li><a href="#">使用者條款</a></li>
-                            <li><a href="#">會員中心</a></li>
-                            <li><a href="#">聯絡我們</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="footerinfobox">
-                    <div class="info">
-                        <div class="l">Copyright © 2013 - 2014 . PeopleSearch. All rights reserved.</div>
-                        <div class="r">“JobFinder”是PeopleSearch的促進就業推動以及人力資源改善計劃。</div>
-                    </div>
-                </div>
-            </div>
         </div>
+        <?php  $this->load->view('_blocks/_footer')?>
     </div>
 
 <script type="text/javascript">

@@ -12,7 +12,7 @@ class Codekind_manage_model extends MY_Model {
 
 	public function get_total_rows($filter="", $table_name="mod_codekind")
 	{
-		$sql = @"SELECT COUNT(*) AS total_rows FROM ".$table_name." ".$filter." ORDER BY modi_time DESC";
+		$sql = @"SELECT COUNT(*) AS total_rows FROM ".$table_name." ".$filter;
 		$query = $this->db->query($sql);
 
 		if($query->num_rows() > 0)
@@ -33,7 +33,7 @@ class Codekind_manage_model extends MY_Model {
 		}
 		else
 		{
-			$sql = @"SELECT * FROM ".$table_name." ".$filter." ORDER BY code_key ASC, modi_time DESC LIMIT $dataStart, $dataLen";
+			$sql = @"SELECT * FROM ".$table_name." ".$filter." ORDER BY lang_code,code_value3 LIMIT $dataStart, $dataLen";
 		}
 	
 		$query = $this->db->query($sql);
@@ -64,6 +64,18 @@ class Codekind_manage_model extends MY_Model {
 		return;
 
 	}
+
+	public function get_series_menu($codekind_key,$lang_code,$parent_id=-1){
+        $sql = @"select * from mod_code where codekind_key = '$codekind_key' and parent_id = $parent_id and lang_code = '$lang_code' ";
+        $query = $this->db->query($sql);
+        //echo $sql;exit;
+        if($query->num_rows() > 0)
+        {
+            $result = $query->result();
+
+            return $result;
+        }
+    }
 
 	public function get_code_list_for_other_mod($codekind_key)
 	{
@@ -193,6 +205,24 @@ class Codekind_manage_model extends MY_Model {
 		return;
 	}
 
+	public function upadate_order($id,$order)
+	{
+		$sql = @"UPDATE mod_code SET  code_value3	= ? 
+				WHERE code_id = ? ";
+		$para = array(
+				$order,
+				$id
+			);
+		$success = $this->db->query($sql, $para);
+
+		if($success)
+		{
+			return true;
+		}
+
+		return;
+	}
+
 	public function code_insert($insert_data)
 	{
 		$sql = @"INSERT INTO mod_code (
@@ -204,9 +234,10 @@ class Codekind_manage_model extends MY_Model {
 											code_value3,
 											parent_id,
 											modi_time,
-											lang_code
+											lang_code,
+											img
 										) 
-				VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
+				VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?,?)";
 		$para = array(
 				$insert_data['codekind_key'],
 				$insert_data['code_name'],
@@ -215,7 +246,8 @@ class Codekind_manage_model extends MY_Model {
 				$insert_data['code_value2'],
 				$insert_data['code_value3'],
 				$insert_data['parent_id'],
-				$insert_data['lang_code']
+				$insert_data['lang_code'],
+				$insert_data['img']
 			);
 		$success = $this->db->query($sql, $para);
 
@@ -229,6 +261,8 @@ class Codekind_manage_model extends MY_Model {
 
 	public function code_update($code_id, $update_data)
 	{
+
+
 		$sql = @"UPDATE mod_code SET 	codekind_key 	= ?,
 										code_name 		= ?,
 										code_key 		= ?,
@@ -237,9 +271,11 @@ class Codekind_manage_model extends MY_Model {
 										code_value3		= ?,
 										parent_id	 	= ?,
 										modi_time		= NOW(),
-										lang_code		= ?
+										lang_code		= ?,
+										img             = ?
 				WHERE code_id = ?";
-		$para = array(
+
+			$para = array(
 				$update_data['codekind_key'],
 				$update_data['code_name'],
 				$update_data['code_key'],
@@ -248,8 +284,10 @@ class Codekind_manage_model extends MY_Model {
 				$update_data['code_value3'],
 				$update_data['parent_id'],
 				$update_data['lang_code'],
+				$update_data['img'],
 				$code_id
 			);
+
 		$success = $this->db->query($sql, $para);
 
 		if($success)

@@ -5,8 +5,16 @@
 |--------------------------------------------------------------------------
 */
 $config['nav']['codekind'] = array(
-'codekind/lists'		=> '分類列表'
+'codekind/lists'		=> '分類列表',
 );
+
+// $config['nav']['blog'] = array(
+// 	'blog/posts' => lang('module_blog_posts'), 
+// 	'blog/categories' => lang('module_blog_categories'),  
+// 	'blog/comments' => lang('module_blog_comments'), 
+// 	'blog/links' => lang('module_blog_links'), 
+// 	'blog/users' => lang('module_blog_authors'), 
+// );
 
 // deterines whether to use this configuration below or the database for controlling the blogs behavior
 $config['crawleruse_db_table_settings'] = TRUE;
