@@ -66,13 +66,13 @@ class Resume_manage extends Fuel_base_controller {
 			}					
 		}
 
-		if ($search_city != "") {
+		if ($search_city != "" && $search_city != "0") {
 			$filter .= " AND address_city = '$search_city'";
 			$this->session->set_userdata('search_city', $search_city);
 		}else{
 			if (!isset($search_city) ) {
 				$search_city = $this->session->userdata('search_city'); 
-				if ($search_city != "") {
+				if ($search_city != "" && $search_city != "0") {
 					$search_city = $search_city;
 					$filter .= " AND address_city = '$search_city'";
 				} 
@@ -97,13 +97,13 @@ class Resume_manage extends Fuel_base_controller {
 			}				
 		}
 
-		if ($search_job_state != "A") {
+		if ($search_job_state != "A" && $search_job_state != "") {
 			$filter .= " AND job_status = '$search_job_state'";
 			$this->session->set_userdata('search_job_state', $search_job_state);
 		}else{
 			if (!isset($search_job_state) ) {
 				$search_job_state = $this->session->userdata('search_job_state'); 
-				if ($search_job_state != "A") {
+				if ($search_job_state != "A" &&  $search_job_state != "") {
 					$search_job_state = $search_job_state;
 					$filter .= " AND job_status = '$search_job_state'";
 				} 
@@ -302,13 +302,13 @@ class Resume_manage extends Fuel_base_controller {
 			}					
 		}
 
-		if ($search_sex != "A") {
+		if ($search_sex != "A" && $search_sex != "") {
 			$filter .= " AND sex = '$search_sex'";
 			$this->session->set_userdata('search_sex', $search_sex);
 		}else{
 			if (!isset($search_sex) ) {
 				$search_sex = $this->session->userdata('search_sex'); 
-				if ($search_sex != "A") {
+				if ($search_sex != "A" && $search_sex != "") {
 					$search_sex = $search_sex;
 					$filter .= " AND sex = '$search_sex'";
 				} 
@@ -334,6 +334,8 @@ class Resume_manage extends Fuel_base_controller {
  
 		
 		$target_url = $base_url.'fuel/resume/lists/';
+
+		//echo $filter;
 
 		$total_rows = $this->resume_manage_model->get_total_rows($filter);
 		$config = $this->set_page->set_config($target_url, $total_rows, $dataStart, 20);
