@@ -102,7 +102,7 @@
 		</label>
 	    <div class="col-sm-2">
 	         <select name="search_find_job_kind">
-	        	<option value=""  <?php echo $search_find_job_kind == ""?"selected":""; ?> >不拘</option>
+	        	<option value="A"  <?php echo $search_find_job_kind == "A"?"selected":""; ?> >不拘</option>
 	        	<option value="0" <?php echo $search_find_job_kind == "0"?"selected":""; ?> >找打工</option>
 	        	<option value="1" <?php echo $search_find_job_kind == "1"?"selected":""; ?> >找全職工作</option>
 			</select>
@@ -112,7 +112,7 @@
 		</label>
 	    <div class="col-sm-2">
 	        <select name="search_job_state">
-	        	<option value=""  <?php echo $search_job_state == ""?"selected":""; ?>>不拘</option>
+	        	<option value=""  <?php echo $search_job_state == "A"?"selected":""; ?>>不拘</option>
 				<option value="0" <?php echo $search_job_state == "0"?"selected":""; ?>>在職</option>
 	        	<option value="1" <?php echo $search_job_state == "1"?"selected":""; ?>>在學</option>
 				<option value="2" <?php echo $search_job_state == "2"?"selected":""; ?>>待業</option>
@@ -165,7 +165,7 @@
 		</label>
 	    <div class="col-sm-2">
 	         <select name="search_exp">
-	        	<option value=""  <?php echo $search_exp == ""?"selected":""; ?> >不拘</option>
+	        	<option value=""  <?php echo $search_exp == "A"?"selected":""; ?> >不拘</option>
 	        	<option value="1" <?php echo $search_exp == "1"?"selected":""; ?> >有</option>
 	        	<option value="0" <?php echo $search_exp == "0"?"selected":""; ?> >無</option>
 			</select>
@@ -202,10 +202,21 @@
 		</label>
 	    <div class="col-sm-2">
 	         <select name="search_sex">
-	        	<option value=""  <?php echo $search_sex == ""?"selected":""; ?> >不拘</option>
+	        	<option value=""  <?php echo $search_sex == "A"?"selected":""; ?> >不拘</option>
 	        	<option value="0" <?php echo $search_sex == "0"?"selected":""; ?> >女</option>
 	        	<option value="1" <?php echo $search_sex == "1"?"selected":""; ?> >男</option>
 			</select>
+	    </div>
+	</div>
+
+	<div class="row">
+		<label class="col-sm-1 control-label" >
+			電話
+		</label>
+	    <div class="col-sm-2">
+	        
+	        	<input type="text" class="form-control m-bot15" placeholder="" value="<?php echo $search_tel; ?>" name="search_tel"/>
+			 
 	    </div>
 	</div>
 

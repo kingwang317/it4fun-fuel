@@ -45,6 +45,7 @@ class Resume_manage extends Fuel_base_controller {
 		$search_about     = $post_ary["search_about"];
 		$search_note     = $post_ary["search_note"];
 		$search_sex     = $post_ary["search_sex"];
+		$search_tel     = $post_ary["search_tel"];
 
 
 
@@ -96,33 +97,33 @@ class Resume_manage extends Fuel_base_controller {
 			}				
 		}
 
-		if ($search_job_state != "") {
+		if ($search_job_state != "A") {
 			$filter .= " AND job_status = '$search_job_state'";
 			$this->session->set_userdata('search_job_state', $search_job_state);
 		}else{
 			if (!isset($search_job_state) ) {
 				$search_job_state = $this->session->userdata('search_job_state'); 
-				if ($search_job_state != "") {
+				if ($search_job_state != "A") {
 					$search_job_state = $search_job_state;
 					$filter .= " AND job_status = '$search_job_state'";
 				} 
 			}else{
-				$this->session->set_userdata('search_job_state', "");
+				$this->session->set_userdata('search_job_state', "A");
 			}				
 		}
 
-		if ($search_find_job_kind != "") {
+		if ($search_find_job_kind != "A") {
 			$filter .= " AND find_job_kind = '$search_find_job_kind'";
 			$this->session->set_userdata('search_find_job_kind', $search_find_job_kind);
 		}else{
 			if (!isset($search_find_job_kind) ) {
 				$search_find_job_kind = $this->session->userdata('search_find_job_kind'); 
-				if ($search_find_job_kind != "") {
+				if ($search_find_job_kind != "A") {
 					$search_find_job_kind = $search_find_job_kind;
 					$filter .= " AND find_job_kind = '$search_find_job_kind'";
 				} 
 			}else{
-				$this->session->set_userdata('search_find_job_kind', "");
+				$this->session->set_userdata('search_find_job_kind', "A");
 			}				
 		}
 
@@ -232,7 +233,7 @@ class Resume_manage extends Fuel_base_controller {
 			}			
 		}
 
-		if ($search_exp  != "") {
+		if ($search_exp  != "A") {
 			if ($search_exp == "1") {
 				 $filter .= " AND account in (select distinct account from mod_exp  ) ";
 			}else if ($search_exp == "0") {
@@ -243,7 +244,7 @@ class Resume_manage extends Fuel_base_controller {
 		}else{
 			if (!isset($search_exp) ) {
 				$search_exp = $this->session->userdata('search_exp'); 
-				if ($search_exp != "") {
+				if ($search_exp != "A") {
 					$search_exp = $search_exp;
 					if ($search_exp == "1") {
 						 $filter .= " AND account in (select distinct account from mod_exp  ) ";
@@ -252,7 +253,7 @@ class Resume_manage extends Fuel_base_controller {
 					}
 				} 
 			}else{
-				$this->session->set_userdata('search_exp', "");
+				$this->session->set_userdata('search_exp', "A");
 			}			
 		}
 
@@ -301,18 +302,33 @@ class Resume_manage extends Fuel_base_controller {
 			}					
 		}
 
-		if ($search_sex != "") {
+		if ($search_sex != "A") {
 			$filter .= " AND sex = '$search_sex'";
 			$this->session->set_userdata('search_sex', $search_sex);
 		}else{
 			if (!isset($search_sex) ) {
 				$search_sex = $this->session->userdata('search_sex'); 
-				if ($search_sex != "") {
+				if ($search_sex != "A") {
 					$search_sex = $search_sex;
 					$filter .= " AND sex = '$search_sex'";
 				} 
 			}else{
-				$this->session->set_userdata('search_sex', "");
+				$this->session->set_userdata('search_sex', "A");
+			}					
+		}
+
+		if ($search_tel != "") {
+			$filter .= " AND contact_tel LIKE '%$search_tel%'";
+			$this->session->set_userdata('search_tel', $search_tel);
+		}else{
+			if (!isset($search_tel) ) {
+				$search_tel = $this->session->userdata('search_tel'); 
+				if ($search_tel != "") {
+					$search_tel = $search_tel;
+					$filter .= " AND contact_tel LIKE '%$search_tel%'";
+				} 
+			}else{
+				$this->session->set_userdata('search_tel', "");
 			}					
 		}
  
@@ -352,7 +368,7 @@ class Resume_manage extends Fuel_base_controller {
 		$vars['search_about'] = $search_about;
 		$vars['search_note'] = $search_note;
 		$vars['search_sex'] = $search_sex;
-
+		$vars['search_tel'] = $search_tel;
 
 		$vars['recommended_ary'] = $recommended_ary;
 		$vars['job_state_ary'] = $job_state_ary;
