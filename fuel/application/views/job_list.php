@@ -34,33 +34,59 @@
                     </div>
                 </div>
                 <div id="view_vacanciesbox">
-                    <form>
-                        <div class="searchbox">
-                            <input type="text" class="search">
+                   
+                    <div class="searchbox">
+                        <form action="<?php echo site_url()?>job" method="POST" > 
+                            <input type="text" class="search" name="search_keyword" value="<?php echo $search_keyword ?>" />
                             <span>地點：</span>
-                            <select class="location">
-                                <option>不拘</option>
+                            <select class="location" name="search_city">
+                                <option value="" <?php echo $search_city == "A"?"selected":""; ?>>不拘</option>
+                                <?php
+                                    if(isset($city_ary)):
+                                ?>  
+                                <?php   foreach($city_ary as $key=>$rows):?>
+                                    <option value="<?php echo $rows->address_city ?>" <?php if ($search_city == $rows->address_city): ?>
+                                        selected
+                                    <?php endif ?>><?php echo $rows->address_city ?></option>
+                                <?php endforeach;?>
+                                <?php endif;?>
+         
                             </select>
                             <span>產業：</span>
-                            <select  class="type">
-                                <option>不拘</option>
+                            <select  class="type" name="search_skill">
+                                <option value="" <?php echo $search_skill == "A"?"selected":""; ?>>不拘</option>
+                                <?php
+                                    if(isset($skill_ary)):
+                                ?>  
+                                <?php   foreach($skill_ary as $key=>$rows):?>
+                                    <option value="<?php echo $rows->code_id ?>" <?php if ($search_skill == $rows->code_id): ?>
+                                        selected
+                                    <?php endif ?>><?php echo $rows->code_name ?></option>
+                                <?php endforeach;?>
+                                <?php endif;?>
+                            
                             </select>
                             <input type="submit" class="submit" value="搜尋">
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                 
                     <div class="itemsbox">
-
-                        <?php foreach ($results as $key => $value): ?>
-                           <div class="item">
-                                <a href="<?php echo $job_detail_url.$value->id ?>">
-                                    <div class="imgbox">
-                                        <img src="<?php echo $photo_path.$value->company_logo; ?>">
-                                    </div>
-                                    <p class="title"><?php echo $value->company_name ?></p>
-                                    <p class="jobname"><?php echo $value->job_title ?></p>
-                                </a>
-                            </div>
-                        <?php endforeach ?>
+                        <?php if (isset($results)): ?>
+                             <?php foreach ($results as $key => $value): ?>
+                               <div class="item">
+                                    <a href="<?php echo $job_detail_url.$value->id ?>">
+                                        <div class="imgbox">
+                                            <img src="<?php echo $photo_path.$value->company_logo; ?>">
+                                        </div>
+                                        <p class="title"><?php echo $value->company_name ?></p>
+                                        <p class="jobname"><?php echo $value->job_title ?></p>
+                                    </a>
+                                </div>
+                            <?php endforeach ?>
+                        <?php else: ?>
+                            找不到職缺
+                        <?php endif ?>
+                       
                        
                     </div>                    
                 </div>
