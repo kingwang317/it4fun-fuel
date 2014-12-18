@@ -244,9 +244,9 @@ body {
 
 #mybox .rightbox .left{
 	float: left;
-	width: 106px;
+	width: 180px;
 	min-height: 100px;
-	padding-left: 113px;
+	padding-left: 30px;
 	padding-right: 36px;
 	overflow: hidden;
 }
@@ -417,7 +417,7 @@ body {
 	line-height: 35px;
 }
 /* ======================================= */
-select.EmploymentStatus, select.LookingForWork{
+select.EmploymentStatus, select.LookingForWork,select.addr-county,select.addr-distrcit,input.addr-zip,select.sexselect{
 	font-size: 18px;
 	line-height: 35px;
 	height: 35px;
@@ -429,6 +429,43 @@ input.code, input.remark{
 	font-size: 18px;
 	line-height: 35px;
 	height: 35px;
+}
+input.school, input.remark{
+	width: 460px;
+	font-size: 18px;
+	line-height: 35px;
+	height: 35px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+input.lang, input.remark{
+	width: 350px;
+	font-size: 18px;
+	line-height: 35px;
+	height: 35px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.langlist span{
+	margin-right: 10px
+}
+.box span{
+	margin-right: 10px
+}
+.joblist input{
+	width: 460px;
+	font-size: 18px;
+	line-height: 35px;
+	height: 35px;
+	margin-top: 10px;
+}
+.joblist input.hasDatepicker{
+	width: 180px;
+	font-size: 18px;
+	line-height: 35px;
+	height: 35px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 /* ======================================= */
 #aboutmebox{
@@ -491,9 +528,6 @@ input.code, input.remark{
 	margin-right: 10px;
 }
 
-#myeventsbox div.item:nth-child(4n + 1){
-	margin-right: 0px;	
-}
 #myeventsbox div.item div.imgbox{
 	display: inline-block;
 	overflow: hidden;

@@ -24,12 +24,12 @@ $data = $this->code_model->get_account_data($account);
           <p><span><?php echo $data[0]->name ?></span><br/>歡迎回來 !</p>                            
       </div>
       <ul>
-          <li><a href="#">最新消息</a></li>
+          <li><a href="<?php echo site_url().'user/mynews' ?>">最新消息</a></li>
           <li class="active"><a href="<?php echo site_url().'user/editinfo?account='.$account ?>">我的資料</a></li>
           <!-- <li><a href="#">通知</a><div class="circle">1</div></li> -->
           <li><a href="<?php echo site_url().'job' ?>">查看職缺</a></li>
-          <!-- <li><a href="#">我的活動</a></li>
-          <li><a href="#">我的記錄</a></li> -->
+           <li><a href="<?php echo site_url().'user/myevent' ?>">我的活動</a></li>
+          <!--<li><a href="#">我的記錄</a></li> -->
       </ul>
   </div>
 </div>

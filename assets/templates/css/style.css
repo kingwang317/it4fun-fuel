@@ -444,10 +444,14 @@ div#logindialog div.fbbox div{
 /*-------------------*/
 
 
+
 br.CLEAR{ clear:both; font-size:1px; height:1px; line-height:1px;}
 /*----------消虛線---------*/
 /* For IE, onFocus 的 F 要大寫*/
 a{noFocusline:expression(this.onFocus=this.blur());}     
 /* For Firefox */
 a:focus{<br />	-moz-outline-style:none;}  
+
+
+
 

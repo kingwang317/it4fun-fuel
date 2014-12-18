@@ -28,7 +28,7 @@ $config['modules_allowed'] = array(
 	'event',
 	 'contact',
 	// 'casehelp',
-	 //'case',
+	 'news',
 	'codekind',
 	'com',
 	 'edm',

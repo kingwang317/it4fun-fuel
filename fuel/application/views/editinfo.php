@@ -14,6 +14,7 @@
     <script type="text/javascript" src="<?php echo site_url()?>assets/js/jquery.autocomplete.min.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery.twzipcode.min.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/index.js"></script>
+    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/mysite.css" type="text/css" media="all" >
 </head>
 
 <body>
@@ -113,7 +114,9 @@
                                     }
                                 ?>       
                                 </ul>
+                                <!--
                                 <div class="addschool">新增一筆學校</div>
+                            -->
                             </div>
                             </div>
 
@@ -196,8 +199,8 @@
                                 ?>           
                                        
                                 </ul>
-
-                                <div class="addjob">新增一筆經驗</div>
+<!--
+                                <div class="addjob">新增一筆經驗</div>-->
                             </div>
                             </div>
 
@@ -233,7 +236,8 @@
                                     }
                                 ?>       
                                 </ul>
-                                <div class="addlang">新增一筆語言</div> 
+                                <!--
+                                <div class="addlang">新增一筆語言</div>-->
                             </div>
                             </div>
 
