@@ -112,13 +112,13 @@ class Resume_manage extends Fuel_base_controller {
 			}				
 		}
 
-		if ($search_find_job_kind != "A") {
+		if ($search_find_job_kind != "A" && $search_find_job_kind != "") {
 			$filter .= " AND find_job_kind = '$search_find_job_kind'";
 			$this->session->set_userdata('search_find_job_kind', $search_find_job_kind);
 		}else{
 			if (!isset($search_find_job_kind) ) {
 				$search_find_job_kind = $this->session->userdata('search_find_job_kind'); 
-				if ($search_find_job_kind != "A") {
+				if ($search_find_job_kind != "A" && $search_find_job_kind != "") {
 					$search_find_job_kind = $search_find_job_kind;
 					$filter .= " AND find_job_kind = '$search_find_job_kind'";
 				} 

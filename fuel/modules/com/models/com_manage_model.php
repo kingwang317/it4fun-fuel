@@ -27,7 +27,7 @@ class Com_manage_model extends MY_Model {
 
 	public function get_job_total_rows($filter="")
 	{
-		$sql = @"SELECT COUNT(*) AS total_rows FROM mod_job ".$filter;
+		$sql = @"SELECT COUNT(*) AS total_rows FROM mod_job a ".$filter;
 		$query = $this->db->query($sql);
 
 		if($query->num_rows() > 0)
