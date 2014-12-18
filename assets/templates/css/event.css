@@ -158,7 +158,7 @@ div#logindialog div.fbbox div{
 	float: left;
 	cursor: pointer;
 }
-
+/*
 #logdata{
 	position: absolute;
 	top: 360px; 
@@ -168,4 +168,4 @@ div#logindialog div.fbbox div{
 	background: url("../images/icon/logdata.png");	
 	background-repeat: no-repeat;
 	cursor: pointer;
-}
+}*/

@@ -106,7 +106,7 @@ class User extends CI_Controller {
 		$this->load->model('code_model');
 		$this->load->helper('cookie');
 		$this->load->helper('ytalent');
-		$this->load->helper('MY_date');
+		//$this->load->helper('MY_date');
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");
 		$all_cate = array();
@@ -272,6 +272,81 @@ $this->load->helper('cookie');
 			$this->comm->plu_redirect(site_url(), 0, "FACEBOOK登入失敗");
 		}
 	}
+	function myevent()
+	{	
+		$this->load->helper('cookie');
+		$this->load->library('facebook');
+		$this->load->library('set_page');
+		$this->load->model('code_model');
+		$base_url = base_url();
+		$this->load->module_model(EVENT_FOLDER, 'event_manage_model');
+		$this->set_meta->set_meta_data();
+		fuel_set_var('page_id', "1");
+		$filter = '';
+		$target_url = $base_url.'event/';
+
+
+		$results = $this->event_manage_model->get_event_list(0, 4, $filter);
+
+		$account = $this->code_model->get_logged_in_account();
+
+		$filter = " WHERE  event_id in (SELECT event_id FROM mod_register WHERE account = '$account' ORDER BY drop_date )";
+
+		$results_my = $this->event_manage_model->get_event_list(0, 4, $filter);
+
+		$fb_data	= $this->code_model->get_fb_data();
+		$vars['fb_data'] = $fb_data;
+
+		$vars['base_url'] 			= $base_url;
+		$vars['target_url'] 		= $target_url;
+		$vars['photo_path']			= $base_url.'assets/uploads/event/';
+		$vars['results']			= $results;
+		$vars['results_my']			= $results_my;
+		$vars['event_detail_url']	= $base_url.'event/detail/';
+		
+		$vars['views'] 				= 'myevent';
+		$page_init = array('location' => 'myevent');
+		$this->fuel->pages->render('myevent', $vars);
+	}
+	function mynews()
+	{	
+		$this->load->helper('cookie');
+		$this->load->library('facebook');
+		$this->load->library('set_page');
+		$this->load->model('code_model');
+		$base_url = base_url();
+		$this->load->module_model(EVENT_FOLDER, 'event_manage_model');
+		$this->load->module_model(COM_FOLDER, 'com_manage_model');
+		$this->load->module_model(NEWS_FOLDER, 'news_manage_model');
+		
+		$this->set_meta->set_meta_data();
+		fuel_set_var('page_id', "1");
+		$filter = '';
+		$event_target_url = $base_url.'event/';
+		$job_target_url = $base_url.'job/';
+
+
+		$event_results = $this->event_manage_model->get_event_list(0, 4, "");
+		$job_results = $this->com_manage_model->get_job_list(0, 4, "");
+		$news_results = $this->news_manage_model->get_news_list(0, 3, "WHERE type = (SELECT code_id FROM mod_code WHERE code_key = 'NEWS')");
+
+		$fb_data	= $this->code_model->get_fb_data();
+		$vars['fb_data'] = $fb_data;
+
+		$vars['base_url'] 			= $base_url;
+		$vars['event_target_url'] 		= $event_target_url;
+		$vars['job_target_url'] 		= $job_target_url;
+		$vars['event_photo_path']			= $base_url.'assets/uploads/event/';
+		$vars['job_photo_path']			= $base_url.'assets/';
+		$vars['event_results']			= $event_results;
+		$vars['job_results']			= $job_results;
+		$vars['event_detail_url']	= $base_url.'event/detail/';
+		$vars['job_detail_url']	= $base_url.'job/detail/';
+		$vars['views'] 				= 'mynews';
+		$page_init = array('location' => 'mynews');
+		$this->fuel->pages->render('mynews', $vars);
+	}
+
 	function step3()
 	{	
 		$this->load->model('code_model');
