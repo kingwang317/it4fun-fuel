@@ -958,10 +958,11 @@ public function do_update_fbid2resume($account,$fbid){
     }
 
     public function do_regi_event($job_id,$account){
-        $sql = @"INSERT INTO mod_drop_resume (job_id,account, drop_date) VALUES (?, ?, NOW())";
+        $sql = @"INSERT INTO mod_drop_resume (job_id,account, drop_date,response_type) VALUES (?, ?, NOW(),?)";
         $para = array(
                 $job_id,
-                $account
+                $account,
+                '-1'
             );
         $success = $this->db->query($sql, $para);
 
@@ -994,8 +995,9 @@ public function do_update_fbid2resume($account,$fbid){
         $sql = @"SELECT a.*,b.id as job_id,b.job_title,c.company_name,c.company_logo FROM mod_drop_resume a
          LEFT JOIN mod_job b ON a.job_id = b.id
          LEFT JOIN mod_company c ON b.company_id = c.id
-         WHERE a.account=? AND a.process_type=2 AND a.response_type is null";
+         WHERE a.account=? AND a.process_type=2 AND a.response_type = '-1'";
         $para = array($account);
+        //echo $sql;
         $query = $this->db->query($sql,$para);
 
         if($query->num_rows() > 0)

@@ -14,6 +14,7 @@
     <script type="text/javascript" src="<?php echo site_url()?>assets/js/jquery.autocomplete.min.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery.twzipcode.min.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/index.js"></script> 
+    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/mysite.css" type="text/css" media="all" >
 </head>
 
 <body>

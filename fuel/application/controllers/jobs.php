@@ -168,13 +168,13 @@ class Jobs extends CI_Controller {
 
 		if($account == null){
 			$this->comm->plu_redirect(site_url(), 0, "尚未登入");
-			die;
+			//die;
 		}
-
 		// $account_data = $this->code_model->get_account_data($account);
 		$result = $this->code_model->get_notice($account);
   		// print_r($result);
-	  	// die;
+  		 //echo "2143";
+	  	 //die();
 		$vars['result'] = $result; 
 		$fb_data = $this->code_model->get_fb_data();
 		$vars['fb_data'] = $fb_data; 
