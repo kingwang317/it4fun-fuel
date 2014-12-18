@@ -82,7 +82,7 @@
             <div class="fbbox">
                 <p>使用臉書登入，又快又方便 &nbsp;&nbsp;&nbsp;&nbsp;</p> 
                 
-                <div><a href="#"><img src="<?php echo site_url()?>assets/templates/images/icon/loginFB.png"></a></div>
+                <div><a href="<?php echo $fb_data['login_url'] ?>"><img src="<?php echo site_url()?>assets/templates/images/icon/loginFB.png"></a></div>
             </div>
         
         </form>
