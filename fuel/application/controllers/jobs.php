@@ -145,19 +145,80 @@ class Jobs extends CI_Controller {
 			$job_lang_str.=$value->lang_name."[$value->level_name]".',';
 		}
 
-		$r_url = "job/detail/".$job_id;
-
-		$fb_data	= $this->code_model->get_fb_data($r_url);
+	
+		$fb_data	= $this->code_model->get_fb_data();
+		$vars['fb_data'] = $fb_data;
 		$vars['job_skill'] = rtrim($job_skill_str, ',');
 		$vars['job_lang'] = rtrim($job_lang_str, ',');
 		$vars['job_id'] = $job_id;
-		$vars['fb_data'] = $fb_data;
 		$vars['views'] 		= 'job_detail';
 		$vars['photo_path']	= $base_url.'assets/';
 		$vars['result']		= $result; 
 		$vars['regi_url']	= $base_url.'api/do_deliver/'.$job_id;
 		$page_init = array('location' => 'job_detail');
 		$this->fuel->pages->render('job_detail', $vars);
+	}
+
+	//notices
+	function notice()
+	{
+		$base_url = base_url();
+		$this->load->model('code_model');	    
+		$account = $this->code_model->get_logged_in_account(); 
+
+		if($account == null){
+			$this->comm->plu_redirect(site_url(), 0, "尚未登入");
+			die;
+		}
+
+		// $account_data = $this->code_model->get_account_data($account);
+		$result = $this->code_model->get_notice($account);
+  		// print_r($result);
+	  	// die;
+		$vars['result'] = $result; 
+		$fb_data = $this->code_model->get_fb_data();
+		$vars['fb_data'] = $fb_data; 
+		$vars['views'] 		= 'notices';
+		$vars['photo_path']	= $base_url.'assets/';  
+		$vars['notice_response_url']	= $base_url.'api/do_notice_response/';
+		$page_init = array('location' => 'notices');
+		$this->fuel->pages->render('notices', $vars);
+	}
+
+	function notice_response(){
+		$this->load->model('code_model');
+		// $this->load->module_model(COM_FOLDER, 'event_manage_model');
+		$response = array();
+
+		if($this->code_model->is_logged_in())
+		{
+			 
+
+			$post_ary = $this->input->post(); 
+			$drop_id = isset($post_ary['drop_id'])?$post_ary['drop_id']:'';
+			$response_type = isset($post_ary['response_type'])?$post_ary['response_type']:''; 
+			 
+			$success = $this->code_model->update_notice_response($drop_id, $response_type);
+
+			if($success)
+			{
+				$result['status']	= 1;
+				$result['msg']		= "已完成";
+			}
+			else
+			{
+				$result['status']	= -1;
+				$result['msg']		= "伺服器忙線中，請稍後再試";
+			}
+	 		
+		}
+		else
+		{
+			$result['status']	= -99;
+			$result['msg']		= "尚未登入";
+		}
+
+		echo json_encode($result);
 	}
 
 	function deliver($job_id)

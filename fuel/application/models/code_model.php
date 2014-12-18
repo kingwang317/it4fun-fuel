@@ -989,4 +989,39 @@ public function do_update_fbid2resume($account,$fbid){
         return false;
     }
 
+    public function get_notice($account){
+
+        $sql = @"SELECT a.*,b.id as job_id,b.job_title,c.company_name,c.company_logo FROM mod_drop_resume a
+         LEFT JOIN mod_job b ON a.job_id = b.id
+         LEFT JOIN mod_company c ON b.company_id = c.id
+         WHERE a.account=? AND a.process_type=2 AND a.response_type is null";
+        $para = array($account);
+        $query = $this->db->query($sql,$para);
+
+        if($query->num_rows() > 0)
+        {
+            $result = $query->result();
+
+            return $result;
+        }
+
+        return;
+    }
+
+    public function update_notice_response($drop_id,$response_type){
+
+        $sql = @"UPDATE mod_drop_resume  SET response_type=?
+         WHERE id =? ";
+        $para = array($response_type,$drop_id);
+        
+        $success = $this->db->query($sql, $para);
+
+        if($success)
+        {
+            return true;
+        }
+
+        return;
+    }
+
 }
