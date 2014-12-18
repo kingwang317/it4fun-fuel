@@ -17,7 +17,7 @@
         <div id="contentbox">
             <?php  $this->load->view('_blocks/_header')?>
             <div id="mybox">
-                <div class="leftbox">
+                <!-- <div class="leftbox">
                     <div class="box">
                         <div class="headbox">
                             <div class="imgbox"><img src="<?php echo site_url()?>assets/templates/images/head1.png"></div>
@@ -32,7 +32,10 @@
                             <li><a href="#">我的記錄</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
+               
+      
+                <?php  $this->load->view('_blocks/_left_menu')?>
                 <div id="view_vacanciesbox">
                    
                     <div class="searchbox">

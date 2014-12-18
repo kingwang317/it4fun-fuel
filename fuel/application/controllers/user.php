@@ -105,6 +105,8 @@ class User extends CI_Controller {
 		//ALTER TABLE  `mod_resume` ADD  `find_job_kind` INT( 10 ) NULL
 		$this->load->model('code_model');
 		$this->load->helper('cookie');
+		$this->load->helper('ytalent');
+		$this->load->helper('MY_date');
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");
 		$all_cate = array();
@@ -117,14 +119,30 @@ class User extends CI_Controller {
 		}
 
 		$account_data = $this->code_model->get_account_data($account);
-		$skill_list = $this->code_model->get_user_not_skill($account);
+		// $skill_list = $this->code_model->get_user_not_skill($account);
+		$skill_list = $this->code_model->get_skill();
 		$user_skill_list = $this->code_model->get_skill_list(" WHERE account = '$account' ");
+
+		$job_cate_list = $this->code_model->get_job_cate("job_cate");
+		// print_r($account_data[0]->exclude_cate);
+		// die;
+		$exclude_cate = !empty($account_data[0]->exclude_cate)?explode(";", $account_data[0]->exclude_cate):array();
+		$age = isset($account_data[0]->birth)&&$account_data[0]->birth!="0000-00-00"?get_age($account_data[0]->birth):'';
+
+		// $lang_list = $this->code_model->get_lang();
+		// $lang_list = $this->code_model->get_lang_list(" WHERE account = '$account' ");
+		$level_list = $this->code_model->get_level();
+		
 
 
 		$fb_data	= $this->code_model->get_fb_data("user/do_connect_fb2account");
+		$vars['age'] = $age;
 		$vars['fb_data'] = $fb_data;
-	
+		$vars['exclude_cate']	= $exclude_cate;
 		$vars['skill_list']	= $skill_list;
+		// $vars['lang_list']	= $lang_list;
+		$vars['level_list']	= $level_list;
+		$vars['job_cate_list'] = $job_cate_list;
 		$vars['user_skill_list']	= $user_skill_list;
 		$vars['views'] = 'editinfo';
 		$vars['recommended_id'] = $recommended_id;
@@ -136,9 +154,12 @@ class User extends CI_Controller {
 		$this->fuel->pages->render('editinfo', $vars);
 	
 	}
+
 	function do_edit(){
 		
 		$post_arr = $this->input->post();
+		// print_r($post_arr);
+		// die;
 		$config['upload_path'] = assets_server_path('avatar/');
 		$config['allowed_types'] = 'png';
 		$config['max_size']	= '9999';
@@ -173,7 +194,7 @@ class User extends CI_Controller {
 		$all_cate = array();
 		$result = $this->code_model->do_update_resume($post_arr);
 		if($result){
-			$this->comm->plu_redirect(site_url()."user/myinfo?account=".$post_arr['account'], 0, $msg);
+			$this->comm->plu_redirect(site_url()."user/editinfo?account=".$post_arr['account'], 0, $msg);
 		}else{
 			$this->comm->plu_redirect(site_url(), 0, "更新失敗");
 		}

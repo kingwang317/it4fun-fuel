@@ -154,5 +154,19 @@ class Register extends CI_Controller {
 		 
 		echo json_encode($ary);
 	} 
+
+	function getLang()
+	{
+		$this->load->model('code_model');
+		$response = $this->code_model->get_lang();
+
+		$ary = array();
+
+		foreach ($response as $key) {
+			 array_push($ary, $key->code_name);
+		}
+		 
+		echo json_encode($ary);
+	} 
 	
 }

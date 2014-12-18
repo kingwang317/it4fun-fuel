@@ -293,6 +293,65 @@ public function do_update_fbid2resume($account,$fbid){
         return;
     }
 
+     public function get_job_cate()
+    { 
+        // $b = urldecode($q);
+
+        $sql = @"SELECT code_id,code_name FROM mod_code WHERE codekind_key ='job_cate' ";
+        // $para = array($q);
+        // echo $sql;
+        $query = $this->db->query($sql);
+
+        if($query->num_rows() > 0)
+        {
+            $result = $query->result(); 
+            return $result;
+        }
+
+        return;
+    }
+
+    public function get_lang($name='')
+    { 
+        // $b = urldecode($q);
+
+        $sql = @"SELECT code_id,code_name FROM mod_code WHERE codekind_key ='lang' ";
+        // $para = array($q);
+        $para = array();
+        if (!empty($name)) {
+            $sql .= " AND code_name = ? ";
+            array_push($para, $name);
+        }
+        // echo $sql;
+        $query = $this->db->query($sql,$para);
+
+        if($query->num_rows() > 0)
+        {
+            $result = $query->result(); 
+            return $result;
+        }
+
+        return;
+    }
+
+    public function get_level()
+    { 
+        // $b = urldecode($q);
+
+        $sql = @"SELECT code_id,code_name FROM mod_code WHERE codekind_key ='level' ";
+        // $para = array($q);
+        // echo $sql;
+        $query = $this->db->query($sql);
+
+        if($query->num_rows() > 0)
+        {
+            $result = $query->result(); 
+            return $result;
+        }
+
+        return;
+    }
+
     public function do_register_resume($email, $password,$name="",$fb_email="",$fb_id="",$birth="",$contact_tel="")
     {
 
@@ -424,12 +483,15 @@ public function do_update_fbid2resume($account,$fbid){
     }
     public function do_update_resume($data)
     {
-        //print_r($data);
+        // print_r($data);
+        // die;
 
         $account_arr = array();
         $school_arr = array();
         $exp_arr = array();
         $skill_arr = array();
+        $lang_arr = array();
+        $level_arr = array();
 
         foreach ($data as $key => $value) {
             //echo $key."-".strpos($key,"job_");
@@ -439,10 +501,17 @@ public function do_update_fbid2resume($account,$fbid){
                 $exp_arr[$key] = $value;
             }elseif(strpos($key,"skill")>-1){
                 $skill_arr = $value;
+            }elseif(strpos($key,"lang_")>-1){
+                $lang_arr[$key] = $value;
+            }elseif(strpos($key,"level_")>-1){
+                $level_arr[$key] = $value;
             }else{
                 $account_arr[$key] = $value;
             }
         }
+
+        // print_r($level_arr);
+        // die;
 
         $update_accunt_sql = " UPDATE mod_resume SET 
                                 name = ?,
@@ -579,8 +648,9 @@ public function do_update_fbid2resume($account,$fbid){
         $this->db->query($delete_skill_sql, $para);
 
         foreach ($skill_arr as $key) {
-            $insert_skill_sql = " INSERT INTO  mod_skill (account,skill_id)VALUES(?,?)";
+            $insert_skill_sql = " INSERT INTO  mod_skill (account,skill_id,skill_type)VALUES(?,?,0)";
 
+            // echo $insert_skill_sql.'<br/>';
 
             $para = array(
                 $account_arr["account"],
@@ -590,6 +660,56 @@ public function do_update_fbid2resume($account,$fbid){
             $this->db->query($insert_skill_sql, $para);
         }
 
+        $delete_lang_sql = "DELETE FROM mod_lang WHERE account = ?";
+        $para = array(
+                    $account_arr["account"], 
+                );
+        $this->db->query($delete_lang_sql, $para);
+
+        print_r($lang_arr);
+ 
+        for($i = 1; $i < 100 ;$i++){
+            if(isset($lang_arr["lang_id_$i"]) && $lang_arr["lang_id_$i"] != ""){
+                $lang_id = $this->get_lang($lang_arr["lang_id_$i"]);
+                if (sizeof($lang_id)>0) {
+                    $lang_id = $lang_id[0]->code_id; 
+                }else{
+                    $insert_lang_code_sql = " INSERT INTO  mod_code (codekind_key,code_name,parent_id,modi_time,lang_code)VALUES(?,?,'-1',NOW(),'tw')";
+                    $para = array(
+                        "lang",
+                        $lang_arr["lang_id_$i"]                         
+                    );
+
+                    $this->db->query($insert_lang_code_sql, $para);
+                    $sql = "SELECT last_insert_id() as ID";
+                    $id_result= $this->db->query($sql);
+                    $lang_id = $id_result->row()->ID; 
+                }
+                $insert_lang_sql = " INSERT INTO  mod_lang (account,lang_id,level_id,lang_type)VALUES(?,?,?,0)";
+                // if($lang_arr["level_state_$i"] == 'G'){
+                //     $is_grad = "1";
+                //     $is_attend = "0";
+                // }else{
+                //     $is_grad = "0";
+                //     $is_attend = "1";
+                // }
+
+                $para = array(
+                    $account_arr["account"],
+                    $lang_id ,
+                    $level_arr["level_state_$i"]
+                );
+                // print_r($para);
+
+                $res_2 = $this->db->query($insert_lang_sql, $para);
+            }else{
+                if(!isset($lang_arr["lang_id_$i"])){
+                    break;
+                }
+            }
+        }
+
+        // die;
         return true;
     }
 
@@ -632,6 +752,15 @@ public function do_update_fbid2resume($account,$fbid){
                 $account_arr["exp"] = $exp_query->result();
             }else{
                 $account_arr["exp"] = null;
+            }
+
+            $lang_sql = " SELECT lang_id,level_id,(SELECT code_name FROM mod_code WHERE code_id = lang_id LIMIT 1 ) as lang_name FROM mod_lang WHERE account = '$account'  ";
+            $lang_query = $this->db->query($lang_sql);
+            if($lang_query->num_rows() > 0)
+            {
+                $account_arr["langs"] = $lang_query->result();
+            }else{
+                $account_arr["langs"] = null;
             }
 
             return $account_arr;

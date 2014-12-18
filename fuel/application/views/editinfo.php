@@ -3,14 +3,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
-    <title>Young Talent - 編輯履歷</title>    
-    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/reset.css" type="text/css" media="all" >
-    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/editinfo.css" type="text/css" media="all" >
-    <link rel="stylesheet" href="<?php echo site_url()?>assets/css/jquery.autocomplete.css" type="text/css" media="all" >
+    <title></title>    
+    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/style2.css" type="text/css" media="all" >
     <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.css" type="text/css" media="all" >
-    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/mysite.css" type="text/css" media="all" >
+    <link rel="stylesheet" href="<?php echo site_url()?>assets/css/jquery.autocomplete.css" type="text/css" media="all" >
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
+    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/common.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/editinfo.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/js/jquery.autocomplete.min.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery.twzipcode.min.js"></script>
@@ -20,91 +19,75 @@
 <body>
     <div id="maincontain">
         <div id="contentbox">
-            <?php $this->load->view('_blocks/_header')?>
-            <div id="editbox">
-                <form action="<?php echo site_url()?>/user/do_edit/" method="POST" enctype="multipart/form-data" >  
-                <div class="left">
-                    <?php if($data[0]->avatar=="" && $data[0]->fb_account == ""){ ?>
-                        <div class="head"></div>
-                    <?php }elseif($data[0]->avatar!=""){ ?>
-                        <div class="head" style="background:url(<?php echo site_url()."/assets/avatar/".$data[0]->avatar.")" ?>" ></div>
-                     <?php }elseif($data[0]->fb_account!=""){ ?>
-                     <img class="head" data-src="holder.js/140x140" alt="140x140" src="https://graph.facebook.com/<?php echo $data[0]->fb_account  ?>/picture?type=large" style="width: 140px; height: 140px;">
-                       
-                    <?php } ?>
-                    <br /><span style="font-size:12px;">限制140x140以內，PNG的圖片</span>
-                    <input type="file" name="avatar" id="avatar">
-                   
-                </div>
-                <div class="reight">
-                                  
-                        <input type="hidden" name="account" value="<?php echo $account ?>" />
-                        <input type="hidden" name="token" value="<?php //echo $token ?>" />
-                        <div class="nameinfo">
-                            <div class="left">
-                                <p>姓名</p>
-                            </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1"><input type="text" name="name" id="name" value="<?php echo $data[0]->name?>"></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="sexinfo">
-                            <div class="left">
-                                <p>性別</p>
-                            </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1">
-                                        <input type="radio" name="sex" value="1" <?php echo $data[0]->sex==1?"checked":""; ?> ><span>&nbsp;&nbsp;男</span>
-                                        <input type="radio" name="sex" value="0" <?php echo $data[0]->sex==0?"checked":""; ?> ><span>&nbsp;&nbsp;女</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- *** -->
-                        <div class="birthdayinfo">
-                            <div class="left">
-                                <p>生日</p>
-                            </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1"><input type="text" name="birth" id="birth" value="<?php echo $data[0]->birth?>" placeholder="yyyy-MM-dd" /></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- *** -->
-                        <div class="phoneinfo">
-                            <div class="left">
-                                <p>聯絡電話</p>
-                            </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1"><input type="text" name="contact_tel" id="contact_tel" value="<?php echo $data[0]->contact_tel?>"></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="addressinfo">
-                            <div class="left">
-                                <p>聯絡地址</p>
-                            </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1">
-                                        <div id="twzipcode"></div>
-                                        <input type="text" name="address" id="address" placeholder="地址" value="<?php echo $data[0]->address?> ">
-                                    </li>
-                                </ul>
-                                
-                            </div>
-                        </div>
-                        <!-- *** -->
-                        <div class="schoolinfo">
-                            <div class="left">
-                                <p>學校</p>
-                            </div>
-                            <div class="reight">
+            <?php  $this->load->view('_blocks/_header')?>
+            <div id="mybox">
+                <?php  $this->load->view('_blocks/_left_menu')?>
+                <div class="rightbox">
+                    <form action="<?php echo site_url()?>user/do_edit" method="POST" enctype="multipart/form-data" >
+                    <input type="hidden" name="account" value="<?php echo $account ?>" />
+                    <input type="hidden" name="token" value="<?php //echo $token ?>" />
+                    <div class="left">
+                        <!-- <img src="images/head2.png"> -->
+                        <?php if($data[0]->avatar=="" && $data[0]->fb_account == ""){ ?>
+                 
+                        <?php }elseif($data[0]->avatar!=""){ ?>              
+                            <img src="<?php echo site_url()."/assets/avatar/".$data[0]->avatar ?>" style="width: 106px;">
+                         <?php }elseif($data[0]->fb_account!=""){ ?>
+                            <img data-src="holder.js/140x140" alt="140x140" src="https://graph.facebook.com/<?php echo $data[0]->fb_account  ?>/picture?type=large" style="width: 106px;">
+                           
+                        <?php } ?>
+                        <!-- <br /><span style="font-size:12px;">限制140x140以內，PNG的圖片</span> -->
+                        <input type="file" name="avatar" id="avatar">
+                    </div>
+                    <div class="right">
+                        
+                            <table style="width:100%;font-size:18px;">
+                                <tr height="55">
+                                    <td style="width:65px;">姓名</td>
+                                    <td style="width:255px;"><div class="namebox"><input type="text" class="name" name="name" id="name" value="<?php echo $data[0]->name?>"></div></td>
+                                    <td style="width:65px;">性別</td>
+                                    <td>
+                                        <select class="sexselect" name="sex">
+                                            <option value="1" <?php echo $data[0]->sex==1?"selected":""; ?> >男</option>
+                                            <option value="0" <?php echo $data[0]->sex==0?"checked":""; ?> >女</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr height="55">
+                                    <td>生日</td>
+                                    <td class="birthday"><div class="birthdaybox"><input type="text" name="birth" placeholder="yyyy-MM-dd"  class="birthday" value="<?php echo $data[0]->birth?>"></div></td>
+                                    <td>年齡</td>
+                                    <td><div class="agebox"><input type="text"  class="age" value="<?php echo $age ?>">歲</div></td>
+                                </tr>
+                                <tr height="55">
+                                    <td>手機</td>
+                                    <td><div class="phonebox"><input type="text" class="phone" name="contact_tel" value="<?php echo $data[0]->contact_tel?>"></div></td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </table>
+
+                            <table>
+                                <tr height="35">
+                                    <td>聯絡地址</td>
+                                </tr>
+                                <tr height="55">
+                                    <td>
+                                        <!-- <select class="address1"><option>台北市</option></select>                                        
+                                        <select class="address2"><option>信義區</option></select>    -->     
+                                        <div id="twzipcode"></div>                                
+                                        <div class="addressbox"><input type="text" name="address"  class="address" value="<?php echo $data[0]->address?>"></div>
+                                    </td>                                   
+                                </tr>
+                            </table>
+                            <br/>
+                            <div id="schoolbox">
+                                <div class="header">
+                                    <div class="title">就讀學校</div>
+                                    <div class="add addschool" >新增一筆</div>
+                                    <div class="addbtn addschool">+</div>
+                                </div>
+                               <div class="reight">
                                 <ul class="schoollist">
 
 
@@ -130,15 +113,65 @@
                                     }
                                 ?>       
                                 </ul>
-                                <div id="addschool">新增一筆學校</div>
+                                <div class="addschool">新增一筆學校</div>
                             </div>
-                        </div>                        
-                        <!-- *** -->
-                        <div class="jobinfo">
-                            <div class="left">
-                                <p>工作經驗</p>
                             </div>
-                            <div class="reight">
+
+                            <div id="dislikeworkingbox">
+                                <div class="header">
+                                    不想就業的類別                                
+                                </div>
+                                <table style="font-size:14px;"> 
+                                     <?php for ($i=0;$i<sizeof($job_cate_list);$i=$i+2): ?>
+                                        <tr height="20">
+                                            <td width="200"><input type="checkbox" name="skill[]" value="<?php echo $job_cate_list[$i]->code_id ?>"
+                                                <?php if (isset($exclude_cate) && in_array($job_cate_list[$i]->code_id,$exclude_cate)): ?>
+                                                    checked
+                                                <?php endif ?>
+                                                ><?php echo $job_cate_list[$i]->code_name ?></td>
+                                            <td><input type="checkbox" name="skill[]" value="<?php echo $job_cate_list[$i+1]->code_id ?>"
+                                                <?php if (isset($exclude_cate) && in_array($job_cate_list[$i+1]->code_id,$exclude_cate)): ?>
+                                                    checked
+                                                <?php endif ?>
+                                                > <?php echo $job_cate_list[$i+1]->code_name ?></td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    <?php endfor ?>
+                                </table>
+                            </div>
+
+                            <div id="skillbox">
+                                <div class="header">
+                                    我會的技能                            
+                                </div>
+                                <table style="font-size:14px;"> 
+                                    <?php for ($i=0;$i<sizeof($skill_list);$i=$i+2): ?>
+                                        <tr height="20">
+                                            <td width="200"><input type="checkbox" name="skill[]" value="<?php echo $skill_list[$i]->code_id ?>"
+                                                <?php if (isset($user_skill_list) && in_array_field($skill_list[$i]->code_id,'code_id',$user_skill_list)): ?>
+                                                    checked
+                                                <?php endif ?>
+                                                ><?php echo $skill_list[$i]->code_name ?></td>
+                                            <td><input type="checkbox" name="skill[]" value="<?php echo $skill_list[$i+1]->code_id ?>"
+                                                <?php if (isset($user_skill_list) && in_array_field($skill_list[$i+1]->code_id,'code_id',$user_skill_list)): ?>
+                                                    checked
+                                                <?php endif ?>
+                                                > <?php echo $skill_list[$i+1]->code_name ?></td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    <?php endfor ?>
+                                </table>
+                            </div>
+                            
+                            <div id="jobbox">
+                                <div class="header">
+                                    <div class="title">工作經驗</div>
+                                    <div class="add addjob" >新增一筆</div>
+                                    <div class="addbtn addjob">+</div>
+                                </div>
+                                <div class="reight">
                                 <ul class="joblist">
                                     
 
@@ -164,143 +197,119 @@
                                        
                                 </ul>
 
-                                <div id="addjob">新增一筆經驗</div>
+                                <div class="addjob">新增一筆經驗</div>
                             </div>
-                        </div>
-                        <!-- *** -->
-                        <div class="skillinfo">
-                            <div class="left">
-                                <p>工作技能</p>
                             </div>
-                            <div class="reight">
-                                <table >
-                                    <tr>
-                                        <td > 
-                                           <select multiple="multiple" id='lstBox1'>
-                                               <?php
-                                                    if(isset($skill_list))
-                                                    {
-                                                        foreach ($skill_list as $key => $row) 
-                                                        {
-                                                ?>
-                                                            <option value   ="<?php echo $row->code_id?>" ><?php echo $row->code_name?></option>
-                                                <?php
-                                                        }
-                                                    }
-                                                ?>
-                                            </select>
-                                        </td>
-                                    <td  >
-                                        <input type='button' id='btnRight' value ='  >  '/>
-                                        <br/> <br/><input type='button' id='btnLeft' value ='  <  '/>
-                                    </td>
-                                    <td >
-                                        <select multiple="multiple" id='lstBox2' name="skill[]" >
-                                         <?php
-                                                    if(isset($user_skill_list))
-                                                    {
-                                                        foreach ($user_skill_list as $key => $row) 
-                                                        {
-                                                ?>
-                                                            <option value="<?php echo $row->code_id?>" selected="selected"><?php echo $row->code_name?></option>
-                                                <?php
-                                                        }
-                                                    }
-                                                ?>
-                                        </select>
+
+                            <div id="langbox">
+                                <div class="header">
+                                    <div class="title">語言能力</div>
+                                    <div class="add addlang" >新增一筆</div>
+                                    <div class="addbtn addlang">+</div>
+                                </div>
+                                <div class="reight">
+                                <ul class="langlist">
+
+
+                                 <?php  
+                                    $count = 1;
+                                    if(isset($data["langs"]))
+                                    foreach ($data["langs"] as $key => $value) {
+                                    // print_r($value);
+                                ?>   
+                                    <li class="l<?php echo $count ?>">
+                                        <input type="text" class="lang" name="lang_id_<?php echo $count ?>" value="<?php echo $value->lang_name ?>"><br>
+                                        <div class="box"> 
+                                        <?php foreach ($level_list as $key2 => $value2): ?>
+                                            <input type="radio" class="levelstate" name="level_state_<?php echo $count ?>" value="<?php echo $value2->code_id ?>"
+                                             <?php echo $value2->code_id==$value->level_id?"checked":""; ?> >
+                                            <span><?php echo $value2->code_name ?></span>
+                                        <?php endforeach ?>
+                                        </div>
+                                    </li>
+
+                                 <?php
+                                      $count++;  
+                                    }
+                                ?>       
+                                </ul>
+                                <div class="addlang">新增一筆語言</div> 
+                            </div>
+                            </div>
+
+                            <table style="font-size:18px;">
+                                <tr height="55">
+                                    <td width="95" align="right" style="letter-spacing:2px;">就業狀態&nbsp;&nbsp;</td>
+                                    <td>
+                                        <select name="now_status" class="EmploymentStatus">
+                                            <option value="0" <?php echo $data[0]->job_status==0?"selected":""; ?> >在職</option>
+                                            <option value="1" <?php echo $data[0]->job_status==1?"selected":""; ?> >在學</option>
+                                            <option value="2" <?php echo $data[0]->job_status==2?"selected":""; ?> >待業</option>
+                                        </select>   
                                     </td>
                                 </tr>
-                                </table>
+                                <tr height="55">
+                                    <td width="95" align="right" style="letter-spacing:2px;">尋找工作&nbsp;&nbsp;</td>
+                                    <td>
+                                        <select name="find_kind" class="LookingForWork">
+                                            <option value="0" <?php echo $data[0]->find_job_kind==0?"selected":""; ?> >我目前在找打工</option>
+                                            <option value="1" <?php echo $data[0]->find_job_kind==1?"selected":""; ?> >我目前在找全職工作</option>
+                                        </select> 
+                                    </td>
+                                </tr>
+                                <tr height="55">
+                                    <td width="95" align="right" style="letter-spacing:2px;">代碼&nbsp;&nbsp;</td>
+                                    <td>
+                                        <input type="text" class="code" name="recommended" value="<?php echo $recommended_id ?>" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <br>
+                            <div id="aboutmebox">
+                                <div class="header">
+                                    關於自已 (限150字)                            
+                                </div>
+                                <textarea name="about_self" id="about_self" placeholder="介紹一下你自已吧" rows="3" cols="40" maxlength="100"><?php echo $data[0]->about_self ?></textarea>
+                                 <input type="file" name="file" id="file" size="20" class="ifile"
+                                     onchange="
+                                        this.form.upfile.value=this.value.substr(this.value.lastIndexOf('\\')+1);
+                                      " style="position:absolute;opacity:0;filter:alpha(opacity=0);">                                  
+                                  <input type="button" class="upfilebtn" value="上傳附檔" onclick="this.form.file.click();">
+                                  <input type="text" name="upfile" class="upfile" size="20" readonly>
+                                  <p style="font-size:12px; color:#999;">支援格式：.doc .docx .pdf .jpg .png</p>
+                                  <br/>
+                                  <input type="Submit" name="Submit" class="Submit" value="完成">
                             </div>
-                        </div>
-                        <!-- *** -->
-                        <div class="employmentstatusinfo">
-                            <div class="left">
-                                <p>就業狀態</p>
-                            </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1">
-                                        <input type="radio" name="now_status" value="0" <?php echo $data[0]->job_status==0?"checked":""; ?> ><span>&nbsp;&nbsp;在職</span>
-                                        <input type="radio" name="now_status" value="1" <?php echo $data[0]->job_status==1?"checked":""; ?> ><span>&nbsp;&nbsp;在學</span>
-                                        <input type="radio" name="now_status" value="2" <?php echo $data[0]->job_status==2?"checked":""; ?> ><span>&nbsp;&nbsp;待業</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- *** -->
-                        <!-- *** -->
-                        <div class="employmentstatusinfo">
-                            <div class="left">
-                                <p>尋找工作</p>
-                            </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1">
-                                        <input type="radio" name="find_kind" value="0" <?php echo $data[0]->find_job_kind==0?"checked":""; ?> ><span style="width:auto;">&nbsp;&nbsp;我目前在找打工&nbsp;&nbsp;</span>
-                                        <input type="radio" name="find_kind" value="1" <?php echo $data[0]->find_job_kind==1?"checked":""; ?> ><span style="width:auto;">&nbsp;&nbsp;我目前在找全職工作</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- *** -->
-                        <?php if($data[0]->recommended == null || $data[0]->recommended == ""){ ?>
-                        <div class="recommendedinfo">
-                            <div class="left">
-                                <p>推薦人</p>
-                            </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1"><input type="text" name="recommended" value="<?php echo $recommended_id ?>"></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <?php } ?>
-                        <div class="aboutmeinfo">
-                            <div class="left">
-                                <p>關於自己</p>
-                            </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1"> 
-                                        <textarea name="about_self" id="about_self" placeholder="介紹一下你自已吧" rows="3" cols="40" maxlength="100"><?php echo $data[0]->about_self ?></textarea>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <?php if($data[0]->fb_account == null || $data[0]->fb_account == ""){ ?>
-                    <div class="aboutmeinfo">
-                            <div class="left">
-                                <p>與Facebook連結</p>
-                            </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1"> 
-                                        <a href="<?php echo $fb_data['login_url'] ?>" ><img src="<?php echo site_url()?>assets/templates/images/icon/facebook-connect.png" /></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <?php } ?>
-                        <div class="submitbox">
-                            <span class="msg"></span>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="submit" class="submit" value="送出">
-                        </div>
+                            <?php if ($data[0]->fb_account == null || $data[0]->fb_account == ""): ?> 
 
+                            <div id="aboutmebox">
+                                <div class="header">
+                                    與Facebook連結                          
+                                </div>
+                                <a href="<?php echo $fb_data['login_url'] ?>" ><img src="<?php echo site_url()?>assets/templates/images/icon/facebook-connect.png" /></a>
+                            </div>
+                                
+                            <?php endif ?>
 
-                    </form>
+                       
+                    </div>
+                     </form>
                 </div>
             </div>
             <div id="fbbox">
                 <?php $this->load->view('_blocks/_facebook')?>
             </div>
+            <?php  $this->load->view('_blocks/_footer')?>
         </div>
-        <?php $this->load->view('_blocks/_footer')?>
     </div>
-    <script type="text/javascript">
-           
+     <script type="text/javascript">
+           function replaceAll(find, replace, str) {
+              return str.replace(new RegExp(find, 'g'), replace);
+            }
 
            jQuery(document).ready(function($) {
+
+                $( ".birthday").datepicker({ dateFormat: 'yy-mm-dd' });
              
                 $('#twzipcode').twzipcode({
                     countyName: 'address_city',
@@ -317,6 +326,7 @@
                             ]
                 });
                 var school_data;
+                var lang_data;
 
                 $.ajax({
                 url: '<?php echo site_url(); ?>register/school' ,
@@ -329,12 +339,26 @@
                     $(".school").autocomplete(school_data, {matchContains: true}); 
                 });
 
-                DATA.dom.addschool=$("#addschool");
+                $.ajax({
+                url: '<?php echo site_url(); ?>register/lang' ,
+                cache: false
+                }).done(function (data) { 
+                    lang_data = $.parseJSON(data); 
+                    // alert(school_data);
+                    // $("#school_id_1").autocomplete(school_data, {matchContains: true});  
+                    // alert(school_data);
+                    $(".lang").autocomplete(lang_data, {matchContains: true}); 
+                });
+
+                DATA.dom.addschool=$(".addschool");
                 DATA.dom.schoollist=$("ul.schoollist");
 
 
-                DATA.dom.addjob=$("#addjob");
+                DATA.dom.addjob=$(".addjob");
                 DATA.dom.joblist=$("ul.joblist");
+
+                DATA.dom.addlang=$(".addlang");
+                DATA.dom.langlist=$("ul.langlist");
 
 
                 DATA.dom.addschool.click(function(){
@@ -353,35 +377,31 @@
                    $( ".datepicker"+num ).datepicker({ dateFormat: 'yy-mm-dd' });
                 });
 
-                $('#btnRight').click(function(e) {
-                    var selectedOpts = $('#lstBox1 option:selected');
-                    if (selectedOpts.length == 0) {
-                        // alert("Nothing to move.");
-                        e.preventDefault();
-                    } 
-                    
-                    $('#lstBox2').append($(selectedOpts).clone());
-                    $(selectedOpts).remove();
-                    // $("#lstBox1 option").prop("selected", "selected");
-                    $("#lstBox2 option" ).each(function() {
-                        // console.log($(this));
-                        $(this).attr('selected', true);
-                       // $(this).prop("selected", "selected");
-                    });
-                    e.preventDefault();
+
+                <?php
+
+                $level_option = '';
+
+                foreach ($level_list as $key => $value) {                    
+                    $level_option .="<input type='radio' class='levelstate' name='level_state_{jsNum}' value='$value->code_id' checked><span>$value->code_name</span>";
+                }
+
+                ?>
+
+                DATA.dom.addlang.click(function(){
+                   num=DATA.dom.langlist.children("li").size()+1;  
+
+                   // var thisOption = "<?php echo $level_option ?>".replace('{jsNum}',num);
+                   var thisOption = replaceAll('{jsNum}',num,"<?php echo $level_option ?>");
+                   console.log(thisOption);
+                   langItem = "<li class='l"+num+"'><input type='text' class='lang' name='lang_id_"+num+"' id='lang_id_"+num+"' value=''><br><div class='box'></div>"+thisOption+"</li>";  
+                   DATA.dom.langlist.append(langItem); 
+
+                   // $("#school_id_"+num).autocomplete(school_data, {matchContains: true});
+                   $(".lang").autocomplete(lang_data, {matchContains: true});   
                 });
 
-                $('#btnLeft').click(function(e) {
-                    var selectedOpts = $('#lstBox2 option:selected');
-                    if (selectedOpts.length == 0) {
-                        // alert("Nothing to move.");
-                        e.preventDefault();
-                    }
-
-                    $('#lstBox1').append($(selectedOpts).clone());
-                    $(selectedOpts).remove();
-                    e.preventDefault();
-                });
+               
 
             });
            
