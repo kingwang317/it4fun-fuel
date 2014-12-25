@@ -141,7 +141,7 @@ body {
 }
 
 #editbox div.reight{
-	width: 700px;
+	width: 80%;
 	min-height: 596px;
 	margin: 0 auto;
 }
@@ -1005,7 +1005,7 @@ width: 100%;
 	min-height: 35px;
 	height: auto;
 	margin-bottom: 12px;
-	text-align: right;
+	text-align: center;
 }
 #editbox div.reight div.submitbox span.msg{
 	color: #f89700;
@@ -1016,7 +1016,6 @@ width: 100%;
 	border-radius: 5px;
 	color: #fff;
 	padding:5px 20px 5px 20px;
-	margin: 0 120px 0 0;
 	font-size: 18px;
 	line-height: 21px;
 	cursor: pointer;
@@ -1213,6 +1212,33 @@ div#logindialog div.fbbox div{
 	position: relative;
 	width:1110px;
 	height: 317px;
+}
+div.area_div{
+	border-style: double;
+	border-width: 3px;
+	margin-top: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+div.btn_div{
+	height: 100px
+}
+input.step_btn {
+position: absolute;
+width: 150px;
+height: 50px;
+background: #8cc63f;
+color: #fff;
+font-size: 18px;
+line-height: 38px;
+cursor: pointer;
+margin-top: 30px;
+}
+p.step_text{
+	color: #999;
+	float: right;
+	margin-top: 50px;
 }
 
 .addr-zip{display: none}

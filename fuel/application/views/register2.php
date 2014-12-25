@@ -27,142 +27,164 @@
                     <form action="<?php echo site_url()?>/register/step2_save/" method="POST" >                    
                         <input type="hidden" name="account" value="<?php echo $account ?>" />
                         <input type="hidden" name="token" value="<?php echo $token ?>" />
-                        <div class="nameinfo">
-                            <div class="left">
-                                <p>姓名</p>
+                        <div class="area_div" id="area_div_2">
+                            <div class="nameinfo">
+                                <div class="left">
+                                    <p>姓名</p>
+                                </div>
+                                <div class="reight">
+                                    <ul>
+                                        <li class="l1"><input type="text" name="name" id="name" value=""></li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1"><input type="text" name="name" id="name" value=""></li>
-                                </ul>
+                            <div class="sexinfo">
+                                <div class="left">
+                                    <p>性別</p>
+                                </div>
+                                <div class="reight">
+                                    <ul>
+                                        <li class="l1">
+                                            <input type="radio" name="sex" value="1" checked><span>&nbsp;&nbsp;男</span>
+                                            <input type="radio" name="sex" value="0"><span>&nbsp;&nbsp;女</span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="sexinfo">
-                            <div class="left">
-                                <p>性別</p>
+                            <!-- *** -->
+                            <div class="birthdayinfo">
+                                <div class="left">
+                                    <p>生日</p>
+                                </div>
+                                <div class="reight">
+                                    <ul>
+                                        <li class="l1"><input type="text" name="birth" id="birth" value="" placeholder="西元年-月-日" /></li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1">
-                                        <input type="radio" name="sex" value="1" checked><span>&nbsp;&nbsp;男</span>
-                                        <input type="radio" name="sex" value="0"><span>&nbsp;&nbsp;女</span>
-                                    </li>
-                                </ul>
+                            <!-- *** -->
+                            <div class="phoneinfo">
+                                <div class="left">
+                                    <p>聯絡電話</p>
+                                </div>
+                                <div class="reight">
+                                    <ul>
+                                        <li class="l1"><input type="text" name="contact_tel" id="contact_tel" value=""></li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <!-- *** -->
-                        <div class="birthdayinfo">
-                            <div class="left">
-                                <p>生日</p>
+                            <div class="addressinfo">
+                                <div class="left">
+                                    <p>聯絡地址</p>
+                                </div>
+                                <div class="reight">
+                                    <ul>
+                                        <li class="l1">
+                                            <div id="twzipcode"></div>
+                                            <input type="text" name="address" id="address" placeholder="地址" value="">
+                                        </li>
+                                    </ul>
+                                    
+                                </div>
                             </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1"><input type="text" name="birth" id="birth" value="" placeholder="西元年-月-日" /></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- *** -->
-                        <div class="phoneinfo">
-                            <div class="left">
-                                <p>聯絡電話</p>
-                            </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1"><input type="text" name="contact_tel" id="contact_tel" value=""></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="addressinfo">
-                            <div class="left">
-                                <p>聯絡地址</p>
-                            </div>
-                            <div class="reight">
-                                <ul>
-                                    <li class="l1">
-                                        <div id="twzipcode"></div>
-                                        <input type="text" name="address" id="address" placeholder="地址" value="">
-                                    </li>
-                                </ul>
-                                
-                            </div>
-                        </div>
-                        <!-- *** -->
-                        <div class="schoolinfo">
-                            <div class="left">
-                                <p>學校</p>
-                            </div>
-                            <div class="reight">
-                                <ul class="schoollist">
-                                    <li class="l1">
-                                        <input type="text" class="school" name="school_id_1" id="school_id_1"  value=""><br>
-                                        <div class="box">
-                                            <input type="radio" class="schoolstate" name="school_state_1" value="G" checked>
-                                            <span>畢業</span>
-                                            <input type="radio" class="schoolstate" name="school_state_1" value="A">
-                                            <span>在學</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div id="addschool">新增一筆學校</div>
-                            </div>
-                        </div>                        
-                        <!-- *** -->
-                        <div class="jobinfo">
-                            <div class="left">
-                                <p>工作經驗</p>
-                            </div>
-                            <div class="reight">
-                                <ul class="joblist">
-                                    <li class="l1">
-                                        <input type="text" name="job_company_name_1" value="" placeholder="公司" /><br>
-                                        <input type="text" name="job_title_1" value="" placeholder="職稱" /><br>
-                                        <input type="text" class="datestart datepicker1" name="job_start_date_1" placeholder="西元年-月-日" value="">
-                                        &nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;
-                                        <input type="text" class="dateend datepicker1" name="job_end_date_1" placeholder="西元年-月-日" value=""><br>
-                                        <b>在職中，離職日期請留空</b>
-                                    </li>
-                                </ul>
-                                <div id="addjob">新增一筆經驗</div>
-                            </div>
-                        </div>
-                        <!-- *** -->
-                        <div class="skillinfo">
-                            <div class="left">
-                                <p>工作技能</p>
-                            </div>
-                            <div class="reight">
+                            <!-- *** -->
+                            <div class="schoolinfo">
+                                <div class="left">
+                                    <p>學校</p>
+                                </div>
+                                <div class="reight">
+                                    <ul class="schoollist">
+                                        <li class="l1">
+                                            <input type="text" class="school" name="school_id_1" id="school_id_1"  value=""><br>
+                                            <div class="box">
+                                                <input type="radio" class="schoolstate" name="school_state_1" value="G" checked>
+                                                <span>畢業</span>
+                                                <input type="radio" class="schoolstate" name="school_state_1" value="A">
+                                                <span>在學</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div id="addschool">新增一筆學校</div>
+                                </div>
+                               
+                            </div>  
 
-                                <table >
-                                    <tr>
-                                        <td > 
-                                           <select multiple="multiple" id='lstBox1'>
-                                               <?php
-                                                    if(isset($skill_list))
-                                                    {
-                                                        foreach ($skill_list as $key => $row) 
+                        </div>    
+                        <div class="btn_div" id="btn_div_2">
+                            <input class="step_btn" type="button" name="step2_next" id="step2_next" value="下一步" style="margin-left:400px"/>
+                            <p class="step_text" style="margin-right:100px">
+                                 第二步，共四步
+                            </p>
+                        </div>              
+                        <!-- *** -->
+                        <div class="area_div" id="area_div_3">
+                            <div class="jobinfo">
+                                <div class="left">
+                                    <p>工作經驗</p>
+                                </div>
+                                <div class="reight">
+                                    <ul class="joblist">
+                                        <li class="l1">
+                                            <input type="text" name="job_company_name_1" value="" placeholder="公司" /><br>
+                                            <input type="text" name="job_title_1" value="" placeholder="職稱" /><br>
+                                            <input type="text" class="datestart datepicker1" name="job_start_date_1" placeholder="西元年-月-日" value="">
+                                            &nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;
+                                            <input type="text" class="dateend datepicker1" name="job_end_date_1" placeholder="西元年-月-日" value=""><br>
+                                            <b>在職中，離職日期請留空</b>
+                                        </li>
+                                    </ul>
+                                    <div id="addjob">新增一筆經驗</div>
+                                </div>
+                            </div>
+                            <!-- *** -->
+                            
+                            <div class="skillinfo">
+                                <div class="left">
+                                    <p>工作技能</p>
+                                </div>
+                                <div class="reight">
+
+                                    <table >
+                                        <tr>
+                                            <td > 
+                                               <select multiple="multiple" id='lstBox1'>
+                                                   <?php
+                                                        if(isset($skill_list))
                                                         {
-                                                ?>
-                                                            <option value="<?php echo $row->code_id?>" ><?php echo $row->code_name?></option>
-                                                <?php
+                                                            foreach ($skill_list as $key => $row) 
+                                                            {
+                                                    ?>
+                                                                <option value="<?php echo $row->code_id?>" ><?php echo $row->code_name?></option>
+                                                    <?php
+                                                            }
                                                         }
-                                                    }
-                                                ?>
+                                                    ?>
+                                                </select>
+                                            </td>
+                                        <td  >
+                                            <input type='button' id='btnRight' value ='  >  '/>
+                                            <br/><br/><input type='button' id='btnLeft' value ='  <  '/>
+                                        </td>
+                                        <td >
+                                            <select multiple="multiple" id='lstBox2' name="skill[]" >
+                                                
                                             </select>
                                         </td>
-                                    <td  >
-                                        <input type='button' id='btnRight' value ='  >  '/>
-                                        <br/><br/><input type='button' id='btnLeft' value ='  <  '/>
-                                    </td>
-                                    <td >
-                                        <select multiple="multiple" id='lstBox2' name="skill[]" >
-                                            
-                                        </select>
-                                    </td>
-                                </tr>
-                                </table>
+                                    </tr>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
+                    </div>
+                    <div class="btn_div" id="btn_div_3">
+                        <input class="step_btn" type="button" name="step3_prev" id="step3_prev" value="上一步" style="margin-left:200px" />
+                        <input class="step_btn" type="button" name="step3_next" id="step3_next" value="下一步" style="margin-left:400px"/>
+                        <p class="step_text" style="margin-right:100px">
+                             第三步，共四步
+                        </p>
+                    </div>
+
                         <!-- *** -->
+                    <div class="area_div" id="area_div_4">
                         <div class="employmentstatusinfo">
                             <div class="left">
                                 <p>就業狀態</p>
@@ -217,13 +239,15 @@
                                 </ul>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- *** -->
-                        <div class="submitbox">
-                            <span class="msg"></span>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="submit" class="submit" value="送出">
-                        </div>
-
+                    <div class="btn_div" id="btn_div_4">
+                        <input class="step_btn" type="button" name="step4_prev" id="step4_prev" value="上一步" style="margin-left:200px" />
+                        <input class="step_btn" type="submit" value="送出" style="margin-left:400px"/>
+                        <p class="step_text" style="margin-right:100px">
+                             第四步，共四步
+                        </p>
+                    </div>
 
                     </form>
                 </div>
@@ -238,6 +262,43 @@
            
 
             jQuery(document).ready(function($) {
+
+                $('.area_div').hide();
+                $('.btn_div').hide();
+
+                $('#area_div_2').show();
+                $('#btn_div_2').show();
+
+
+                $('#step2_next').click(function(){
+                    $('.area_div').hide();
+                    $('.btn_div').hide();
+                    $('#area_div_3').show();
+                    $('#btn_div_3').show();
+                });
+
+                $('#step3_next').click(function(){
+                    $('.area_div').hide();
+                    $('.btn_div').hide();
+                    $('#area_div_4').show();
+                    $('#btn_div_4').show();
+                });
+
+                $('#step3_prev').click(function(){
+                    $('.area_div').hide();
+                    $('.btn_div').hide();
+                    $('#area_div_2').show();
+                    $('#btn_div_2').show();
+                });
+
+                $('#step4_prev').click(function(){
+                    $('.area_div').hide();
+                    $('.btn_div').hide();
+                    $('#area_div_3').show();
+                    $('#btn_div_3').show();
+                });
+
+
                 $('#twzipcode').twzipcode({
                     countyName: 'address_city',
                     districtName: 'address_area',
@@ -248,6 +309,8 @@
                                 'addr-zip' // 郵遞區號
                             ]
                 });
+
+
                 var school_data; 
 
                 $.ajax({
