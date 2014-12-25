@@ -86,6 +86,18 @@
 							</div>
 						</div>	
 						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">面試時間</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control interview_time" name="interview_time" value="<?php echo $row->interview_time ?>" >
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">面試地點</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="interview_place" value="<?php echo $row->interview_place ?>" >
+							</div>
+						</div>
+						<div class="form-group">
 							<div class="col-sm-12" style="text-align:center">
 								<button type="submit" class="btn btn-info" >更新</button>
 								<button type="button" class="btn btn-danger" onClick="aHover('<?php echo $back_url?>')">返回</button>
@@ -100,6 +112,7 @@
 
 <?php echo js($this->config->item('com_javascript'), 'com')?>
 <?php echo js($this->config->item('com_ck_javascript'), 'com')?>
+
 <script>
 	function aHover(url)
 	{
@@ -108,6 +121,8 @@
 
 	jQuery(document).ready(function($) {
 		
+		// $('.interview_time').datepicker({dateFormat: 'yy-mm-dd'});
+		$('.interview_time').datetimepicker();
 		var config =
             {
                 height: 380,

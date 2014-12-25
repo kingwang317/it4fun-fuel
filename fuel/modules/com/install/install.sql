@@ -64,3 +64,6 @@ ALTER TABLE  `mod_drop_resume` CHANGE  `account`  `account` VARCHAR( 50 ) CHARAC
 ALTER TABLE  `mod_drop_resume` CHANGE  `account`  `account` VARCHAR( 50 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 
 ALTER TABLE  `mod_drop_resume` CHANGE  `note`  `note` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+
+ALTER TABLE  `mod_drop_resume` ADD  `interview_time` DATETIME NULL ,
+ADD  `interview_place` VARCHAR( 200 ) NULL

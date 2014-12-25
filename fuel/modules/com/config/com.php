@@ -29,7 +29,8 @@ $config['com_javascript'] = array(
 
 $config['com_ck_javascript'] = array(
     site_url().'assets/admin_js/ckeditor.js',
-    site_url().'assets/admin_js/adapters/jquery.js',  
+    site_url().'assets/admin_js/adapters/jquery.js',   
+    site_url().'assets/admin_js/jQuery-Timepicker/jquery.datetimepicker.js'
 );
 
 
@@ -41,7 +42,8 @@ $config['com_css'] = array(
 	'style.css',
 	site_url().'assets/admin_css/style-responsive.css',
 	site_url().'assets/admin_css/admin_style.css',
-	site_url().'assets/admin_css/jquery-ui.css'
+	site_url().'assets/admin_css/jquery-ui.css',
+    site_url().'assets/admin_js/jQuery-Timepicker/jquery.datetimepicker.css'
 	// site_url().'assets/admin_css/bootstrap.min.css',
 	// site_url().'assets/admin_css/style.css',
 	// site_url().'assets/admin_css/style-responsive.css'
