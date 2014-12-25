@@ -342,9 +342,9 @@ class Com_manage_model extends MY_Model {
 	}
 
 	public function do_edit_deliver($updateAry){
-		$sql = @"UPDATE mod_drop_resume SET process_type=?,note=? WHERE id=?";
+		$sql = @"UPDATE mod_drop_resume SET process_type=?,note=?,interview_time=?,interview_place=? WHERE id=?";
 
-		$para = array($updateAry['process_type'], $updateAry['note'], $updateAry['id']);
+		$para = array($updateAry['process_type'], $updateAry['note'], $updateAry['interview_time'], $updateAry['interview_place'], $updateAry['id']);
 		$success = $this->db->query($sql, $para);
 
 		return $success;

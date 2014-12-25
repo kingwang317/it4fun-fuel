@@ -36,8 +36,8 @@
                                         <p class="date1"><?php echo date_formatter($value->drop_date,'Y-m-d') ?></p>
                                         <p class="title"><?php echo $value->company_name ?></p>
                                         <p class="name">職稱：<a href="<?php echo site_url().'job/detail/'.$value->job_id ?>"><?php echo $value->job_title ?></a></p>
-                                        <p class="date2">面試時間：xxx</p>
-                                        <p class="location">面試地點：xxx</p>
+                                        <p class="date2">面試時間：<?php echo $value->interview_time ?></p>
+                                        <p class="location">面試地點：<?php echo $value->interview_place ?></p>
                                     </div>
                                     <div class="btnbox">
                                         <a href="#" data-id="<?php echo $value->id ?>" class="attend">出席</a>
@@ -75,7 +75,7 @@
             buttons: {
                 "Yes": function () {
                     $(this).dialog('close');
-                    callback(msg,response_type,id);
+                    callback(response_type,id);
                 },
                     "No": function () {
                     $(this).dialog('close');
@@ -86,6 +86,8 @@
     }
 
     function callback(response_type,id) {
+        console.log(response_type);
+        console.log(id);
         $.ajax({
                 url: '<?php echo $notice_response_url ?>',
                 type: 'POST',
@@ -93,9 +95,10 @@
                 data: {drop_id:id,response_type:response_type},
             })
             .done(function(o) {
-                console.log("success");
-                console.log(o);
+                // console.log("success");
+                // console.log(o);
                 alert(o.msg);
+                location.reload();
             })
             .fail(function() {
                 console.log("error");
@@ -104,17 +107,17 @@
                 console.log("complete");
             });
             
-        });
+       
     }
 
     jQuery(document).ready(function($) {
         
         $('.attend').click(function(){
-            fnOpenNormalDialog('確定出席?',0,$(this).data('id'));
+            fnOpenNormalDialog('確定出席?',0,$(this).attr('data-id'));
         });
 
         $('.declined').click(function(){
-            fnOpenNormalDialog('確定婉拒?',1,$(this).data('id'));
+            fnOpenNormalDialog('確定婉拒?',1,$(this).attr('data-id'));
         }); 
          
     });

@@ -1010,6 +1010,20 @@ public function do_update_fbid2resume($account,$fbid){
         return;
     }
 
+    public function get_notice_count($account){
+
+        $sql = @"SELECT count(*) FROM mod_drop_resume a
+         LEFT JOIN mod_job b ON a.job_id = b.id
+         LEFT JOIN mod_company c ON b.company_id = c.id
+         WHERE a.account=? AND a.process_type=2 AND a.response_type = '-1'";
+        $para = array($account);
+        //echo $sql;
+        $query = $this->db->query($sql,$para);
+ 
+
+        return $query->num_rows;
+    }
+
     public function update_notice_response($drop_id,$response_type){
 
         $sql = @"UPDATE mod_drop_resume  SET response_type=?
