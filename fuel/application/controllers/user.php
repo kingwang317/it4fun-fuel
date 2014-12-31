@@ -333,15 +333,21 @@ $this->load->helper('cookie');
 		$fb_data	= $this->code_model->get_fb_data();
 		$vars['fb_data'] = $fb_data;
 
+
+		//print_r($news_results);
+//die();
 		$vars['base_url'] 			= $base_url;
 		$vars['event_target_url'] 		= $event_target_url;
 		$vars['job_target_url'] 		= $job_target_url;
 		$vars['event_photo_path']			= $base_url.'assets/uploads/event/';
+		$vars['news_photo_path']			= $base_url.'assets/uploads/news/';
 		$vars['job_photo_path']			= $base_url.'assets/';
 		$vars['event_results']			= $event_results;
 		$vars['job_results']			= $job_results;
+		$vars['news_results']			= $news_results;
 		$vars['event_detail_url']	= $base_url.'event/detail/';
 		$vars['job_detail_url']	= $base_url.'job/detail/';
+		$vars['news_detail_url']	= $base_url.'job/detail/';
 		$vars['views'] 				= 'mynews';
 		$page_init = array('location' => 'mynews');
 		$this->fuel->pages->render('mynews', $vars);
