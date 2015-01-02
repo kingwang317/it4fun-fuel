@@ -28,9 +28,9 @@
 <div id="logindatabox">
         <form action="<?php echo site_url()?>/register/step1_save/" method="POST" >
             <div class="close"></div>
-            <div class="subject">快速註冊</div>
-            <div class="line"></div>
-            <div class="step1"><img src="<?php echo site_url()?>assets/templates/images/icon/step1.png"></div>
+            <div class="subject">歡迎加入YoungTalent!</div>
+            <div class="step1">只要三分鐘，免自傳，超簡單，快速享有個人專業職涯顧問服務</div>
+            <div><span class="regi_msg" id="regi_error_msg" name="regi_error_msg"></span></div>
             <div class="account">
                 <div class="title">電子郵件</div>
                 <div class="input"><input type="text" class="mail" name="mail" id="mail" value=""></div>
@@ -47,7 +47,10 @@
                 <div class="icon" id="repassword_icon"><div class="ok"></div></div>
             </div>
             <div class="agree">
-                 <p>我同意<a href="<?php echo site_url()?>home/terms/">網站使用條款</a></p><input type="checkbox" name="agree" id="agree" >
+                 <p>我已閱讀並同意<a href="<?php echo site_url()?>home/terms/">使用條款</a></p><input type="checkbox" name="agree" id="agree" >
+                 <br />
+                <span class="regi_msg" style="margin: 5px -125px 5px 125px;">您的所有個人資料均受個人資料庫保護法所保障，<br />我們不會洩漏您的任何資料。</span> 
+                <br />
             </div>
             <div class="submit">
                 <input type="submit" class="submitbtn" name="submitbtn_1" id="submitbtn_1" value="送出">
@@ -56,6 +59,8 @@
             <div class="fbbox">
                 <p>使用臉書登入，又快又方便 &nbsp;&nbsp;&nbsp;&nbsp;</p> 
                 <div><a href="<?php echo $fb_data['login_url'] ?>"><img src="<?php echo site_url()?>assets/templates/images/icon/loginFB.png"></a></div>
+                <br />
+                <span class="regi_msg">我們不會在您的 Facebook 發佈任何貼文</span> 
             </div>
         
         </form>
@@ -64,7 +69,8 @@
         <form action="<?php echo site_url()?>user/do_login" method="POST" >
             <div class="close"></div>
             <div class="subject">登入帳號</div>
-            <div class="line"></div>            
+            <div class="line"></div>        
+            <div><span class="regi_msg" id="login_error_msg" name="login_error_msg"></span><div>    
             <div class="account">
                 <div class="title">電子郵件</div>
                 <div class="input"><input type="text" class="mail" name="login_mail" id="login_mail" value=""></div>
@@ -99,14 +105,16 @@ $("#password").blur(function(){
         if($("#password").val().match(/\d/) && $("#password").val().match(/[a-z]/i) && !$("#password").val().match(/[^a-z0-9]/)){
             
             if($("#password").val().length < 8 || $("#password").val().length > 14 ){
-            alert('密碼長度需為8-14字元英數字結合');
+            //alert('密碼長度需為8-14字元英數字結合');
+            $("#regi_error_msg").text("密碼長度需為8-14字元英數字結合");
             $("#password_icon").hide();
             //break;
             }
             //alert('ok');
             $("#password_icon").show();
         }else{
-            alert('密碼長度需為8-14字元英數字結合');
+            //alert('密碼長度需為8-14字元英數字結合');
+            $("#regi_error_msg").text("密碼長度需為8-14字元英數字結合");
             $("#password").val("");
             $("#password_icon").hide();
 
@@ -117,7 +125,8 @@ $("#repassword").blur(function(){
     //alert($("#password").val().length);
         
        if($("#repassword").val() != $("#password").val() ){
-            alert('密碼必須要一致');
+            //alert('密碼必須要一致');
+            $("#regi_error_msg").text("密碼必須要一致");
             $("#repassword").val("");
             $("#repassword_icon").hide();
        }else{
@@ -146,12 +155,14 @@ $("#submitbtn_1").click(function(){
         if($("#agree").is(":checked")){
             return true;
         }else{
-            alert("請勾選同意網站使用條款！");
+            //alert("請勾選同意網站使用條款！");
+            $("#regi_error_msg").text("請勾選同意網站使用條款！");
             return false;
 
         }
    }else{
-        alert("請確定上述欄位填打正確！");
+        //alert("請確定上述欄位填打正確！");
+        $("#regi_error_msg").text("請確定欄位填打正確！");
         return false;
    }
   
@@ -161,7 +172,8 @@ $("#submitbtn_2").click(function(){
     //alert($("#repassword_icon").is(":visible"));
     //return false;
    if($("#login_mail").val() == "" || $("#login_password").val() == ""){
-        alert("請輸入帳號密碼");
+        //alert("請輸入帳號密碼");
+        $("#login_error_msg").text("請輸入帳號密碼");
             return false;
    }
    return true;

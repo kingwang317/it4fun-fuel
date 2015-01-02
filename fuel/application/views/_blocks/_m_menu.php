@@ -1,8 +1,9 @@
- <div id="menu">
-        <ul>
-            <li><a href="<?php echo site_url()?>home/terms/">條款</a></li>
-            <li><a href="<?php echo site_url()?>home/aboutus/">關於</a></li>
-            <li><a href="<?php echo site_url()?>home/login/">登入</a></li>
-            <li><a href="<?php echo site_url()?>register/">註冊</a></li>
-        </ul>
-    </div>
+<div id="headerbox">
+        <a class="squarebtn" href="<?php echo site_url()?>user/mybox"></a>
+        <div id="logo"></div>
+        <?php if(isset($account) && $account != null && $account != ""){?>
+        <a class="setbtn" href="<?php echo site_url()?>user/editinfo"></a>
+        <?php }else{ ?>
+        <a class="addbtn" href="<?php echo site_url()?>register/index"></a>
+        <?php } ?>
+    </div>    

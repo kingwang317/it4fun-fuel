@@ -113,11 +113,22 @@ class Jobs extends CI_Controller {
 		$vars['results']			= $results;
 		$vars['job_detail_url']	= $base_url.'job/detail/';
 		$vars['page_jump'] 			= $this->pagination->create_links();
-		$vars['views'] 				= 'job_list';
+		//$vars['views'] 				= 'job_list';
 		// $vars['form_action'] = $base_url.'fuel/resume/lists';
 		// $vars['form_method'] = 'POST';
-		$page_init = array('location' => 'job_list');
-		$this->fuel->pages->render('job_list', $vars);
+		//$page_init = array('location' => 'job_list');
+		//$this->fuel->pages->render('job_list', $vars);
+
+
+		if($this->code_model->is_mobile() || true){
+			$vars['views'] = 'm_job_list';
+			$page_init = array('location' => 'm_job_list');
+			$this->fuel->pages->render('m_job_list', $vars);
+		}else{
+			$vars['views'] = 'job_list';
+			$page_init = array('location' => 'job_list');
+			$this->fuel->pages->render('job_list', $vars);
+		}
 
 	}
 
@@ -151,12 +162,23 @@ class Jobs extends CI_Controller {
 		$vars['job_skill'] = rtrim($job_skill_str, ',');
 		$vars['job_lang'] = rtrim($job_lang_str, ',');
 		$vars['job_id'] = $job_id;
-		$vars['views'] 		= 'job_detail';
+		//$vars['views'] 		= 'job_detail';
 		$vars['photo_path']	= $base_url.'assets/';
 		$vars['result']		= $result; 
 		$vars['regi_url']	= $base_url.'api/do_deliver/'.$job_id;
-		$page_init = array('location' => 'job_detail');
-		$this->fuel->pages->render('job_detail', $vars);
+		//$page_init = array('location' => 'job_detail');
+		//$this->fuel->pages->render('job_detail', $vars);
+
+
+		if($this->code_model->is_mobile() || true){
+			$vars['views'] = 'm_job_detail';
+			$page_init = array('location' => 'm_job_detail');
+			$this->fuel->pages->render('m_job_detail', $vars);
+		}else{
+			$vars['views'] = 'job_detail';
+			$page_init = array('location' => 'job_detail');
+			$this->fuel->pages->render('job_detail', $vars);
+		}
 	}
 
 	//notices
@@ -178,11 +200,21 @@ class Jobs extends CI_Controller {
 		$vars['result'] = $result; 
 		$fb_data = $this->code_model->get_fb_data();
 		$vars['fb_data'] = $fb_data; 
-		$vars['views'] 		= 'notices';
+		//$vars['views'] 		= 'notices';
 		$vars['photo_path']	= $base_url.'assets/';  
 		$vars['notice_response_url']	= $base_url.'api/do_notice_response/';
-		$page_init = array('location' => 'notices');
-		$this->fuel->pages->render('notices', $vars);
+		//$page_init = array('location' => 'notices');
+		//$this->fuel->pages->render('notices', $vars);
+
+		if($this->code_model->is_mobile() || true){
+			$vars['views'] = 'm_notices';
+			$page_init = array('location' => 'm_notices');
+			$this->fuel->pages->render('m_notices', $vars);
+		}else{
+			$vars['views'] = 'notices';
+			$page_init = array('location' => 'notices');
+			$this->fuel->pages->render('notices', $vars);
+		}
 	}
 
 	function notice_response(){

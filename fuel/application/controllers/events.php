@@ -45,9 +45,16 @@ class Events extends CI_Controller {
 		$vars['results']			= $results;
 		$vars['event_detail_url']	= $base_url.'event/detail/';
 		$vars['page_jump'] 			= $this->pagination->create_links();
-		$vars['views'] 				= 'event_list';
-		$page_init = array('location' => 'event_list');
-		$this->fuel->pages->render('event_list', $vars);
+
+		if($this->code_model->is_mobile() || true){
+			$vars['views'] = 'm_event_list';
+			$page_init = array('location' => 'm_event_list');
+			$this->fuel->pages->render('m_event_list', $vars);
+		}else{
+			$vars['views'] = 'event_list';
+			$page_init = array('location' => 'event_list');
+			$this->fuel->pages->render('event_list', $vars);
+		}
 
 	}
 

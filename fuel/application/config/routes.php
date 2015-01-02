@@ -50,8 +50,10 @@ $route['register/school'] 			= 'register/getSchool';
 $route['register/lang'] 			= 'register/getLang';
 
 $route['user/myinfo'] 			= 'user/myinfo';
+$route['user/mybox'] 			= 'user/mybox';
 $route['user/myevent'] 			= 'user/myevent';
 $route['user/mynews'] 			= 'user/mynews';
+$route['user/myrecord'] 			= 'user/myrecord';
 $route['user/editinfo'] 		= 'user/editinfo';
 $route['user/do_fb_login'] 			= 'user/do_fb_login';
 $route['user/do_fb_regi'] 			= 'user/do_fb_regi';

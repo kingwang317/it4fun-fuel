@@ -42,7 +42,7 @@ class Home extends CI_Controller {
 		
 		$vars['all_cate']	= $all_cate;
 		$vars['base_url'] = base_url();
-		if($this->code_model->is_mobile()){
+		if($this->code_model->is_mobile() || true){
 			$vars['views'] = 'm_home';
 			$page_init = array('location' => 'm_home');
 			$this->fuel->pages->render('m_home', $vars);
@@ -77,7 +77,7 @@ class Home extends CI_Controller {
 		
 		$vars['all_cate']	= $all_cate;
 		$vars['base_url'] = base_url();
-		if($this->code_model->is_mobile()){
+		if($this->code_model->is_mobile() || true){
 			$vars['views'] = 'm_login';
 			$page_init = array('location' => 'm_login');
 			$this->fuel->pages->render('m_login', $vars);

@@ -1,0 +1,876 @@
+/* http://meyerweb.com/eric/tools/css/reset/ */
+/* v1.0 | 20080212 */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	/* border: 0; */
+	/*outline: 0; */
+	/*font-size: 100%; */
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	/*border-collapse: collapse; */
+	border-spacing: 0;
+}
+
+/* ================================================= */
+
+body {
+	font-family: "微軟正黑體、新細明體、細明體、Arial";
+	color: #666666;
+	background-color:#ffffff;
+}
+
+#maincontain{
+	width:100%;
+	height: auto;	
+	padding: 95px 0 0 0;
+}
+
+#headerbox{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width:100%;
+	height: 95px;
+	padding: 0 0 0 0;
+	background: #8cc63f;
+}
+#headerbox .squarebtn{
+	position: absolute;
+	top: 22px;
+	left: 23px;
+	display: block;
+	width: 47px;
+	height: 48px;
+	background: url("images/btn/btn1.png");
+	cursor: pointer;
+}
+#headerbox .addbtn{
+	position: absolute;
+	top: 16px;
+	right: 23px;
+	display: block;
+	width: 56px;
+	height: 58px;
+	background: url("images/btn/btn2.png");
+	cursor: pointer;
+}
+#headerbox .setbtn{
+	position: absolute;
+	top: 22px;
+	right: 23px;
+	display: block;
+	width: 51px;
+	height: 51px;
+	background: url("images/btn/btn3.png");
+	cursor: pointer;
+}
+#headerbox .arrowbtn{
+	position: absolute;
+	top: 22px;
+	left: 23px;
+	display: block;
+	width: 53px;
+	height: 53px;
+	background: url("images/btn/btn5.png");
+	cursor: pointer;
+}
+#logo{
+	width: 391px;
+	height: 95px;
+	margin: 0 auto;
+	background: url("images/logo/logo.png");
+}
+.loginWelcome{
+	color:#b3b3b3;
+	font-size: 52px;
+	line-height: 165px;
+	text-align: center;
+}
+.loginmsgbox{
+	width: 740px;
+	height: 50px;
+	margin: 0 auto;
+	line-height: 50px;
+	color: #f00;
+	text-align: center;
+	font-size: 30px;
+}
+input.username, input.password{
+	display: block;
+	width: 80%;
+	height: 68px;
+	border: 1px solid #ccc;
+	font-size: 38px;
+	line-height: 68px;
+	margin: 0 auto;
+	margin-bottom: 23px;
+	color: #666;
+}
+input.password{
+	margin-bottom: 43px;
+}
+button.submit{
+	display: block;
+	width: 80%;
+	height: 85px;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 85px;
+	background: #8cc63f;
+	color: #fff;
+	font-size: 38px;
+	border: 0px;
+	cursor: pointer;
+	margin-bottom: 42px;
+}
+.loginorline{
+	display: block;
+	width: 740px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	font-size: 30px;
+	background: url("images/icon/line.png");
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+.fbbtn{
+	display: block;
+	width: 80%;
+	height: 144px;
+	background: url("images/btn/fb.png");
+	margin: 0 auto;
+	margin-bottom: 30px;
+	background-repeat:  no-repeat;
+	background-position: center;
+	background-color: #3b5998;
+}
+
+#navbox{
+	width: 600px;
+	height: auto;
+	margin: 0 auto;
+	padding: 200px 0 0 0;
+}
+#navbox table tr td{
+	position: relative;
+}
+#navbox .msgbox{
+	position: absolute;
+	top: 50px;
+	left: 140px;
+	display: block;
+	width: 40px;
+	height: 40px;
+	background: #900;
+	color: #fff;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+}
+
+#homebox .bannerbox{
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	background: url("images/banner/banner1.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-bottom: 1px solid #ccc;	
+	margin-bottom: 48px;
+}
+#homebox a.loginbtn{
+	display: block;
+	width: 376px;
+	height: 98px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
+#homebox a.RequestAnAccount{
+	display: block;
+	width: 376px;
+	height: 36px;
+	line-height: 36px;
+	font-size: 36px;
+	color: #8cc63f;
+	margin: 0 auto;
+	margin-bottom: 95px;
+	text-align: center;
+	text-decoration: none;
+}
+#homebox ul.logobox{
+	display: table;
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
+#homebox ul.logobox li{
+	float: left;
+}
+#homebox ul.logobox li a{
+	display: block;
+	margin: 0 18px 0 18px;
+}
+
+#myactivitybox h2.titlebox{
+	width: 758px;
+	height: 100px;
+	line-height: 100px;
+	font-size: 32px;
+	margin: 0 auto;
+}
+#myactivitybox ul{
+	width: 758px;
+	display: table;
+	margin: 0 auto;
+	margin-bottom: 40px;
+}
+#myactivitybox ul li{
+	float: left;
+	margin: 0 10px 10px 10px;
+}
+#myactivitybox ul li div.activitybox{
+	width: 356px;
+	height: 504px;
+	background: #f3f3f3;
+	border-bottom: 3px solid #999;
+	border-right: 3px solid #999;
+}
+#myactivitybox ul li div.activitybox p{
+	padding: 5px;
+	line-height: 32px;
+	font-size: 28px;
+}
+#myactivitybox div.line{
+	width: 90%;
+	height: 5px;
+	background: #ccc;
+	margin: 0 auto;
+	margin-bottom: 40px;
+}
+
+#myrecordbox{
+	padding-top: 35px;
+	overflow: hidden;
+}
+#myrecordbox div.btnbox{
+	display: table;
+	width: 700px;
+	height: auto;
+	margin: 0 auto;
+	border-bottom: 5px solid #476520;
+	margin-bottom: 85px;
+}
+#myrecordbox div.btnbox ul li{
+	float: left;
+}
+#myrecordbox div.btnbox ul li div.btn{
+	width: 138px;
+	height: 46px;
+	line-height: 46px;
+	text-align: center;
+	color: #476520;
+	background: #fff;
+	font-size: 28px;
+	cursor: pointer;
+}
+#myrecordbox div.btnbox ul li div.active{
+	color: #fff;
+	background: #476520;
+}
+#myrecordbox .tabbox{
+	display: table;
+	width: 700px;
+	height: auto;
+	min-height: 50px;
+	margin: 0 auto;	
+}
+#myrecordbox .tabbox .row, #myrecordbox .tabbox .list{
+	display: table-row;
+}
+#myrecordbox .tabbox .row .date, #myrecordbox .tabbox .row .content{
+	display: table-cell;	
+}
+#myrecordbox .tabbox .row .date div{
+	width: 240px;
+	height: 45px;
+	line-height: 45px;
+	background: #a5c67a;
+	text-align: center;
+	color: #fff;
+	font-size: 28px;
+}
+#myrecordbox .tabbox .row .content{
+	font-size: 28px;
+	padding: 0 15px 50px 10px;
+	line-height: 35px;
+}
+#myrecordbox  .tabcontentbox{
+	width: 700px;
+	overflow: auto;
+	overflow-x: hidden;
+	margin: 0 auto;	
+}
+#myrecordbox .tabbox .row .brandbox, #myrecordbox .tabbox .list .brand{
+	display: table-cell;
+	width: 155px;
+	height: 60px;
+	text-align: center;
+	color: #afafaf;
+	font-size: 23px;
+}
+#myrecordbox .tabbox .row .datebox, #myrecordbox .tabbox .list .date{
+	display: table-cell;
+	width: 160px;
+	height: 60px;
+	text-align: center;
+	color: #afafaf;
+	font-size: 23px;
+}
+#myrecordbox .tabbox .row .positionbox, #myrecordbox .tabbox .list .position{
+	display: table-cell;
+	width: 288px;
+	height: 60px;
+	text-align: center;
+	color: #afafaf;
+	font-size: 23px;
+}
+#myrecordbox .tabbox .row .statebox, #myrecordbox .tabbox .list .state{
+	display: table-cell;
+	width: 135px;
+	height: 60px;
+	text-align: center;
+	color: #afafaf;
+	font-size: 23px;
+}
+#myrecordbox .tabbox .list .brand, #myrecordbox .tabbox .list .date, #myrecordbox .tabbox .list .position, #myrecordbox .tabbox .list .state{
+	margin: 0px;
+	padding: 0px;
+	vertical-align:middle;
+} 
+
+#vacanciesbox{
+	padding-top: 35px;
+	overflow: hidden;
+}
+#vacanciesbox ul{
+	width: 704px;
+	display: table;
+	margin: 0 auto;
+	margin-bottom: 40px;
+}
+#vacanciesbox ul li{
+	float: left;
+	margin: 0 18px 40px 0px;
+}
+#vacanciesbox ul li:nth-child(2n){
+	float: left;
+	margin: 0 0px 40px 0px;
+}
+#vacanciesbox ul li div.vacanciesbox{
+	width: 343px;
+	height: 458px;
+	background: #f3f3f3;
+	border-bottom: 3px solid #999;
+}
+#vacanciesbox ul li div.vacanciesbox p.company{
+	padding: 5px;
+	line-height: 40px;
+	font-size: 36px;
+	color:#333;
+}
+#vacanciesbox ul li div.vacanciesbox p.job{
+	padding: 5px;
+	line-height: 30px;
+	font-size: 27px;
+	color: #999;
+}
+#vacanciesbox ul li div.vacanciesbox a{
+	display: block;
+	width: 343px;
+	height: 340px;
+	margin-bottom: 20px;
+}
+/* ====================== */
+#vacanciesbox_content{
+	padding-top: 35px;
+	overflow: hidden;
+}
+#vacanciesbox_content table{
+	margin: 0 auto;
+	width: 700px;
+}
+#vacanciesbox_content tr td{
+	font-size: 30px;
+	line-height: 1.2em;
+	color: #333;
+}
+#vacanciesbox_content .company{
+	font-size: 36px;
+	line-height: 1.2em;
+}
+#vacanciesbox_content .vacancies{
+	font-size: 36px;
+	line-height: 1.2em;
+	color:#305400;
+}
+#vacanciesbox_content .desc{
+	font-size: 30px;
+	line-height: 1.2em;
+}
+#vacanciesbox_content a.dropresume{
+	display: block;
+	width: 215px;
+	height: 57px;
+	text-align: center;
+	line-height: 57px;
+	background-color: #8cc63f;
+	color: #fff;
+	box-shadow:  3px 3px 0px 0 #3a521a;
+	border-radius: 10px;
+	font-size: 24px;
+	text-decoration: none;
+	margin: 0 auto;
+	text-shadow:  1px 1px 3px #3a521a;	
+}
+/* ====================== */
+#messagebox{
+	width: 720px;
+	height: auto;
+	margin: 0 auto;
+	padding: 20px 0 0 0;
+	text-align: center;
+}
+#messagebox .titlebox{
+	margin-bottom: 45px;
+}
+#messagebox .msgbox{
+	width: 100%;
+	height: 370px;
+	border-bottom:2px solid #72a330;
+	margin-bottom: 40px;
+}
+#messagebox .msgbox .imgbox{
+	float: left;
+	width: 180px;
+	height: 370px;
+}
+#messagebox .msgbox .descbox{
+	width: auto;
+	height: 370px;
+	margin-left: 180px;
+	text-align: left;
+}
+#messagebox .msgbox .descbox .date{
+	font-size: 26px;
+	line-height: 40px;
+}
+#messagebox .msgbox .descbox .company{
+	font-size: 30px;
+	line-height: 50px;
+	color: #333;
+}
+#messagebox .msgbox .descbox .job{
+	font-size: 30px;
+	line-height: 50px;
+}
+#messagebox .msgbox .descbox .job u{
+	font-size: 30px;
+	line-height: 50px;
+	color: #4ea1ff;
+}
+#messagebox .msgbox .descbox .time{
+	font-size: 30px;
+	line-height: 50px;
+	color: #333;
+}
+#messagebox .msgbox .descbox .addr{
+	font-size: 30px;
+	line-height: 50px;
+	color: #72a330;
+	margin-bottom: 20px;
+}
+#messagebox .msgbox .descbox div.btn{
+
+}
+#messagebox .msgbox .descbox ul li{
+	float: left;
+	margin: 0 10px 0 10px;
+}
+#messagebox .msgbox .descbox .btn1{
+	display: block;
+	width: 115px;
+	height: 65px;
+	text-align: center;
+	background: #72a330;
+	font-size: 30px;
+	font-weight: bold;
+	line-height: 65px;
+	color: #fff;
+	text-decoration: none;
+}
+#messagebox .msgbox .descbox .btn2{ 
+	display: block;
+	width: 115px;
+	height: 65px;
+	text-align: center;
+	background: #a6a6a6;
+	font-size: 30px;
+	font-weight: bold;
+	line-height: 65px;
+	color: #fff;
+	text-decoration: none;
+}
+#messagebox .msgbox .descbox .btn3{ 
+	display: block;
+	width: 115px;
+	height: 65px;
+	text-align: center;
+	background: #f07700;
+	font-size: 30px;
+	color: #fff;
+	font-weight: bold;
+	line-height: 65px;
+	text-decoration: none;
+}
+/* ====================== */
+#newsbox{
+	width: 800px;
+	height: auto;
+	margin: 0 auto;
+	padding: 20px 0 0 0;	
+}
+#newsbox .titlebox{
+	margin-bottom: 20px;
+	text-align: center;
+}
+#newsbox .title{
+	font-size: 36px;
+	line-height: 1.5em;
+	color:#4a6822;
+}
+#newsbox .content{
+	font-size: 30px;
+	line-height: 1.5em;
+	color: #666;
+}
+#newsbox .content a.more{
+	color: #999;
+	text-decoration: none;
+}
+/* ====================== */
+#myinfobox{
+	width: 700px;
+	height: auto;
+	margin: 0 auto;
+	padding: 20px 0 0 0;	
+}
+#myinfobox .titlebox{
+	margin-bottom: 20px;
+	text-align: center;
+	margin-bottom: 93px;
+}
+#myinfobox table.block1{
+	width: 325px;
+	margin: 0 auto;
+	margin-bottom: 68px;
+}
+#myinfobox table.block1 tr td{
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 58px;
+}
+#myinfobox table.block1 tr td span{
+	color:#8cc63f;
+}
+#myinfobox table.block1 tr td select{
+	width: 155px;
+	height: 58px;
+	border: 1px solid #ccc;
+	font-size: 32px;
+	line-height: 58px;
+}
+#myinfobox .headpic{
+	width: 228px;
+	height: 320px;
+	margin: 0 auto;
+	margin-bottom: 40px;
+}
+#myinfobox a.uploadpic{
+	display: block;
+	width: 227px;
+	height: 45px;
+	font-size: 32px;
+	line-height: 58px;
+	color: #9ebdff;
+	margin: 0 auto;
+	text-align: center;
+}
+#myinfobox table.block2{
+	width: 590px;
+	margin: 0 auto;
+	margin-bottom: 0px;
+}
+#myinfobox table.block2 tr td{
+	height: 80px;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 80px;
+}
+#myinfobox table.block2 tr td input{
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 48px;
+}
+#myinfobox table.block2 tr td input.name{
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 48px;
+	border: 0px;
+	border-bottom: 1px solid #666;
+}
+#myinfobox table.block2 tr td select{
+	width: 125px;
+	height: 60px;
+	border: 1px solid #ccc;
+	font-size: 32px;
+	line-height: 60px;
+	text-align: center;
+}
+
+#myinfobox table.block3{
+	width: 590px;
+	margin: 0 auto;
+	margin-bottom: 70px;
+}
+#myinfobox table.block3 tr td{
+	height: 60px;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 60px;
+}
+#myinfobox table.block3 tr td select{
+	width: 125px;
+	height: 60px;
+	border: 1px solid #ccc;
+	font-size: 32px;
+	line-height: 60px;
+	text-align: center;
+}
+#myinfobox table.block3 tr td input.address{
+	width: 590px;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 48px;
+	border: 0px;
+	border-bottom: 1px solid #666;
+}
+
+#myinfobox .block4, #myinfobox .block7, #myinfobox .block8{
+	width: 590px;
+	margin: 0 auto;
+	margin-bottom: 40px;
+}
+#myinfobox .block4 div.title, #myinfobox .block7 div.title, #myinfobox .block8 div.title{
+	position: relative;
+	height: 58px;
+	color: #666;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 58px;
+	border-bottom: 2px solid #666;
+	margin-bottom: 25px;
+}
+#myinfobox .block4 div.title a.addbtn, #myinfobox .block7 div.title a.addbtn, #myinfobox .block8 div.title a.addbtn{
+	position: absolute;
+	top:7px;
+	right: 10px;
+	width: 36px;
+	height: 35px;
+	cursor: pointer;
+}
+#myinfobox .block4 .item, #myinfobox .block7 .item, #myinfobox .block8 .item{
+	width: 100%;
+	height: 62px;
+	line-height: 62px;
+	background: #eeeeee;
+	font-size: 28px;
+	line-height: 62px;
+	font-weight: bold;
+	margin-bottom: 25px;
+}
+#myinfobox .block4 .item p.name, #myinfobox .block7 .item p.name, #myinfobox .block8 .item p.name{
+	float: left;
+	width: 530px;
+	height: 62px;
+	padding: 0 0 0 10px;
+}
+#myinfobox .block4 .item p.btn, #myinfobox .block7 .item p.btn, #myinfobox .block8 .item p.btn{
+	position: relative;
+	width: 50px;
+	height: 62px;
+	margin-left: 540px;
+	line-height: 62px;
+}
+#myinfobox .block4 .item p.btn a, #myinfobox .block7 .item p.btn a, #myinfobox .block8 .item p.btn a{
+	position: absolute;
+	top:12px;
+	right: 5px;
+	display: block;
+	width: 37px;
+	height: 37px;
+	background: url("images/icon/del.png");
+}
+
+#myinfobox .block5{
+	width: 590px;
+	margin: 0 auto;
+	margin-bottom: 60px;
+}
+#myinfobox .block5 div.title{
+	height: 58px;
+	color: #666;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 58px;
+	border-bottom: 2px solid #666;
+	margin-bottom: 25px;
+}
+#myinfobox .block5 table tr td{
+	height: 58px;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 58px;
+}
+#myinfobox .block5 table tr td.chbox{
+	text-align: center;
+}
+#myinfobox .block5 table tr td input{
+	width: 30px;
+	height: 30px;
+	border: 2px solid #666;
+	line-height: 58px;
+}
+
+#myinfobox .block6{
+	width: 590px;
+	margin: 0 auto;
+	margin-bottom: 60px;
+}
+#myinfobox .block6 div.title{
+	height: 58px;
+	color: #666;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 58px;
+	border-bottom: 2px solid #666;
+	margin-bottom: 25px;
+}
+
+#myinfobox .block9 table{
+	width: 590px;
+	margin: 0 auto;
+}
+#myinfobox .block9 table tr td{
+	height: 100px;
+	line-height: 100px;
+	color: #666;
+	font-size: 32px;
+	font-weight: bold; 
+}
+#myinfobox .block9 table tr td input{
+	width: 485px;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 48px;
+	border: 0px;
+	border: 1px solid #666;
+}
+
+#myinfobox .block10{
+	width: 590px;
+	margin: 0 auto;
+	margin-bottom: 60px;
+}
+#myinfobox .block10 div.title{
+	height: 58px;
+	color: #666;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 58px;
+	border-bottom: 2px solid #666;
+	margin-bottom: 25px;
+}
+#myinfobox .block10 textarea{
+	width: 590px;
+	height: 165px;
+}
+#myinfobox .block10 .upfilebtn{
+	width: 140px;
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+	color: #fff;
+	background-color: #666;
+	border: 1px solid #eee;
+	font-size: 28px;
+	font-weight: bold;
+}
+#myinfobox .block10 .upfile{
+	border: 0px;
+}
+
+br.CLEAR{ clear:both; font-size:1px; height:1px; line-height:1px;}
+/*----------消虛線---------*/
+/* For IE, onFocus 的 F 要大寫*/
+a{noFocusline:expression(this.onFocus=this.blur());}     
+/* For Firefox */
+a:focus{<br />	-moz-outline-style:none;}  
+

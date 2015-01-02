@@ -176,32 +176,32 @@ body {
 #mybox .leftbox .box ul{}
 #mybox .leftbox .box ul li{position:relative; border-bottom: 2px solid #dedede;}
 #mybox .leftbox .box ul li:nth-child(1){
-	background: url("images/icon/icon_1.png");
+	background: url("../images/icon/icon_1.png");
 	background-repeat: no-repeat;
 	background-position: 10px 15px; 
 }
 #mybox .leftbox .box ul li:nth-child(2){
-	background: url("images/icon/icon_2.png");
+	background: url("../images/icon/icon_2.png");
 	background-repeat: no-repeat;
 	background-position: 10px 15px; 
 }
 #mybox .leftbox .box ul li:nth-child(3){
-	background: url("images/icon/icon_3.png");
+	background: url("../images/icon/icon_3.png");
 	background-repeat: no-repeat;
 	background-position: 10px 15px; 
 }
 #mybox .leftbox .box ul li:nth-child(4){
-	background: url("images/icon/icon_4.png");
+	background: url("../images/icon/icon_4.png");
 	background-repeat: no-repeat;
 	background-position: 10px 15px; 
 }
 #mybox .leftbox .box ul li:nth-child(5){
-	background: url("images/icon/icon_5.png");
+	background: url("../images/icon/icon_5.png");
 	background-repeat: no-repeat;
 	background-position: 10px 15px; 
 }
 #mybox .leftbox .box ul li:nth-child(6){
-	background: url("images/icon/icon_6.png");
+	background: url("../images/icon/icon_6.png");
 	background-repeat: no-repeat;
 	background-position: 10px 15px; 
 }

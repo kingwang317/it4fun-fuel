@@ -26,7 +26,7 @@ if($recommended_id != null && $recommended_id  != ""){
     <?php if(1==1){ ?>
 
     <?php if($account != null && $account != ""){?>
-    <a href="<?php echo site_url()?>user/myinfo" alt="檢視我的檔案"><div id="myinfobox" ></div></a>
+    <a href="<?php echo site_url()?>user/editinfo" alt="檢視我的檔案"><div id="myinfobox" ></div></a>
     <a href="<?php echo site_url()?>user/logout" alt="登出"><div id="logout" ></div></a>
     <?php }else{ ?>
     <div id="loginbox">登入</div>

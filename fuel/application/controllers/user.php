@@ -58,7 +58,28 @@ class User extends CI_Controller {
 			$this->comm->plu_redirect(site_url(), 0, "此帳號已被註冊");
 		}
 	}
+	function mybox()
+	{	
+		$this->load->model('code_model');
+		
+		$this->set_meta->set_meta_data();
+		fuel_set_var('page_id', "1");
+		$all_cate = array();
 
+		$account = $this->code_model->get_logged_in_account();
+
+		if($account == null){
+			$this->comm->plu_redirect(site_url(), 0, "尚未登入");
+		}
+
+		$account_data = $this->code_model->get_account_data($account);
+		$vars['views'] = 'm_mybox';
+		$vars['account'] = $account;
+		$vars['data'] = $account_data;
+		$page_init = array('location' => 'm_mybox');
+		$this->fuel->pages->render('m_mybox', $vars);
+	
+	}
 	function myinfo()
 	{	
 		$this->load->model('code_model');
@@ -144,14 +165,25 @@ class User extends CI_Controller {
 		$vars['level_list']	= $level_list;
 		$vars['job_cate_list'] = $job_cate_list;
 		$vars['user_skill_list']	= $user_skill_list;
-		$vars['views'] = 'editinfo';
+		//$vars['views'] = 'editinfo';
 		$vars['recommended_id'] = $recommended_id;
 		$vars['account'] = $account;
 		$vars['account'] = $this->input->get("account");
 		$vars['token'] = $this->input->get("token");
 		$vars['data'] = $account_data;
-		$page_init = array('location' => 'home');
-		$this->fuel->pages->render('editinfo', $vars);
+		//$page_init = array('location' => 'home');
+		//$this->fuel->pages->render('editinfo', $vars);
+
+
+		if($this->code_model->is_mobile() || true){
+			$vars['views'] = 'm_editinfo';
+			$page_init = array('location' => 'm_editinfo');
+			$this->fuel->pages->render('m_editinfo', $vars);
+		}else{
+			$vars['views'] = 'editinfo';
+			$page_init = array('location' => 'editinfo');
+			$this->fuel->pages->render('editinfo', $vars);
+		}
 	
 	}
 
@@ -351,6 +383,60 @@ $this->load->helper('cookie');
 		$vars['views'] 				= 'mynews';
 		$page_init = array('location' => 'mynews');
 		$this->fuel->pages->render('mynews', $vars);
+
+
+		if($this->code_model->is_mobile() || true){
+			$vars['views'] = 'm_mynews';
+			$page_init = array('location' => 'm_mynews');
+			$this->fuel->pages->render('m_mynews', $vars);
+		}else{
+			$vars['views'] = 'mynews';
+			$page_init = array('location' => 'mynews');
+			$this->fuel->pages->render('mynews', $vars);
+		}
+	}
+
+	function myrecord()
+	{	
+		$this->load->helper('cookie');
+		$this->load->library('facebook');
+		$this->load->library('set_page');
+		$this->load->model('code_model');
+		$base_url = base_url();
+		$this->load->module_model(EVENT_FOLDER, 'event_manage_model');
+		$this->set_meta->set_meta_data();
+		fuel_set_var('page_id', "1");
+		$filter = '';
+		$target_url = $base_url.'event/';
+
+
+		$results = $this->event_manage_model->get_event_list(0, 4, $filter);
+
+		$account = $this->code_model->get_logged_in_account();
+
+		$filter = " WHERE  event_id in (SELECT event_id FROM mod_register WHERE account = '$account' ORDER BY drop_date )";
+
+		$results_my = $this->event_manage_model->get_event_list(0, 4, $filter);
+
+		$fb_data	= $this->code_model->get_fb_data();
+		$vars['fb_data'] = $fb_data;
+
+		$vars['base_url'] 			= $base_url;
+		$vars['target_url'] 		= $target_url;
+		$vars['photo_path']			= $base_url.'assets/uploads/event/';
+		$vars['results']			= $results;
+		$vars['results_my']			= $results_my;
+		$vars['event_detail_url']	= $base_url.'event/detail/';
+		
+		if($this->code_model->is_mobile() || true){
+			$vars['views'] = 'm_myrecord';
+			$page_init = array('location' => 'm_myrecord');
+			$this->fuel->pages->render('m_myrecord', $vars);
+		}else{
+			$vars['views'] = 'myrecord';
+			$page_init = array('location' => 'myrecord');
+			$this->fuel->pages->render('myrecord', $vars);
+		}
 	}
 
 	function step3()
