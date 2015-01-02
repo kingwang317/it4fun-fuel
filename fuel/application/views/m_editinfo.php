@@ -210,7 +210,7 @@
             </div>
 
             <div class="block8">
-                <div class="title">語言能力 <a class="addbtn addlang"<img src="<?php echo site_url()?>assets/mobile_template/images/icon/add.png"></a></div>
+                <div class="title">語言能力 <a class="addbtn addlang"><img src="<?php echo site_url()?>assets/mobile_template/images/icon/add.png"></a></div>
                 <!-- <div class="item">
                     <p class="name">英文：佳（TOEIC900）</p>
                     <p class="btn"><a class="delbtn" href="#"></a></p>
@@ -230,7 +230,7 @@
                 ?>   
                     <li class="l<?php echo $count ?>">
                         <input type="text" class="lang" name="lang_id_<?php echo $count ?>" value="<?php echo $value->lang_name ?>"><br>
-                        <div class="box"> 
+                        
                         <?php foreach ($level_list as $key2 => $value2): ?>
                             <input type="radio" class="levelstate" name="level_state_<?php echo $count ?>" value="<?php echo $value2->code_id ?>"
                              <?php echo $value2->code_id==$value->level_id?"checked":""; ?> >
@@ -379,7 +379,7 @@
                    // var thisOption = "<?php echo $level_option ?>".replace('{jsNum}',num);
                    var thisOption = replaceAll('{jsNum}',num,"<?php echo $level_option ?>");
                    console.log(thisOption);
-                   langItem = "<li class='l"+num+"'><input type='text' class='lang' name='lang_id_"+num+"' id='lang_id_"+num+"' value=''><br><div class='box'></div>"+thisOption+"</li>";  
+                   langItem = "<li class='l"+num+"'><input type='text' class='lang' name='lang_id_"+num+"' id='lang_id_"+num+"' value=''></li><br><div class='box'>"+thisOption+"</div>";  
                    DATA.dom.langlist.append(langItem); 
 
                    // $("#school_id_"+num).autocomplete(school_data, {matchContains: true});
