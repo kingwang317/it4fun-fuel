@@ -13,23 +13,24 @@
 <body>
     <div id="maincontain">
         <div id="newsbox">     
-            <h2 class="titlebox"><img src="images/icon/news.png"></h2>       
+            <h2 class="titlebox"><img src="<?php echo site_url()?>assets/mobile_template/images/icon/news.png"></h2>       
             <ul>
-                <li>                    
-                    <div class="imgbox"><img src="images/pic/pic8.png"></div>
-                    <div class="title">葉丙成：懊悔，是我能教給學生的最棒功課 </div>
-                    <div class="content">
-                        葉丙成：懊悔，是我能教給學生的最棒功課這位從外型到思維，都致力於打破刻板印象和統一規格的六年級教授，在忙到竟然經常連午飯都沒 (<a href="#" class="more">more</a>)
-                    </div>
-                </li> 
+                 <?php if (isset($news_results)): ?>
+                             <?php foreach ($news_results as $value): ?>
 
-                <li>                    
-                    <div class="imgbox"><img src="images/pic/pic8.png"></div>
-                    <div class="title">葉丙成：懊悔，是我能教給學生的最棒功課 </div>
-                    <div class="content">
-                        葉丙成：懊悔，是我能教給學生的最棒功課這位從外型到思維，都致力於打破刻板印象和統一規格的六年級教授，在忙到竟然經常連午飯都沒 (<a href="#" class="more">more</a>)
-                    </div>
-                </li>
+                            <li>                    
+                                <div class="imgbox"><img src="<?php echo $news_photo_path.$value->img; ?>"></div>
+                                <div class="title"><?php echo $value->title ?></div>
+                                <div class="content">
+                                    <?php echo mb_substr( strip_tags($value->content),0,80,"utf-8"); ?> (<a href="#" class="more">more</a>)
+                                </div>
+                            </li> 
+
+                            <?php endforeach ?>
+                <?php else: ?>
+                    找不到最新消息
+                <?php endif ?>
+
                                              
             </ul>
             <div class="line"></div>

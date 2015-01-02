@@ -15,21 +15,30 @@
         <div id="myactivitybox">     
             <h2 class="titlebox">我參加的活動</h2>       
             <ul>
-                <li>
-                    <div class="activitybox">
-                        <a href="#"><img src="images/pic/pic2.png"></a>
-                        <p>通往職場的早鳥"獵"車：藥廠以及醫材業 </p>
-                        <p>2014/09/26 16:00</p>
-                    </div>
-                </li>
 
-                <li>
-                    <div class="activitybox">
-                        <a href="#"><img src="images/pic/pic2.png"></a>
-                        <p>通往職場的早鳥"獵"車：藥廠以及醫材業 </p>
-                        <p>2014/09/26 16:00</p>
-                    </div>
-                </li>                                
+
+                <?php
+                    if(isset($results_my))
+                    {
+                        foreach($results_my as $row)
+                        {
+                ?>
+
+                            <li>
+                                <div class="activitybox">
+                                    <a href="<?php echo $event_detail_url.$row->event_id?>"><img src="<?php echo $photo_path.$row->event_photo?>"></a>
+                                    <p><?php echo $row->event_title?>"><?php echo mb_substr($row->event_title, 0, 8, "utf-8")?>...</p>
+                                    <p><?php echo mb_substr($row->event_start_date, 0, 16, "utf-8")?></p>
+                                </div>
+                            </li>
+                               
+                <?php
+                        }
+                    }else{
+                        echo "沒有參加過活動！";
+                    }
+                ?>
+                              
             </ul>
             <div class="line"></div>
         </div>

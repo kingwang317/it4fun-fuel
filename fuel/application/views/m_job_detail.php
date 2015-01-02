@@ -16,18 +16,18 @@
             <table>
 
                 <tr>
-                    <td width="234" valign="top"><img src="images/pic/pic4.png"></td>
+                    <td width="234" valign="top"><img src="<?php echo $photo_path.$result->company_logo; ?>"></td>
                     <td width="466" valign="top">
-                        <p class="company">台灣優衣褲股份有限公司</p>
-                        <p class="vacancies">賣場工讀生</p>
-                        <p class="desc">UNIQLO誠徵充滿朝氣與活力的工作夥伴，與我們一同創造讓顧客能夠「隨意挑選」的店舖環境。</p>
+                         <p class="company"><?php echo $result->company_name ?></p>
+                        <p class="vacancies"><?php echo $result->job_title ?></p>
+                        <p class="desc"><?php echo htmlspecialchars_decode($result->job_intro) ?></p>
                     </td>
                 </tr>
             </table>
             <table>
                 <tr height="10"><td width="68">&nbsp;</td><td width="632">&nbsp;</td></tr>
                 <tr height="35">
-                    <td width="68"valign="top"><img src="images/icon/icon_1.jpg">
+                    <td width="68"valign="top"><img src="<?php echo site_url()?>assets/mobile_template/images/icon/icon_1.jpg">
                     </td>
                     <td width="632" valign="top">                                 
                         台北市 內湖區陽光街242號2樓
@@ -35,10 +35,10 @@
                 </tr>
                 <tr height="10"><td width="68">&nbsp;</td><td width="632">&nbsp;</td></tr>
                 <tr height="35">
-                    <td width="68" valign="top"><img src="images/icon/icon_2.jpg">
+                    <td width="68" valign="top"><img src="<?php echo site_url()?>assets/mobile_template/images/icon/icon_2.jpg">
                     </td>
                     <td width="632" valign="top">                                 
-                        <img src="images/pic/pic6.png">
+                       <?php echo htmlspecialchars_decode($result->job_desc) ?>
                     </td>
                 </tr>
                 <tr height="10"><td width="68">&nbsp;</td><td width="632">&nbsp;</td></tr>                
@@ -50,10 +50,10 @@
                 </tr>
                 <tr height="10"><td width="68">&nbsp;</td><td width="632">&nbsp;</td></tr>
                 <tr height="35">
-                    <td width="68" valign="top"><img src="images/icon/icon_5.jpg">
+                    <td width="68" valign="top"><img src="<?php echo site_url()?>assets/mobile_template/images/icon/icon_5.jpg">
                     </td>
                     <td width="632" valign="top">                                 
-                       <img src="images/pic/pic5.png">
+                       <?php echo htmlspecialchars_decode($result->company_intro) ?>      
                     </td>
                 </tr>
                 <tr height="10"><td width="68">&nbsp;</td><td width="632">&nbsp;</td></tr>
@@ -64,10 +64,38 @@
                     </td>
                 </tr>
             </table>
+
             <br>
         </div>
     </div>
     <?php $this->load->view('_blocks/_m_menu')?>
 </body>
+<script type="text/javascript">
+
+    jQuery(document).ready(function($) {
+        $(".dropresume").click(function(event) {
+            $.ajax({
+                url: '<?php echo $regi_url ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {job_id: '<?php echo $job_id ?>'},
+            })
+            .done(function(o) {
+                console.log("success");
+                console.log(o);
+                alert(o.msg);
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+            
+        });
+    });
+
+</script>
+
 </html>
 
