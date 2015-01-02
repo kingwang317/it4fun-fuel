@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="<?php echo site_url()?>assets/mobile_template/style.css" type="text/css" media="all" >
     <script type="text/javascript" src="<?php echo site_url()?>assets/mobile_template/Scripts/lib/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/mobile_template/Scripts/index.js"></script>
+    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
+    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.css" type="text/css" media="all" >
 </head>
 
 <body>
@@ -41,6 +43,7 @@
             </ul>
             <div class="line"></div>
         </div>
+        <div id="dialog-confirm"></div>
     </div>
     <?php $this->load->view('_blocks/_m_menu')?>
     <script type="text/javascript">

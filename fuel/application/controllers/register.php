@@ -76,7 +76,13 @@ class Register extends CI_Controller {
 		$recommended_id = $this->input->cookie("ytalent_recommended_id");
 		$level_list = $this->code_model->get_level();
 		$job_cate_list = $this->code_model->get_job_cate("job_cate");
+		$account = $this->code_model->get_logged_in_account();
+		if($account == null){
+			$this->comm->plu_redirect(site_url(), 0, "尚未登入");
+		}
+		$account_data = $this->code_model->get_account_data($account);
 
+		$vars['data'] = $account_data;
 		$vars['school_list']	= $school_list;
 		$vars['skill_list']	= $skill_list;
 		$vars['level_list']	= $level_list;
@@ -85,12 +91,13 @@ class Register extends CI_Controller {
 		$vars['account'] = $this->input->get("account");
 		$vars['token'] = $this->input->get("token");
 		$vars['post'] = "";
+		$vars['form_action'] = 'user/do_edit'; 
 
 
-		if($this->code_model->is_mobile()){
-			$vars['views'] = 'm_register2';
-			$page_init = array('location' => 'm_register2');
-			$this->fuel->pages->render('m_register2', $vars);
+		if($this->code_model->is_mobile() || true){
+			$vars['views'] = 'm_editinfo';
+			$page_init = array('location' => 'm_editinfo');
+			$this->fuel->pages->render('m_editinfo', $vars);
 		}else{
 			$vars['views'] = 'register2';
 			$page_init = array('location' => 'register2');
