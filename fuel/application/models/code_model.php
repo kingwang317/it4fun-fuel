@@ -492,6 +492,7 @@ public function do_update_fbid2resume($account,$fbid){
         $skill_arr = array();
         $lang_arr = array();
         $level_arr = array();
+        $exclude_arr = array();//exclude_cate
 
         foreach ($data as $key => $value) {
             //echo $key."-".strpos($key,"job_");
@@ -501,6 +502,8 @@ public function do_update_fbid2resume($account,$fbid){
                 $exp_arr[$key] = $value;
             }elseif(strpos($key,"skill")>-1){
                 $skill_arr = $value;
+            }elseif(strpos($key,"exclude_cate")>-1){
+                $exclude_arr = $value;
             }elseif(strpos($key,"lang_")>-1){
                 $lang_arr[$key] = $value;
             }elseif(strpos($key,"level_")>-1){
@@ -510,7 +513,7 @@ public function do_update_fbid2resume($account,$fbid){
             }
         }
 
-        // print_r($level_arr);
+        // print_r($skill_arr);
         // die;
 
         $update_accunt_sql = " UPDATE mod_resume SET 
@@ -524,10 +527,16 @@ public function do_update_fbid2resume($account,$fbid){
                                 job_status = ?,
                                 find_job_kind = ?,
                                 about_self = ?,
-                                sex = ?
+                                sex = ?,
+                                exclude_cate = ?
                                 WHERE account = ? ";
 
+        $exclude_str = '';
 
+        if (isset($exclude_arr) && sizeof($exclude_arr) > 0) {
+            $exclude_str = implode(";", $exclude_arr);;
+        }
+                                
         $para = array(
             $account_arr["name"],
             $account_arr["birth"], 
@@ -540,6 +549,7 @@ public function do_update_fbid2resume($account,$fbid){
             $account_arr["find_kind"], 
             $account_arr["about_self"], 
             $account_arr["sex"],
+            $exclude_str,
             $account_arr["account"]
             );
         $res_1 = $this->db->query($update_accunt_sql, $para);
@@ -667,6 +677,8 @@ public function do_update_fbid2resume($account,$fbid){
                 $key
             );
 
+            // print_r($para);
+
             $this->db->query($insert_skill_sql, $para);
         }
 
@@ -676,7 +688,7 @@ public function do_update_fbid2resume($account,$fbid){
                 );
         $this->db->query($delete_lang_sql, $para);
 
-        print_r($lang_arr);
+        // print_r($lang_arr);
  
         for($i = 1; $i < 100 ;$i++){
             if(isset($lang_arr["lang_id_$i"]) && $lang_arr["lang_id_$i"] != ""){

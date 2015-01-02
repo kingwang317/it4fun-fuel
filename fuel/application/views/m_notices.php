@@ -15,70 +15,97 @@
         <div id="messagebox">     
             <h2 class="titlebox"><img src="images/icon/msg.png"></h2>       
             <ul>
-                <li>
-                    <div class="msgbox">
-                        <div class="imgbox"><img src="images/pic/pic7.png"></div>
-                        <div class="descbox">
-                            <div class="date">2014-08-29</div>
-                            <div class="company">UNIQLO TAIWAN</div>
-                            <div class="job"><u>工讀生</u></div>
-                            <div class="time">2014-12-31 18:00</div>
-                            <div class="addr">台北市信義區信義路五段七號24樓</div>
-                            <div class="btn">
-                                <ul>
-                                    <li><a href="#" class="btn1">出席</a></li>
-                                    <li><a href="#" class="btn2">婉拒</a></li>
-                                    <li><a href="#" class="btn3">回覆</a></li>                                    
-                                </ul>
+                <?php if (isset($result)): ?>
+                    <?php foreach ($result as $key => $value): ?>
+                        <li>
+                            <div class="msgbox">
+                                <div class="imgbox"><img src="<?php echo $photo_path.$value->company_logo; ?>"></div>
+                                <div class="descbox">
+                                    <div class="date"><?php echo date_formatter($value->drop_date,'Y-m-d') ?></div>
+                                    <div class="company"><?php echo $value->company_name ?></div>
+                                    <div class="job"><u><?php echo $value->job_title ?></u></div>
+                                    <div class="time"><?php echo $value->interview_time ?></div>
+                                    <div class="addr"><?php echo $value->interview_place ?></div>
+                                    <div class="btn">
+                                        <ul>
+                                            <li><a href="#" data-id="<?php echo $value->id ?>" class="btn1 attend">出席</a></li>
+                                            <li><a href="#" data-id="<?php echo $value->id ?>" class="btn2 declined">婉拒</a></li>
+                                            <li><a href="#" data-id="<?php echo $value->id ?>" class="btn3 reply">回復</a></li>   
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </li> 
-
-                <li>
-                    <div class="msgbox">
-                        <div class="imgbox"><img src="images/pic/pic7.png"></div>
-                        <div class="descbox">
-                            <div class="date">2014-08-29</div>
-                            <div class="company">UNIQLO TAIWAN</div>
-                            <div class="job"><u>工讀生</u></div>
-                            <div class="time">2014-12-31 18:00</div>
-                            <div class="addr">台北市信義區信義路五段七號24樓</div>
-                            <div class="btn">
-                                <ul>
-                                    <li><a href="#" class="btn1">出席</a></li>
-                                    <li><a href="#" class="btn2">婉拒</a></li>
-                                    <li><a href="#" class="btn3">回覆</a></li>                                    
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </li> 
-
-                <li>
-                    <div class="msgbox">
-                        <div class="imgbox"><img src="images/pic/pic7.png"></div>
-                        <div class="descbox">
-                            <div class="date">2014-08-29</div>
-                            <div class="company">UNIQLO TAIWAN</div>
-                            <div class="job"><u>工讀生</u></div>
-                            <div class="time">2014-12-31 18:00</div>
-                            <div class="addr">台北市信義區信義路五段七號24樓</div>
-                            <div class="btn">
-                                <ul>
-                                    <li><a href="#" class="btn1">出席</a></li>
-                                    <li><a href="#" class="btn2">婉拒</a></li>
-                                    <li><a href="#" class="btn3">回覆</a></li>                                    
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </li>                              
+                        </li> 
+                    <?php endforeach ?>
+                <?php endif ?>                                            
             </ul>
             <div class="line"></div>
         </div>
     </div>
     <?php $this->load->view('_blocks/_m_menu')?>
+    <script type="text/javascript">
+
+        function fnOpenNormalDialog(msg,response_type,id) {
+            $("#dialog-confirm").html(msg);
+
+            // Define the Dialog and its properties.
+            $("#dialog-confirm").dialog({
+                resizable: false,
+                modal: true,
+                title: "",
+                height: 250,
+                width: 400,
+                buttons: {
+                    "Yes": function () {
+                        $(this).dialog('close');
+                        callback(response_type,id);
+                    },
+                        "No": function () {
+                        $(this).dialog('close');
+                        // callback(false);
+                    }
+                }
+            });
+        }
+
+        function callback(response_type,id) {
+            console.log(response_type);
+            console.log(id);
+            $.ajax({
+                    url: '<?php echo $notice_response_url ?>',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {drop_id:id,response_type:response_type},
+                })
+                .done(function(o) {
+                    // console.log("success");
+                    // console.log(o);
+                    alert(o.msg);
+                    location.reload();
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                    console.log("complete");
+                });
+                
+           
+        }
+
+        jQuery(document).ready(function($) {
+            
+            $('.attend').click(function(){
+                fnOpenNormalDialog('確定出席?',0,$(this).attr('data-id'));
+            });
+
+            $('.declined').click(function(){
+                fnOpenNormalDialog('確定婉拒?',1,$(this).attr('data-id'));
+            }); 
+             
+        });
+
+    </script>
 </body>
 </html>
 
