@@ -274,12 +274,18 @@
                                     關於自已 (限150字)                            
                                 </div>
                                 <textarea name="about_self" id="about_self" placeholder="介紹一下你自已吧" rows="3" cols="40" maxlength="100"><?php echo $data[0]->about_self ?></textarea>
-                                 <input type="file" name="file" id="file" size="20" class="ifile"
+                                 <input type="file" name="about_att" id="file" size="20" class="ifile"
                                      onchange="
                                         this.form.upfile.value=this.value.substr(this.value.lastIndexOf('\\')+1);
                                       " style="position:absolute;opacity:0;filter:alpha(opacity=0);">                                  
-                                  <input type="button" class="upfilebtn" value="上傳附檔" onclick="this.form.file.click();">
+                                  <input type="button" class="upfilebtn" value="上傳附檔" onclick="this.form.about_att.click();">
                                   <input type="text" name="upfile" class="upfile" size="20" readonly>
+                                  <br>
+                                  <input type="hidden" value="<?php echo $data[0]->about_att; ?>" name="exist_about_att" /> 
+                                  <?php if (isset($data[0]->about_att) && !empty($data[0]->about_att)): ?> 
+                                    <a href="<?php echo site_url()."assets/about_att/".$data[0]->about_att; ?>" target="_blank" ><?php echo $data[0]->about_att ?></a>
+                                    <input type="checkbox" name="about_att_delete" />刪除
+                                  <?php endif ?> 
                                   <p style="font-size:12px; color:#999;">支援格式：.doc .docx .pdf .jpg .png</p>
                                   <br/>
                                   <input type="Submit" name="Submit" class="Submit" value="完成">

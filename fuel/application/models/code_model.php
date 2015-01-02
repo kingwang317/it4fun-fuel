@@ -568,6 +568,16 @@ public function do_update_fbid2resume($account,$fbid){
             );                       
             $res = $this->db->query($update_sql_2, $para);
         }
+        if(isset($account_arr["about_att"]) ){
+            $update_sql_3 = " UPDATE mod_resume SET 
+                        about_att = ?
+                        WHERE account = ? ";
+            $para = array(
+                $account_arr["about_att"], 
+                $account_arr["account"]
+            );                       
+            $res = $this->db->query($update_sql_3, $para);
+        }
 
        
 
