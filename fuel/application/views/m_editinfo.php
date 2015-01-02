@@ -21,7 +21,7 @@
             <form action="<?php echo site_url()?>user/do_edit" method="POST" enctype="multipart/form-data" >
             <input type="hidden" name="account" value="<?php echo $account ?>" />
             <input type="hidden" name="token" value="<?php //echo $token ?>" />
-            <h2 class="titlebox"><img src="<?php echo site_url()?>assets/templates/images/icon/myinfo.png"></h2>       
+            <h2 class="titlebox"><img src="<?php echo site_url()?>assets/mobile_template/images/icon/myinfo.png"></h2>       
             <table class="block1">
                 <tr>
                     <td><span>就業狀態</span></td>
@@ -53,8 +53,9 @@
                     <img data-src="holder.js/140x140" alt="140x140" src="https://graph.facebook.com/<?php echo $data[0]->fb_account  ?>/picture?type=large" style="width: 106px;">
                    
                 <?php } ?>
+                <input type="file" name="avatar" id="avatar" class="avatar">
             </div>
-            <input type="file" name="avatar" id="avatar">
+            
             <table class="block2">
                 <tr>
                     <td><span>姓名</span></td>
@@ -102,7 +103,7 @@
             </table>
 
             <div class="block4">
-                <div class="title">就讀學校 <a class="addbtn addschool"><img src="images/icon/add.png"></a></div>
+                <div class="title">就讀學校 <a class="addbtn addschool"><img src="<?php echo site_url()?>assets/mobile_template/images/icon/add.png"></a></div>
               <!--   <div class="item">
                     <p class="name">研究所：臺灣大學 兩性研究所</p>
                     <p class="btn"><a class="delbtn" href="#"></a></p>
@@ -175,7 +176,7 @@
             </div>
 
             <div class="block7">
-                <div class="title">工作經驗 <a class="addbtn addjob"><img src="images/icon/add.png"></a></div>
+                <div class="title">工作經驗 <a class="addbtn addjob"><img src="<?php echo site_url()?>assets/mobile_template/images/icon/add.png"></a></div>
                <!--  <div class="item">
                     <p class="name">PropleSearch : Intern  2014</p>
                     <p class="btn"><a class="delbtn" href="#"></a></p>
@@ -196,7 +197,7 @@
                         <input type="text" name="job_company_name_<?php echo $count ?>" value="<?php echo $value->company_name ?>" placeholder="公司" /><br>
                         <input type="text" name="job_title_<?php echo $count ?>" value="<?php echo $value->job_title ?>" placeholder="職稱" /><br>
                         <input type="text" class="datestart datepicker<?php echo $count ?>" name="job_start_date_<?php echo $count ?>" placeholder='西元年-月-日' value="<?php echo $value->job_start_date ?>">
-                        &nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;
+                        <br />至<br />
                         <input type="text" class="dateend datepicker<?php echo $count ?>" name="job_end_date_<?php echo $count ?>" placeholder='西元年-月-日' value="<?php echo $value->job_end_date ?>"><br>
                         <b>在職中，離職日期請留空</b>
                     </li>
@@ -209,7 +210,7 @@
             </div>
 
             <div class="block8">
-                <div class="title">語言能力 <a class="addbtn addlang"<img src="images/icon/add.png"></a></div>
+                <div class="title">語言能力 <a class="addbtn addlang"<img src="<?php echo site_url()?>assets/mobile_template/images/icon/add.png"></a></div>
                 <!-- <div class="item">
                     <p class="name">英文：佳（TOEIC900）</p>
                     <p class="btn"><a class="delbtn" href="#"></a></p>
@@ -280,7 +281,7 @@
             </div>
 
             <div class="block10">
-                <input type="Submit" name="Submit" class="Submit" value="完成">
+                <input type="Submit" name="Submit" class="submit" value="完成">
             </div>
              </form>
         </div>
@@ -356,7 +357,7 @@
 
                 DATA.dom.addjob.click(function(){
                    num=DATA.dom.joblist.children("li").size()+1; 
-                   jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value='' placeholder='公司' /><br><input type='text' name='job_title_"+num+"' value='' placeholder='職稱' /><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' placeholder='西元年-月-日' value=''>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' placeholder='西元年-月-日' value=''><br><b>在職中，離職日期請留空</b></li>";
+                   jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value='' placeholder='公司' /><br><input type='text' name='job_title_"+num+"' value='' placeholder='職稱' /><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' placeholder='西元年-月-日' value=''><br />至<br /><input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' placeholder='西元年-月-日' value=''><br><b>在職中，離職日期請留空</b></li>";
                    DATA.dom.joblist.append(jobItem);
                    $( ".datepicker"+num ).datepicker({ dateFormat: 'yy-mm-dd' });
                 });

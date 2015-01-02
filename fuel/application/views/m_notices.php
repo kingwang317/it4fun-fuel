@@ -13,7 +13,7 @@
 <body>
     <div id="maincontain">
         <div id="messagebox">     
-            <h2 class="titlebox"><img src="images/icon/msg.png"></h2>       
+            <h2 class="titlebox"><img src="<?php echo site_url()?>assets/mobile_template/images/icon/msg.png"></h2>       
             <ul>
                 <?php if (isset($result)): ?>
                     <?php foreach ($result as $key => $value): ?>

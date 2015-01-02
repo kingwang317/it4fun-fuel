@@ -898,6 +898,42 @@ div.checkbox{
   	margin-bottom: 20px;
 }
 
+input.school{
+	width: 590px;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 48px;
+	border: 0px;
+	border-bottom: 1px solid #666;
+}
+
+.joblist input{
+	width: 590px;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 48px;
+	border: 0px;
+	border-bottom: 1px solid #666;
+}
+
+div.box{
+	font-size: 24px;
+	margin-top: 10px;
+}
+
+input.submit{
+	width: 140px;
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+	color: white;
+	background-color: #8cc63f;
+	border: 1px solid #eee;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+
 br.CLEAR{ clear:both; font-size:1px; height:1px; line-height:1px;}
 /*----------消虛線---------*/
 /* For IE, onFocus 的 F 要大寫*/
