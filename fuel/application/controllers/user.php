@@ -176,7 +176,7 @@ class User extends CI_Controller {
 		$vars['account'] = $this->input->get("account");
 		$vars['token'] = $this->input->get("token");
 		$vars['data'] = $account_data;
-		$var['form_action'] = 'user/do_edit'; 
+		$vars['form_action'] = 'user/do_edit'; 
 		//$page_init = array('location' => 'home');
 		//$this->fuel->pages->render('editinfo', $vars);
 

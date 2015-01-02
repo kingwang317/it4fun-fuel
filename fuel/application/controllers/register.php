@@ -91,7 +91,7 @@ class Register extends CI_Controller {
 		$vars['account'] = $this->input->get("account");
 		$vars['token'] = $this->input->get("token");
 		$vars['post'] = "";
-		$var['form_action'] = 'register/step2_save'; 
+		$vars['form_action'] = 'user/do_edit'; 
 
 
 		if($this->code_model->is_mobile() || true){
