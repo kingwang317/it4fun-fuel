@@ -158,9 +158,22 @@ class User extends CI_Controller {
 	function do_edit(){
 		
 		$post_arr = $this->input->post();
-		// print_r($post_arr);
+		// print_r($_FILES);
 		// die;
-		$config['upload_path'] = assets_server_path('avatar/');
+
+		$avatar_path = assets_server_path("avatar/");
+
+		if (!file_exists($avatar_path)) {
+		    mkdir($avatar_path, 0777, true);
+		}
+
+		$about_att_path = assets_server_path("about_att/");
+
+		if (!file_exists($about_att_path)) {
+		    mkdir($about_att_path, 0777, true);
+		}
+
+		$config['upload_path'] = $avatar_path;
 		$config['allowed_types'] = 'png';
 		$config['max_size']	= '9999';
 		$config['max_width']  = '1024';
@@ -168,25 +181,62 @@ class User extends CI_Controller {
 
 		$this->load->library('upload',$config);
 
-		$files = $_FILES;
+		// $files = $_FILES;
 
 	 	$name = $post_arr['account'].".png";
 
-        $_FILES['pic']['name']=  $name;
-        $_FILES['pic']['type']= $files['avatar']['type'];
-        $_FILES['pic']['tmp_name']= $files['avatar']['tmp_name'];
-        $_FILES['pic']['error']= $files['avatar']['error'];
-        $_FILES['pic']['size']= $files['avatar']['size'];    
+        // $_FILES['pic']['name']=  $name;
+        // $_FILES['pic']['type']= $files['avatar']['type'];
+        // $_FILES['pic']['tmp_name']= $files['avatar']['tmp_name'];
+        // $_FILES['pic']['error']= $files['avatar']['error'];
+        // $_FILES['pic']['size']= $files['avatar']['size'];    
         $msg = null;
-		if (!$this->upload->do_upload('pic') && $_FILES['pic']['size'] != 0)
+		if (!$this->upload->do_upload('avatar') && $_FILES['avatar']['size'] != 0)
 		{
 			$msg = "頭像圖片更新失敗，限制140x140以內，PNG的圖片";
+			// $msg = $this->upload->display_errors();
 		}
 		else
 		{
 			$data = array('upload_data'=>$this->upload->data());
 			$post_arr["avatar"] = $data["upload_data"]["file_name"];
 		}
+		//關於自己
+		$config['upload_path'] = $about_att_path;
+		$config['allowed_types'] = 'doc|docx|pdf|jpg|png';
+		$config['max_size']	= '9999999';
+		$config['max_width']  = '0';
+		$config['max_height']  = '0';
+
+		$this->upload->initialize($config);
+
+
+		// $_FILES['about_att']['name']=  $name;
+  //       $_FILES['about_att']['type']= $files['about_att']['type'];
+  //       $_FILES['about_att']['tmp_name']= $files['about_att']['tmp_name'];
+  //       $_FILES['about_att']['error']= $files['about_att']['error'];
+  //       $_FILES['about_att']['size']= $files['about_att']['size'];    
+  //       print_r($_FILES);
+		// die;
+
+		if ($this->upload->do_upload('about_att'))
+		{
+			$data = array('upload_data'=>$this->upload->data());
+			$post_arr["about_att"] = $data["upload_data"]["file_name"];
+		} else{ 
+
+			$post_arr["about_att"] = $post_arr["exist_about_att"];	
+			if (isset($post_arr["about_att_delete"])) {
+			 	$post_arr["about_att"] = '';
+			 	unlink($about_att_path."/".$post_arr["exist_about_att"]);
+			}			 
+		}
+
+     
+
+		// print_r($post_arr);
+		// die;
+
 		$this->load->model('code_model');
 		
 		$this->set_meta->set_meta_data();
