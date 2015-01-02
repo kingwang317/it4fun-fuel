@@ -22,7 +22,7 @@
                 <div class="rightbox" id="indexbox">
 
                         <?php if (isset($news_results)): ?>
-                             <?php foreach ($news_results as $key => $value): ?>
+                             <?php foreach ($news_results as $value): ?>
                                <div class="bigitem">
                                     
                                         <div class="imgbox">
