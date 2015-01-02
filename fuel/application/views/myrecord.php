@@ -27,56 +27,59 @@
                             </ul>
                             <div class="contentbox">
                                 <div class="eventsrecordbox">
-                                    <div class="list">
+
+                                   <!--  <div class="list">
                                         <div class="title"><div class="datebox">2014年9月30日</div></div>
                                         <div class="msg">活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄...
                                         </div>
-                                    </div>
-                                    <div class="list">
-                                        <div class="title"><div class="datebox">2014年9月30日</div></div>
-                                        <div class="msg">活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄...
-                                        </div>
-                                    </div>
-                                    <div class="list">
-                                        <div class="title"><div class="datebox">2014年9月30日</div></div>
-                                        <div class="msg">活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄...
-                                        </div>
-                                    </div>
-                                    <div class="list">
-                                        <div class="title"><div class="datebox">2014年9月30日</div></div>
-                                        <div class="msg">活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄活動紀錄...
-                                        </div>
-                                    </div>
+                                    </div> -->
+                                    <?php if (isset($results_event)): ?>
+                                        <?php foreach ($results_event as $key => $value): ?>
+                                            <div class="list">
+                                                <div class="title">
+                                                    <div><?php echo date_formatter($value->drop_date,'Y-m-d')  ?></div>
+                                                </div>
+                                                <div class="msg">參加了活動 『 <?php echo $value->event_title ?> 』</div>
+                                            </div>                            
+                                        <?php endforeach ?>
+                                    <?php endif ?>                                    
+                                    
                                 </div>
                                 <div class="recruitedbox">
                                     <table>
                                         <thead style="color:#999;">
                                             <tr height="40">
-                                            <td width="85" align="center">品牌</td>
+                                            <td width="85" align="center">公司名稱</td>
                                             <td width="110">應徵日期</td>
                                             <td width="200">應徵職位</td>
                                             <td width="80" align="center">狀態</td>
                                             </tr>
                                         </thead>
 
-                                        <tr height="100">
+                                      <!--   <tr height="100">
                                             <td width="85"><img src="images/other/pic2.jpg" width="75"></td>
                                             <td width="110">2014/10/10</td>
                                             <td width="200">賣場工讀生</td>
                                             <td width="80" align="center">已讀取</td>
-                                        </tr>
-                                        <tr height="100">
-                                            <td width="85"><img src="images/other/pic2.jpg" width="75"></td>
-                                            <td width="110">2014/10/10</td>
-                                            <td width="200">賣場工讀生</td>
-                                            <td width="80" align="center">已讀取</td>
-                                        </tr>
-                                        <tr height="100">
-                                            <td width="85"><img src="images/other/pic2.jpg" width="75"></td>
-                                            <td width="110">2014/10/10</td>
-                                            <td width="200">賣場工讀生</td>
-                                            <td width="80" align="center">已讀取</td>
-                                        </tr>
+                                        </tr> -->
+                                          <?php if (isset($results_deliver)): ?>
+                                            <?php foreach ($results_deliver as $key => $value): ?>
+                                             <!--    <div class="list">
+                                                    <div class="brand"><?php echo $value->company_name ?></div>
+                                                    <div class="date"><?php echo date_formatter($value->drop_date,'Y-m-d')  ?></div>
+                                                    <div class="position"><a href="<?php echo site_url() ?>job/detail/<?php echo $value->job_id ?>"><?php echo $value->job_title ?></a></div>
+                                                    <div class="state"><?php echo process_type_string($value->process_type) ?></div>
+                                                </div>
+                                                <br> -->
+                                                <tr height="100">
+                                                    <td width="85"><?php echo $value->company_name ?></td>
+                                                    <td width="110"><?php echo date_formatter($value->drop_date,'Y-m-d')  ?></td>
+                                                    <td width="200"><a href="<?php echo site_url() ?>job/detail/<?php echo $value->job_id ?>"><?php echo $value->job_title ?></a></td>
+                                                    <td width="80" align="center"><?php echo process_type_string($value->process_type) ?></td>
+                                                </tr> 
+                                            <?php endforeach ?>
+                                        <?php endif ?>
+                                         
 
                                     </table>
                                 </div>
@@ -86,20 +89,26 @@
                     <div class="rightbox">
                         <ul>
                             <li>
-                                <div class="item">
+                                <!-- <div class="item">
                                     <div class="imgbox">
                                         <img src="images/other/pic2.jpg">
                                     </div>
                                     <p class="title">迪卡儂運動用品</p>
                                     <p class="jobname">賣場工讀生</p>
-                                </div>
-                                <div class="item">
-                                    <div class="imgbox">
-                                        <img src="images/other/pic2.jpg">
-                                    </div>
-                                    <p class="title">迪卡儂運動用品</p>
-                                    <p class="jobname">賣場工讀生</p>
-                                </div>
+                                </div> -->
+                                <?php if (isset($results_jobs)): ?>
+                                     <?php foreach ($results_jobs as $key => $value): ?>
+                                       <div class="item">
+                                            <a href="<?php echo $job_detail_url.$value->id ?>">
+                                                <div class="imgbox">
+                                                    <img src="<?php echo $photo_path.$value->company_logo; ?>">
+                                                </div>
+                                                <p class="title"><?php echo $value->company_name ?></p>
+                                                <p class="jobname"><?php echo $value->job_title ?></p>
+                                            </a>
+                                        </div>
+                                    <?php endforeach ?> 
+                                <?php endif ?> 
                             </li>
                         </ul>
                     </div>

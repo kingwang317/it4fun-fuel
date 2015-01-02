@@ -92,8 +92,10 @@ class Com_manage_model extends MY_Model {
 
 	public function get_deliver_list($dataStart, $dataLen, $filter)
 	{
-		$sql = @" SELECT a.*,b.name FROM mod_drop_resume a 
+		$sql = @" SELECT a.*,b.name,c.job_title,c.id job_id,d.id com_id,d.company_name FROM mod_drop_resume a 
 				  LEFT JOIN mod_resume b ON a.account = b.account 
+				  LEFT JOIN mod_job c ON a.job_id = c.id 
+				  LEFT JOIN mod_company d ON c.company_id = d.id
 				  $filter 
 				  ORDER BY a.drop_date DESC 
 				  LIMIT $dataStart, $dataLen";
