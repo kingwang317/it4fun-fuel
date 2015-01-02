@@ -58,7 +58,7 @@ class User extends CI_Controller {
 			$this->comm->plu_redirect(site_url(), 0, "此帳號已被註冊");
 		}
 	}
-	
+
 	function mybox()
 	{	
 		$this->load->model('code_model');
@@ -451,34 +451,29 @@ $this->load->helper('cookie');
 
 	function myrecord()
 	{	
+		$this->load->helper('ytalent');
 		$this->load->helper('cookie');
 		$this->load->library('facebook');
 		$this->load->library('set_page');
 		$this->load->model('code_model');
 		$base_url = base_url();
 		$this->load->module_model(EVENT_FOLDER, 'event_manage_model');
+		$this->load->module_model(COM_FOLDER, 'com_manage_model');
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");
-		$filter = '';
+		 
 		$target_url = $base_url.'event/';
 
-
-		$results = $this->event_manage_model->get_event_list(0, 4, $filter);
-
 		$account = $this->code_model->get_logged_in_account();
-
-		$filter = " WHERE  event_id in (SELECT event_id FROM mod_register WHERE account = '$account' ORDER BY drop_date )";
-
-		$results_my = $this->event_manage_model->get_event_list(0, 4, $filter);
-
+		$results_deliver = $this->com_manage_model->get_deliver_list(0, 999, "WHERE a.account = '$account' ");
+		$results_event = $this->event_manage_model->get_regi_event_list(0, 999, " WHERE account = '$account' ");
 		$fb_data	= $this->code_model->get_fb_data();
 		$vars['fb_data'] = $fb_data;
-
 		$vars['base_url'] 			= $base_url;
 		$vars['target_url'] 		= $target_url;
 		$vars['photo_path']			= $base_url.'assets/uploads/event/';
-		$vars['results']			= $results;
-		$vars['results_my']			= $results_my;
+		$vars['results_deliver']	= $results_deliver;
+		$vars['results_event']			= $results_event;
 		$vars['event_detail_url']	= $base_url.'event/detail/';
 		
 		if($this->code_model->is_mobile() || true){
@@ -486,6 +481,10 @@ $this->load->helper('cookie');
 			$page_init = array('location' => 'm_myrecord');
 			$this->fuel->pages->render('m_myrecord', $vars);
 		}else{
+			$results_jobs = $this->com_manage_model->get_job_list(0, 2, '');
+			$vars['photo_path']			= $base_url.'assets/';
+			$vars['job_detail_url']	= $base_url.'job/detail/';
+			$vars['results_jobs'] = $results_jobs;
 			$vars['views'] = 'myrecord';
 			$page_init = array('location' => 'myrecord');
 			$this->fuel->pages->render('myrecord', $vars);

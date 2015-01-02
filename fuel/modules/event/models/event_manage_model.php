@@ -41,6 +41,22 @@ class Event_manage_model extends MY_Model {
 		return;
 	}
 
+	public function get_regi_event_list($dataStart, $dataLen, $filter)
+	{
+		$sql = @"SELECT a.*,b.event_title FROM mod_register a LEFT JOIN mod_event b ON a.event_id = b.event_id $filter ORDER BY a.drop_date DESC LIMIT $dataStart, $dataLen";
+	
+		$query = $this->db->query($sql);
+
+		if($query->num_rows() > 0)
+		{
+			$result = $query->result();
+
+			return $result;
+		}
+
+		return;
+	}
+
 	public function get_status_list($event_id)
 	{
 		$sql = @"SELECT a.regi_id, a.event_id, a.account, a.drop_date, a.regi_type, b.name, c.event_title FROM mod_register a, mod_resume b, mod_event c WHERE a.event_id=? AND a.account=b.account AND a.event_id=c.event_id";
