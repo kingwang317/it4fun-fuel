@@ -74,9 +74,13 @@ class Register extends CI_Controller {
 		$skill_list = $this->code_model->get_skill();
 
 		$recommended_id = $this->input->cookie("ytalent_recommended_id");
+		$level_list = $this->code_model->get_level();
+		$job_cate_list = $this->code_model->get_job_cate("job_cate");
 
 		$vars['school_list']	= $school_list;
 		$vars['skill_list']	= $skill_list;
+		$vars['level_list']	= $level_list;
+		$vars['job_cate_list'] = $job_cate_list;
 		$vars['recommended_id']	= $recommended_id;
 		$vars['account'] = $this->input->get("account");
 		$vars['token'] = $this->input->get("token");

@@ -124,15 +124,15 @@
                                 <div class="header">
                                     不想就業的類別                                
                                 </div>
-                                <table style="font-size:14px;"> 
+                                <table style="font-size:14px;">  
                                      <?php for ($i=0;$i<sizeof($job_cate_list);$i=$i+2): ?>
                                         <tr height="20">
-                                            <td width="200"><input type="checkbox" name="skill[]" value="<?php echo $job_cate_list[$i]->code_id ?>"
+                                            <td width="200"><input type="checkbox" name="exclude_cate[]" value="<?php echo $job_cate_list[$i]->code_id ?>"
                                                 <?php if (isset($exclude_cate) && in_array($job_cate_list[$i]->code_id,$exclude_cate)): ?>
                                                     checked
                                                 <?php endif ?>
                                                 ><?php echo $job_cate_list[$i]->code_name ?></td>
-                                            <td><input type="checkbox" name="skill[]" value="<?php echo $job_cate_list[$i+1]->code_id ?>"
+                                            <td><input type="checkbox" name="exclude_cate[]" value="<?php echo $job_cate_list[$i+1]->code_id ?>"
                                                 <?php if (isset($exclude_cate) && in_array($job_cate_list[$i+1]->code_id,$exclude_cate)): ?>
                                                     checked
                                                 <?php endif ?>

@@ -696,13 +696,37 @@ button.submit{
 	font-weight: bold;
 	line-height: 60px;
 }
-#myinfobox table.block3 tr td select{
+/*#myinfobox table.block3 tr td select{
 	width: 125px;
 	height: 60px;
 	border: 1px solid #ccc;
 	font-size: 32px;
 	line-height: 60px;
 	text-align: center;
+}*/
+.addr-county{
+	width: 590px;
+	height: 60px;
+	border: 1px solid #ccc;
+	font-size: 32px;
+	line-height: 60px;
+	text-align: center;
+}
+.addr-distrcit{
+	width: 590px;
+	height: 60px;
+	border: 1px solid #ccc;
+	font-size: 32px;
+	line-height: 60px;
+	text-align: center;
+}
+.addr-zip{
+	width: 590px;
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 48px;
+	border: 0px;
+	border-bottom: 1px solid #666;
 }
 #myinfobox table.block3 tr td input.address{
 	width: 590px;

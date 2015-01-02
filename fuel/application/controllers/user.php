@@ -58,6 +58,7 @@ class User extends CI_Controller {
 			$this->comm->plu_redirect(site_url(), 0, "此帳號已被註冊");
 		}
 	}
+	
 	function mybox()
 	{	
 		$this->load->model('code_model');
@@ -148,6 +149,8 @@ class User extends CI_Controller {
 		// print_r($account_data[0]->exclude_cate);
 		// die;
 		$exclude_cate = !empty($account_data[0]->exclude_cate)?explode(";", $account_data[0]->exclude_cate):array();
+		// print_r($account_data[0]->exclude_cate);
+		// die;
 		$age = isset($account_data[0]->birth)&&$account_data[0]->birth!="0000-00-00"?get_age($account_data[0]->birth):'';
 
 		// $lang_list = $this->code_model->get_lang();
