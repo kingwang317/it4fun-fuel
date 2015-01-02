@@ -867,6 +867,13 @@ button.submit{
 	border: 0px;
 }
 
+div.checkbox{
+	text-align: center;
+  	font-size: 28px;
+  	color: #b3b3b3;
+  	margin-bottom: 20px;
+}
+
 br.CLEAR{ clear:both; font-size:1px; height:1px; line-height:1px;}
 /*----------消虛線---------*/
 /* For IE, onFocus 的 F 要大寫*/

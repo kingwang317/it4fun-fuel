@@ -303,7 +303,7 @@ $this->load->helper('cookie');
        
         if($is_logined)
         {
-            redirect(site_url()."user/myinfo");
+            redirect(site_url()."user/editinfo");
         }
         else
         {
@@ -312,7 +312,7 @@ $this->load->helper('cookie');
             if($login_result){
 				$this->input->set_cookie("ytalent_account",$account, 3600);
 
-            	$this->comm->plu_redirect(site_url()."user/myinfo", 0, "登入成功");
+            	$this->comm->plu_redirect(site_url()."user/editinfo", 0, "登入成功");
             }else{
 
             	$this->comm->plu_redirect(site_url(), 0, "登入失敗");

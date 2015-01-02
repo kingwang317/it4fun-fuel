@@ -14,70 +14,24 @@
     <div id="maincontain">
         <div id="vacanciesbox">          
             <ul>
-                <li>
-                    <div class="vacanciesbox">
-                        <a href="#"><img src="images/pic/pic3.png"></a>                        
-                        <p class="company">UNIQLO TAIWAN</p>
-                        <p class="job">展場工讀生</p>
-                    </div>
-                </li>
 
-                <li>
-                    <div class="vacanciesbox">
-                        <a href="#"><img src="images/pic/pic3.png"></a>                        
-                        <p class="company">UNIQLO TAIWAN</p>
-                        <p class="job">展場工讀生</p>
-                    </div>
-                </li>
+                <?php if (isset($results)): ?>
+                         <?php foreach ($results as $key => $value): ?>
 
-                <li>
-                    <div class="vacanciesbox">
-                        <a href="#"><img src="images/pic/pic3.png"></a>                        
-                        <p class="company">UNIQLO TAIWAN</p>
-                        <p class="job">展場工讀生</p>
-                    </div>
-                </li>
+                            <li>
+                                <div class="vacanciesbox">
+                                    <a href="<?php echo $job_detail_url.$value->id ?>"><img src="<?php echo $photo_path.$value->company_logo; ?>"></a>                        
+                                    <p class="company"><?php echo $value->company_name ?></p>
+                                    <p class="job"><?php echo $value->job_title ?></p>
+                                </div>
+                            </li>
 
-                <li>
-                    <div class="vacanciesbox">
-                        <a href="#"><img src="images/pic/pic3.png"></a>                        
-                        <p class="company">UNIQLO TAIWAN</p>
-                        <p class="job">展場工讀生</p>
-                    </div>
-                </li>
+                            <?php endforeach ?>
+                        <?php else: ?>
+                            找不到職缺
+                        <?php endif ?>
 
-                <li>
-                    <div class="vacanciesbox">
-                        <a href="#"><img src="images/pic/pic3.png"></a>                        
-                        <p class="company">UNIQLO TAIWAN</p>
-                        <p class="job">展場工讀生</p>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="vacanciesbox">
-                        <a href="#"><img src="images/pic/pic3.png"></a>                        
-                        <p class="company">UNIQLO TAIWAN</p>
-                        <p class="job">展場工讀生</p>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="vacanciesbox">
-                        <a href="#"><img src="images/pic/pic3.png"></a>                        
-                        <p class="company">UNIQLO TAIWAN</p>
-                        <p class="job">展場工讀生</p>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="vacanciesbox">
-                        <a href="#"><img src="images/pic/pic3.png"></a>                        
-                        <p class="company">UNIQLO TAIWAN</p>
-                        <p class="job">展場工讀生</p>
-                    </div>
-                </li>
-
+                
                                
             </ul>
         </div>
