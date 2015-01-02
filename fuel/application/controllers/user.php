@@ -72,9 +72,11 @@ class User extends CI_Controller {
 		if($account == null){
 			$this->comm->plu_redirect(site_url(), 0, "尚未登入");
 		}
+		$notice_count = $this->code_model->get_notice_count($account);
 
 		$account_data = $this->code_model->get_account_data($account);
 		$vars['views'] = 'm_mybox';
+		$vars['notice_count'] = $notice_count;
 		$vars['account'] = $account;
 		$vars['data'] = $account_data;
 		$page_init = array('location' => 'm_mybox');

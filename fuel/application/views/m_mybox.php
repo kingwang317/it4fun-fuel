@@ -19,7 +19,7 @@
                     <td><a href="<?php echo site_url()?>user/editinfo"><img src="<?php echo site_url()?>assets/mobile_template/images/btn/home/btn2.png"></a></td>
                 </tr>
                 <tr>
-                    <td><div class="msgbox">88</div><a href="<?php echo site_url()?>notices"><img src="<?php echo site_url()?>assets/mobile_template/images/btn/home/btn3.png"></a></td>
+                    <td><div class="msgbox"><?php echo $notice_count ?></div><a href="<?php echo site_url()?>notices"><img src="<?php echo site_url()?>assets/mobile_template/images/btn/home/btn3.png"></a></td>
                     <td><a href="<?php echo site_url()?>job"><img src="<?php echo site_url()?>assets/mobile_template/images/btn/home/btn4.png"></a></td>
                 </tr>
                 <tr>
