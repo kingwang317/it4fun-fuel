@@ -1034,12 +1034,12 @@ public function do_update_fbid2resume($account,$fbid){
 
     public function get_notice_count($account){
 
-        $sql = @"SELECT count(*) FROM mod_drop_resume a
+        $sql = @"SELECT a.id FROM mod_drop_resume a
          LEFT JOIN mod_job b ON a.job_id = b.id
          LEFT JOIN mod_company c ON b.company_id = c.id
          WHERE a.account=? AND a.process_type=2 AND a.response_type = '-1'";
         $para = array($account);
-        //echo $sql;
+        //echo $account."-".$sql;
         $query = $this->db->query($sql,$para);
  
 

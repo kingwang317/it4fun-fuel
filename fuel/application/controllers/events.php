@@ -46,7 +46,7 @@ class Events extends CI_Controller {
 		$vars['event_detail_url']	= $base_url.'event/detail/';
 		$vars['page_jump'] 			= $this->pagination->create_links();
 
-		if($this->code_model->is_mobile() || true){
+		if($this->code_model->is_mobile()){
 			$vars['views'] = 'm_event_list';
 			$page_init = array('location' => 'm_event_list');
 			$this->fuel->pages->render('m_event_list', $vars);
@@ -81,6 +81,27 @@ class Events extends CI_Controller {
 		$vars['regi_url']	= $base_url.'api/regievent/'.$event_id;
 		$page_init = array('location' => 'event_detail');
 		$this->fuel->pages->render('event_detail', $vars);
+	}
+
+	function news_detail($news_id)
+	{
+		$this->load->helper('cookie');
+		$this->load->library('facebook');
+		$this->load->model('code_model');
+		$base_url = base_url();
+		$this->load->module_model(NEWS_FOLDER, 'news_manage_model');
+
+		$result = $this->news_manage_model->get_news_detail($news_id);
+
+		$r_url = "event/news_detail/".$news_id;
+		$fb_data	= $this->code_model->get_fb_data($r_url);
+		$vars['fb_data'] = $fb_data;
+
+		$vars['views'] 		= 'news_detail';
+		$vars['news_photo_path']	= $base_url.'assets/';
+		$vars['result']		= $result;
+		$page_init = array('location' => 'news_detail');
+		$this->fuel->pages->render('news_detail', $vars);
 	}
 
 	function regi_event($event_id)

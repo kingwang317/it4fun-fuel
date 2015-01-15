@@ -46,6 +46,8 @@
                                     </div>
                                 </div>
                             <?php endforeach ?>
+                        <?php else: ?>
+                        沒有任何通知
                         <?php endif ?>
                             
                     </div>

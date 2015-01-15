@@ -181,7 +181,7 @@ class User extends CI_Controller {
 		//$this->fuel->pages->render('editinfo', $vars);
 
 
-		if($this->code_model->is_mobile() || true){
+		if($this->code_model->is_mobile()){
 			$vars['views'] = 'm_editinfo';
 			$page_init = array('location' => 'm_editinfo');
 			$this->fuel->pages->render('m_editinfo', $vars);
@@ -428,20 +428,20 @@ $this->load->helper('cookie');
 		$vars['event_target_url'] 		= $event_target_url;
 		$vars['job_target_url'] 		= $job_target_url;
 		$vars['event_photo_path']			= $base_url.'assets/uploads/event/';
-		$vars['news_photo_path']			= $base_url.'assets/uploads/news/';
+		$vars['news_photo_path']			= $base_url.'assets/';
 		$vars['job_photo_path']			= $base_url.'assets/';
 		$vars['event_results']			= $event_results;
 		$vars['job_results']			= $job_results;
 		$vars['news_results']			= $news_results;
 		$vars['event_detail_url']	= $base_url.'event/detail/';
 		$vars['job_detail_url']	= $base_url.'job/detail/';
-		$vars['news_detail_url']	= $base_url.'job/detail/';
+		$vars['news_detail_url']	= $base_url.'event/news_detail/';
 		$vars['views'] 				= 'mynews';
 		$page_init = array('location' => 'mynews');
 		$this->fuel->pages->render('mynews', $vars);
 
 
-		if($this->code_model->is_mobile() || true){
+		if($this->code_model->is_mobile()){
 			$vars['views'] = 'm_mynews';
 			$page_init = array('location' => 'm_mynews');
 			$this->fuel->pages->render('m_mynews', $vars);
@@ -479,7 +479,7 @@ $this->load->helper('cookie');
 		$vars['results_event']			= $results_event;
 		$vars['event_detail_url']	= $base_url.'event/detail/';
 		
-		if($this->code_model->is_mobile() || true){
+		if($this->code_model->is_mobile()){
 			$vars['views'] = 'm_myrecord';
 			$page_init = array('location' => 'm_myrecord');
 			$this->fuel->pages->render('m_myrecord', $vars);

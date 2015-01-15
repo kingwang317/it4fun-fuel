@@ -120,7 +120,7 @@ class Jobs extends CI_Controller {
 		//$this->fuel->pages->render('job_list', $vars);
 
 
-		if($this->code_model->is_mobile() || true){
+		if($this->code_model->is_mobile()){
 			$vars['views'] = 'm_job_list';
 			$page_init = array('location' => 'm_job_list');
 			$this->fuel->pages->render('m_job_list', $vars);
@@ -170,7 +170,7 @@ class Jobs extends CI_Controller {
 		//$this->fuel->pages->render('job_detail', $vars);
 
 
-		if($this->code_model->is_mobile() || true){
+		if($this->code_model->is_mobile()){
 			$vars['views'] = 'm_job_detail';
 			$page_init = array('location' => 'm_job_detail');
 			$this->fuel->pages->render('m_job_detail', $vars);
@@ -206,7 +206,7 @@ class Jobs extends CI_Controller {
 		//$page_init = array('location' => 'notices');
 		//$this->fuel->pages->render('notices', $vars);
 
-		if($this->code_model->is_mobile() || true){
+		if($this->code_model->is_mobile()){
 			$vars['views'] = 'm_notices';
 			$page_init = array('location' => 'm_notices');
 			$this->fuel->pages->render('m_notices', $vars);
