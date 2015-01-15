@@ -26,9 +26,11 @@
                                <div class="bigitem">
                                     
                                         <div class="imgbox">
-                                            <img src="<?php echo $news_photo_path.$value->img; ?>">
+                                            <a href="<?php echo $news_detail_url.$value->id ?>">
+                                                <img src="<?php echo $news_photo_path.$value->img; ?>">
+                                            </a>
                                         </div>
-                                        <p class="title"><?php echo $value->title ?></p>
+                                        <p class="title"><?php echo mb_substr($value->title, 0, 8, "utf-8")?></p>
                                         <p class="jobname"><?php echo mb_substr( strip_tags($value->content),0,80,"utf-8"); ?></p>
                                     
                                 </div>
@@ -43,13 +45,13 @@
                          <?php if (isset($job_results)): ?>
                              <?php foreach ($job_results as $key => $value): ?>
                                <div class="item">
-                                    <a href="<?php echo $job_detail_url.$value->id ?>">
-                                        <div class="imgbox">
+                                    <div class="imgbox">
+                                        <a href="<?php echo $job_detail_url.$value->id ?>">
                                             <img src="<?php echo $job_photo_path.$value->company_logo; ?>">
-                                        </div>
-                                        <p class="title"><?php echo $value->company_name ?></p>
-                                        <p class="jobname"><?php echo $value->job_title ?></p>
-                                    </a>
+                                        </a>
+                                    </div>
+                                    <p class="title"><?php echo mb_substr($value->company_name, 0, 8, "utf-8")?></p>
+                                    <p class="jobname"><?php echo $value->job_title ?></p>
                                 </div>
                             <?php endforeach ?>
                         <?php else: ?>
@@ -72,7 +74,7 @@
                                         <img src="<?php echo $event_photo_path.$row->event_photo?>" width="200" height="200">
                                     </a>
                                 </div>
-                                <p class="title" title="<?php echo $row->event_title?>"><?php echo mb_substr($row->event_title, 0, 8, "utf-8")?>...</p>
+                                <p class="title" title="<?php echo $row->event_title?>"><?php echo mb_substr($row->event_title, 0, 8, "utf-8")?></p>
                                 <p class="date"><?php echo mb_substr($row->event_start_date, 0, 16, "utf-8")?></p>
                             </div>                           
                 <?php

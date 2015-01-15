@@ -94,7 +94,7 @@ class Register extends CI_Controller {
 		$vars['form_action'] = 'user/do_edit'; 
 
 
-		if($this->code_model->is_mobile() || true){
+		if($this->code_model->is_mobile()){
 			$vars['views'] = 'm_editinfo';
 			$page_init = array('location' => 'm_editinfo');
 			$this->fuel->pages->render('m_editinfo', $vars);

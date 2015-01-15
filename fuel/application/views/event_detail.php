@@ -71,6 +71,61 @@
         </div>
         <?php $this->load->view('_blocks/_footer')?>
     </div>
+
+<script type="text/javascript">
+
+    jQuery(document).ready(function($) {
+
+        $('.mapbox').tinyMap({
+            center: '<?php echo $result->event_place?>',
+            zoom: 15,
+            marker: [
+                {
+                    addr: '<?php echo $result->event_place?>',
+                    text: '<?php echo $result->event_place?>',
+                    
+                    css: 'labels',
+                    // 自訂 marker click 事件
+                    event: function (e) {
+                        alert(e.latLng);
+                    },
+                    // 或是下列方式綁定多種事件
+                    event: {
+                        'click' : function (e) {
+                            alert('<?php echo $result->event_place?>');
+                        }
+                    },
+                    // 動畫效果
+                    animation: 'DROP|BOUNCE'
+                }
+            ]
+        });
+
+
+
+        $(".addevent").click(function(event) {
+            $.ajax({
+                url: '<?php echo $regi_url ?>',
+                type: 'POST',
+                dataType: 'json',
+                
+            })
+            .done(function(o) {
+                console.log("success");
+                console.log(o);
+                alert(o.msg);
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+            
+        });
+    });
+
+</script>
 </body>
 </html>
 
