@@ -77,13 +77,15 @@
                         <?php if (isset($results)): ?>
                              <?php foreach ($results as $key => $value): ?>
                                <div class="item">
-                                    <a href="<?php echo $job_detail_url.$value->id ?>">
+                                   
                                         <div class="imgbox">
+                                             <a href="<?php echo $job_detail_url.$value->id ?>">
                                             <img src="<?php echo $photo_path.$value->company_logo; ?>">
+                                             </a>
                                         </div>
                                         <p class="title"><?php echo $value->company_name ?></p>
                                         <p class="jobname"><?php echo $value->job_title ?></p>
-                                    </a>
+                                   
                                 </div>
                             <?php endforeach ?>
                         <?php else: ?>

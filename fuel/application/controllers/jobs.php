@@ -120,7 +120,7 @@ class Jobs extends CI_Controller {
 		//$this->fuel->pages->render('job_list', $vars);
 
 
-		if($this->code_model->is_mobile() || true){
+		if($this->code_model->is_mobile() || false){
 			$vars['views'] = 'm_job_list';
 			$page_init = array('location' => 'm_job_list');
 			$this->fuel->pages->render('m_job_list', $vars);
