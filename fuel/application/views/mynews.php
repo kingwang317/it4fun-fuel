@@ -47,7 +47,7 @@
                                <div class="item">
                                     <div class="imgbox">
                                         <a href="<?php echo $job_detail_url.$value->id ?>">
-                                            <img src="<?php echo $job_photo_path.$value->company_logo; ?>">
+                                            <img style="width:275px" src="<?php echo $job_photo_path.$value->company_logo; ?>">
                                         </a>
                                     </div>
                                     <p class="title"><?php echo mb_substr($value->company_name, 0, 8, "utf-8")?></p>

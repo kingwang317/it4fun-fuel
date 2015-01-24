@@ -318,7 +318,7 @@ $this->load->helper('cookie');
             if($login_result){
 				$this->input->set_cookie("ytalent_account",$account, 3600);
 
-            	$this->comm->plu_redirect(site_url()."user/editinfo", 0, "登入成功");
+            	$this->comm->plu_redirect(site_url()."user/mynews", 0, "登入成功");
             }else{
 
             	$this->comm->plu_redirect(site_url(), 0, "登入失敗");
@@ -377,6 +377,10 @@ $this->load->helper('cookie');
 		$results = $this->event_manage_model->get_event_list(0, 4, $filter);
 
 		$account = $this->code_model->get_logged_in_account();
+ 
+		if($account == null){
+			$this->comm->plu_redirect(site_url(), 0, "尚未登入");
+		}
 
 		$filter = " WHERE  event_id in (SELECT event_id FROM mod_register WHERE account = '$account' ORDER BY drop_date )";
 

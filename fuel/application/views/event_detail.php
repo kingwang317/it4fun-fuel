@@ -114,6 +114,9 @@
                 console.log("success");
                 console.log(o);
                 alert(o.msg);
+                if (o.status == -99) {
+                    window.location = '<?php echo site_url()?>' ;//+ '?redirURL=' + document.URL;
+                };
             })
             .fail(function() {
                 console.log("error");
