@@ -93,7 +93,22 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 col-sm-2 control-label">活動圖片</label>
+							<label class="col-sm-2 col-sm-2 control-label">活動圖片(列表用)</label>
+							<div class="col-sm-4">
+								<div class="input-group date">
+								  <input type="text" id="uploadFile2" class="form-control" name="event_photo_list_path" placeholder="Choose File" disabled="disabled" /> 
+								    <span class="input-group-btn">
+										<button class="fileUpload btn btn-info" type="button" style="margin:0">
+											<span>Upload</span>
+											<input type="file" class="upload" name="event_list_photo" id="uploadBtn2"/>
+										</button>
+								    </span>
+								</div>
+							
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label">活動圖片(內頁用)</label>
 							<div class="col-sm-4">
 								<div class="input-group date">
 								  <input type="text" id="uploadFile" class="form-control" name="event_photo_path" placeholder="Choose File" disabled="disabled" /> 
@@ -174,6 +189,10 @@
 
 		$("#uploadBtn").change(function(){
 			$("#uploadFile").val($(this).val());
+		});
+
+		$("#uploadBtn2").change(function(){
+			$("#uploadFile2").val($(this).val());
 		});
 
 		$j("form").submit(function(event) {

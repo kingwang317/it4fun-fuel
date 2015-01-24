@@ -102,12 +102,13 @@ class Event_manage_model extends MY_Model {
 				regi_end_date, 
 				event_charge,
 				event_place, 
+				event_list_photo,
 				event_photo,
 				regi_limit_num,
 				event_detail,
 				create_time, 
 				update_time)
-				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
+				VALUES (?,?, ?, ?, ?, ?, ? ,?, ?, ?, ?, NOW(), NOW())
 				";
 		$para = array(
 				$data['event_title'],
@@ -117,8 +118,9 @@ class Event_manage_model extends MY_Model {
 				$data['regi_end_date'],
 				$data['event_charge'],
 				$data['event_place'],
-				$data['regi_limit_num'],
+				$data['event_list_photo'],
 				$data['event_photo'],
+				$data['regi_limit_num'],
 				$data['event_detail']
 			);
 
@@ -158,9 +160,9 @@ class Event_manage_model extends MY_Model {
 		return;
 	}
 
-	public function modify_photo_name($file_name, $event_id)
+	public function modify_photo_name($column_name = 'event_photo',$file_name, $event_id)
 	{
-		$sql = "UPDATE mod_event SET event_photo = ?, update_time = NOW() WHERE event_id = ?";
+		$sql = "UPDATE mod_event SET $column_name = ?, update_time = NOW() WHERE event_id = ?";
 		$para = array($file_name, $event_id);
 		$success = $this->db->query($sql, $para);
 
@@ -172,9 +174,9 @@ class Event_manage_model extends MY_Model {
 		return;
 	}
 
-	public function get_photo_name($event_id)
+	public function get_photo_name($column_name = 'event_photo',$event_id)
 	{
-		$sql = "SELECT event_photo FROM mod_event WHERE event_id=?";
+		$sql = "SELECT $column_name FROM mod_event WHERE event_id=?";
 		$para = array($event_id);
 
 		$query = $this->db->query($sql, $para);
@@ -182,8 +184,8 @@ class Event_manage_model extends MY_Model {
 		if($query->num_rows() > 0)
 		{
 			$row = $query->row();
-
-			return $row->event_photo;
+			$row = get_object_vars($row);
+			return $row["$column_name"];
 		}
 
 		return;

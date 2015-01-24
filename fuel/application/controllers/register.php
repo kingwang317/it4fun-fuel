@@ -118,7 +118,8 @@ class Register extends CI_Controller {
 		if(md5(md5($post_arr['account'])) == $post_arr['token']){
 			$result = $this->code_model->do_update_resume($post_arr);
 			if($result){
-				$this->comm->plu_redirect(site_url()."register/step3?account=".$post_arr['account']."&token=".md5(md5($post_arr['account'])), 0, null);
+				// $this->comm->plu_redirect(site_url()."register/step3?account=".$post_arr['account']."&token=".md5(md5($post_arr['account'])), 0, null);
+				$this->comm->plu_redirect(site_url()."user/mynews", 0, null);
 			}else{
 				$this->comm->plu_redirect(site_url(), 0, "更新失敗");
 			}

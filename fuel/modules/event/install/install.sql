@@ -23,3 +23,5 @@ CREATE TABLE `mod_register` (
   `regi_type` int(3) NOT NULL,
   PRIMARY KEY (`regi_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+ALTER TABLE  `mod_event` ADD  `event_list_photo` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER  `event_id`

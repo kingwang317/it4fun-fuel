@@ -28,7 +28,7 @@
                              <div class="item">
                                 <div class="imgbox">
                                     <a href="<?php echo $event_detail_url.$row->event_id?>" target="_blank">
-                                        <img src="<?php echo $photo_path.$row->event_photo?>" width="200" height="200">
+                                        <img src="<?php echo $photo_path.$row->event_list_photo?>" width="200" height="200">
                                     </a>
                                 </div>
                                 <p class="title" title="<?php echo $row->event_title?>"><?php echo mb_substr($row->event_title, 0, 8, "utf-8")?>...</p>

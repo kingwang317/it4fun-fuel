@@ -100,12 +100,10 @@ class Event_manage extends Fuel_base_controller {
 		$config['max_width']		= '1920';
 		$config['max_height']		= '1280';
 
-		$file_name = $this->gen_file_name().substr($files["event_photo"]["name"], strpos($files["event_photo"]["name"], "."));
-		$_FILES['event_photo']['name']		= $file_name;
-		$_FILES['event_photo']['type']		= $files['event_photo']['type'];
-		$_FILES['event_photo']['tmp_name']	= $files['event_photo']['tmp_name'];
-		$_FILES['event_photo']['error']		= $files['event_photo']['error'];
-		$_FILES['event_photo']['size']		= $files['event_photo']['size'];
+		$this->load->library('upload', $config);
+
+		// Alternately you can set preferences by calling the initialize function. Useful if you auto-load the class:
+		$this->upload->initialize($config);
 
 		$insert_data = array();
 		$insert_data['event_title']			= $this->input->get_post("event_title");
@@ -116,25 +114,37 @@ class Event_manage extends Fuel_base_controller {
 		$insert_data['event_charge']		= $this->input->get_post("event_charge");
 		$insert_data['event_place']			= $this->input->get_post("event_place");
 		$insert_data['regi_limit_num']		= $this->input->get_post("regi_limit_num");
-		$insert_data['event_detail']		= $this->input->get_post("event_detail");
-		$insert_data['event_photo']			= $file_name;
+		$insert_data['event_detail']		= $this->input->get_post("event_detail"); 
 
-		$this->load->library('upload', $config);
+		$field_name = array('event_list_photo','event_photo');//array('event_photo');//array('event_list_photo','event_photo');
 
-		// Alternately you can set preferences by calling the initialize function. Useful if you auto-load the class:
-		$this->upload->initialize($config);
+		foreach ($field_name as $key) {
+		 
+			$files = $_FILES;
+			$file_name = $this->gen_file_name().substr($files[$key]["name"], strpos($files[$key]["name"], "."));
+				// print_r($file_name);
+			$_FILES[$key]['name']		= $file_name;
+			$_FILES[$key]['type']		= $files[$key]['type'];
+			$_FILES[$key]['tmp_name']	= $files[$key]['tmp_name'];
+			$_FILES[$key]['error']		= $files[$key]['error'];
+			$_FILES[$key]['size']		= $files[$key]['size'];
+			
+			if(!$this->upload->do_upload($key))
+			{
+				$this->plu_redirect($base_url.'fuel/event/create', 0, $this->upload->display_errors());
+				die();
+			}
+			else
+			{
+				$insert_data[$key] = $file_name; 
+			}
+			 
+		} 
 
-		$field_name = 'event_photo';
-		if(!$this->upload->do_upload($field_name))
-		{
-			$this->plu_redirect($base_url.'fuel/event/create', 0, $this->upload->display_errors());
-			die();
-		}
-		else
-		{
-			$success = $this->event_manage_model->insert($insert_data);
-		}
-
+		// print_r($insert_data);
+		// die;
+		 
+		$success = $this->event_manage_model->insert($insert_data);		 
 
 		if($success)
 		{
@@ -192,44 +202,47 @@ class Event_manage extends Fuel_base_controller {
 	{
 		$base_url = base_url();
 		$module_uri = base_url().$this->module_uri;
-		$event_id = $this->input->get("event_id");
-		if(!empty($_FILES['event_photo']['name']))
-		{
-			$files = $_FILES;
+		$event_id = $this->input->get("event_id");		
 
-			$config['upload_path']		= assets_server_path('uploads/event/');
-			$config['allowed_types']	= 'gif|jpg|png';
-			$config['max_size']			= '10000';
-			$config['max_width']		= '1920';
-			$config['max_height']		= '1280';
+		$config['upload_path']		= assets_server_path('uploads/event/');
+		$config['allowed_types']	= 'gif|jpg|png';
+		$config['max_size']			= '10000';
+		$config['max_width']		= '1920';
+		$config['max_height']		= '1280';
+		$this->load->library('upload', $config);
+		// Alternately you can set preferences by calling the initialize function. Useful if you auto-load the class:
+		$this->upload->initialize($config);
 
-			$file_name = $this->gen_file_name().substr($files["event_photo"]["name"], strpos($files["event_photo"]["name"], "."));
-			$_FILES['event_photo']['name']		= $file_name;
-			$_FILES['event_photo']['type']		= $files['event_photo']['type'];
-			$_FILES['event_photo']['tmp_name']	= $files['event_photo']['tmp_name'];
-			$_FILES['event_photo']['error']		= $files['event_photo']['error'];
-			$_FILES['event_photo']['size']		= $files['event_photo']['size'];
+		$field_name = array('event_list_photo','event_photo');//array('event_photo');//array('event_list_photo','event_photo');
 
-			$this->load->library('upload', $config);
-
-			// Alternately you can set preferences by calling the initialize function. Useful if you auto-load the class:
-			$this->upload->initialize($config);
-
-			$field_name = 'event_photo';
-			if(!$this->upload->do_upload($field_name))
+		foreach ($field_name as $key) {
+			// print_r($key);
+			if(!empty($_FILES[$key]['name']))
 			{
-				$this->plu_redirect($base_url.'fuel/event/edit?event_id='.$event_id, 0, $this->upload->display_errors());
-				die();
+				$files = $_FILES;
+				$file_name = $this->gen_file_name().substr($files[$key]["name"], strpos($files[$key]["name"], "."));
+					// print_r($file_name);
+				$_FILES[$key]['name']		= $file_name;
+				$_FILES[$key]['type']		= $files[$key]['type'];
+				$_FILES[$key]['tmp_name']	= $files[$key]['tmp_name'];
+				$_FILES[$key]['error']		= $files[$key]['error'];
+				$_FILES[$key]['size']		= $files[$key]['size'];
+				
+				if(!$this->upload->do_upload($key))
+				{
+					$this->plu_redirect($base_url.'fuel/event/edit?event_id='.$event_id, 0, $this->upload->display_errors());
+					// print_r($_FILES);
+					// print_r($this->upload->display_errors());
+					die();
+				}
+				else
+				{
+					$event_photo = $this->event_manage_model->get_photo_name($key,$event_id);
+					$cmd = "rm ".$config['upload_path'].$event_photo;
+					exec($cmd);
+					$this->event_manage_model->modify_photo_name($key,$file_name, $event_id);
+				}
 			}
-			else
-			{
-				$event_photo = $this->event_manage_model->get_photo_name($event_id);
-
-				$cmd = "rm ".$config['upload_path'].$event_photo;
-				exec($cmd);
-				$this->event_manage_model->modify_photo_name($file_name, $event_id);
-			}
-
 		}
 
 		$insert_data = array();

@@ -26,7 +26,7 @@
 
                             <li>
                                 <div class="activitybox">
-                                    <a href="<?php echo $event_detail_url.$row->event_id?>"><img src="<?php echo $photo_path.$row->event_photo?>"></a>
+                                    <a href="<?php echo $event_detail_url.$row->event_id?>"><img src="<?php echo $photo_path.$row->event_list_photo?>"></a>
                                     <p><?php echo $row->event_title?>"><?php echo mb_substr($row->event_title, 0, 8, "utf-8")?>...</p>
                                     <p><?php echo mb_substr($row->event_start_date, 0, 16, "utf-8")?></p>
                                 </div>
