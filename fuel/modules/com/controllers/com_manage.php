@@ -414,6 +414,9 @@ class Com_manage extends Fuel_base_controller {
 		$base_url = base_url();
 
 		$root_path = assets_server_path("com_img/$id/");
+		if (!file_exists($root_path)) {
+		    mkdir($root_path, 0777, true);
+		} 
 	 
 
 		$config['upload_path'] = $root_path;

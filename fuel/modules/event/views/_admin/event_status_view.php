@@ -131,7 +131,7 @@
 							
 						</td>
 					</tr>
-				<?
+				<?php
 						}
 					}
 					else
@@ -140,7 +140,7 @@
 					<tr>
 						<td colspan="6">No results.</td>
 					</tr>
-				<?
+				<?php
 					}
 				?>
 

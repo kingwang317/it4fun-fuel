@@ -84,7 +84,7 @@
                                      </a>
                                     </div>
                                     <p class="title"><?php echo mb_substr($value->company_name, 0, 8, "utf-8")?></p>
-                                    <p class="jobname"><?php echo $value->job_title ?></p>
+                                    <p class="jobname"><?php echo mb_substr($value->job_title, 0, 8, "utf-8")?></p>
                                
                                 </div>
                             <?php endforeach ?>
