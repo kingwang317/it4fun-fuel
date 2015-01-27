@@ -11,12 +11,13 @@
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/common.js"></script>
     <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/mysite.css" type="text/css" media="all" >
-    <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/mysite.css" type="text/css" media="all" >
+
     <!-- Include Google Maps API (Google Maps API v3 已不需使用 API Key) -->
     <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <!-- Require jQuery v1.7.0 or newer -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/query.tinyMap.min.js"></script>
+    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/terms.js"></script>
 </head>
 
 <body>
@@ -115,7 +116,7 @@
                 console.log(o);
                 alert(o.msg);
                 if (o.status == -99) {
-                    window.location = '<?php echo site_url()?>' ;//+ '?redirURL=' + document.URL;
+                    window.location = '<?php echo site_url()."user/myevent"?>' ;//+ '?redirURL=' + document.URL;
                 };
             })
             .fail(function() {

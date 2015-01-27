@@ -373,6 +373,8 @@ $this->load->helper('cookie');
 		$filter = '';
 		$target_url = $base_url.'event/';
 
+		
+
 
 		$results = $this->event_manage_model->get_event_list(0, 4, $filter);
 
@@ -410,6 +412,12 @@ $this->load->helper('cookie');
 		$this->load->module_model(EVENT_FOLDER, 'event_manage_model');
 		$this->load->module_model(COM_FOLDER, 'com_manage_model');
 		$this->load->module_model(NEWS_FOLDER, 'news_manage_model');
+
+		$account = $this->code_model->get_logged_in_account();
+
+		if($account == null){
+			$this->comm->plu_redirect(site_url(), 0, "尚未登入");
+		}
 		
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");
@@ -472,6 +480,12 @@ $this->load->helper('cookie');
 		$target_url = $base_url.'event/';
 
 		$account = $this->code_model->get_logged_in_account();
+
+		if($account == null){
+			$this->comm->plu_redirect(site_url(), 0, "尚未登入");
+		}
+
+
 		$results_deliver = $this->com_manage_model->get_deliver_list(0, 999, "WHERE a.account = '$account' ");
 		$results_event = $this->event_manage_model->get_regi_event_list(0, 999, " WHERE account = '$account' ");
 		$fb_data	= $this->code_model->get_fb_data();

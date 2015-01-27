@@ -15,7 +15,11 @@ if($recommended_id != null && $recommended_id  != ""){
 ?>
 
 <div id="headerbox">
+  <?php if($account == null || $account == ""){?>
     <a class="logo" href="<?php echo site_url()?>"></a>
+    <?php }else{ ?>
+    <a class="logo" href="<?php echo site_url()?>user/mynews"></a>
+    <?php } ?>
     <ul class="menu">
        <!-- <li><a href="<?php echo site_url()?>home/campusevents/">校園活動</a></li>
         <li><a href="<?php echo site_url()?>home/aboutus/">關於我們</a></li>    -->    

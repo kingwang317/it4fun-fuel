@@ -75,6 +75,7 @@
 						<th>活動主題</th>
 						<th>帳號</th>
 						<th>名字</th>
+						<th>聯絡電話</th>
 						<th>報名時間</th>
 						<th>報名狀態</th>
 					</tr>
@@ -99,10 +100,13 @@
 							<p class="EventTitle"><?php echo $row->event_title;?></p>
 						</td>
 						<td>
-							<?php echo $row->account;?>
+							<a href="<?php echo $account_url.$row->account ?>"><?php echo $row->account;?></a>
 						</td>
 						<td>
 							<?php echo $row->name;?>
+						</td>
+						<td>
+							<?php echo $row->contact_tel;?>
 						</td>
 						<td>
 							<?php echo $row->drop_date;?>

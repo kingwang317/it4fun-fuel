@@ -348,6 +348,7 @@ class Event_manage extends Fuel_base_controller {
 			$vars['module_uri']	= base_url().$this->module_uri;
 			$vars['view_name'] 	= "報名狀態";
 			$vars['bath_url']	= $base_url.'fuel/event/update/regitype';
+			$vars['account_url']	= $base_url.'fuel/resume/edit?account=';
 			$vars['results']	= $results;
 			$vars['total_rows']	= count($results);
 
