@@ -112,7 +112,7 @@
 		</label>
 	    <div class="col-sm-2">
 	        <select name="search_job_state">
-	        	<option value=""  <?php echo $search_job_state == "A"?"selected":""; ?>>不拘</option>
+	        	<option value="A"  <?php echo $search_job_state == "A"?"selected":""; ?>>不拘</option>
 				<option value="0" <?php echo $search_job_state == "0"?"selected":""; ?>>在職</option>
 	        	<option value="1" <?php echo $search_job_state == "1"?"selected":""; ?>>在學</option>
 				<option value="2" <?php echo $search_job_state == "2"?"selected":""; ?>>待業</option>
