@@ -40,7 +40,7 @@ class Resume_manage_model extends MY_Model {
 
 		return;
 	}
-	public function get_resume_export_list()
+	public function get_resume_export_list($filter)
 	{
 		$sql = @"SELECT 
 name as 'Last Name',
@@ -65,7 +65,7 @@ address_zip as 'ZipCode',
 (SELECT (SELECT code_name FROM mod_code WHERE codekind_key = 'school' AND s.school_id = code_id ) FROM mod_school s WHERE r.account = s.account ORDER BY is_attend,is_grad DESC LIMIT 1) AS 'education',
 (SELECT CONCAT(IFNULL(company_name,''),'-', IFNULL(job_title,'')) FROM mod_exp WHERE r.account = account ORDER BY job_start_date DESC LIMIT 1) AS 'work-experence',
 fb_account as 'FBID' 
-FROM `mod_resume` AS r ";
+FROM `mod_resume` AS r $filter";
 	
 		$query = $this->db->query($sql);
 

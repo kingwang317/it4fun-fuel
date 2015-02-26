@@ -364,10 +364,18 @@
 		window.open(url);
 	}
 
+
+
 	$j("document").ready(function($) {
 
 		$('#create_time_e').datepicker({dateFormat: 'yy-mm-dd'});
 		$('#create_time_s').datepicker({dateFormat: 'yy-mm-dd'});
+
+		// $j("#btnExport").click(function() {
+		// 	$("#form").attr('action', '<?php echo $export_url; ?>');
+		// 	$("#form").submit();
+		// 	$("#form").attr('action', '<?php echo $form_action; ?>');
+		// });
 
 		$j("#select-all").click(function() {
 

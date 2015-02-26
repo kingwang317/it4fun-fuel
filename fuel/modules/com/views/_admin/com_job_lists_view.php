@@ -51,6 +51,8 @@
 							</label>
 						</th> 
 						<th>ID</th> 
+						<th>最新投遞</th>
+						<th>總投遞數</th>
 						<th>職務名稱</th>
 						<th>工作簡介</th>
 						<th>工作上架/下架</th>
@@ -75,6 +77,8 @@
 							</label>
 						</td> 
 						<td><?php echo $rows->id ?></td>  
+						<td><?php echo $rows->lastest_date ?></td>
+						<td><?php echo $rows->total_count ?></td>
 						<td><a href="<?php echo $edit_url.$rows->id?>"><?php echo $rows->job_title?></a></td>
 						<td><?php echo substr(htmlspecialchars_decode($rows->job_intro),0,100)?></td>
 						<td><?php echo job_status_string($rows->job_status) ?></td> 
@@ -94,7 +98,7 @@
 					{
 					?>
 						<tr>
-							<td colspan="7">No results.</td>
+							<td colspan="11">No results.</td>
 						</tr>
 					<?php
 					}
