@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
-    <title>Young Talent - 註冊步驟2</title>    
+    <title>YoungTalent - 註冊步驟2</title>    
     <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/reset.css" type="text/css" media="all" >
     <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/register2.css" type="text/css" media="all" >
     <link rel="stylesheet" href="<?php echo site_url()?>assets/css/jquery.autocomplete.css" type="text/css" media="all" >

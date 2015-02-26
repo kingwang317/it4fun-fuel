@@ -354,7 +354,7 @@ $this->load->helper('cookie');
 			$this->input->set_cookie("ytalent_account",$mail, time()+3600);
 			$this->input->set_cookie("ytalent_fb_logout_url",$data['logout_url'], time()+3600);
 
-			$this->comm->plu_redirect(site_url()."user/editinfo?account=".$mail, 0, "FACEBOOK登入成功");
+			$this->comm->plu_redirect(site_url()."user/mynews", 0, "FACEBOOK登入成功");
 
 		}else{
 			$this->comm->plu_redirect(site_url(), 0, "FACEBOOK登入失敗");
@@ -373,7 +373,7 @@ $this->load->helper('cookie');
 		$filter = '';
 		$target_url = $base_url.'event/';
 
-		
+
 
 
 		$results = $this->event_manage_model->get_event_list(0, 4, $filter);

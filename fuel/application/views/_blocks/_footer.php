@@ -20,8 +20,8 @@
     </div>
     <div id="footerinfobox">
         <div class="info">
-            <div class="l">Copyright © 2013 - 2014 . PeopleSearch. All rights reserved.</div>
-            <div class="r">"Young Talent”是PeopleSearch的促進就業推動以及⼈⼒資源改善計劃。</div>
+            <div class="l">Copyright © 2013 - 2015 . PeopleSearch. All rights reserved.</div>
+            <div class="r"></div>
         </div>
     </div>
 </div>

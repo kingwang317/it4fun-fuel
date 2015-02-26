@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width,height=device-height, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5 , user-scalable=no"  />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title></title>    
+    <title>YoungTalent - 註冊STEP3</title>    
     <link rel="stylesheet" href="<?php echo site_url()?>assets/mobile_template/css/reset.css" type="text/css" media="all" >
     <link rel="stylesheet" href="<?php echo site_url()?>assets/mobile_template/css/signing3.css" type="text/css" media="all" >
     <link rel="stylesheet" href="<?php echo site_url()?>assets/mobile_template/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.css" type="text/css" media="all" >
