@@ -311,6 +311,42 @@ public function do_update_fbid2resume($account,$fbid){
         return;
     }
 
+     public function get_job_type()
+    { 
+        // $b = urldecode($q);
+
+        $sql = @"SELECT code_id,code_name FROM mod_code WHERE codekind_key ='JOB_TYPE' ";
+        // $para = array($q);
+        // echo $sql;
+        $query = $this->db->query($sql);
+
+        if($query->num_rows() > 0)
+        {
+            $result = $query->result(); 
+            return $result;
+        }
+
+        return;
+    }
+
+     public function get_subject_type()
+    { 
+        // $b = urldecode($q);
+
+        $sql = @"SELECT code_id,code_name FROM mod_code WHERE codekind_key ='SUBJECT_TYPE' ";
+        // $para = array($q);
+        // echo $sql;
+        $query = $this->db->query($sql);
+
+        if($query->num_rows() > 0)
+        {
+            $result = $query->result(); 
+            return $result;
+        }
+
+        return;
+    }
+
     public function get_lang($name='')
     { 
         // $b = urldecode($q);
@@ -616,7 +652,7 @@ public function do_update_fbid2resume($account,$fbid){
                     $id_result= $this->db->query($sql);
                     $school_id = $id_result->row()->ID; 
                 }
-                $insert_school_sql = " INSERT INTO  mod_school (account,school_id,is_grad,is_attend)VALUES(?,?,?,?)";
+                $insert_school_sql = " INSERT INTO  mod_school (account,school_id,is_grad,is_attend,type_id)VALUES(?,?,?,?,?)";
                 if($school_arr["school_state_$i"] == 'G'){
                     $is_grad = "1";
                     $is_attend = "0";
@@ -629,7 +665,8 @@ public function do_update_fbid2resume($account,$fbid){
                     $account_arr["account"],
                     $school_id ,
                     $is_grad, 
-                    $is_attend  
+                    $is_attend,
+                    $school_arr["school_subject_type_$i"]
                 );
 
                 $res_2 = $this->db->query($insert_school_sql, $para);
@@ -645,7 +682,7 @@ public function do_update_fbid2resume($account,$fbid){
 
         for($i = 1; $i < 100 ;$i++){
             if(isset($exp_arr["job_company_name_$i"]) && $exp_arr["job_company_name_$i"] != ""){
-                $insert_exp_sql = " INSERT INTO  mod_exp (account,company_name,job_title,job_start_date,job_end_date)VALUES(?,?,?,?,?)";
+                $insert_exp_sql = " INSERT INTO  mod_exp (account,company_name,job_title,job_start_date,job_end_date,type_id)VALUES(?,?,?,?,?,?)";
 
 
                 $para = array(
@@ -653,7 +690,8 @@ public function do_update_fbid2resume($account,$fbid){
                     $exp_arr["job_company_name_$i"], 
                     $exp_arr["job_title_$i"], 
                     $exp_arr["job_start_date_$i"], 
-                    $exp_arr["job_end_date_$i"]
+                    $exp_arr["job_end_date_$i"],
+                    $exp_arr["job_type_$i"]
                 );
 
                 $res_3 = $this->db->query($insert_exp_sql, $para);
@@ -758,7 +796,7 @@ public function do_update_fbid2resume($account,$fbid){
                 $account_arr["skills"] = null;
             }
 
-            $school_sql = " SELECT school_id,(SELECT code_name FROM mod_code WHERE code_id = school_id LIMIT 1 ) as school_name,is_grad,is_attend FROM mod_school WHERE account = '$account'  ";
+            $school_sql = " SELECT school_id,(SELECT code_name FROM mod_code WHERE code_id = school_id LIMIT 1 ) as school_name,is_grad,is_attend,type_id FROM mod_school WHERE account = '$account'  ";
             $school_query = $this->db->query($school_sql);
             if($school_query->num_rows() > 0)
             {

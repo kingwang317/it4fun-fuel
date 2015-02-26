@@ -16,6 +16,52 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
+			<?php 
+				$school_str = '';
+				$exp_str = '';
+				$lang_str = '';
+			 ?>
+			<?php if (isset($exp)): ?>
+				<?php foreach ($exp as $key => $row): ?>
+					<?php 
+						$exp_str .= "$row->company_name($row->job_title)[$row->job_start_date~$row->job_end_date],";
+					 ?>
+				<?php endforeach ?>
+			<?php endif ?>
+			<?php if (isset($school)): ?>
+				<?php foreach ($school as $key => $row): ?>
+					<?php 
+						$is_grad = "";
+						if ($row->is_grad == "1") {
+							$is_grad = "畢業";
+						}
+						if ($row->is_attend == "1") {
+							$is_grad = "在學";
+						}
+						$school_str .= "$row->code_name($is_grad)[$row->attend_date~$row->grad_date],";
+					 ?>
+				<?php endforeach ?>
+			<?php endif ?>
+			<?php if (isset($lang)): ?>
+				<?php foreach ($lang as $key => $row): ?>
+					<?php 
+						$lang_str .= "$row->lang_name($row->level_name),";
+					 ?>
+				<?php endforeach ?>
+			<?php endif ?>
+			<ul>
+				<li>姓名 : <?php echo  $result->name; ?></li>
+				<li>性別 : <?php echo  $result->sex == "0"?"女":"男"; ?></li>
+				<li>電話 : <?php echo  $result->contact_tel; ?></li>
+				<li>Email : <?php echo  $result->contact_mail; ?></li>
+				<li>學歷 : <?php echo  $school_str; ?></li>
+				<li>工作經驗 : <?php echo  $exp_str; ?></li>
+				<li>語⾔能力 : <?php echo  $lang_str; ?></li>
+			</ul>	
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
 			<section class="panel">
 				<header class="panel-heading">
 					編輯履歷

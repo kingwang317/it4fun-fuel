@@ -66,21 +66,25 @@ class Resume_manage extends Fuel_base_controller {
 			}					
 		}
 
-		if ($search_city != "" && $search_city != "0") {
+
+
+		if ($search_city != "" && $search_city != "A") {
 			$filter .= " AND address_city = '$search_city'";
 			$this->session->set_userdata('search_city', $search_city);
 		}else{
-			if (!isset($search_city) ) {
+			// if (!isset($search_city) ) {
 				$search_city = $this->session->userdata('search_city'); 
-				if ($search_city != "" && $search_city != "0") {
+				if ($search_city != "" && $search_city != "A") {
 					$search_city = $search_city;
 					$filter .= " AND address_city = '$search_city'";
-				} 
-			}else{
-				$this->session->set_userdata('search_city', "");
-			}					
+				} else{
+					$this->session->set_userdata('search_city', "A");
+				}	
+			// }else{
+			// 	$this->session->set_userdata('search_city', "A");
+			// }					
 		}
-  
+  // echo "search_city:$search_city";
 
 		if ($search_id != "") {
 			$filter .= " AND id = '$search_id'";
@@ -101,31 +105,37 @@ class Resume_manage extends Fuel_base_controller {
 			$filter .= " AND job_status = '$search_job_state'";
 			$this->session->set_userdata('search_job_state', $search_job_state);
 		}else{
-			if (!isset($search_job_state) ) {
+			// if (!isset($search_job_state) ) {
 				$search_job_state = $this->session->userdata('search_job_state'); 
 				if ($search_job_state != "A" &&  $search_job_state != "") {
 					$search_job_state = $search_job_state;
 					$filter .= " AND job_status = '$search_job_state'";
-				} 
-			}else{
-				$this->session->set_userdata('search_job_state', "A");
-			}				
+				} else{
+					$this->session->set_userdata('search_job_state', "A");
+				}
+			// }else{
+			// 	$this->session->set_userdata('search_job_state', "A");
+			// }				
 		}
 
 		if ($search_find_job_kind != "A" && $search_find_job_kind != "") {
 			$filter .= " AND find_job_kind = '$search_find_job_kind'";
 			$this->session->set_userdata('search_find_job_kind', $search_find_job_kind);
 		}else{
-			if (!isset($search_find_job_kind) ) {
+			// if (!isset($search_find_job_kind) ) {
 				$search_find_job_kind = $this->session->userdata('search_find_job_kind'); 
 				if ($search_find_job_kind != "A" && $search_find_job_kind != "") {
 					$search_find_job_kind = $search_find_job_kind;
 					$filter .= " AND find_job_kind = '$search_find_job_kind'";
-				} 
-			}else{
-				$this->session->set_userdata('search_find_job_kind', "A");
-			}				
+				} else{
+					$this->session->set_userdata('search_find_job_kind', "A");
+				}
+			// }else{
+			// 	$this->session->set_userdata('search_find_job_kind', "A");
+			// }				
 		}
+
+		// echo "search_find_job_kind:$search_find_job_kind";
 
 
 		if ($search_recommended  != "") {
@@ -306,16 +316,20 @@ class Resume_manage extends Fuel_base_controller {
 			$filter .= " AND sex = '$search_sex'";
 			$this->session->set_userdata('search_sex', $search_sex);
 		}else{
-			if (!isset($search_sex) ) {
+			// if (!isset($search_sex) ) {
 				$search_sex = $this->session->userdata('search_sex'); 
 				if ($search_sex != "A" && $search_sex != "") {
 					$search_sex = $search_sex;
 					$filter .= " AND sex = '$search_sex'";
-				} 
-			}else{
-				$this->session->set_userdata('search_sex', "A");
-			}					
+				} else{
+					$this->session->set_userdata('search_sex', "A");
+				}
+			// }else{
+			// 	$this->session->set_userdata('search_sex', "A");
+			// }					
 		}
+
+		// echo "search_sex:$search_sex";
 
 		if ($search_tel != "") {
 			$filter .= " AND contact_tel LIKE '%$search_tel%'";
@@ -342,7 +356,7 @@ class Resume_manage extends Fuel_base_controller {
 		$dataLen = $config['per_page'];
 		$this->pagination->initialize($config);
 
-		// echo $filter;
+		echo $filter;
 
 	    $recommended_ary = $this->codekind_manage_model->get_codekind_list(0,999,"WHERE codekind_key = 'EMPCODE'" ,'mod_code');
 	    $job_state_ary = $this->codekind_manage_model->get_codekind_list(0,999,"WHERE codekind_key = 'job_state'" ,'mod_code');
@@ -642,6 +656,326 @@ class Resume_manage extends Fuel_base_controller {
 	    return;
 	}
 	function export_excel(){
+		$post_ary = $this->input->post();
+		
+		$search_id            = $post_ary["search_id"];
+		$search_name          = $post_ary["search_name"];
+		$search_recommended   = $post_ary["search_recommended"];
+		$create_time_s        = $post_ary["create_time_s"];
+		$create_time_e        = $post_ary["create_time_e"];
+		$search_age_s         = $post_ary["search_age_s"];
+		$search_age_e         = $post_ary["search_age_e"];
+		$search_find_job_kind = $post_ary["search_find_job_kind"];
+		$search_exp           = $post_ary["search_exp"];
+		$search_city     = $post_ary["search_city"];
+		$search_school        = $post_ary["search_school"];
+		$search_skill         = $post_ary["search_skill"];
+		$search_job_state     = $post_ary["search_job_state"];
+		$search_email     = $post_ary["search_email"];
+		$search_about     = $post_ary["search_about"];
+		$search_note     = $post_ary["search_note"];
+		$search_sex     = $post_ary["search_sex"];
+		$search_tel     = $post_ary["search_tel"];
+
+
+
+		$filter = " WHERE 1=1  ";
+
+		if ($search_name != "") {
+			$filter .= " AND name LIKE '%$search_name%'";
+			$this->session->set_userdata('search_name', $search_name);
+		}else{
+			if (!isset($search_name) ) {
+				$search_name = $this->session->userdata('search_name'); 
+				if ($search_name != "") {
+					$search_name = $search_name;
+					$filter .= " AND name LIKE '%$search_name%'";
+				} 
+			}else{
+				$this->session->set_userdata('search_name', "");
+			}					
+		}
+
+
+
+		if ($search_city != "" && $search_city != "A") {
+			$filter .= " AND address_city = '$search_city'";
+			$this->session->set_userdata('search_city', $search_city);
+		}else{
+			// if (!isset($search_city) ) {
+				$search_city = $this->session->userdata('search_city'); 
+				if ($search_city != "" && $search_city != "A") {
+					$search_city = $search_city;
+					$filter .= " AND address_city = '$search_city'";
+				} else{
+					$this->session->set_userdata('search_city', "A");
+				}	
+			// }else{
+			// 	$this->session->set_userdata('search_city', "A");
+			// }					
+		}
+  // echo "search_city:$search_city";
+
+		if ($search_id != "") {
+			$filter .= " AND id = '$search_id'";
+			$this->session->set_userdata('search_id', $search_id);
+		}else{
+			if (!isset($search_id) ) {
+				$search_id = $this->session->userdata('search_id'); 
+				if ($search_id != "") {
+					$search_id = $search_id;
+					$filter .= " AND id = '$search_id'";
+				} 
+			}else{
+				$this->session->set_userdata('search_id', "");
+			}				
+		}
+
+		if ($search_job_state != "A" && $search_job_state != "") {
+			$filter .= " AND job_status = '$search_job_state'";
+			$this->session->set_userdata('search_job_state', $search_job_state);
+		}else{
+			// if (!isset($search_job_state) ) {
+				$search_job_state = $this->session->userdata('search_job_state'); 
+				if ($search_job_state != "A" &&  $search_job_state != "") {
+					$search_job_state = $search_job_state;
+					$filter .= " AND job_status = '$search_job_state'";
+				} else{
+					$this->session->set_userdata('search_job_state', "A");
+				}
+			// }else{
+			// 	$this->session->set_userdata('search_job_state', "A");
+			// }				
+		}
+
+		if ($search_find_job_kind != "A" && $search_find_job_kind != "") {
+			$filter .= " AND find_job_kind = '$search_find_job_kind'";
+			$this->session->set_userdata('search_find_job_kind', $search_find_job_kind);
+		}else{
+			// if (!isset($search_find_job_kind) ) {
+				$search_find_job_kind = $this->session->userdata('search_find_job_kind'); 
+				if ($search_find_job_kind != "A" && $search_find_job_kind != "") {
+					$search_find_job_kind = $search_find_job_kind;
+					$filter .= " AND find_job_kind = '$search_find_job_kind'";
+				} else{
+					$this->session->set_userdata('search_find_job_kind', "A");
+				}
+			// }else{
+			// 	$this->session->set_userdata('search_find_job_kind', "A");
+			// }				
+		}
+
+		// echo "search_find_job_kind:$search_find_job_kind";
+
+
+		if ($search_recommended  != "") {
+			$filter .= " AND recommended like '%$search_recommended%'";
+			$this->session->set_userdata('search_recommended', $search_recommended);
+		}else{
+			if (!isset($search_recommended) ) {
+				$search_recommended = $this->session->userdata('search_recommended'); 
+				if ($search_recommended != "") {
+					$search_recommended = $search_recommended;
+					$filter .= " AND recommended like '%$search_recommended%'";
+				} 
+			}else{
+				$this->session->set_userdata('search_recommended', "");
+			}			
+		}
+
+		if ($search_age_s  != "") {
+			$filter .= " AND DATEDIFF(NOW(),birth)/365 >= '$search_age_s'";
+			$this->session->set_userdata('search_age_s', $search_age_s);
+		}else{
+			if (!isset($search_age_s) ) {
+				$search_age_s = $this->session->userdata('search_age_s'); 
+				if ($search_age_s != "") {
+					$search_age_s = $search_age_s;
+					$filter .= " AND DATEDIFF(NOW(),birth)/365 >= '$search_age_s'";
+				} 
+			}else{
+				$this->session->set_userdata('search_age_s', "");
+			}			
+		}
+
+		if ($search_age_e  != "") {
+			$filter .= " AND DATEDIFF(NOW(),birth)/365 <= '$search_age_e'";
+			$this->session->set_userdata('search_age_e', $search_age_e);
+		}else{
+			if (!isset($search_age_e) ) {
+				$search_age_e = $this->session->userdata('search_age_e'); 
+				if ($search_age_e != "") {
+					$search_age_e = $search_age_e;
+					$filter .= " AND DATEDIFF(NOW(),birth)/365 <= '$search_age_e'";
+				} 
+			}else{
+				$this->session->set_userdata('search_age_e', "");
+			}			
+		}
+
+		if ($create_time_s  != "") {
+			$filter .= " AND create_time >= '$create_time_s'";
+			$this->session->set_userdata('create_time_s', $create_time_s);
+		}else{
+			if (!isset($create_time_s) ) {
+				$create_time_s = $this->session->userdata('create_time_s'); 
+				if ($create_time_s != "") {
+					$create_time_s = $create_time_s;
+					$filter .= " AND create_time >= '$create_time_s'";
+				} 
+			}else{
+				$this->session->set_userdata('create_time_s', "");
+			}			
+		}
+
+		if ($create_time_e  != "") {
+			$filter .= " AND create_time <= '$create_time_e'";
+			$this->session->set_userdata('create_time_e', $create_time_e);
+		}else{
+			if (!isset($create_time_e) ) {
+				$create_time_e = $this->session->userdata('create_time_e'); 
+				if ($create_time_e != "") {
+					$create_time_e = $create_time_e;
+					$filter .= " AND create_time <= '$create_time_e'";
+				} 
+			}else{
+				$this->session->set_userdata('create_time_e', "");
+			}				
+		}
+
+		if ($search_school  != "") {
+			$filter .= " AND account in (select account from mod_school where school_id = '$search_school' ) ";
+			$this->session->set_userdata('search_school', $search_school);
+		}else{
+			if (!isset($search_school) ) {
+				$search_school = $this->session->userdata('search_school'); 
+				if ($search_school != "") {
+					$search_school = $search_school;
+					$filter .= " AND account in (select account from mod_school where school_id = '$search_school' ) ";
+				} 
+			}else{
+				$this->session->set_userdata('search_school', "");
+			}		
+		}
+
+		if ($search_skill  != "") {
+			$filter .= " AND account in (select account from mod_skill where skill_id = '$search_skill' ) ";
+			$this->session->set_userdata('search_skill', $search_skill);
+		}else{
+			if (!isset($search_skill) ) {
+				$search_skill = $this->session->userdata('search_skill'); 
+				if ($search_skill != "") {
+					$search_skill = $search_skill;
+					$filter .= " AND account in (select account from mod_skill where skill_id = '$search_skill' ) ";
+				} 
+			}else{
+				$this->session->set_userdata('search_skill', "");
+			}			
+		}
+
+		if ($search_exp  != "A") {
+			if ($search_exp == "1") {
+				 $filter .= " AND account in (select distinct account from mod_exp  ) ";
+			}else if ($search_exp == "0") {
+				 $filter .= " AND account not in (select distinct account from mod_exp  ) ";
+			}
+			
+			$this->session->set_userdata('search_exp', $search_exp);
+		}else{
+			if (!isset($search_exp) ) {
+				$search_exp = $this->session->userdata('search_exp'); 
+				if ($search_exp != "A") {
+					$search_exp = $search_exp;
+					if ($search_exp == "1") {
+						 $filter .= " AND account in (select distinct account from mod_exp  ) ";
+					}else if ($search_exp == "0") {
+						 $filter .= " AND account not in (select distinct account from mod_exp  ) ";
+					}
+				} 
+			}else{
+				$this->session->set_userdata('search_exp', "A");
+			}			
+		}
+
+		if ($search_email != "") {
+			$filter .= " AND contact_mail LIKE '%$search_email%'";
+			$this->session->set_userdata('search_email', $search_email);
+		}else{
+			if (!isset($search_email) ) {
+				$search_email = $this->session->userdata('search_email'); 
+				if ($search_email != "") {
+					$search_email = $search_email;
+					$filter .= " AND contact_mail LIKE '%$search_email%'";
+				} 
+			}else{
+				$this->session->set_userdata('search_email', "");
+			}					
+		}
+
+		if ($search_about != "") {
+			$filter .= " AND about_self LIKE '%$search_about%'";
+			$this->session->set_userdata('search_about', $search_about);
+		}else{
+			if (!isset($search_about) ) {
+				$search_about = $this->session->userdata('search_about'); 
+				if ($search_about != "") {
+					$search_about = $search_about;
+					$filter .= " AND about_self LIKE '%$search_about%'";
+				} 
+			}else{
+				$this->session->set_userdata('search_about', "");
+			}					
+		}
+
+		if ($search_note != "") {
+			$filter .= " AND note LIKE '%$search_note%'";
+			$this->session->set_userdata('search_note', $search_note);
+		}else{
+			if (!isset($search_note) ) {
+				$search_note = $this->session->userdata('search_note'); 
+				if ($search_note != "") {
+					$search_note = $search_note;
+					$filter .= " AND note LIKE '%$search_note%'";
+				} 
+			}else{
+				$this->session->set_userdata('search_note', "");
+			}					
+		}
+
+		if ($search_sex != "A" && $search_sex != "") {
+			$filter .= " AND sex = '$search_sex'";
+			$this->session->set_userdata('search_sex', $search_sex);
+		}else{
+			// if (!isset($search_sex) ) {
+				$search_sex = $this->session->userdata('search_sex'); 
+				if ($search_sex != "A" && $search_sex != "") {
+					$search_sex = $search_sex;
+					$filter .= " AND sex = '$search_sex'";
+				} else{
+					$this->session->set_userdata('search_sex', "A");
+				}
+			// }else{
+			// 	$this->session->set_userdata('search_sex', "A");
+			// }					
+		}
+
+		// echo "search_sex:$search_sex";
+
+		if ($search_tel != "") {
+			$filter .= " AND contact_tel LIKE '%$search_tel%'";
+			$this->session->set_userdata('search_tel', $search_tel);
+		}else{
+			if (!isset($search_tel) ) {
+				$search_tel = $this->session->userdata('search_tel'); 
+				if ($search_tel != "") {
+					$search_tel = $search_tel;
+					$filter .= " AND contact_tel LIKE '%$search_tel%'";
+				} 
+			}else{
+				$this->session->set_userdata('search_tel', "");
+			}					
+		}
+		
 		$this->load->library('excel');
 
 			// Create new PHPExcel object
@@ -657,7 +991,7 @@ class Resume_manage extends Fuel_base_controller {
 										 ->setCategory("Test result file");
 
 			$col_name = array("Last Name","First Name","Middle Name","Alias","Company","Designation","Mobile No","Office No","Office Ext","Personal Email","Work Email","Home No","Gender","DateOfBirth","Industry-Sector","Function-SkillSet","Remarks","Address","ZipCode","education","work-experence","FBID");
-			$value = $this->resume_manage_model->get_resume_export_list();
+			$value = $this->resume_manage_model->get_resume_export_list($filter);
 			$title = "Resume Data Export";
 			$file_name = "export_data";
 			

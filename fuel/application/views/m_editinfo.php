@@ -116,9 +116,13 @@
                     // print_r($value);
                 ?>   
                     <li class="l<?php echo $count ?>">
-                        <input type="text" class="school" name="school_id_<?php echo $count ?>" value="<?php echo $value->school_name ?>"><br>
+                        <input type="text" class="school" placeholder="學校+科系名稱" name="school_id_<?php echo $count ?>" value="<?php echo $value->school_name ?>"><br>
                         <div class="box">
-
+                            <select name="school_subject_type_<?php echo $count ?>">
+                                <?php foreach ($subject_type_list as $key_k => $sub_v): ?>
+                                    <option value="<?php echo $sub_v->code_id ?>" <?php echo $value->type_id==$sub_v->code_id?"selected":""; ?>><?php echo $sub_v->code_name ?></option>
+                                <?php endforeach ?>
+                            </select> 
                             <input type="radio" class="schoolstate" name="school_state_<?php echo $count ?>" value="G" <?php echo $value->is_attend==0?"checked":""; ?> >
                             <span>畢業</span>
                             <input type="radio" class="schoolstate" name="school_state_<?php echo $count ?>" value="A" <?php echo $value->is_attend==1?"checked":""; ?> >
@@ -194,6 +198,11 @@
                     
                 ?>    
                     <li class="l<?php echo $count ?>">
+                         <select name="job_type_<?php echo $count ?>">
+                            <?php foreach ($job_type_list as $key_k => $job_v): ?>
+                                <option value="<?php echo $job_v->code_id ?>" <?php echo $value->type_id==$job_v->code_id?"selected":""; ?>><?php echo $job_v->code_name ?></option>
+                            <?php endforeach ?>
+                        </select>    
                         <input type="text" name="job_company_name_<?php echo $count ?>" value="<?php echo $value->company_name ?>" placeholder="公司" /><br>
                         <input type="text" name="job_title_<?php echo $count ?>" value="<?php echo $value->job_title ?>" placeholder="職稱" /><br>
                         <input type="text" class="datestart datepicker<?php echo $count ?>" name="job_start_date_<?php echo $count ?>" placeholder='西元年-月-日' value="<?php echo $value->job_start_date ?>">
@@ -236,7 +245,7 @@
                              <?php echo $value2->code_id==$value->level_id?"checked":""; ?> >
                             <span><?php echo $value2->code_name ?></span>
                         <?php endforeach ?>
-                        </div>
+                        <!-- </div> -->
                     </li>
 
                  <?php
@@ -345,23 +354,43 @@
                 DATA.dom.addlang=$(".addlang");
                 DATA.dom.langlist=$("ul.langlist");
 
+                <?php 
+
+                $subject_option = ''; 
+             
+                foreach ($subject_type_list as $key => $value) {
+                    $subject_option .="<option value='$value->code_id'>$value->code_name</option>";
+                }
+
+                ?> 
 
                 DATA.dom.addschool.click(function(){
                    num=DATA.dom.schoollist.children("li").size()+1;  
-                   schoolItem = "<li class='l"+num+"'><input type='text' class='school' name='school_id_"+num+"' id='school_id_"+num+"' value=''><br><div class='box'><input type='radio' class='schoolstate' name='school_state_"+num+"' value='' checked><span>畢業</span><input type='radio' class='schoolstate'  name='school_state_"+num+"' value=''><span>在學</span></div></li>";  
+                   var thisOption = replaceAll('{jsNum}',num,"<?php echo $subject_option ?>");
+                   schoolItem = "<li class='l"+num+"'><input type='text' class='school' name='school_id_"+num+"' placeholder='學校+科系名稱'' id='school_id_"+num+"' value=''><br><select name='school_subject_type_"+num+"'>"+thisOption+"</select><div class='box'><input type='radio' class='schoolstate' name='school_state_"+num+"' value='' checked><span>畢業</span><input type='radio' class='schoolstate'  name='school_state_"+num+"' value=''><span>在學</span></div></li>";  
                    DATA.dom.schoollist.append(schoolItem); 
 
                    // $("#school_id_"+num).autocomplete(school_data, {matchContains: true});
                    $(".school").autocomplete(school_data, {matchContains: true});   
                 });
 
+                <?php 
+
+                $job_option = ''; 
+             
+                foreach ($job_type_list as $key => $value) {
+                    $job_option .="<option value='$value->code_id'>$value->code_name</option>";
+                }
+
+                ?> 
+
                 DATA.dom.addjob.click(function(){
                    num=DATA.dom.joblist.children("li").size()+1; 
-                   jobItem ="<li class='l"+num+"'><input type='text' name='job_company_name_"+num+"' value='' placeholder='公司' /><br><input type='text' name='job_title_"+num+"' value='' placeholder='職稱' /><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' placeholder='西元年-月-日' value=''><br />至<br /><input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' placeholder='西元年-月-日' value=''><br><b>在職中，離職日期請留空</b></li>";
+                   var thisOption = replaceAll('{jsNum}',num,"<?php echo $job_option ?>");
+                   jobItem ="<li class='l"+num+"'><select name='job_type_"+num+"'>"+thisOption+"</select><input type='text' name='job_company_name_"+num+"' value='' placeholder='公司' /><br><input type='text' name='job_title_"+num+"' value='' placeholder='職稱' /><br><input type='text' class='datestart datepicker"+num+"' name='job_start_date_"+num+"' placeholder='西元年-月-日' value=''>&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;<input type='text' class='dateend datepicker"+num+"' name='job_end_date_"+num+"' placeholder='西元年-月-日' value=''><br><b>在職中，離職日期請留空</b></li>";
                    DATA.dom.joblist.append(jobItem);
                    $( ".datepicker"+num ).datepicker({ dateFormat: 'yy-mm-dd' });
                 });
-
 
                 <?php
 

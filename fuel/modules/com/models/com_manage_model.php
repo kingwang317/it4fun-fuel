@@ -74,7 +74,9 @@ class Com_manage_model extends MY_Model {
 
 	public function get_job_list($dataStart, $dataLen, $filter)
 	{
-		$sql = @"SELECT a.*,b.company_name ,b.company_logo FROM mod_job a left join mod_company b on a.company_id = b.id
+		$sql = @"SELECT (SELECT COUNT(*) FROM mod_drop_resume c WHERE c.job_id=a.id) total_count, 
+		(SELECT MAX(drop_date) FROM mod_drop_resume c WHERE c.job_id=a.id) lastest_date,
+		a.*,b.company_name ,b.company_logo FROM mod_job a left join mod_company b on a.company_id = b.id
 		$filter ORDER BY id DESC LIMIT $dataStart, $dataLen";
 
 		// echo $sql;

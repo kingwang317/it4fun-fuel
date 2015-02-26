@@ -145,6 +145,8 @@ class User extends CI_Controller {
 		$account_data = $this->code_model->get_account_data($account);
 		// $skill_list = $this->code_model->get_user_not_skill($account);
 		$skill_list = $this->code_model->get_skill();
+		$job_type_list = $this->code_model->get_job_type();
+		$subject_type_list = $this->code_model->get_subject_type();
 		$user_skill_list = $this->code_model->get_skill_list(" WHERE account = '$account' ");
 
 		$job_cate_list = $this->code_model->get_job_cate("job_cate");
@@ -166,6 +168,8 @@ class User extends CI_Controller {
 		$vars['fb_data'] = $fb_data;
 		$vars['exclude_cate']	= $exclude_cate;
 		$vars['skill_list']	= $skill_list;
+		$vars['job_type_list']	= $job_type_list;
+		$vars['subject_type_list']	= $subject_type_list;
 		// $vars['lang_list']	= $lang_list;
 		$vars['level_list']	= $level_list;
 		$vars['job_cate_list'] = $job_cate_list;
