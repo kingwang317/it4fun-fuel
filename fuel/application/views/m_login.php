@@ -25,7 +25,7 @@
             
             <p class="loginorline">或者</p>
                
-                <a  class="fbbtn" href="<?php echo $fb_data['login_url'] ?>" id="fbbtn"></a>
+                <a  class="fbbtn" href="<?php echo $fb_data['login_url']."?target_url=".$target_url ?>" id="fbbtn"></a>
                 <p class="loginmsgbox">我們不會在您的 Facebook 發佈任何貼文。</p>
             </div>
         </div>

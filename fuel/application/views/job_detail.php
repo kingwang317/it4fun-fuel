@@ -113,6 +113,11 @@
 
     jQuery(document).ready(function($) {
         $(".dropresume").click(function(event) {
+
+            if('<?php echo $account; ?>' == ''){
+                    alert("請先登入後，再投遞履歷");
+                    window.location = '<?php echo site_url()."home/login?target_url=job/detail/".$job_id ?>' ;//+ '?redirURL=' + document.URL;
+            }
             $.ajax({
                 url: '<?php echo $regi_url ?>',
                 type: 'POST',

@@ -33,7 +33,7 @@ if($recommended_id != null && $recommended_id  != ""){
     <a href="<?php echo site_url()?>user/editinfo" alt="檢視我的檔案"><div id="myinfobox" ></div></a>
     <a href="<?php echo site_url()?>user/logout" alt="登出"><div id="logout" ></div></a>
     <?php }else{ ?>
-    <div id="loginbox">登入</div>
+    <div id="loginbox">註冊/登錄</div>
     <?php } ?>
     <div id="logdata"></div>
     

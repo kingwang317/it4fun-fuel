@@ -624,7 +624,16 @@ public function do_update_fbid2resume($account,$fbid){
             );                       
             $res = $this->db->query($update_sql_3, $para);
         }
-
+        if(isset($account_arr["password"]) ){
+            $update_sql_4 = " UPDATE mod_resume SET 
+                        password = ?
+                        WHERE account = ? ";
+            $para = array(
+                md5($account_arr["password"]), 
+                $account_arr["account"]
+            );                       
+            $res = $this->db->query($update_sql_4, $para);
+        }
        
 
         $delete_school_sql = "DELETE FROM mod_school WHERE account = ?";
@@ -774,6 +783,68 @@ public function do_update_fbid2resume($account,$fbid){
     }
 
 
+    public function reset_password($account){
+        $new_pw = $this->generateRandomString();
+
+        $update_sql_1 = " UPDATE mod_resume SET 
+                    password = ?
+                    WHERE account = ? ";
+        $para = array(
+            md5($new_pw), 
+            $account
+        );
+
+        $res = $this->db->query($update_sql_1, $para);
+
+        $from_name = $this->get_site_var("mail_from_name");
+        $from_mail = $this->get_site_var("mail_from");
+        $target = $account;
+        $subject = "YoungTalent密碼重製通知";
+        $content = "<html><header></header><body>";
+        $content .= "<p>親愛的會員您好<BR />您的密碼重製為：$new_pw <BR />請使用新密碼登入，並至我的資料變更密碼。</p>";
+        $content .= "</body></html>";
+        $this->load->library('email');
+        //$this->email->mailtype('html');
+
+        $this->email->from($from_mail, $from_name);
+        $this->email->to($target); 
+        //$this->email->cc('another@another-example.com'); 
+        //$this->email->bcc('them@their-example.com'); 
+
+        $this->email->subject($subject);
+        $this->email->message($content); 
+
+        //$this->email->send();
+
+        if($this->email->send())
+        {
+            $msg =  "success";
+            $this->set_mail_log($target,$subject,'1',$content,$target);
+            
+           // echo $this->email->print_debugger();
+        }
+        else
+        {
+            $this->set_mail_log($target,$subject,'0',$content,$target);
+             $msg ="error";
+        }
+        //return $this->email->print_debugger();
+
+
+        $result["msg"] = $msg;//"密碼重製完成！請至EMAIL取得密碼！";
+
+        return $result;
+    }
+
+    function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
     public function get_account_data($account)
     {
         $sql = @"SELECT * FROM mod_resume WHERE account = '$account' ";

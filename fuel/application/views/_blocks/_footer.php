@@ -9,7 +9,9 @@
     <div id="footernavbox">
         <div class="nav">
             <ul>
-                
+                <li><a href="<?php echo site_url()?>user/mynews/">最新消息</a></li>
+                <li><a href="<?php echo site_url()?>job/">職缺列表</a></li>
+                <li><a href="<?php echo site_url()?>event/">活動列表</a></li>
                 <li><a href="<?php echo site_url()?>home/aboutus/">關於我們</a></li>
               <!--  <li><a href="<?php echo site_url()?>home/campusevent/">校園活動</a></li>
             -->
@@ -82,6 +84,8 @@
                 <div class="icon"></div>
             </div>            
             <div class="submit">
+                <a href="#" id="forgetpw">忘記密碼</a>
+                <input type="button" class="register_btn" name="register_btn" id="register_btn"  value="註冊">
                 <input type="submit" class="submitbtn" name="submitbtn_2" id="submitbtn_2"  value="登入">
             </div>
             
@@ -166,6 +170,23 @@ $("#submitbtn_1").click(function(){
         return false;
    }
   
+});
+
+$("#forgetpw").click(function(){
+    if($("#login_mail").val() == ""){
+        $("#login_error_msg").text("請輸入帳號");
+            return false;
+    }
+    $.ajax({
+                url: '<?php echo site_url()?>user/reset_password',
+                type: 'POST',
+                dataType: 'json',
+                data: { account: $("#login_mail").val() }
+            }).done(function( data ) {
+            alert( data.msg );
+          });
+    return true;
+
 });
 
 $("#submitbtn_2").click(function(){

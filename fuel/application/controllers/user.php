@@ -308,6 +308,7 @@ $this->load->helper('cookie');
 		$this->load->model('code_model');
         $account = $this->input->post("login_mail");
         $password = $this->input->post("login_password");
+        $target_url = $this->input->get("target_url");
 
         $is_logined = $this->code_model->is_account_logged_in($account);
        
@@ -322,7 +323,13 @@ $this->load->helper('cookie');
             if($login_result){
 				$this->input->set_cookie("ytalent_account",$account, 3600);
 
-            	$this->comm->plu_redirect(site_url()."user/mynews", 0, "登入成功");
+				if(isset($target_url) && $target_url != ""){
+					$this->comm->plu_redirect(site_url().$target_url, 0, "登入成功");
+				}else{
+					$this->comm->plu_redirect(site_url()."user/mynews", 0, "登入成功");
+				}
+
+            	
             }else{
 
             	$this->comm->plu_redirect(site_url(), 0, "登入失敗");
@@ -336,6 +343,7 @@ $this->load->helper('cookie');
 		$this->load->model('code_model');
 
 		$data = $this->code_model->get_fb_data();
+		$target_url = $this->input->get("target_url");
 
 
 		if(isset($data['user_profile'])){
@@ -357,8 +365,11 @@ $this->load->helper('cookie');
 			$result = $this->code_model->do_register_resume($mail,$password,$name,$fb_email,$data['user_profile']['id']);
 			$this->input->set_cookie("ytalent_account",$mail, time()+3600);
 			$this->input->set_cookie("ytalent_fb_logout_url",$data['logout_url'], time()+3600);
-
-			$this->comm->plu_redirect(site_url()."user/mynews", 0, "FACEBOOK登入成功");
+			if(isset($target_url) && $target_url != ""){
+				$this->comm->plu_redirect(site_url().$target_url, 0, "FACEBOOK登入成功");
+			}else{
+				$this->comm->plu_redirect(site_url()."user/mynews", 0, "FACEBOOK登入成功");
+			}
 
 		}else{
 			$this->comm->plu_redirect(site_url(), 0, "FACEBOOK登入失敗");
@@ -420,7 +431,8 @@ $this->load->helper('cookie');
 		$account = $this->code_model->get_logged_in_account();
 
 		if($account == null){
-			$this->comm->plu_redirect(site_url(), 0, "尚未登入");
+			$account = "";
+			//$this->comm->plu_redirect(site_url(), 0, "尚未登入");
 		}
 		
 		$this->set_meta->set_meta_data();
@@ -441,6 +453,7 @@ $this->load->helper('cookie');
 		//print_r($news_results);
 //die();
 		$vars['base_url'] 			= $base_url;
+		$vars['account'] 			= $account;
 		$vars['event_target_url'] 		= $event_target_url;
 		$vars['job_target_url'] 		= $job_target_url;
 		$vars['event_photo_path']			= $base_url.'assets/uploads/event/';
@@ -528,6 +541,18 @@ $this->load->helper('cookie');
 		$vars['token'] = $this->input->get("token");
 		$page_init = array('location' => 'home');
 		$this->fuel->pages->render('register3', $vars);
+	}
+
+	function reset_password(){
+		$this->load->model('code_model');
+		$account = $this->input->get_post("account");
+
+		$result = $this->code_model->reset_password($account);
+
+		echo json_encode($result);
+
+
+
 	}
 	
 }
