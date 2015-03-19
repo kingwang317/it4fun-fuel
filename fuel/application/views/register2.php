@@ -24,7 +24,7 @@
                 <div class="step2"></div>
                 <div class="reight">
                     
-                    <form action="<?php echo site_url()?>/register/step2_save/" method="POST" >                    
+                    <form action="<?php echo site_url()?>/register/step2_save/" method="POST" onSubmit="return checkCol();">                    
                         <input type="hidden" name="account" value="<?php echo $account ?>" />
                         <input type="hidden" name="token" value="<?php echo $token ?>" />
                         <div class="area_div" id="area_div_2">
@@ -429,6 +429,34 @@
                 });
 
             });
+
+            function checkCol(){
+                var msg = "";
+
+                if($("#name").val() == ""){
+                    msg += "第二步-姓名欄位為必填 \n";
+                }
+                if($("#birth").val() == ""){
+                    msg += "第二步-生日欄位為必填 \n";
+                }
+                if($("#birth").val() == ""){
+                    msg += "第二步-生日欄位為必填 \n";
+                }
+                if($("#contact_tel").val() == ""){
+                    msg += "第二步-連絡電話欄位為必填 \n";
+                }
+                if($("#address").val() == ""){
+                    msg += "第二步-地址欄位為必填 \n";
+                }
+
+                if(msg == ""){
+                    return true;
+                }else{
+                    alert(msg);
+                    return false;
+                }
+
+            }
            
 
     </script>

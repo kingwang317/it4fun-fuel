@@ -726,7 +726,7 @@ input.lang, input.remark{
 #view_vacanciesbox div.itemsbox div.item{
 	float: left;
 	width: 202px;
-	height: 265px;
+	height: 340px;
 	background-color: #f3f3f3;
 	border-bottom: solid #a59b9b 3px;
 	margin-bottom: 20px;
@@ -1102,7 +1102,7 @@ input.lang, input.remark{
 #indexbox div.item{
 	float: left;
 	width: 202px;
-	min-height: 265px;
+	min-height: 340px;
 	background-color: #f3f3f3;
 	border-bottom: solid #a59b9b 3px;
 	margin-bottom: 10px;

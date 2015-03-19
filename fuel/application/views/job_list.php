@@ -89,8 +89,8 @@
                                         <img src="<?php echo $photo_path.$value->company_logo; ?>">
                                      </a>
                                     </div>
-                                    <p class="title"><?php echo mb_substr($value->company_name, 0, 8, "utf-8")?></p>
-                                    <p class="jobname"><?php echo mb_substr($value->job_title, 0, 8, "utf-8")?></p>
+                                    <p class="title"><?php echo mb_substr($value->company_name, 0, 30, "utf-8")?></p>
+                                    <p class="jobname"><?php echo mb_substr($value->job_title, 0, 30, "utf-8")?></p>
                                
                                 </div>
                             <?php endforeach ?>
