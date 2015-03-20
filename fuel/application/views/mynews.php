@@ -36,7 +36,7 @@
                                                 <img src="<?php echo $news_photo_path.$value->img; ?>" style="width:275px">
                                             </a>
                                         </div>
-                                        <p class="title"><?php echo mb_substr($value->title, 0, 8, "utf-8")?></p>
+                                        <p class="title"><?php echo mb_substr($value->title, 0, 16, "utf-8")?></p>
                                         <p class="jobname"><?php echo mb_substr( strip_tags($value->content),0,80,"utf-8"); ?></p>
                                     
                                 </div>
@@ -56,8 +56,8 @@
                                             <img style="width:200px" src="<?php echo $job_photo_path.$value->company_logo; ?>">
                                         </a>
                                     </div>
-                                    <p class="title"><?php echo mb_substr($value->company_name, 0, 8, "utf-8")?></p>
-                                    <p class="jobname"><?php echo mb_substr($value->job_title, 0, 8, "utf-8")?></p>
+                                    <p class="title"><?php echo mb_substr($value->company_name, 0, 30, "utf-8")?></p>
+                                    <p class="jobname"><?php echo mb_substr($value->job_title, 0, 30, "utf-8")?></p>
                                 </div>
                             <?php endforeach ?>
                         <?php else: ?>
@@ -80,8 +80,8 @@
                                         <img src="<?php echo $event_photo_path.$row->event_photo?>" width="200" height="200">
                                     </a>
                                 </div>
-                                <p class="title" title="<?php echo $row->event_title?>"><?php echo mb_substr($row->event_title, 0, 8, "utf-8")?></p>
-                                <p class="date"><?php echo mb_substr($row->event_start_date, 0, 16, "utf-8")?></p>
+                                <p class="title" title="<?php echo $row->event_title?>"><?php echo mb_substr($row->event_title, 0, 30, "utf-8")?></p>
+                                <p class="date"><?php echo mb_substr($row->event_start_date, 0, 30, "utf-8")?></p>
                             </div>                           
                 <?php
                         }

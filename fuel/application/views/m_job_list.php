@@ -20,7 +20,7 @@
 
                             <li>
                                 <div class="vacanciesbox">
-                                    <a href="<?php echo $job_detail_url.$value->id ?>"><img src="<?php echo $photo_path.$value->company_logo; ?>"></a>                        
+                                    <a href="<?php echo $job_detail_url.$value->id ?>"><img style="width:100%" src="<?php echo $photo_path.$value->company_logo; ?>"></a>                        
                                     <p class="company"><?php echo $value->company_name ?></p>
                                     <p class="job"><?php echo $value->job_title ?></p>
                                 </div>
