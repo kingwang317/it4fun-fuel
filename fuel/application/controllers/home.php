@@ -60,6 +60,7 @@ class Home extends CI_Controller {
 
 		$this->load->helper('cookie');
 		$this->load->library('facebook'); 
+		$target_url = $this->input->get("target_url");
 		$this->set_meta->set_meta_data();
 		fuel_set_var('page_id', "1");
 		$all_cate = array();
@@ -74,18 +75,14 @@ class Home extends CI_Controller {
 		$vars['fb_data'] = $fb_data;
 
 		// use Fuel_page to render so it will grab all opt-in variables and do any necessary parsing
+		//die();
 		
-		$vars['all_cate']	= $all_cate;
+		$vars['target_url'] = $target_url;
 		$vars['base_url'] = base_url();
-		if($this->code_model->is_mobile()){
-			$vars['views'] = 'm_login';
-			$page_init = array('location' => 'm_login');
-			$this->fuel->pages->render('m_login', $vars);
-		}else{
-			$vars['views'] = 'login';
-			$page_init = array('location' => 'login');
-			$this->fuel->pages->render('login', $vars);
-		}
+		$vars['views'] = 'm_login';
+		$page_init = array('location' => 'm_login');
+		$this->fuel->pages->render('m_login', $vars);
+
 	}
 	function contact()
 	{	

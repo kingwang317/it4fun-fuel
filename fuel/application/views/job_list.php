@@ -9,6 +9,7 @@
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/common.js"></script>
+    <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/index.js"></script>
     <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/mysite.css" type="text/css" media="all" >
 </head>
 
@@ -35,8 +36,13 @@
                 </div> -->
                
       
-                <?php  $this->load->view('_blocks/_left_menu')?>
-                <div id="view_vacanciesbox">
+                <?php  
+                if($account != "")
+                    $this->load->view('_blocks/_left_menu')
+                
+                ?>
+                <div id="view_vacanciesbox" <?php echo $account != ""?"":"style='margin-left:100px'"?>>
+
                    
                     <div class="searchbox">
                         <form action="<?php echo site_url()?>job" method="POST" > 

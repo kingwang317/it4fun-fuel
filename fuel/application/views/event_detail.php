@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <p class="msgbox">已加入活動：<span id="RegiNum"><?php echo $regi_num?></span>/<span id="RegiLimit"><?php echo $result->regi_limit_num?></span></p>
-                    <a href="#" class="addevent">加入活動</a>
+                    <a href="#" class="addevent">加入活動<?php echo $account ?></a>
                 </div>    
             </div>
             <div id="fbbox">
@@ -114,10 +114,14 @@
             .done(function(o) {
                 console.log("success");
                 console.log(o);
-                alert(o.msg);
-                if (o.status == -99) {
+               
+                if('<?php echo $account; ?>' == "" && o.status == -99){
+                    alert("請先登入後，再報名活動");
+                    window.location = '<?php echo site_url()."home/login?target_url=event/detail/".$event_id ?>' ;//+ '?redirURL=' + document.URL;
+                }else{
+                    alert(o.msg);
                     window.location = '<?php echo site_url()."user/myevent"?>' ;//+ '?redirURL=' + document.URL;
-                };
+                }  
             })
             .fail(function() {
                 console.log("error");

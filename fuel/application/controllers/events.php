@@ -73,7 +73,12 @@ class Events extends CI_Controller {
 
 		$fb_data	= $this->code_model->get_fb_data($r_url);
 		$vars['fb_data'] = $fb_data;
-
+		$account = $this->code_model->get_logged_in_account();
+		if($account == null){
+			$account = "";
+		}
+		$vars['event_id'] 	= $event_id;
+		$vars['account'] 	= $account;
 		$vars['views'] 		= 'event_detail';
 		$vars['photo_path']	= $base_url.'assets/uploads/event/';
 		$vars['result']		= $result;

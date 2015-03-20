@@ -4,6 +4,7 @@ jQuery(document).ready(function ($) {
     DATA.winH = $(window).height();
     DATA.dom={};
     DATA.dom.loginbox=$("#loginbox");
+    DATA.dom.register_btn=$("#register_btn");
     DATA.dom.logdata=$("#logdata");
     DATA.dom.wall=$("#wall");
     DATA.dom.logindatabox=$("#logindatabox");
@@ -27,6 +28,15 @@ jQuery(document).ready(function ($) {
     DATA.dom.logindatabox.find("div.close").click(function(){
        DATA.dom.logindatabox.css({"left":(DATA.winW-DATA.dom.logindatabox.width())/2+"px" , "top":(DATA.winH-DATA.dom.logindatabox.height())/2+"px"});
        DATA.dom.logindatabox.fadeOut();
+    });
+
+    DATA.dom.register_btn.click(function(){
+      DATA.dom.logindialog.css({"left":(DATA.winW-DATA.dom.logindialog.width())/2+"px" , "top":(DATA.winH-DATA.dom.logindialog.height())/2+"px"});
+      DATA.dom.logindialog.fadeOut();
+
+      DATA.dom.logindatabox.css({"left":(DATA.winW-DATA.dom.logindatabox.width())/2+"px" , "top":(DATA.winH-DATA.dom.logindatabox.height())/2+"px"});
+      DATA.dom.logindatabox.fadeIn();
+
     });
 
 });

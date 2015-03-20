@@ -66,6 +66,14 @@
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                 </tr>
+                                <tr height="55">
+                                    <td colspan="1" width="100px">密碼</td>
+                                    <td colspan="2"><div class="phonebox"><input type="password" class="phone" name="password"  id="password" ></div></td>
+                                </tr>
+                                <tr height="55">
+                                    <td colspan="1" width="100px">確認密碼</td>
+                                    <td colspan="2" ><div class="phonebox"><input type="password" class="phone" name="repassword" id="repassword" ></div></td>
+                                </tr>
                             </table>
 
                             <table>
@@ -297,7 +305,7 @@
                                   <?php endif ?> 
                                   <p style="font-size:12px; color:#999;">支援格式：.doc .docx .pdf .jpg .png</p>
                                   <br/>
-                                  <input type="Submit" name="Submit" class="Submit" value="完成">
+                                  <input type="Submit" name="Submit" id="Submit" class="Submit" value="完成">
                             </div>
                             <?php if ($data[0]->fb_account == null || $data[0]->fb_account == ""): ?> 
 
@@ -327,6 +335,21 @@
             }
 
            jQuery(document).ready(function($) {
+
+                $("#Submit").click(function(){
+                    console.log($("#password"));
+                    if($("#password").val() != "" && $("#password").val() != $("#repassword").val()){
+                        alert("兩次密碼不相符");
+                        return false;
+                    }
+
+                    if($("#password").val() != "" && $("#password").length < 9 ){
+                        alert("密碼最少需要八個字元");
+                        return false;
+                    }
+                    return true;
+
+                });
 
                 $( ".birthday").datepicker({ dateFormat: 'yy-mm-dd' });
              

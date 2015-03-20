@@ -87,6 +87,13 @@ class Jobs extends CI_Controller {
 		}
 
 		// echo $filter;
+		$this->load->model('code_model');
+		$account = $this->code_model->get_logged_in_account();
+
+		if($account == null){
+			$account = "";
+			//$this->comm->plu_redirect(site_url(), 0, "尚未登入");
+		}
 
 		
 		$target_url = $base_url.'job/';
@@ -103,6 +110,7 @@ class Jobs extends CI_Controller {
 
 		$fb_data	= $this->code_model->get_fb_data();
 		$vars['fb_data'] = $fb_data;
+		$vars['account'] 			= $account;
 		$vars['search_city'] = $search_city;
 		$vars['search_skill'] = $search_skill;
 		$vars['search_keyword'] = $search_keyword;
@@ -155,6 +163,12 @@ class Jobs extends CI_Controller {
 		foreach ($job_lang as $key => $value) {
 			$job_lang_str.=$value->lang_name."[$value->level_name]".',';
 		}
+
+		$account = $this->code_model->get_logged_in_account();
+		if($account == null){
+			$account = "";
+		}
+		$vars['account'] 	= $account;
 
 	
 		$fb_data	= $this->code_model->get_fb_data();

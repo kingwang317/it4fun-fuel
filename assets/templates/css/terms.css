@@ -303,11 +303,13 @@ div#logindialog div.submit input{
 	font-size: 18px;
 	padding: 5px 15px 5px 15px;
 	text-align: center;
-	background: #8cc63f;
+	background: #6E92E0;
 	border:1px solid #ccc ;
 	line-height: 21px;	
 	cursor: pointer;
 }
+
+
 
 div#logindialog div.fbbox{
 	clear: both;
