@@ -75,6 +75,7 @@
 						<th>活動主題</th>
 						<th>帳號</th>
 						<th>名字</th>
+						<th>Email</th>
 						<th>聯絡電話</th>
 						<th>報名時間</th>
 						<th>報名狀態</th>
@@ -104,6 +105,9 @@
 						</td>
 						<td>
 							<?php echo $row->name;?>
+						</td>
+						<td>
+							<?php echo $row->contact_mail;?>
 						</td>
 						<td>
 							<?php echo $row->contact_tel;?>

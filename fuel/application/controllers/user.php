@@ -216,10 +216,10 @@ class User extends CI_Controller {
 		}
 
 		$config['upload_path'] = $avatar_path;
-		$config['allowed_types'] = 'png';
-		$config['max_size']	= '9999';
-		$config['max_width']  = '1024';
-		$config['max_height']  = '768';
+		$config['allowed_types'] = 'png|jpg';
+		$config['max_size']	= '9999999';
+		$config['max_width']  = '0';
+		$config['max_height']  = '0';
 
 		$this->load->library('upload',$config);
 
