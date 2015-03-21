@@ -611,7 +611,9 @@ public function do_update_fbid2resume($account,$fbid){
             $para = array(
                 $account_arr["avatar"], 
                 $account_arr["account"]
-            );                       
+            );  
+            // print_r($account_arr) ;
+            // die;                   
             $res = $this->db->query($update_sql_2, $para);
         }
         if(isset($account_arr["about_att"]) ){

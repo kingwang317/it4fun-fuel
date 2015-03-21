@@ -72,17 +72,18 @@ class Resume_manage extends Fuel_base_controller {
 			$filter .= " AND address_city = '$search_city'";
 			$this->session->set_userdata('search_city', $search_city);
 		}else{
-			// if (!isset($search_city) ) {
+			if (!isset($search_city) ) {
 				$search_city = $this->session->userdata('search_city'); 
 				if ($search_city != "" && $search_city != "A") {
 					$search_city = $search_city;
 					$filter .= " AND address_city = '$search_city'";
-				} else{
+				} 
+				else{
 					$this->session->set_userdata('search_city', "A");
 				}	
-			// }else{
-			// 	$this->session->set_userdata('search_city', "A");
-			// }					
+			}else{
+				$this->session->set_userdata('search_city', "A");
+			}					
 		}
   // echo "search_city:$search_city";
 
@@ -105,7 +106,7 @@ class Resume_manage extends Fuel_base_controller {
 			$filter .= " AND job_status = '$search_job_state'";
 			$this->session->set_userdata('search_job_state', $search_job_state);
 		}else{
-			// if (!isset($search_job_state) ) {
+			if (!isset($search_job_state) ) {
 				$search_job_state = $this->session->userdata('search_job_state'); 
 				if ($search_job_state != "A" &&  $search_job_state != "") {
 					$search_job_state = $search_job_state;
@@ -113,16 +114,16 @@ class Resume_manage extends Fuel_base_controller {
 				} else{
 					$this->session->set_userdata('search_job_state', "A");
 				}
-			// }else{
-			// 	$this->session->set_userdata('search_job_state', "A");
-			// }				
+			}else{
+				$this->session->set_userdata('search_job_state', "A");
+			}				
 		}
 
 		if ($search_find_job_kind != "A" && $search_find_job_kind != "") {
 			$filter .= " AND find_job_kind = '$search_find_job_kind'";
 			$this->session->set_userdata('search_find_job_kind', $search_find_job_kind);
 		}else{
-			// if (!isset($search_find_job_kind) ) {
+			if (!isset($search_find_job_kind) ) {
 				$search_find_job_kind = $this->session->userdata('search_find_job_kind'); 
 				if ($search_find_job_kind != "A" && $search_find_job_kind != "") {
 					$search_find_job_kind = $search_find_job_kind;
@@ -130,9 +131,9 @@ class Resume_manage extends Fuel_base_controller {
 				} else{
 					$this->session->set_userdata('search_find_job_kind', "A");
 				}
-			// }else{
-			// 	$this->session->set_userdata('search_find_job_kind', "A");
-			// }				
+			}else{
+				$this->session->set_userdata('search_find_job_kind', "A");
+			}				
 		}
 
 		// echo "search_find_job_kind:$search_find_job_kind";
@@ -316,7 +317,7 @@ class Resume_manage extends Fuel_base_controller {
 			$filter .= " AND sex = '$search_sex'";
 			$this->session->set_userdata('search_sex', $search_sex);
 		}else{
-			// if (!isset($search_sex) ) {
+			if (!isset($search_sex) ) {
 				$search_sex = $this->session->userdata('search_sex'); 
 				if ($search_sex != "A" && $search_sex != "") {
 					$search_sex = $search_sex;
@@ -324,9 +325,9 @@ class Resume_manage extends Fuel_base_controller {
 				} else{
 					$this->session->set_userdata('search_sex', "A");
 				}
-			// }else{
-			// 	$this->session->set_userdata('search_sex', "A");
-			// }					
+			}else{
+				$this->session->set_userdata('search_sex', "A");
+			}					
 		}
 
 		// echo "search_sex:$search_sex";
@@ -702,7 +703,7 @@ class Resume_manage extends Fuel_base_controller {
 			$filter .= " AND address_city = '$search_city'";
 			$this->session->set_userdata('search_city', $search_city);
 		}else{
-			// if (!isset($search_city) ) {
+			if (!isset($search_city) ) {
 				$search_city = $this->session->userdata('search_city'); 
 				if ($search_city != "" && $search_city != "A") {
 					$search_city = $search_city;
@@ -710,9 +711,9 @@ class Resume_manage extends Fuel_base_controller {
 				} else{
 					$this->session->set_userdata('search_city', "A");
 				}	
-			// }else{
-			// 	$this->session->set_userdata('search_city', "A");
-			// }					
+			}else{
+				$this->session->set_userdata('search_city', "A");
+			}					
 		}
   // echo "search_city:$search_city";
 
@@ -735,7 +736,7 @@ class Resume_manage extends Fuel_base_controller {
 			$filter .= " AND job_status = '$search_job_state'";
 			$this->session->set_userdata('search_job_state', $search_job_state);
 		}else{
-			// if (!isset($search_job_state) ) {
+			if (!isset($search_job_state) ) {
 				$search_job_state = $this->session->userdata('search_job_state'); 
 				if ($search_job_state != "A" &&  $search_job_state != "") {
 					$search_job_state = $search_job_state;
@@ -743,16 +744,16 @@ class Resume_manage extends Fuel_base_controller {
 				} else{
 					$this->session->set_userdata('search_job_state', "A");
 				}
-			// }else{
-			// 	$this->session->set_userdata('search_job_state', "A");
-			// }				
+			}else{
+				$this->session->set_userdata('search_job_state', "A");
+			}				
 		}
 
 		if ($search_find_job_kind != "A" && $search_find_job_kind != "") {
 			$filter .= " AND find_job_kind = '$search_find_job_kind'";
 			$this->session->set_userdata('search_find_job_kind', $search_find_job_kind);
 		}else{
-			// if (!isset($search_find_job_kind) ) {
+			if (!isset($search_find_job_kind) ) {
 				$search_find_job_kind = $this->session->userdata('search_find_job_kind'); 
 				if ($search_find_job_kind != "A" && $search_find_job_kind != "") {
 					$search_find_job_kind = $search_find_job_kind;
@@ -760,9 +761,9 @@ class Resume_manage extends Fuel_base_controller {
 				} else{
 					$this->session->set_userdata('search_find_job_kind', "A");
 				}
-			// }else{
-			// 	$this->session->set_userdata('search_find_job_kind', "A");
-			// }				
+			}else{
+				$this->session->set_userdata('search_find_job_kind', "A");
+			}				
 		}
 
 		// echo "search_find_job_kind:$search_find_job_kind";
@@ -946,7 +947,7 @@ class Resume_manage extends Fuel_base_controller {
 			$filter .= " AND sex = '$search_sex'";
 			$this->session->set_userdata('search_sex', $search_sex);
 		}else{
-			// if (!isset($search_sex) ) {
+			if (!isset($search_sex) ) {
 				$search_sex = $this->session->userdata('search_sex'); 
 				if ($search_sex != "A" && $search_sex != "") {
 					$search_sex = $search_sex;
@@ -954,9 +955,9 @@ class Resume_manage extends Fuel_base_controller {
 				} else{
 					$this->session->set_userdata('search_sex', "A");
 				}
-			// }else{
-			// 	$this->session->set_userdata('search_sex', "A");
-			// }					
+			}else{
+				$this->session->set_userdata('search_sex', "A");
+			}					
 		}
 
 		// echo "search_sex:$search_sex";

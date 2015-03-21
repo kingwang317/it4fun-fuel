@@ -25,7 +25,7 @@
                 <?php  $this->load->view('_blocks/_left_menu')?>
                 <div class="rightbox">
                     <form action="<?php echo site_url()?>user/do_edit" method="POST" enctype="multipart/form-data" >
-                    <input type="hidden" name="account" value="<?php echo $account ?>" />
+                    <input type="hidden" name="account" value="<?php echo $data[0]->account ?>" />
                     <input type="hidden" name="token" value="<?php //echo $token ?>" />
                     <div class="left">
                         <!-- <img src="images/head2.png"> -->
@@ -337,13 +337,13 @@
            jQuery(document).ready(function($) {
 
                 $("#Submit").click(function(){
-                    console.log($("#password"));
+                    console.log($("#password").val().length);
                     if($("#password").val() != "" && $("#password").val() != $("#repassword").val()){
                         alert("兩次密碼不相符");
                         return false;
                     }
 
-                    if($("#password").val() != "" && $("#password").length < 9 ){
+                    if($("#password").val() != "" && $("#password").val().length < 8 ){
                         alert("密碼最少需要八個字元");
                         return false;
                     }
