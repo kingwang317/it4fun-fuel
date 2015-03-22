@@ -19,7 +19,7 @@
     <div id="maincontain">
         <div id="myinfobox">     
             <form action="<?php echo site_url().$form_action?>" method="POST" enctype="multipart/form-data" >
-            <input type="hidden" name="account" value="<?php echo $account ?>" />
+            <input type="hidden" name="account" value="<?php echo $data[0]->account ?>" />
             <input type="hidden" name="token" value="<?php //echo $token ?>" />
             <h2 class="titlebox"><img src="<?php echo site_url()?>assets/mobile_template/images/icon/myinfo.png"></h2>       
             <table class="block1">
