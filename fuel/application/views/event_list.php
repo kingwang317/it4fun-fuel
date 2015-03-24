@@ -32,8 +32,8 @@
                                         <img src="<?php echo $photo_path.$row->event_list_photo?>" width="200" height="200">
                                     </a>
                                 </div>
-                                <p class="title" title="<?php echo $row->event_title?>"><?php echo mb_substr($row->event_title, 0, 8, "utf-8")?>...</p>
-                                <p class="date"><?php echo mb_substr($row->event_start_date, 0, 16, "utf-8")?></p>
+                                <p class="title" title="<?php echo $row->event_title?>"><?php echo mb_substr($row->event_title, 0, 30, "utf-8")?></p>
+                                <p class="date"><?php echo mb_substr($row->event_start_date, 0, 30, "utf-8")?></p>
                             </div>                           
                 <?php
                         }

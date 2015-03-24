@@ -768,7 +768,7 @@ input.lang, input.remark{
 #eventslistbox div.item{
 	float: left;
 	width: 202px;
-	min-height: 265px;
+	min-height: 290px;
 	background-color: #f3f3f3;
 	border-bottom: solid #a59b9b 3px;
 	margin-bottom: 25px;
