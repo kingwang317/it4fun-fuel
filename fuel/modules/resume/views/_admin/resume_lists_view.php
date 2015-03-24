@@ -228,7 +228,8 @@
 				<div class="form-group">
 					<button type="submit" class="btn btn-warning">搜尋</button>
 					<button class="btn btn-info" type="button" onClick="aHover('<?php echo $create_url;?>')">新增履歷</button>
-					<button class="btn btn-info" type="button" onClick="aHoverBlank('<?php echo $export_url;?>')">匯出Excel</button>
+					<!-- <button class="btn btn-info" type="button" onClick="aHoverBlank('<?php //echo $export_url;?>')">匯出Excel</button>					 -->
+					<button class="btn btn-info" type="button" id="btn_export" >匯出Excel</button>
 				</div>
 			</div>
 	    </div>
@@ -376,6 +377,12 @@
 		// 	$("#form").submit();
 		// 	$("#form").attr('action', '<?php echo $form_action; ?>');
 		// });
+
+		$j("#btn_export").click(function(event) {
+			$j("#form").attr('action', '<?php echo $export_url ?>');
+			$j("#form").submit();
+			$j("#form").attr('action', '<?php echo $form_action ?>');
+		});
 
 		$j("#select-all").click(function() {
 

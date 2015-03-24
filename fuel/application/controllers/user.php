@@ -176,8 +176,8 @@ class User extends CI_Controller {
 		$vars['user_skill_list']	= $user_skill_list;
 		//$vars['views'] = 'editinfo';
 		$vars['recommended_id'] = $recommended_id;
-		$vars['account'] = $account;
-		$vars['account'] = $this->input->get("account");
+		// $vars['account'] = $account;
+		// $vars['account'] = $this->input->get("account");//(isset($account_get) && !empty($account_get) ) ? $account_get:$account;
 		$vars['token'] = $this->input->get("token");
 		$vars['data'] = $account_data;
 		$vars['form_action'] = 'user/do_edit'; 
@@ -216,10 +216,10 @@ class User extends CI_Controller {
 		}
 
 		$config['upload_path'] = $avatar_path;
-		$config['allowed_types'] = 'png';
-		$config['max_size']	= '9999';
-		$config['max_width']  = '1024';
-		$config['max_height']  = '768';
+		$config['allowed_types'] = 'png|jpg';
+		$config['max_size']	= '9999999';
+		$config['max_width']  = '0';
+		$config['max_height']  = '0';
 
 		$this->load->library('upload',$config);
 
