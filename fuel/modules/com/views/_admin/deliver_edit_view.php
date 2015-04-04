@@ -65,13 +65,13 @@
 								</div>
 								<div class="radio">
 								  <label>
-								    <input type="radio" name="process_type" id="job_status1" value="1" <?php echo $row->process_type == "2" ?"checked":""  ?>>
+								    <input type="radio" name="process_type" id="job_status1" value="2" <?php echo $row->process_type == "2" ?"checked":""  ?>>
 								    已通知面試
 								  </label>
 								</div>
 								<div class="radio">
 								  <label>
-								    <input type="radio" name="process_type" id="job_status1" value="1" <?php echo $row->process_type == "3" ?"checked":""  ?>>
+								    <input type="radio" name="process_type" id="job_status1" value="3" <?php echo $row->process_type == "3" ?"checked":""  ?>>
 								    完成面試
 								  </label>
 								</div>
