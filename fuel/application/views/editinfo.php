@@ -50,7 +50,7 @@
                                     <td>
                                         <select class="sexselect" name="sex">
                                             <option value="1" <?php echo $data[0]->sex==1?"selected":""; ?> >男</option>
-                                            <option value="0" <?php echo $data[0]->sex==0?"checked":""; ?> >女</option>
+                                            <option value="0" <?php echo $data[0]->sex==0?"selected":""; ?> >女</option>
                                         </select>
                                     </td>
                                 </tr>

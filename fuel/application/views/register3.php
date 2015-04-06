@@ -12,6 +12,22 @@
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/register3.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/index.js"></script>
+    <!-- Facebook Conversion Code for 註冊 -->
+<script>(function() {
+  var _fbq = window._fbq || (window._fbq = []);
+  if (!_fbq.loaded) {
+    var fbds = document.createElement('script');
+    fbds.async = true;
+    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(fbds, s);
+    _fbq.loaded = true;
+  }
+})();
+window._fbq = window._fbq || [];
+window._fbq.push(['track', '6016713470119', {'value':'1.00','currency':'TWD'}]);
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6016713470119&amp;cd[value]=1.00&amp;cd[currency]=TWD&amp;noscript=1" /></noscript>
 </head>
 
 <body>

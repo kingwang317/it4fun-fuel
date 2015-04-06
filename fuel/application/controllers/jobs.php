@@ -101,12 +101,17 @@ class Jobs extends CI_Controller {
 		$config = $this->set_page->set_front_end_config($target_url, $total_rows, $dataStart, 8);
 		$dataLen = $config['per_page'];
 		$this->pagination->initialize($config);
-
-		$results = $this->com_manage_model->get_job_list($dataStart, $dataLen, $filter);
+		$this->load->model('code_model');
+		if($this->code_model->is_mobile()){
+			$results = $this->com_manage_model->get_job_list(0, 999999, $filter);
+		}else{
+			$results = $this->com_manage_model->get_job_list($dataStart, $dataLen, $filter);
+		}
+		
 		$city_ary = $this->resume_manage_model->get_resume_option('address_city');
 		$skill_ary = $this->codekind_manage_model->get_codekind_list(0,999,"WHERE codekind_key = 'skill'" ,'mod_code');
 
-		$this->load->model('code_model');
+		
 
 		$fb_data	= $this->code_model->get_fb_data();
 		$vars['fb_data'] = $fb_data;

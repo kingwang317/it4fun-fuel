@@ -31,11 +31,16 @@ class Events extends CI_Controller {
 		$config = $this->set_page->set_front_end_config($target_url, $total_rows, $dataStart, 8);
 		$dataLen = $config['per_page'];
 		$this->pagination->initialize($config);
-
-		$results = $this->event_manage_model->get_event_list($dataStart, $dataLen, $filter);
-
-
 		$this->load->model('code_model');
+
+		if($this->code_model->is_mobile()){
+			$results = $this->event_manage_model->get_event_list(0, 999999, $filter);
+		}else{
+			$results = $this->event_manage_model->get_event_list($dataStart, $dataLen, $filter);
+		}
+
+
+		
 
 		$fb_data	= $this->code_model->get_fb_data();
 		$vars['fb_data'] = $fb_data;

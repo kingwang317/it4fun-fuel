@@ -11,6 +11,59 @@
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/common.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/index.js"></script>
     <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/mysite.css" type="text/css" media="all" >
+    <style type="text/css">
+    div#pagewrapper {
+      position: relative;
+      width: 500px;
+      margin: 0 auto;
+      }
+
+    div.pagination {
+      overflow: hidden;
+      font-size: 9pt;
+      padding: 10px 0;
+      }
+    div.pagination ul {
+      list-style: none;
+      padding: 2px 0;
+      line-height: 16px;
+      }
+    div.pagination li {
+      display: inline;
+      }
+
+    div.pagination.scott {
+      padding:3px;
+      margin:3px;
+      text-align:center;
+      }
+    div.pagination.scott li a 
+      padding: 2px 5px 2px 5px;
+      margin-right: 2px;
+      border: 1px solid #ddd;
+      text-decoration: none;
+      color: #88AF3F;
+      }
+    div.pagination.scott li a:hover, div.pagination.scott a:active {
+      border:1px solid #85BD1E;
+      color: #638425;
+      background-color: #F1FFD6;
+      }
+    div.pagination.scott li.active {
+      padding: 2px 5px 2px 5px;
+      margin-right: 2px;
+      border: 1px solid #B2E05D;
+      font-weight: bold;
+      background-color: #B2E05D;
+      color: #FFF;
+      }
+    div.pagination.scott li {
+      padding: 2px 5px 2px 5px;
+      margin-right: 2px;
+      border: 1px solid #f3f3f3;
+      color: #ccc;
+      }
+    </style>
 </head>
 
 <body>
@@ -39,10 +92,13 @@
                         }
                     }
                 ?>
-                    <br style="clear:both;">
-                    <ul class="page">
-                        <?php echo $page_jump;?>
-                    </ul>
+                    <div id="pagewrapper">
+                        <div class="pagination scott">
+                            <ul >
+                                <?php echo $page_jump;?>
+                            </ul>   
+                        </div>
+                    </div>        
                 </div>    
             </div>
             <div id="fbbox">

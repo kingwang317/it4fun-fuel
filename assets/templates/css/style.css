@@ -1,5 +1,27 @@
+#top_nav{
+	width:100%;height:60px; text-align:right;color:#ffffff;
+}
+#logo_img{
+	float:left;
+	margin-top:10px;
+	margin-left:50px;
+}
+
+#top_nav ul li a{
+	list-style:none;
+	float:right;
+	margin-right:20px;
+	width:auto;
+	margin-top:30px;
+	color:#ffffff;
+	font-size:14px;
+	text-decoration:none;
+}
+#top_nav ul li a:hover{
+	text-decoration:underline;
+}
 body {
-	font-family: "微軟正黑體","Helvetica"; 
+	font-family: "微軟正黑體"; 
 	color: #666666;
 	background-color:#ffffff;
 }
@@ -26,22 +48,28 @@ body {
 
 #headerbox{
 	position: relative;
+	/*
 	width:1110px;
 	height: 515px;
+	*/
+	width:100%;
+	min-height:515px;
 	background: url("../images/banner/banner01.jpg");
+	background-position: center;
 }
 
 
 #bodybox01{
 	position: relative;
 	width:1110px;
-	min-height: 317px;
+	min-height: 520px;
 }
 
 #bodybox01 div.top{
 	width: 990px;
 	height: 120px;
 	margin: 0 auto;
+	text-align: center;
 }
 
 #bodybox01 div.bottom{
@@ -50,7 +78,8 @@ body {
 	margin: 0 auto;
 }
 
-#bodybox01 div.top ul{}
+#bodybox01 div.top ul{
+	display: inline-block;}
 #bodybox01 div.top ul li{float: left;height: 120px;}
 #bodybox01 div.top ul li.subject{
 	width: 138px;
@@ -177,7 +206,8 @@ body {
 	text-decoration: none;
 }
 
-#loginbox{
+.loginbox{
+	/*
 	position: absolute;
 	top: 30px; 
 	left: 989px;
@@ -190,17 +220,44 @@ body {
 	color: #666;
 	padding: 0 0 0 30px;
 	cursor: pointer;
+	*/
 }
 
 #logdata{
-	position: absolute;
+	/*position: absolute;*/
+	position: relative;
 	top: 360px; 
-	left: 73px;
-	width: 276px;
-	height: 65px;
-	background: url("../images/icon/logdata.png");	
+	/*left: 73px;*/
+	width: 122px;
+	height: 24px;
+	/*background: url("../images/icon/logdata.png");	*/
 	background-repeat: no-repeat;
+	background-color: #84b545;
 	cursor: pointer;
+	margin-left:  auto;
+	margin-right: auto;
+	/*margin-top: 300px;*/
+	-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 10px;
+padding: 20px;
+-webkit-box-shadow: 0px 6px 0px 0px rgba(58,82,26,1);
+-moz-box-shadow: 0px 6px 0px 0px rgba(58,82,26,1);
+box-shadow: 0px 6px 0px 0px rgba(58,82,26,1);
+color: #ffffff;
+font-size: 30px;
+text-align: center;
+
+}
+
+#logdata:hover{
+	background-color: #84b545;
+	cursor: pointer;
+	top: 366px;
+	-webkit-box-shadow: 0px 1px 0px 0px rgba(58,82,26,1);
+	-moz-box-shadow: 0px 1px 0px 0px rgba(58,82,26,1);
+	box-shadow: 0px 1px 0px 0px rgba(58,82,26,1);
+	text-shadow: 1px 1px #000000;
 }
 
 #headerbox div.fb {
@@ -234,9 +291,9 @@ body {
 	margin: 0 auto;
 }
 
-#footernavbox div.nav ul{float: right;}
-#footernavbox div.nav ul li{float: left;}
-#footernavbox div.nav ul li a{
+#footernavbox ul{float: right;}
+#footernavbox ul li{float: left;}
+#footernavbox ul li a{
 	margin: 0 13px 0 13px;
 	padding: 0;
 	color: #fff;

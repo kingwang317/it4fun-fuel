@@ -10,6 +10,15 @@
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/lib/jquery-ui-1.11.0.custom/jquery-ui.js"></script>
     <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/common.js"></script>
     <link rel="stylesheet" href="<?php echo site_url()?>assets/templates/css/mysite.css" type="text/css" media="all" >
+       <script type="text/javascript" src="<?php echo site_url()?>assets/templates/Scripts/index.js"></script>
+       <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=787884584567146&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 </head>
 
 <body>
@@ -32,7 +41,36 @@
                         <tr height="100">
                             <td width="233">&nbsp;</td>
                             <td width="665">                                 
-                                <a href="#" class="dropresume">投遞履歷</a>
+                              <?php if($account != null && $account != ""){?>
+                                    <a id="dropresume" style="  display: block;
+    width: 215px;
+    height: 57px;
+    text-align: center;
+    line-height: 57px;
+    background-color: #8cc63f;
+    color: #fff;
+    box-shadow:  3px 3px 0px 0 #3a521a;
+    border-radius: 10px;
+    font-size: 24px;
+    text-decoration: none;
+    margin: 0 auto;
+    text-shadow:  1px 1px 3px #3a521a;  " href="#">投遞履歷</a>
+                                    <?php }else{ ?>
+                                    <a class="loginbox" href="#" style="    display: block;
+    width: 215px;
+    height: 57px;
+    text-align: center;
+    line-height: 57px;
+    background-color: #8cc63f;
+    color: #fff;
+    box-shadow:  3px 3px 0px 0 #3a521a;
+    border-radius: 10px;
+    font-size: 24px;
+    text-decoration: none;
+    margin: 0 auto;
+    text-shadow:  1px 1px 3px #3a521a;  ">登入/註冊投遞履歷</a>
+                                    <?php } ?>
+                                </a>
                             </td>
                         </tr>
                         <tr height="10"><td width="233">&nbsp;</td><td width="665">&nbsp;</td></tr>
@@ -83,7 +121,36 @@
                         <tr height="100">
                             <td width="233">&nbsp;</td>
                             <td width="665">                                 
-                                <a href="#" class="dropresume">投遞履歷</a>
+                                    <?php if($account != null && $account != ""){?>
+                                    <a id="dropresume" style="  display: block;
+    width: 215px;
+    height: 57px;
+    text-align: center;
+    line-height: 57px;
+    background-color: #8cc63f;
+    color: #fff;
+    box-shadow:  3px 3px 0px 0 #3a521a;
+    border-radius: 10px;
+    font-size: 24px;
+    text-decoration: none;
+    margin: 0 auto;
+    text-shadow:  1px 1px 3px #3a521a;  " href="#">投遞履歷</a>
+                                    <?php }else{ ?>
+                                    <a class="loginbox" href="#" style="    display: block;
+    width: 215px;
+    height: 57px;
+    text-align: center;
+    line-height: 57px;
+    background-color: #8cc63f;
+    color: #fff;
+    box-shadow:  3px 3px 0px 0 #3a521a;
+    border-radius: 10px;
+    font-size: 24px;
+    text-decoration: none;
+    margin: 0 auto;
+    text-shadow:  1px 1px 3px #3a521a;  ">登入/註冊投遞履歷</a>
+                                    <?php } ?>
+                                </a>
                             </td>
                         </tr>
                         <tr height="10"><td width="233">&nbsp;</td><td width="665">&nbsp;</td></tr>
@@ -106,17 +173,17 @@
                 <img src="<?php echo site_url()?>assets/templates/images/fbbox.png">
             </div>
         </div>
-        <?php  $this->load->view('_blocks/_footer')?>
+        
     </div>
 
 <script type="text/javascript">
 
     jQuery(document).ready(function($) {
-        $(".dropresume").click(function(event) {
+        $("#dropresume").click(function(event) {
 
             if('<?php echo $account; ?>' == ''){
-                     alert("請先登入後，再投遞履歷");
-                   window.location = '<?php echo site_url()."home/login?target_url=job/detail/".$job_id ?>' ;//+ '?redirURL=' + document.URL;
+                    alert("請先登入後，再投遞履歷");
+                    window.location = '<?php echo site_url()."home/login?target_url=job/detail/".$job_id ?>' ;//+ '?redirURL=' + document.URL;
             }
             $.ajax({
                 url: '<?php echo $regi_url ?>',
@@ -140,7 +207,7 @@
     });
 
 </script>
-
+<?php $this->load->view('_blocks/_footer')?>
 </body>
 </html>
 

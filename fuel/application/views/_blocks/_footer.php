@@ -1,13 +1,13 @@
 
 
 <?php
-//$this->load->model('code_model');
-//$fb_data  = $this->code_model->get_fb_data();
+$this->load->model('code_model');
+$fb_data  = $this->code_model->get_fb_data();
 ?>
 
 <div id="footerbox">
     <div id="footernavbox">
-        <div class="nav">
+      
             <ul>
                 <li><a href="<?php echo site_url()?>user/mynews/">最新消息</a></li>
                 <li><a href="<?php echo site_url()?>job/">職缺列表</a></li>
@@ -18,7 +18,7 @@
                 <li><a href="<?php echo site_url()?>home/terms/">使用者條款</a></li>
                 <li><a href="<?php echo site_url()?>home/contact/">聯絡我們</a></li>
             </ul>
-        </div>
+       
     </div>
     <div id="footerinfobox">
         <div class="info">
@@ -51,11 +51,11 @@
             <div class="agree">
                  <p>我已閱讀並同意<a href="<?php echo site_url()?>home/terms/">使用條款</a></p><input type="checkbox" name="agree" id="agree" >
                  <br />
-                <span class="regi_msg" style="margin: 5px -125px 5px 125px;">您的所有個人資料均受個人資料庫保護法所保障，<br />我們不會洩漏您的任何資料。</span> 
+                <span class="regi_msg" style="margin: 5px -125px 5px 125px;">您的所有個資均受個資法保障，我們不會洩漏您的任何資料。</span> 
                 <br />
             </div>
             <div class="submit">
-                <input type="submit" class="submitbtn" name="submitbtn_1" id="submitbtn_1" value="送出">
+               <a class="loginbox" href="#" style="font-size:14px; color:gray;">我有帳號了，登入</a> <input type="submit" class="submitbtn" name="submitbtn_1" id="submitbtn_1" value="註冊">
             </div>
             
             <div class="fbbox">
@@ -181,7 +181,7 @@ $("#forgetpw").click(function(){
                 url: '<?php echo site_url()?>user/reset_password',
                 type: 'POST',
                 dataType: 'json',
-                
+                data: { account: $("#login_mail").val() }
             }).done(function( data ) {
             alert( data.msg );
           });

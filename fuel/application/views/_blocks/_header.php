@@ -14,15 +14,47 @@ if($recommended_id != null && $recommended_id  != ""){
 
 ?>
 
-<div id="headerbox">
+
+      <div id="top_nav" >
+
+            <div id="logo_img">
+                <?php if($account == null || $account == ""){?>
+
+            <a href="<?php echo site_url()?>"><img src="<?php echo site_url()?>assets/templates/images/logo/logo2.png"></a>
+            <?php }else{ ?>
+            <a href="<?php echo site_url()?>user/mynews"><img src="<?php echo site_url()?>assets/templates/images/logo/logo2.png"></a>
+            <?php } ?>
+        </div>
+                    <ul>
+                        
+
+         <?php if($account != null && $account != ""){?>
+            <li><a href="<?php echo site_url()?>user/editinfo" alt="檢視我的檔案">我的檔案</a></li>
+            <li><a href="<?php echo site_url()?>user/logout" alt="登出">登出</a></li>
+            <?php }else{ ?>
+            <li><a href="#" class="register_btn" style="color:yellow;"><!--<img src="<?php echo site_url()?>assets/templates/images/icon/login2.png">-->註冊/登錄</a></li>
+            <?php } ?>
+                                       
+                        </li>
+                        <li><a href="<?php echo site_url()?>user/mynews/">最新消息</a></li>
+                        <li><a href="<?php echo site_url()?>job/">職缺列表</a></li>
+                        <li><a href="<?php echo site_url()?>event/">活動列表</a></li>
+                        <li><a href="<?php echo site_url()?>home/aboutus/">關於我們</a></li>
+                      <!--  <li><a href="<?php echo site_url()?>home/campusevent/">校園活動</a></li>
+                    -->
+                        <li><a href="<?php echo site_url()?>home/terms/">使用者條款</a></li>
+                        <li><a href="<?php echo site_url()?>home/contact/">聯絡我們</a></li>
+                    </ul>
+    </div>
+  <!--
   <?php if($account == null || $account == ""){?>
     <a class="logo" href="<?php echo site_url()?>"></a>
     <?php }else{ ?>
     <a class="logo" href="<?php echo site_url()?>user/mynews"></a>
     <?php } ?>
     <ul class="menu">
-       <!-- <li><a href="<?php echo site_url()?>home/campusevents/">校園活動</a></li>
-        <li><a href="<?php echo site_url()?>home/aboutus/">關於我們</a></li>    -->    
+      <li><a href="<?php echo site_url()?>home/campusevents/">校園活動</a></li>
+        <li><a href="<?php echo site_url()?>home/aboutus/">關於我們</a></li>      
              
     </ul>
 
@@ -35,13 +67,15 @@ if($recommended_id != null && $recommended_id  != ""){
     <?php }else{ ?>
     <div id="loginbox">註冊/登錄</div>
     <?php } ?>
-    <div id="logdata"></div>
-    
+    -->  
+    <!--登入按鈕-->
+
+        
     
     
     <!--<div class="fb"></div>-->
     <?php }?>
-</div>
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

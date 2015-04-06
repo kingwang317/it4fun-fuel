@@ -27,6 +27,9 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 body {
 	line-height: 1;
+	font-family: "微軟正黑體";
+	text-align: justify;
+	text-justify:inter-ideograph;
 }
 ol, ul {
 	list-style: none;
@@ -61,7 +64,7 @@ table {
 
 
 body {
-	font-family: "Georgia、微軟正黑體、新細明體、細明體、Arial";
+	font-family: "微軟正黑體";
 	color: #666666;	
 	background-color:#fff;
 	line-height: 1.5em;
@@ -690,6 +693,7 @@ input.lang, input.remark{
 	width: auto;
 	height: 62px;
 	font-size: 14px;
+	font-family: "微軟正黑體";
 }
 #view_vacanciesbox .searchbox input.search{
 	border: 1px solid #ccc;
@@ -891,30 +895,43 @@ input.lang, input.remark{
 }
 #eventbox .contentbox{
 	width: 950px;
+	/*
 	min-height: 600px;
 	height: auto;
+	*/
 	margin-bottom: 35px;
 }
 #eventbox .contentbox div.llbox{
 	float: left;
 	width: 580px;
+	/*
 	min-height: 600px;
 	height: 600px;
+	*/
 	padding: 20px;
-	overflow-y: scroll;
+	/*overflow-y: scroll;*/
+	line-height: 24px;
+	height: auto;
+
 }
 #eventbox .contentbox div.rrbox{
+	/*
 	margin-left: 620px;
 	width: auto;
 	min-height: 600px;
 	height: auto;
 	padding: 20px 0px 20px 20px;
+	*/
+	width: 280px;
+	float: left;
+	padding: 10px;
+	margin-top: 20px;
 }
 #eventbox .contentbox div.infobox{
-	min-width: 310px;
+	min-width: 290px;
 	min-height: 120px;
 	margin: 0 0 10px 0;
-	padding: 0;
+	padding: 10px;
 	background: #f3f3f3;
 }
 #eventbox .contentbox div.mapbox{

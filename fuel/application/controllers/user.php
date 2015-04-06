@@ -166,6 +166,7 @@ class User extends CI_Controller {
 		$fb_data	= $this->code_model->get_fb_data("user/do_connect_fb2account");
 		$vars['age'] = $age;
 		$vars['fb_data'] = $fb_data;
+		$vars['account'] = $account;
 		$vars['exclude_cate']	= $exclude_cate;
 		$vars['skill_list']	= $skill_list;
 		$vars['job_type_list']	= $job_type_list;
@@ -326,6 +327,11 @@ $this->load->helper('cookie');
 				if(isset($target_url) && $target_url != ""){
 					$this->comm->plu_redirect(site_url().$target_url, 0, "登入成功");
 				}else{
+					if($this->code_model->is_mobile()){
+						$this->comm->plu_redirect(site_url()."user/mybox", 0, "登入成功");
+					}else{
+						$this->comm->plu_redirect(site_url()."user/mynews", 0, "登入成功");
+					}
 					$this->comm->plu_redirect(site_url()."user/mynews", 0, "登入成功");
 				}
 
@@ -368,7 +374,11 @@ $this->load->helper('cookie');
 			if(isset($target_url) && $target_url != ""){
 				$this->comm->plu_redirect(site_url().$target_url, 0, "FACEBOOK登入成功");
 			}else{
-				$this->comm->plu_redirect(site_url()."user/mynews", 0, "FACEBOOK登入成功");
+				if($this->code_model->is_mobile()){
+					$this->comm->plu_redirect(site_url()."user/mybox", 0, "FACEBOOK登入成功");
+				}else{
+					$this->comm->plu_redirect(site_url()."user/mynews", 0, "FACEBOOK登入成功");
+				}
 			}
 
 		}else{

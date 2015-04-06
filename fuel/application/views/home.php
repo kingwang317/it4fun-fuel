@@ -26,11 +26,30 @@
 </head>
 
 <body>
+    <?php
+$this->load->model('code_model');
+$account = $this->code_model->get_logged_in_account();
+$recommended_id = $this->input->get("recid");
+if($recommended_id != null && $recommended_id  != ""){
+    $this->load->helper('cookie');
+    $this->input->set_cookie("ytalent_recommended_id","", time()-3600);
+    $this->input->set_cookie("ytalent_recommended_id",$recommended_id, time()+3600);
+}
+
+//echo $title;
+
+//echo $this->input->cookie("ytalent_recommended_id");
+
+?>
+
+ <?php  $this->load->view('_blocks/_header')?>
+<div id="headerbox">
+<div id="logdata">馬上註冊</div>
+</div>
     <div id="maincontain">
         <div id="contentbox">
 
-            <?php  $this->load->view('_blocks/_header')?>
-
+           
             <div id="bodybox01" >
                 <div class="top">
                     <?php echo fuel_block("index_partners_icon") ?>
@@ -38,14 +57,16 @@
                 <div class="bottom" style="display:hidden">
                     <h2>就是你，年輕人</h2>
                     <p>
-我們是由資深人力資源團隊及數家國際級人力資源顧問公司共同建置之平台，與年輕的學生團隊聯合執行管理。在Young Talent的團隊中，我們重視年輕人的價值，同時強調創意的執行。我們比其他人懂你們求職的需求以及對未來的期待!
-提早加入我們，登錄你的簡歷，提早替你的履歷加分!在Young Talent你可以收到豐富的職缺訊息，職場趨勢。我們不定期舉辦各式活動，讓新鮮人保持新鮮，履歷、經歷、腦袋卻絕不陽春!
+我們是由資深人力資源團隊及數家國際級人力資源顧問公司共同建置之平台，與年輕的學生團隊聯合執行管理。在YoungTalent的團隊中，我們重視年輕人的價值，同時強調創意的執行。我們比其他人懂你們求職的需求以及對未來的期待!
+提早加入我們，登錄你的簡歷，提早替你的履歷加分!在YoungTalent你可以收到豐富的職缺訊息，職場趨勢。我們不定期舉辦各式活動，讓新鮮人保持新鮮，履歷、經歷、腦袋卻絕不陽春!
                     </p>
                 </div>
             </div>
-            <div id="bodybox02">
+            
+            <div id="bodybox02" style="display:none;">
                   <?php echo fuel_block("index_bodybox02") ?>
             </div>
+
             <div id="bodybox03">
                 <img src="<?php echo site_url()?>assets/templates/images/pic/pic2.png">
             </div>

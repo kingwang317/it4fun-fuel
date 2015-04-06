@@ -3,8 +3,8 @@ jQuery(document).ready(function ($) {
     DATA.winW = $(window).width();
     DATA.winH = $(window).height();
     DATA.dom={};
-    DATA.dom.loginbox=$("#loginbox");
-    DATA.dom.register_btn=$("#register_btn");
+    DATA.dom.loginbox=$(".loginbox");
+    DATA.dom.register_btn=$(".register_btn");
     DATA.dom.logdata=$("#logdata");
     DATA.dom.wall=$("#wall");
     DATA.dom.logindatabox=$("#logindatabox");

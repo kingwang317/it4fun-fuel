@@ -24,7 +24,7 @@
                 <div class="step2"></div>
                 <div class="reight">
                     
-                    <form action="<?php echo site_url()?>/register/step2_save/" method="POST" onSubmit="return checkCol();">                    
+                    <form action="<?php echo site_url()?>/register/step2_save/" method="POST" enctype="multipart/form-data" onSubmit="return checkCol();">                    
                         <input type="hidden" name="account" value="<?php echo $account ?>" />
                         <input type="hidden" name="token" value="<?php echo $token ?>" />
                         <div class="area_div" id="area_div_2">
@@ -128,9 +128,9 @@
                                 <table > 
                                      <?php for ($i=0;$i<sizeof($job_cate_list);$i=$i+2): ?>
                                         <tr height="20">
-                                            <td width="200"><input type="checkbox" name="exclude_cate[]" value="<?php echo $job_cate_list[$i]->code_id ?>" 
+                                            <td width="200"><input type="checkbox" name="exclude_cate[]" class="exclude_cate" value="<?php echo $job_cate_list[$i]->code_id ?>" 
                                                 ><?php echo $job_cate_list[$i]->code_name ?></td>
-                                            <td><input type="checkbox" name="exclude_cate[]" value="<?php echo $job_cate_list[$i+1]->code_id ?>"                                                
+                                            <td><input type="checkbox" name="exclude_cate[]" class="exclude_cate" value="<?php echo $job_cate_list[$i+1]->code_id ?>"                                                
                                                 > <?php echo $job_cate_list[$i+1]->code_name ?></td>
                                             <td>&nbsp;</td>
                                             <td>&nbsp;</td>
@@ -146,9 +146,9 @@
                                     <table >
                                         <?php for ($i=0;$i<sizeof($skill_list);$i=$i+2): ?>
                                         <tr height="20">
-                                            <td width="200"><input type="checkbox" name="skill[]" value="<?php echo $skill_list[$i]->code_id ?>"
+                                            <td width="200"><input type="checkbox" name="skill[]" class="skill_cate" value="<?php echo $skill_list[$i]->code_id ?>"
                                                 ><?php echo $skill_list[$i]->code_name ?></td>
-                                            <td><input type="checkbox" name="skill[]" value="<?php echo $skill_list[$i+1]->code_id ?>"
+                                            <td><input type="checkbox" name="skill[]" class="skill_cate" value="<?php echo $skill_list[$i+1]->code_id ?>"
                                                 > <?php echo $skill_list[$i+1]->code_name ?></td>
                                             <td>&nbsp;</td>
                                             <td>&nbsp;</td>
@@ -228,7 +228,7 @@
                                 <div class="reight">
                                     <ul>
                                         <li class="l1">
-                                            <input type="radio" name="now_status" value="0" checked><span>&nbsp;&nbsp;在職</span>
+                                            <input type="radio" name="now_status" value="0"><span>&nbsp;&nbsp;在職</span>
                                             <input type="radio" name="now_status" value="0"><span>&nbsp;&nbsp;在學</span>
                                             <input type="radio" name="now_status" value="0"><span>&nbsp;&nbsp;待業</span>
                                         </li>
@@ -244,7 +244,7 @@
                                 <div class="reight">
                                     <ul>
                                         <li class="l1">
-                                            <input type="radio" name="find_kind" value="0"  checked><span style="width:auto;">&nbsp;&nbsp;我目前在找打工&nbsp;&nbsp;</span>
+                                            <input type="radio" name="find_kind" value="0"  ><span style="width:auto;">&nbsp;&nbsp;我目前在找打工&nbsp;&nbsp;</span>
                                             <input type="radio" name="find_kind" value="1"  ><span style="width:auto;">&nbsp;&nbsp;我目前在找全職工作</span>
                                         </li>
                                     </ul>
@@ -433,14 +433,15 @@
             function checkCol(){
                 var msg = "";
 
+
                 if($("#name").val() == ""){
                     msg += "第二步-姓名欄位為必填 \n";
                 }
                 if($("#birth").val() == ""){
                     msg += "第二步-生日欄位為必填 \n";
                 }
-                if($("#birth").val() == ""){
-                    msg += "第二步-生日欄位為必填 \n";
+                if($("#school_id_1").val() == ""){
+                    msg += "第二步-學校欄位為必填 \n";
                 }
                 if($("#contact_tel").val() == ""){
                     msg += "第二步-連絡電話欄位為必填 \n";
@@ -448,6 +449,25 @@
                 if($("#address").val() == ""){
                     msg += "第二步-地址欄位為必填 \n";
                 }
+
+                var exclude_cate_ehecked = $('input:checkbox:checked.exclude_cate').map(function () {
+                  return this.value;
+                }).get();
+
+
+                if(exclude_cate_ehecked.length == 0){
+                    msg += "第三步-不想就業的類別為必填 \n";
+                }
+
+                var skill_cate_ehecked = $('input:checkbox:checked.skill_cate').map(function () {
+                  return this.value;
+                }).get();
+
+
+                if(skill_cate_ehecked.length == 0){
+                    msg += "第三步-我會的技能為必填 \n";
+                }
+               
 
                 if(msg == ""){
                     return true;
@@ -457,6 +477,8 @@
                 }
 
             }
+
+           
            
 
     </script>
