@@ -707,7 +707,7 @@ abstract class BaseFacebook
    * @return mixed The authorization code, or false if the authorization
    *               code could not be determined.
    */
-  protected function getCode() {
+  /*protected function getCode() {
     if (!isset($_REQUEST['code']) || !isset($_REQUEST['state'])) {
       return false;
     }
@@ -720,7 +720,27 @@ abstract class BaseFacebook
     self::errorLog('CSRF state token does not match one provided.');
 
     return false;
-  }
+  }*/
+  protected function getCode() {
+    $server_info = array_merge($_GET, $_POST, $_COOKIE);
+
+    if (isset($server_info['code'])) {
+        if ($this->state !== null &&
+                isset($server_info['state']) &&
+                $this->state === $server_info['state']) {
+
+            // CSRF state has done its job, so clear it
+            $this->state = null;
+            $this->clearPersistentData('state');
+            return $server_info['code'];
+        } else {
+            self::errorLog('CSRF state token does not match one provided.');
+            return false;
+        }
+    }
+
+    return false;
+}
 
   /**
    * Retrieves the UID with the understanding that

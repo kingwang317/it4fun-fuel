@@ -3,6 +3,7 @@
 <?php
 $this->load->model('code_model');
 $fb_data  = $this->code_model->get_fb_data();
+$target_url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 ?>
 
 <div id="footerbox">
@@ -60,7 +61,7 @@ $fb_data  = $this->code_model->get_fb_data();
             
             <div class="fbbox">
                 <p>使用臉書登入，又快又方便 &nbsp;&nbsp;&nbsp;&nbsp;</p> 
-                <div><a href="<?php echo $fb_data['login_url'] ?>"><img src="<?php echo site_url()?>assets/templates/images/icon/loginFB.png"></a></div>
+                <div><a href="<?php echo $fb_data['login_url']."&target_url=".$target_url ?>"><img src="<?php echo site_url()?>assets/templates/images/icon/loginFB.png"></a></div>
                 <br />
                 <span class="regi_msg">我們不會在您的 Facebook 發佈任何貼文</span> 
             </div>
@@ -92,7 +93,7 @@ $fb_data  = $this->code_model->get_fb_data();
             <div class="fbbox">
                 <p>使用臉書登入，又快又方便 &nbsp;&nbsp;&nbsp;&nbsp;</p> 
                 
-                <div><a href="<?php echo $fb_data['login_url'] ?>"><img src="<?php echo site_url()?>assets/templates/images/icon/loginFB.png"></a></div>
+                <div><a href="<?php echo $fb_data['login_url']."&target_url=".$target_url  ?>"><img src="<?php echo site_url()?>assets/templates/images/icon/loginFB.png"></a></div>
             </div>
         
         </form>

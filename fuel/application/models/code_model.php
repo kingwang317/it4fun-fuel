@@ -103,7 +103,7 @@ public function do_update_fbid2resume($account,$fbid){
 
         return null;
     }
-    public function get_fb_data($redirect_uri="user/do_fb_regi"){
+    public function get_fb_data($redirect_uri="user/do_fb_regi?1=1"){
         $this->load->library('facebook'); 
         $user = $this->facebook->getUser();
         //print_r($user);
@@ -112,8 +112,9 @@ public function do_update_fbid2resume($account,$fbid){
         if ($user) {
             try {
                 $data['user_profile'] = $this->facebook->api('/me');
+
             } catch (FacebookApiException $e) {
-                //print_r($e);
+                //print_r($e."nill");
                 //die();
                 $user = null;
             }
@@ -780,7 +781,7 @@ public function do_update_fbid2resume($account,$fbid){
         $new_pw = $this->generateRandomString();
 
         $update_sql_1 = " UPDATE mod_resume SET 
-                    password = ?
+                    password = MD5(?)
                     WHERE account = ? ";
         $para = array(
             $new_pw, 

@@ -332,7 +332,7 @@ $this->load->helper('cookie');
 					}else{
 						$this->comm->plu_redirect(site_url()."user/mynews", 0, "登入成功");
 					}
-					$this->comm->plu_redirect(site_url()."user/mynews", 0, "登入成功");
+					//$this->comm->plu_redirect(site_url()."user/mynews", 0, "登入成功");
 				}
 
             	
@@ -349,6 +349,9 @@ $this->load->helper('cookie');
 		$this->load->model('code_model');
 
 		$data = $this->code_model->get_fb_data();
+
+		//print_r($data);
+		//die();
 		$target_url = $this->input->get("target_url");
 
 
