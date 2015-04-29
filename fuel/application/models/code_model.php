@@ -103,7 +103,7 @@ public function do_update_fbid2resume($account,$fbid){
 
         return null;
     }
-    public function get_fb_data($redirect_uri="user/do_fb_regi?1=1"){
+    public function get_fb_data($redirect_uri="user/do_fb_regi"){
         $this->load->library('facebook'); 
         $user = $this->facebook->getUser();
         //print_r($user);

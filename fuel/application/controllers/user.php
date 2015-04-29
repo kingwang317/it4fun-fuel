@@ -309,7 +309,7 @@ $this->load->helper('cookie');
 		$this->load->model('code_model');
         $account = $this->input->post("login_mail");
         $password = $this->input->post("login_password");
-        $target_url = $this->input->get("target_url");
+        $target_url = $this->input->cookie("ytalent_target_url");
 
         $is_logined = $this->code_model->is_account_logged_in($account);
        
@@ -325,7 +325,7 @@ $this->load->helper('cookie');
 				$this->input->set_cookie("ytalent_account",$account, 3600);
 
 				if(isset($target_url) && $target_url != ""){
-					$this->comm->plu_redirect(site_url().$target_url, 0, "登入成功");
+					$this->comm->plu_redirect($target_url, 0, "登入成功");
 				}else{
 					if($this->code_model->is_mobile()){
 						$this->comm->plu_redirect(site_url()."user/mybox", 0, "登入成功");
@@ -352,7 +352,7 @@ $this->load->helper('cookie');
 
 		//print_r($data);
 		//die();
-		$target_url = $this->input->get("target_url");
+		$target_url = $this->input->cookie("ytalent_target_url");
 
 
 		if(isset($data['user_profile'])){
@@ -375,7 +375,7 @@ $this->load->helper('cookie');
 			$this->input->set_cookie("ytalent_account",$mail, time()+3600);
 			$this->input->set_cookie("ytalent_fb_logout_url",$data['logout_url'], time()+3600);
 			if(isset($target_url) && $target_url != ""){
-				$this->comm->plu_redirect(site_url().$target_url, 0, "FACEBOOK登入成功");
+				$this->comm->plu_redirect($target_url, 0, "FACEBOOK登入成功");
 			}else{
 				if($this->code_model->is_mobile()){
 					$this->comm->plu_redirect(site_url()."user/mybox", 0, "FACEBOOK登入成功");
