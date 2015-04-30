@@ -85,6 +85,13 @@
 				}
 
 		    ?>
+	        <?php if($result->avatar=="" && $result->fb_account == ""){ ?>
+                 
+            <?php }elseif($result->avatar!=""){ ?>              
+                <img src="<?php echo site_url()."/assets/avatar/".$result->avatar ?>" style="width: 106px;">
+             <?php }elseif($result->fb_account!=""){ ?>
+                <img alt="140x140" src="https://graph.facebook.com/<?php echo $result->fb_account  ?>/picture?type=large" style="width: 106px;">               
+            <?php } ?>
 			<ul>
 				<li>姓名 : <?php echo  $result->name; ?></li>
 				<li>性別 : <?php echo  $result->sex == "0"?"女":"男"; ?></li>
