@@ -538,6 +538,9 @@ class Resume_manage extends Fuel_base_controller {
 
 		$exp = $this->resume_manage_model->get_resume_exp($account);		
 		$vars["exp"] = $exp;
+
+		$exclude_cate = !empty($result->exclude_cate)?explode(";", $result->exclude_cate):array();
+		$vars['exclude_cate']	= $exclude_cate;
 	 
 
 		$vars['module_uri'] = base_url().$this->module_uri;

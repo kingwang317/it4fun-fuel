@@ -20,6 +20,10 @@
 				$school_str = '';
 				$exp_str = '';
 				$lang_str = '';
+				$skill_str = '';
+				$job_status_str = '';
+				$find_job_kind_str = '';
+				$exclude_cate_str = '';
 			 ?>
 			<?php if (isset($exp)): ?>
 				<?php foreach ($exp as $key => $row): ?>
@@ -49,14 +53,58 @@
 					 ?>
 				<?php endforeach ?>
 			<?php endif ?>
+			<?php if (isset($skill)): ?>
+				<?php foreach ($skill as $key => $row): ?>
+					<?php 
+						$skill_str .= "$row->code_name,";
+					 ?>
+				<?php endforeach ?>
+			<?php endif ?>
+			<?php if (isset($job_cate)): ?>
+				<?php foreach ($job_cate as $key => $row): ?>					
+					 <?php if (isset($exclude_cate) && in_array($row->code_id,$exclude_cate)): ?>
+                        <?php 
+							$exclude_cate_str .= "$row->code_name,";
+						 ?>
+                    <?php endif ?>
+				<?php endforeach ?>
+			<?php endif ?>
+			<?php 
+				if ($result->job_status == '0') {
+					$job_status_str = '在職';
+				}else if ($result->job_status == '1') {
+					$job_status_str = '在學';
+				}else{
+					$job_status_str = '待業';
+				}
+
+				if ($result->find_job_kind == '0') {
+					$find_job_kind_str = '我目前在找打工';
+				}else{
+					$find_job_kind_str = '我目前在找全職工作';
+				}
+
+		    ?>
 			<ul>
 				<li>姓名 : <?php echo  $result->name; ?></li>
 				<li>性別 : <?php echo  $result->sex == "0"?"女":"男"; ?></li>
-				<li>電話 : <?php echo  $result->contact_tel; ?></li>
+				<li>生日 : <?php echo  $result->birth; ?></li>			 
+				<li>手機 : <?php echo  $result->contact_tel; ?></li>
 				<li>Email : <?php echo  $result->contact_mail; ?></li>
+				<li>聯絡地址 : <?php echo  "($result->address_zip) $result->address_city $result->address_area $result->address"; ?></li>
 				<li>學歷 : <?php echo  $school_str; ?></li>
 				<li>工作經驗 : <?php echo  $exp_str; ?></li>
 				<li>語⾔能力 : <?php echo  $lang_str; ?></li>
+				<li>不想就業的類別 : <?php echo  $exclude_cate_str; ?></li>
+				<li>我會的技能 : <?php echo  $skill_str; ?></li>
+				<li>就業狀態 : <?php echo  $job_status_str; ?></li>
+				<li>尋找工作 : <?php echo  $find_job_kind_str; ?></li>				
+				<li>關於自已 : <?php echo  $result->about_self; ?></li>
+				<?php if (isset($result->about_att) && !empty($result->about_att)): ?> 
+	                
+	                <li>附件 : <a href="<?php echo site_url()."assets/about_att/".$result->about_att; ?>" target="_blank" ><?php echo $result->about_att ?></a></li>
+	             <?php endif ?> 
+				
 			</ul>	
 		</div>
 	</div>
