@@ -112,7 +112,7 @@ class Com_manage extends Fuel_base_controller {
 		$total_count = $this->com_manage_model->get_job_total_rows($filter);  
 		$vars['total_count'] = $total_count; 
 
-		$config = $this->set_page->set_config($target_url, $total_count, $dataStart, 20);
+		$config = $this->set_page->set_config($target_url, $total_count, $dataStart, 200);
 		$dataLen = $config['per_page'];
 		$this->pagination->initialize($config);
 
@@ -156,7 +156,7 @@ class Com_manage extends Fuel_base_controller {
 		$total_count = $this->com_manage_model->get_deliver_total_rows($filter);  
 		$vars['total_count'] = $total_count; 
 
-		$config = $this->set_page->set_config($target_url, $total_count, $dataStart, 20);
+		$config = $this->set_page->set_config($target_url, $total_count, $dataStart, 200);
 		$dataLen = $config['per_page'];
 		$this->pagination->initialize($config); 
 
